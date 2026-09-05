@@ -1,0 +1,376 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   Survival Academy — design system (Phase 23, migrated from Lovable reference)
+
+   The Lovable reference (`frontend-reference/expedition-basecamp-main/src/styles.css`)
+   is the visual source of truth. This file is a faithful port of that token
+   system, with three production adaptations:
+
+   1. Fonts are actually loaded (Oswald / Barlow / JetBrains Mono via fontsource —
+      the reference declared them but never loaded them).
+   2. The light theme is driven by `[data-theme="light"]` (the production theme
+      mechanism) instead of the reference's unused `.light` class.
+   3. Legacy production token names are aliased onto these variables so every
+      pre-existing component adopts the new palette without rewrite.
+
+   All visual tokens live here. Components must consume semantic tokens only.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+@import "tailwindcss";
+@import "@fontsource-variable/oswald";
+@import "@fontsource-variable/jetbrains-mono";
+@import "@fontsource/barlow/400.css";
+@import "@fontsource/barlow/500.css";
+@import "@fontsource/barlow/600.css";
+@import "@fontsource/barlow/700.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+
+  --font-display: "Oswald Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Barlow", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Barlow", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono Variable", ui-monospace, monospace;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+
+  --color-ember: var(--ember);
+  --color-water: var(--cat-water);
+  --color-fire: var(--cat-fire);
+  --color-shelter: var(--cat-shelter);
+  --color-food: var(--cat-food);
+  --color-agriculture: var(--cat-agriculture);
+  --color-foraging: var(--cat-foraging);
+  --color-medical: var(--cat-medical);
+  --color-navigation: var(--cat-navigation);
+  --color-energy: var(--cat-energy);
+  --color-fundamentals: var(--cat-fundamentals);
+
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* ── Legacy production tokens (Phase 24) — aliased onto the Lovable
+     palette so pre-existing components adopt the new design wholesale. ── */
+  --color-bg-base: var(--background);
+  --color-bg-subtle: var(--sidebar);
+  --color-bg-surface: var(--surface);
+  --color-bg-elevated: var(--surface-2);
+  --color-bg-raised: var(--surface-3);
+  --color-border-default: var(--border);
+  --color-text-primary: var(--foreground);
+  --color-text-secondary: var(--muted-foreground);
+  --color-text-muted: color-mix(in oklab, var(--muted-foreground) 62%, var(--background));
+  --color-text-disabled: color-mix(in oklab, var(--muted-foreground) 42%, var(--background));
+  --color-accent-ember: var(--ember);
+  --color-accent-ember-hover: color-mix(in oklab, var(--ember) 85%, white);
+  --color-accent-on: var(--primary-foreground);
+  --color-success-pine: var(--success);
+  --color-info-water: var(--cat-water);
+  --color-warning-amber: var(--warning);
+  --color-danger-blood: var(--destructive);
+  --color-xp-gold: var(--warning);
+  --color-field-slate: var(--cat-fundamentals);
+  --color-canvas-tan: var(--cat-shelter);
+  --color-harvest-clay: var(--cat-food);
+  --color-azimuth-teal: var(--cat-navigation);
+  --color-medic-rose: var(--cat-medical);
+  --color-forage-moss: var(--cat-foraging);
+  --color-water-deep: color-mix(in oklab, var(--cat-water) 22%, var(--background));
+  --color-fire-deep: color-mix(in oklab, var(--cat-fire) 22%, var(--background));
+  --color-ember-deep: color-mix(in oklab, var(--ember) 20%, var(--background));
+  --color-pine-deep: color-mix(in oklab, var(--cat-agriculture) 20%, var(--background));
+
+  /* ── Shadows (dark-appropriate, kept from Phase 24) ── */
+  --shadow-e1: 0 1px 2px rgb(0 0 0 / 0.5);
+  --shadow-e2: 0 4px 12px rgb(0 0 0 / 0.5);
+  --shadow-e3: 0 12px 32px rgb(0 0 0 / 0.6);
+  --shadow-glow-ember: 0 0 0 1px rgb(232 100 42 / 0.18), 0 8px 32px -8px rgb(232 100 42 / 0.35);
+  --shadow-glow-water: 0 0 0 1px rgb(74 144 217 / 0.16), 0 8px 32px -8px rgb(74 144 217 / 0.3);
+  --shadow-glow-fire: 0 0 0 1px rgb(232 179 76 / 0.16), 0 8px 32px -8px rgb(232 179 76 / 0.3);
+  --shadow-glow-pine: 0 0 0 1px rgb(76 175 109 / 0.16), 0 8px 32px -8px rgb(76 175 109 / 0.3);
+
+  /* ── Motion (150–250ms interactions; ambient background is the only
+     long loop) ── */
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --duration-fast: 150ms;
+  --duration-standard: 200ms;
+  --duration-reveal: 300ms;
+  --duration-ambient: 24000ms;
+}
+
+:root {
+  color-scheme: dark;
+  --radius: 0.5rem;
+
+  /* dark is primary */
+  --background: oklch(0.17 0.008 220);
+  --foreground: oklch(0.95 0.005 100);
+  --surface: oklch(0.2 0.008 220);
+  --surface-2: oklch(0.235 0.009 220);
+  --surface-3: oklch(0.28 0.01 220);
+  --card: oklch(0.215 0.009 220);
+  --card-foreground: oklch(0.95 0.005 100);
+  --popover: oklch(0.21 0.009 220);
+  --popover-foreground: oklch(0.95 0.005 100);
+
+  --ember: oklch(0.66 0.176 42);
+  --primary: oklch(0.66 0.176 42);
+  --primary-foreground: oklch(0.16 0.01 40);
+  --secondary: oklch(0.28 0.01 220);
+  --secondary-foreground: oklch(0.93 0.005 100);
+  --muted: oklch(0.26 0.009 220);
+  --muted-foreground: oklch(0.68 0.012 220);
+  --accent: oklch(0.3 0.012 220);
+  --accent-foreground: oklch(0.95 0.005 100);
+  --destructive: oklch(0.6 0.2 25);
+  --destructive-foreground: oklch(0.97 0.005 100);
+  --success: oklch(0.72 0.15 155);
+  --warning: oklch(0.78 0.15 78);
+  --border: oklch(0.32 0.01 220 / 60%);
+  --input: oklch(0.34 0.01 220 / 70%);
+  --ring: oklch(0.66 0.176 42 / 70%);
+
+  /* category identity */
+  --cat-water: oklch(0.74 0.13 220);
+  --cat-fire: oklch(0.7 0.18 45);
+  --cat-shelter: oklch(0.78 0.08 75);
+  --cat-food: oklch(0.8 0.14 85);
+  --cat-agriculture: oklch(0.74 0.14 145);
+  --cat-foraging: oklch(0.72 0.13 160);
+  --cat-medical: oklch(0.66 0.17 20);
+  --cat-navigation: oklch(0.76 0.12 195);
+  --cat-energy: oklch(0.74 0.15 235);
+  --cat-fundamentals: oklch(0.75 0.06 110);
+
+  --shadow-elevated: 0 24px 60px -24px oklch(0 0 0 / 70%);
+  --glow-ember: 0 0 0 1px oklch(0.66 0.176 42 / 35%), 0 0 32px -6px oklch(0.66 0.176 42 / 45%);
+
+  --sidebar: oklch(0.19 0.008 220);
+  --sidebar-foreground: oklch(0.9 0.005 100);
+  --sidebar-primary: oklch(0.66 0.176 42);
+  --sidebar-primary-foreground: oklch(0.16 0.01 40);
+  --sidebar-accent: oklch(0.26 0.01 220);
+  --sidebar-accent-foreground: oklch(0.95 0.005 100);
+  --sidebar-border: oklch(0.3 0.01 220 / 60%);
+  --sidebar-ring: oklch(0.66 0.176 42 / 60%);
+}
+
+/* Light theme — driven by the production theme mechanism (ThemeSync sets
+   `data-theme` on <html>). */
+[data-theme="light"] {
+  color-scheme: light;
+  --background: oklch(0.97 0.006 90);
+  --foreground: oklch(0.22 0.012 220);
+  --surface: oklch(0.99 0.004 90);
+  --surface-2: oklch(0.95 0.006 90);
+  --surface-3: oklch(0.92 0.008 90);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.22 0.012 220);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.22 0.012 220);
+  --primary: oklch(0.58 0.18 40);
+  --primary-foreground: oklch(0.99 0.004 90);
+  --secondary: oklch(0.93 0.008 90);
+  --secondary-foreground: oklch(0.25 0.012 220);
+  --muted: oklch(0.94 0.006 90);
+  --muted-foreground: oklch(0.48 0.012 220);
+  --accent: oklch(0.93 0.01 90);
+  --accent-foreground: oklch(0.22 0.012 220);
+  --border: oklch(0.28 0.01 220 / 15%);
+  --input: oklch(0.28 0.01 220 / 20%);
+  --ember: oklch(0.58 0.18 40);
+  --cat-water: oklch(0.55 0.14 220);
+  --cat-fire: oklch(0.58 0.18 45);
+  --cat-shelter: oklch(0.58 0.09 75);
+  --cat-food: oklch(0.62 0.14 85);
+  --cat-agriculture: oklch(0.55 0.14 145);
+  --cat-foraging: oklch(0.53 0.13 160);
+  --cat-medical: oklch(0.53 0.18 20);
+  --cat-navigation: oklch(0.55 0.12 195);
+  --cat-energy: oklch(0.55 0.15 235);
+  --cat-fundamentals: oklch(0.5 0.06 110);
+  --sidebar: oklch(0.98 0.005 90);
+  --sidebar-foreground: oklch(0.25 0.012 220);
+  --sidebar-accent: oklch(0.94 0.008 90);
+  --sidebar-accent-foreground: oklch(0.22 0.012 220);
+  --sidebar-border: oklch(0.28 0.01 220 / 14%);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    letter-spacing: 0.01em;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--ember);
+    outline-offset: 2px;
+  }
+
+  ::selection {
+    background: color-mix(in oklab, var(--ember) 35%, transparent);
+    color: var(--color-foreground);
+  }
+}
+
+/* ---------- utilities ---------- */
+
+@utility eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+}
+
+@utility panel {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+}
+
+@utility panel-2 {
+  background-color: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+}
+
+@utility glow-ember {
+  box-shadow: var(--glow-ember);
+}
+
+@utility topo {
+  position: relative;
+  background-image:
+    radial-gradient(
+      1100px 700px at 12% -10%,
+      color-mix(in oklab, var(--ember) 12%, transparent),
+      transparent 70%
+    ),
+    radial-gradient(
+      900px 600px at 95% 0%,
+      color-mix(in oklab, var(--cat-water) 10%, transparent),
+      transparent 70%
+    ),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='520' height='520' viewBox='0 0 520 520'%3E%3Cg fill='none' stroke='%23ffffff' stroke-opacity='0.045' stroke-width='1'%3E%3Cpath d='M-40 380C80 300 160 420 300 340s180 40 300-30'/%3E%3Cpath d='M-40 340C80 260 160 380 300 300s180 40 300-30'/%3E%3Cpath d='M-40 300C80 220 160 340 300 260s180 40 300-30'/%3E%3Cpath d='M-40 240C80 160 160 280 300 200s180 40 300-30'/%3E%3Cpath d='M-40 180C80 100 160 220 300 140s180 40 300-30'/%3E%3Cpath d='M-40 120C80 40 160 160 300 80s180 40 300-30'/%3E%3Cpath d='M-40 460C80 380 160 500 300 420s180 40 300-30'/%3E%3C/g%3E%3C/svg%3E");
+  background-attachment: fixed, fixed, fixed;
+}
+
+[data-theme="light"] .topo {
+  background-image:
+    radial-gradient(
+      1100px 700px at 12% -10%,
+      color-mix(in oklab, var(--ember) 8%, transparent),
+      transparent 70%
+    ),
+    radial-gradient(
+      900px 600px at 95% 0%,
+      color-mix(in oklab, var(--cat-water) 7%, transparent),
+      transparent 70%
+    ),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='520' height='520' viewBox='0 0 520 520'%3E%3Cg fill='none' stroke='%2322262a' stroke-opacity='0.04' stroke-width='1'%3E%3Cpath d='M-40 380C80 300 160 420 300 340s180 40 300-30'/%3E%3Cpath d='M-40 340C80 260 160 380 300 300s180 40 300-30'/%3E%3Cpath d='M-40 300C80 220 160 340 300 260s180 40 300-30'/%3E%3Cpath d='M-40 240C80 160 160 280 300 200s180 40 300-30'/%3E%3Cpath d='M-40 180C80 100 160 220 300 140s180 40 300-30'/%3E%3Cpath d='M-40 120C80 40 160 160 300 80s180 40 300-30'/%3E%3Cpath d='M-40 460C80 380 160 500 300 420s180 40 300-30'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+@utility grain {
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.35;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+  }
+}
+
+@utility rise {
+  animation: sa-rise 320ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes sa-rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes sa-pulse-xp {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 color-mix(in oklab, var(--ember) 40%, transparent);
+  }
+  50% {
+    box-shadow: 0 0 0 8px transparent;
+  }
+}
+
+@utility xp-pulse {
+  animation: sa-pulse-xp 2.4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

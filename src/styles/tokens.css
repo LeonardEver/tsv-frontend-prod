@@ -1,0 +1,406 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   Survival Academy — legacy component layer (Phase 24, preserved for Phase 23)
+
+   The Tailwind entry point and the full design-token system now live in
+   `lovable.css` (the Lovable reference port). This file keeps the component
+   classes the pre-existing feature code depends on — surface levels,
+   environment washes, field-manual callouts, typography helpers, entrance
+   animations. Their tokens are aliased onto the Lovable palette, so these
+   classes automatically adopt the new visual identity.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ── Motion utilities ──
+   Restrained entrance/reward microinteractions: short, cause/effect,
+   never blocking. The global reduced-motion override neutralizes them. */
+@keyframes fade-rise {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes xp-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@layer components {
+  .anim-enter {
+    animation: fade-rise var(--duration-reveal) var(--ease-standard) both;
+  }
+
+  .anim-enter-delay-1 {
+    animation: fade-rise var(--duration-reveal) var(--ease-standard) both;
+    animation-delay: 100ms;
+  }
+
+  .anim-xp {
+    animation: xp-pop var(--duration-reveal) var(--ease-standard) both;
+    animation-delay: 150ms;
+  }
+
+  /* ── Environment (Phase 24) ──
+     Faint topographic contour layer + grain. Pure CSS/SVG data URIs.
+     The slow drift is the only ambient motion. */
+  .bg-environment::before,
+  .bg-environment::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .bg-environment::before {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='320' viewBox='0 0 320 320'%3E%3Cg fill='none' stroke='white' stroke-width='1'%3E%3Cpath d='M20 150 C 80 90, 180 40, 300 110'/%3E%3Cpath d='M20 175 C 90 115, 190 70, 300 132'/%3E%3Cpath d='M20 200 C 100 142, 200 100, 300 156'/%3E%3Cpath d='M20 228 C 110 172, 210 132, 300 182'/%3E%3Cpath d='M-20 42 C 60 62, 160 90, 300 66'/%3E%3Cpath d='M-20 18 C 80 36, 200 58, 300 40'/%3E%3C/g%3E%3C/svg%3E");
+    background-size: 640px 640px;
+    opacity: 0.038;
+    -webkit-mask-image: radial-gradient(85% 65% at 50% 28%, black, transparent 78%);
+    mask-image: radial-gradient(85% 65% at 50% 28%, black, transparent 78%);
+    animation: env-drift var(--duration-ambient) ease-in-out infinite alternate;
+  }
+
+  .bg-environment::after {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+    opacity: 0.025;
+  }
+
+  @keyframes env-drift {
+    from {
+      transform: translate3d(0, 0, 0);
+    }
+    to {
+      transform: translate3d(-28px, 14px, 0);
+    }
+  }
+
+  /* ── Surface levels ── */
+  .surface-quiet {
+    border: 1px solid var(--color-border-default);
+    background: var(--color-bg-subtle);
+  }
+
+  .surface-card {
+    border: 1px solid var(--color-border-default);
+    background:
+      linear-gradient(180deg, rgb(255 255 255 / 0.02), transparent 45%),
+      var(--color-bg-surface);
+    box-shadow: var(--shadow-e1), inset 0 1px 0 rgb(255 255 255 / 0.03);
+  }
+
+  .surface-interactive {
+    transition:
+      transform var(--duration-fast) var(--ease-standard),
+      box-shadow var(--duration-fast) var(--ease-standard),
+      border-color var(--duration-fast) var(--ease-standard);
+  }
+
+  .surface-interactive:hover {
+    transform: translateY(-1px);
+    border-color: rgb(255 255 255 / 0.14);
+    box-shadow: var(--shadow-e2), inset 0 1px 0 rgb(255 255 255 / 0.04);
+  }
+
+  .surface-featured {
+    border-color: rgb(232 100 42 / 0.28);
+    background:
+      linear-gradient(180deg, rgb(232 100 42 / 0.06), transparent 46%),
+      var(--color-bg-surface);
+    box-shadow: var(--shadow-e2), inset 0 1px 0 rgb(255 255 255 / 0.03);
+  }
+
+  .surface-hero {
+    position: relative;
+    border: 1px solid rgb(232 100 42 / 0.28);
+    background:
+      radial-gradient(640px 220px at 100% 0%, rgb(232 100 42 / 0.15), transparent 62%),
+      linear-gradient(135deg, rgb(232 100 42 / 0.09), transparent 42%),
+      var(--color-bg-surface);
+    box-shadow: var(--shadow-glow-ember), var(--shadow-e2);
+  }
+
+  /* ── Semantic zone environments ──
+     One atmospheric wash per environment — layout never changes. */
+  .env-water,
+  .env-fire,
+  .env-sur,
+  .env-she,
+  .env-fod,
+  .env-agr,
+  .env-nav,
+  .env-med,
+  .env-for {
+    position: relative;
+  }
+
+  .env-water::before,
+  .env-fire::before,
+  .env-sur::before,
+  .env-she::before,
+  .env-fod::before,
+  .env-agr::before,
+  .env-nav::before,
+  .env-med::before,
+  .env-for::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    border-radius: inherit;
+  }
+
+  .env-water::before {
+    background:
+      radial-gradient(480px 220px at 88% -10%, rgb(74 144 217 / 0.14), transparent 62%),
+      linear-gradient(180deg, rgb(74 144 217 / 0.04), transparent 50%);
+    box-shadow: inset 0 0 0 1px rgb(74 144 217 / 0.1);
+  }
+
+  .env-fire::before {
+    background:
+      radial-gradient(480px 220px at 12% 108%, rgb(232 179 76 / 0.13), transparent 62%),
+      linear-gradient(180deg, rgb(232 179 76 / 0.045), transparent 50%);
+    box-shadow: inset 0 0 0 1px rgb(232 179 76 / 0.1);
+  }
+
+  .env-sur::before {
+    background:
+      radial-gradient(480px 220px at 12% -10%, rgb(147 167 186 / 0.12), transparent 62%),
+      linear-gradient(180deg, rgb(147 167 186 / 0.035), transparent 50%);
+    box-shadow: inset 0 0 0 1px rgb(147 167 186 / 0.1);
+  }
+
+  .env-she::before {
+    background:
+      radial-gradient(480px 220px at 88% 108%, rgb(194 165 126 / 0.11), transparent 62%),
+      linear-gradient(180deg, rgb(194 165 126 / 0.04), transparent 50%);
+    box-shadow: inset 0 0 0 1px rgb(194 165 126 / 0.1);
+  }
+
+  .env-fod::before {
+    background:
+      radial-gradient(480px 220px at 50% -10%, rgb(196 120 78 / 0.12), transparent 62%),
+      linear-gradient(180deg, rgb(196 120 78 / 0.04), transparent 50%);
+    box-shadow: inset 0 0 0 1px rgb(196 120 78 / 0.1);
+  }
+
+  .env-agr::before {
+    background:
+      radial-gradient(480px 220px at 50% 108%, rgb(76 175 109 / 0.11), transparent 62%),
+      linear-gradient(180deg, rgb(76 175 109 / 0.04), transparent 50%);
+    box-shadow: inset 0 0 0 1px rgb(76 175 109 / 0.1);
+  }
+
+  .env-nav::before {
+    background:
+      radial-gradient(480px 220px at 88% -10%, rgb(93 184 174 / 0.11), transparent 62%),
+      linear-gradient(180deg, rgb(93 184 174 / 0.04), transparent 50%);
+    box-shadow: inset 0 0 0 1px rgb(93 184 174 / 0.1);
+  }
+
+  .env-med::before {
+    background:
+      radial-gradient(480px 220px at 20% -10%, rgb(201 106 122 / 0.11), transparent 62%),
+      linear-gradient(180deg, rgb(201 106 122 / 0.04), transparent 50%);
+    box-shadow: inset 0 0 0 1px rgb(201 106 122 / 0.1);
+  }
+
+  .env-for::before {
+    background:
+      radial-gradient(480px 220px at 80% 108%, rgb(143 169 94 / 0.11), transparent 62%),
+      linear-gradient(180deg, rgb(143 169 94 / 0.04), transparent 50%);
+    box-shadow: inset 0 0 0 1px rgb(143 169 94 / 0.1);
+  }
+
+  /* ── Typography helpers ──
+     .page-title matches the Lovable PageHeader h1 proportions
+     (font-display, uppercase, tracking-wide, leading-none). */
+  .num-display {
+    font-family: var(--font-display);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.005em;
+  }
+
+  .page-title {
+    font-family: var(--font-display);
+    font-size: 1.875rem;
+    line-height: 1;
+    font-weight: 600;
+    letter-spacing: 0.025em;
+    text-transform: uppercase;
+  }
+
+  @media (min-width: 640px) {
+    .page-title {
+      font-size: 2.25rem;
+    }
+  }
+
+  .section-title {
+    font-family: var(--font-display);
+    font-size: 1.125rem;
+    line-height: 1.3;
+    font-weight: 680;
+  }
+
+  .card-title {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    line-height: 1.35;
+    font-weight: 650;
+  }
+
+  /* ── Field-manual callouts (Phase 24 §13) ──
+     Semantic content blocks rendered from lesson markdown. */
+  .callout {
+    position: relative;
+    border: 1px solid var(--color-border-default);
+    border-left: 3px solid var(--color-text-secondary);
+    background: var(--color-bg-subtle);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    padding: var(--spacing-4) var(--spacing-4) var(--spacing-4) var(--spacing-6);
+  }
+
+  .callout-title {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-2);
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: var(--spacing-2);
+  }
+
+  .callout--field-note { border-left-color: var(--color-canvas-tan); }
+  .callout--field-note .callout-title { color: var(--color-canvas-tan); }
+
+  .callout--warning { border-left-color: var(--color-warning-amber); }
+  .callout--warning .callout-title { color: var(--color-warning-amber); }
+
+  .callout--safety { border-left-color: var(--color-danger-blood); }
+  .callout--safety .callout-title { color: var(--color-danger-blood); }
+
+  .callout--important { border-left-color: var(--color-accent-ember); }
+  .callout--important .callout-title { color: var(--color-accent-ember); }
+
+  .callout--remember { border-left-color: var(--color-info-water); }
+  .callout--remember .callout-title { color: var(--color-info-water); }
+
+  .callout--procedure { border-left-color: var(--color-field-slate); }
+  .callout--procedure .callout-title { color: var(--color-field-slate); }
+
+  .callout--example { border-left-color: var(--color-success-pine); }
+  .callout--example .callout-title { color: var(--color-success-pine); }
+
+  .callout--knowledge-check { border-left-color: var(--color-accent-ember); }
+  .callout--knowledge-check .callout-title { color: var(--color-accent-ember); }
+}
+
+/* ── Light theme: legacy component-class variants (Phase 24) ──
+   Token values flip automatically via the aliased Lovable variables; only
+   the component-level gradients need explicit light tuning. */
+
+[data-theme="light"] .bg-environment::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='320' viewBox='0 0 320 320'%3E%3Cg fill='none' stroke='%2322262a' stroke-width='1'%3E%3Cpath d='M20 150 C 80 90, 180 40, 300 110'/%3E%3Cpath d='M20 175 C 90 115, 190 70, 300 132'/%3E%3Cpath d='M20 200 C 100 142, 200 100, 300 156'/%3E%3Cpath d='M20 228 C 110 172, 210 132, 300 182'/%3E%3Cpath d='M-20 42 C 60 62, 160 90, 300 66'/%3E%3Cpath d='M-20 18 C 80 36, 200 58, 300 40'/%3E%3C/g%3E%3C/svg%3E");
+  opacity: 0.05;
+}
+
+[data-theme="light"] .surface-card {
+  background:
+    linear-gradient(180deg, rgb(255 255 255 / 0.6), transparent 45%),
+    var(--color-bg-surface);
+  box-shadow: var(--shadow-e1), inset 0 1px 0 rgb(255 255 255 / 0.8);
+}
+
+[data-theme="light"] .surface-interactive:hover {
+  border-color: rgb(34 38 42 / 0.25);
+  box-shadow: var(--shadow-e2), inset 0 1px 0 rgb(255 255 255 / 0.9);
+}
+
+[data-theme="light"] .surface-featured {
+  background:
+    linear-gradient(180deg, rgb(199 78 28 / 0.05), transparent 46%),
+    var(--color-bg-surface);
+}
+
+[data-theme="light"] .surface-hero {
+  background:
+    radial-gradient(640px 220px at 100% 0%, rgb(199 78 28 / 0.1), transparent 62%),
+    linear-gradient(135deg, rgb(199 78 28 / 0.07), transparent 42%),
+    var(--color-bg-surface);
+}
+
+[data-theme="light"] .env-water::before {
+  background:
+    radial-gradient(480px 220px at 88% -10%, rgb(44 106 168 / 0.12), transparent 62%),
+    linear-gradient(180deg, rgb(44 106 168 / 0.04), transparent 50%);
+  box-shadow: inset 0 0 0 1px rgb(44 106 168 / 0.14);
+}
+
+[data-theme="light"] .env-fire::before {
+  background:
+    radial-gradient(480px 220px at 12% 108%, rgb(199 131 45 / 0.12), transparent 62%),
+    linear-gradient(180deg, rgb(199 131 45 / 0.05), transparent 50%);
+  box-shadow: inset 0 0 0 1px rgb(199 131 45 / 0.14);
+}
+
+[data-theme="light"] .env-sur::before {
+  background:
+    radial-gradient(480px 220px at 12% -10%, rgb(87 105 122 / 0.1), transparent 62%),
+    linear-gradient(180deg, rgb(87 105 122 / 0.035), transparent 50%);
+  box-shadow: inset 0 0 0 1px rgb(87 105 122 / 0.14);
+}
+
+[data-theme="light"] .env-she::before {
+  background:
+    radial-gradient(480px 220px at 88% 108%, rgb(138 108 66 / 0.1), transparent 62%),
+    linear-gradient(180deg, rgb(138 108 66 / 0.04), transparent 50%);
+  box-shadow: inset 0 0 0 1px rgb(138 108 66 / 0.14);
+}
+
+[data-theme="light"] .env-fod::before {
+  background:
+    radial-gradient(480px 220px at 50% -10%, rgb(150 80 47 / 0.1), transparent 62%),
+    linear-gradient(180deg, rgb(150 80 47 / 0.04), transparent 50%);
+  box-shadow: inset 0 0 0 1px rgb(150 80 47 / 0.14);
+}
+
+[data-theme="light"] .env-agr::before {
+  background:
+    radial-gradient(480px 220px at 50% 108%, rgb(46 125 70 / 0.1), transparent 62%),
+    linear-gradient(180deg, rgb(46 125 70 / 0.04), transparent 50%);
+  box-shadow: inset 0 0 0 1px rgb(46 125 70 / 0.14);
+}
+
+[data-theme="light"] .env-nav::before {
+  background:
+    radial-gradient(480px 220px at 88% -10%, rgb(44 111 106 / 0.1), transparent 62%),
+    linear-gradient(180deg, rgb(44 111 106 / 0.04), transparent 50%);
+  box-shadow: inset 0 0 0 1px rgb(44 111 106 / 0.14);
+}
+
+[data-theme="light"] .env-med::before {
+  background:
+    radial-gradient(480px 220px at 20% -10%, rgb(156 64 83 / 0.1), transparent 62%),
+    linear-gradient(180deg, rgb(156 64 83 / 0.04), transparent 50%);
+  box-shadow: inset 0 0 0 1px rgb(156 64 83 / 0.14);
+}
+
+[data-theme="light"] .env-for::before {
+  background:
+    radial-gradient(480px 220px at 80% 108%, rgb(95 125 53 / 0.1), transparent 62%),
+    linear-gradient(180deg, rgb(95 125 53 / 0.04), transparent 50%);
+  box-shadow: inset 0 0 0 1px rgb(95 125 53 / 0.14);
+}

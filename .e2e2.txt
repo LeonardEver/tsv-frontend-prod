@@ -1,0 +1,54 @@
+﻿
+Running 3 tests using 1 worker
+
+  ✘  1 [firefox] › e2e\lesson.spec.ts:103:3 › lesson journey › complete lesson flow with un-gated quiz and module reflection (2ms)
+  ✘  2 [firefox] › e2e\lesson.spec.ts:141:3 › lesson journey › deep link and refresh on the lesson route (2ms)
+  ✘  3 [firefox] › e2e\lesson.spec.ts:154:3 › lesson journey › mobile lesson keeps objectives, navigation and completion usable (2ms)
+
+
+  1) [firefox] › e2e\lesson.spec.ts:103:3 › lesson journey › complete lesson flow with un-gated quiz and module reflection 
+
+    Error: browserType.launch: Executable doesn't exist at C:\Users\leoar\AppData\Local\ms-playwright\firefox-1538\firefox\firefox.exe
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: test-results\lesson-lesson-journey-comp-2347e--quiz-and-module-reflection-firefox\error-context.md
+
+  2) [firefox] › e2e\lesson.spec.ts:141:3 › lesson journey › deep link and refresh on the lesson route 
+
+    Error: browserType.launch: Executable doesn't exist at C:\Users\leoar\AppData\Local\ms-playwright\firefox-1538\firefox\firefox.exe
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: test-results\lesson-lesson-journey-deep-b5a39-refresh-on-the-lesson-route-firefox\error-context.md
+
+  3) [firefox] › e2e\lesson.spec.ts:154:3 › lesson journey › mobile lesson keeps objectives, navigation and completion usable 
+
+    Error: browserType.launch: Executable doesn't exist at C:\Users\leoar\AppData\Local\ms-playwright\firefox-1538\firefox\firefox.exe
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: test-results\lesson-lesson-journey-mobi-04db4-ation-and-completion-usable-firefox\error-context.md
+
+  3 failed
+    [firefox] › e2e\lesson.spec.ts:103:3 › lesson journey › complete lesson flow with un-gated quiz and module reflection 
+    [firefox] › e2e\lesson.spec.ts:141:3 › lesson journey › deep link and refresh on the lesson route 
+    [firefox] › e2e\lesson.spec.ts:154:3 › lesson journey › mobile lesson keeps objectives, navigation and completion usable 
