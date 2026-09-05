@@ -39,9 +39,15 @@ describe("PlansPage (billing enabled)", () => {
     expect(screen.getByRole("heading", { name: "Survivor" })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "Operator" })).toBeInTheDocument();
 
-    // USD currency formatting ($9.90 / $19.90).
+    // USD currency formatting ($9.90 / $19.90), and the Free tier
+    // renders a literal $0 — never a localized label.
     expect(screen.getAllByText(/\$9\.90/).length).toBeGreaterThanOrEqual(1);
     expect(screen.getAllByText(/\$19\.90/).length).toBeGreaterThanOrEqual(1);
+    expect(screen.getAllByText("$0").length).toBeGreaterThanOrEqual(1);
+
+    // No Brazilian Real pricing anywhere on the page.
+    expect(screen.queryByText(/R\$/)).toBeNull();
+    expect(screen.queryByText(/brl/i)).toBeNull();
 
     // Exactly one current-plan card — identified on Survivor (the card
     // carries the "Current plan" Chip and the disabled CTA of the same

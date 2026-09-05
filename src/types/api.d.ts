@@ -1727,7 +1727,8 @@ export interface paths {
                             plans: {
                                 code: string;
                                 name: string;
-                                price_usd: number;
+                                price: number;
+                                currency: string;
                                 billing_period: null | string;
                                 entitlements: {
                                     daily_lessons: null | number;
@@ -1776,7 +1777,8 @@ export interface paths {
                         "application/json": {
                             plan_code: string;
                             plan_name: string;
-                            price_brl: number;
+                            price: number;
+                            currency: string;
                             billing_period: null | string;
                             status: string;
                             started_at: null | string;
@@ -1888,7 +1890,8 @@ export interface paths {
                         "application/json": {
                             plan_code: string;
                             plan_name: string;
-                            price_brl: number;
+                            price: number;
+                            currency: string;
                             billing_period: null | string;
                             status: string;
                             started_at: null | string;
@@ -1921,6 +1924,537 @@ export interface paths {
                                 details?: Record<string, never>;
                                 request_id?: string;
                             };
+                        };
+                    };
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/billing/checkout": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Start a plan change (embedded checkout or in-place upgrade) */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody: {
+                content: {
+                    "application/json": {
+                        /** @enum {string} */
+                        plan: "survivor" | "operator";
+                    };
+                };
+            };
+            responses: {
+                /** @description Default Response */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            /** @enum {string} */
+                            result: "checkout" | "subscription_updated";
+                            client_secret?: string;
+                            subscription?: {
+                                plan_code: string;
+                                plan_name: string;
+                                price: number;
+                                currency: string;
+                                billing_period: null | string;
+                                status: string;
+                                started_at: null | string;
+                                current_period_started_at: null | string;
+                                renews_at: null | string;
+                                ends_at: null | string;
+                                canceled_at: null | string;
+                                cancel_at_period_end: boolean;
+                                provider: null | string;
+                                entitlements: {
+                                    daily_lessons: null | number;
+                                    daily_quizzes: null | number;
+                                    resource_download: boolean;
+                                    quiz_before_lesson: boolean;
+                                    community: boolean;
+                                };
+                            };
+                        };
+                    };
+                };
+                /** @description Default Response */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            error?: {
+                                code?: string;
+                                message?: string;
+                                details?: Record<string, never>;
+                                request_id?: string;
+                            };
+                        };
+                    };
+                };
+                /** @description Default Response */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            error?: {
+                                code?: string;
+                                message?: string;
+                                details?: Record<string, never>;
+                                request_id?: string;
+                            };
+                        };
+                    };
+                };
+                /** @description Default Response */
+                409: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            error?: {
+                                code?: string;
+                                message?: string;
+                                details?: Record<string, never>;
+                                request_id?: string;
+                            };
+                        };
+                    };
+                };
+                /** @description Default Response */
+                502: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            error?: {
+                                code?: string;
+                                message?: string;
+                                details?: Record<string, never>;
+                                request_id?: string;
+                            };
+                        };
+                    };
+                };
+                /** @description Default Response */
+                503: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            error?: {
+                                code?: string;
+                                message?: string;
+                                details?: Record<string, never>;
+                                request_id?: string;
+                            };
+                        };
+                    };
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/billing/cancel": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Cancel the subscription at period end (entitlements kept until then) */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Default Response */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            plan_code: string;
+                            plan_name: string;
+                            price: number;
+                            currency: string;
+                            billing_period: null | string;
+                            status: string;
+                            started_at: null | string;
+                            current_period_started_at: null | string;
+                            renews_at: null | string;
+                            ends_at: null | string;
+                            canceled_at: null | string;
+                            cancel_at_period_end: boolean;
+                            provider: null | string;
+                            entitlements: {
+                                daily_lessons: null | number;
+                                daily_quizzes: null | number;
+                                resource_download: boolean;
+                                quiz_before_lesson: boolean;
+                                community: boolean;
+                            };
+                        };
+                    };
+                };
+                /** @description Default Response */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            error?: {
+                                code?: string;
+                                message?: string;
+                                details?: Record<string, never>;
+                                request_id?: string;
+                            };
+                        };
+                    };
+                };
+                /** @description Default Response */
+                409: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            error?: {
+                                code?: string;
+                                message?: string;
+                                details?: Record<string, never>;
+                                request_id?: string;
+                            };
+                        };
+                    };
+                };
+                /** @description Default Response */
+                502: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            error?: {
+                                code?: string;
+                                message?: string;
+                                details?: Record<string, never>;
+                                request_id?: string;
+                            };
+                        };
+                    };
+                };
+                /** @description Default Response */
+                503: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            error?: {
+                                code?: string;
+                                message?: string;
+                                details?: Record<string, never>;
+                                request_id?: string;
+                            };
+                        };
+                    };
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/billing/resume": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Resume a subscription that is canceling at period end */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Default Response */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            plan_code: string;
+                            plan_name: string;
+                            price: number;
+                            currency: string;
+                            billing_period: null | string;
+                            status: string;
+                            started_at: null | string;
+                            current_period_started_at: null | string;
+                            renews_at: null | string;
+                            ends_at: null | string;
+                            canceled_at: null | string;
+                            cancel_at_period_end: boolean;
+                            provider: null | string;
+                            entitlements: {
+                                daily_lessons: null | number;
+                                daily_quizzes: null | number;
+                                resource_download: boolean;
+                                quiz_before_lesson: boolean;
+                                community: boolean;
+                            };
+                        };
+                    };
+                };
+                /** @description Default Response */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            error?: {
+                                code?: string;
+                                message?: string;
+                                details?: Record<string, never>;
+                                request_id?: string;
+                            };
+                        };
+                    };
+                };
+                /** @description Default Response */
+                409: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            error?: {
+                                code?: string;
+                                message?: string;
+                                details?: Record<string, never>;
+                                request_id?: string;
+                            };
+                        };
+                    };
+                };
+                /** @description Default Response */
+                502: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            error?: {
+                                code?: string;
+                                message?: string;
+                                details?: Record<string, never>;
+                                request_id?: string;
+                            };
+                        };
+                    };
+                };
+                /** @description Default Response */
+                503: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            error?: {
+                                code?: string;
+                                message?: string;
+                                details?: Record<string, never>;
+                                request_id?: string;
+                            };
+                        };
+                    };
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/billing/portal": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Create a Stripe Customer Portal session (billing management) */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Default Response */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            url: string;
+                        };
+                    };
+                };
+                /** @description Default Response */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            error?: {
+                                code?: string;
+                                message?: string;
+                                details?: Record<string, never>;
+                                request_id?: string;
+                            };
+                        };
+                    };
+                };
+                /** @description Default Response */
+                409: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            error?: {
+                                code?: string;
+                                message?: string;
+                                details?: Record<string, never>;
+                                request_id?: string;
+                            };
+                        };
+                    };
+                };
+                /** @description Default Response */
+                502: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            error?: {
+                                code?: string;
+                                message?: string;
+                                details?: Record<string, never>;
+                                request_id?: string;
+                            };
+                        };
+                    };
+                };
+                /** @description Default Response */
+                503: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            error?: {
+                                code?: string;
+                                message?: string;
+                                details?: Record<string, never>;
+                                request_id?: string;
+                            };
+                        };
+                    };
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/webhooks/stripe": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Stripe webhook receiver (signature-verified, idempotent) */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Default Response */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            received: boolean;
                         };
                     };
                 };

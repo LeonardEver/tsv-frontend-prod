@@ -144,7 +144,7 @@ export function BillingCard({ subscription }: { subscription: SubscriptionRespon
             </p>
             <p className="text-sm text-text-secondary">
               {subscription.price === 0
-                ? "Free"
+                ? formatMoney(subscription.price, subscription.currency)
                 : `${formatMoney(subscription.price, subscription.currency)} /month`}
               {status.detail ? ` — ${status.detail}` : ""}
             </p>

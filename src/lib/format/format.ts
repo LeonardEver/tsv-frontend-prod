@@ -81,10 +81,13 @@ export function formatRelativeTime(iso: string | null | undefined): string {
 const moneyFormatters = new Map<string, Intl.NumberFormat>();
 
 /** Currency display from the server's price + currency code (ISO 4217
- * lowercase from the API, e.g. "usd", "brl"). The app's display
- * language is English — the locale is pinned so pricing renders
- * identically everywhere. */
+ * lowercase from the API — the catalog is USD-only, e.g. "usd"). The
+ * app's display language is English — the locale is pinned so pricing
+ * renders identically everywhere. */
 export function formatMoney(amount: number, currency: string): string {
+  // International billing catalog: the Free tier renders as a plain
+  // "$0" — never a localized zero.
+  if (amount === 0) return "$0";
   const code = currency.toUpperCase();
   let formatter = moneyFormatters.get(code);
   if (!formatter) {

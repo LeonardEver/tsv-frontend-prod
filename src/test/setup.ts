@@ -10,12 +10,11 @@ import "@testing-library/jest-dom/vitest";
 import { afterAll, afterEach, beforeAll } from "vitest";
 import { cleanup } from "@testing-library/react";
 import { server } from "./msw/server";
-import { __resetBilling, __setTestPlan } from "./msw/handlers";
+import { __setTestPlan } from "./msw/handlers";
 
 beforeAll(() => { server.listen({ onUnhandledRequest: "error" }); });
 afterEach(() => {
   server.resetHandlers();
-  __resetBilling();
   __setTestPlan("survivor"); // pre-existing learning-surface default
   cleanup();
 });

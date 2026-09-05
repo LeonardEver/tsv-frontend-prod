@@ -392,7 +392,8 @@ const PLANS = [
   {
     code: "free",
     name: "Free",
-    price_usd: 0,
+    price: 0,
+    currency: "usd",
     billing_period: null,
     entitlements: {
       daily_lessons: 1,
@@ -405,7 +406,8 @@ const PLANS = [
   {
     code: "survivor",
     name: "Survivor",
-    price_usd: 9.9,
+    price: 9.9,
+    currency: "usd",
     billing_period: "month",
     entitlements: {
       daily_lessons: 10,
@@ -418,7 +420,8 @@ const PLANS = [
   {
     code: "operator",
     name: "Operator",
-    price_usd: 19.9,
+    price: 19.9,
+    currency: "usd",
     billing_period: "month",
     entitlements: {
       daily_lessons: null,
@@ -448,7 +451,8 @@ function subscriptionFor(code: MockPlanCode): SubscriptionResponse {
   return {
     plan_code: plan.code,
     plan_name: plan.name,
-    price_brl: plan.price_usd,
+    price: plan.price,
+    currency: plan.currency,
     billing_period: plan.billing_period,
     status: "active",
     started_at: "2026-08-01T12:00:00Z",

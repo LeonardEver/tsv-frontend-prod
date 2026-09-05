@@ -49,7 +49,8 @@ import { waitForPlanChange } from "@/features/billing/sync";
 import type { PlanCode, PlansResponse } from "@/lib/api/types";
 
 function priceLabel(price: number, currency: string, period: string | null): string {
-  if (price === 0) return "Free";
+  // Free renders as "$0" (formatMoney's zero case) — the plan card
+  // never shows a localized free label.
   const base = formatMoney(price, currency);
   return period === "month" ? `${base} /month` : base;
 }
