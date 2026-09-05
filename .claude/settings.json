@@ -1,7 +1,7 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-settings.json",
   "env": {
-    "ANTHROPIC_AUTH_TOKEN": "sk-4bbc0776e66143538350f8ef7fa7a2d3",
+    "ANTHROPIC_AUTH_TOKEN": "sk-XXXXXXXXXXXXXXXX  ",
     "ANTHROPIC_BASE_URL": "https://api.deepseek.com/anthropic",
     "ANTHROPIC_MODEL": "deepseek-v4-pro[1m]",
     "ANTHROPIC_DEFAULT_OPUS_MODEL": "deepseek-v4-pro[1m]",
