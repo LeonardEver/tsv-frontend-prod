@@ -7,10 +7,12 @@ import { request } from "@/lib/api/client";
 import type { ProfileResponse } from "@/lib/api/types";
 
 export type ProfilePatch = Partial<{
+  first_name: string | null;
+  last_name: string | null;
   username: string | null;
   full_name: string | null;
   bio: string | null;
-  country: string | null;
+  country: string | null; // ISO 3166-1 alpha-2 (spec §28)
   timezone: string | null;
   preferred_language: string;
   experience_level: "beginner" | "intermediate" | "advanced" | null;

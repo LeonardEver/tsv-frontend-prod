@@ -27,6 +27,71 @@ export function describeError(err: unknown): ErrorCopy {
     switch (err.code) {
       case "NOT_FOUND":
         return { title: "This content isn't available.", retryable: false };
+      // ── Production auth phase — credentials ──
+      case "INVALID_CREDENTIALS":
+        return {
+          title: "Invalid email or password.",
+          description: "Check your details and try again.",
+          retryable: false,
+        };
+      case "EMAIL_NOT_VERIFIED":
+        return {
+          title: "Verify your email first",
+          description:
+            "We sent a verification link to your inbox. Open it to activate your account, or request a new link.",
+          retryable: false,
+        };
+      case "EMAIL_ALREADY_REGISTERED":
+        return {
+          title: "An account with this email already exists",
+          description: "Sign in instead, or use a different email address.",
+          retryable: false,
+        };
+      case "VERIFICATION_TOKEN_EXPIRED":
+        return {
+          title: "This verification link has expired",
+          description: "Request a new one — links are valid for 24 hours.",
+          retryable: true,
+        };
+      case "VERIFICATION_TOKEN_USED":
+        return {
+          title: "This verification link was already used",
+          description:
+            "Your email is verified — sign in to continue. If you can't sign in, request a new link.",
+          retryable: false,
+        };
+      case "VERIFICATION_TOKEN_INVALID":
+        return {
+          title: "This verification link is invalid",
+          description: "Check the link in your inbox, or request a new one.",
+          retryable: true,
+        };
+      case "RESET_TOKEN_EXPIRED":
+        return {
+          title: "This password reset link has expired",
+          description: "Request a new one — links are valid for 1 hour.",
+          retryable: true,
+        };
+      case "RESET_TOKEN_USED":
+        return {
+          title: "This password reset link was already used",
+          description: "Request a new link to reset your password again.",
+          retryable: true,
+        };
+      case "RESET_TOKEN_INVALID":
+        return {
+          title: "This password reset link is invalid",
+          description: "Request a new link to reset your password.",
+          retryable: true,
+        };
+      case "LEGAL_TERMS_OUTDATED":
+      case "LEGAL_PRIVACY_OUTDATED":
+        return {
+          title: "Our legal documents have been updated",
+          description:
+            "Please review the current Terms of Service and Privacy Policy and accept them to continue.",
+          retryable: false,
+        };
       case "FORBIDDEN":
         return { title: "You don't have access to this content.", retryable: false };
       case "RATE_LIMITED":

@@ -18,6 +18,32 @@ export type CurrentUser = Ok<
   paths["/api/v1/auth/me"]["get"]["responses"]["200"]
 >;
 
+// ── Production auth phase — email/password credentials ─────────────────────
+
+export type RegisterResponse = Ok<
+  paths["/api/v1/auth/register"]["post"]["responses"]["201"]
+>;
+
+export type LoginResponse = Ok<
+  paths["/api/v1/auth/login"]["post"]["responses"]["200"]
+>;
+
+export type VerifyEmailResponse = Ok<
+  paths["/api/v1/auth/verify-email"]["post"]["responses"]["200"]
+>;
+
+export type ResendVerificationResponse = Ok<
+  paths["/api/v1/auth/resend-verification"]["post"]["responses"]["200"]
+>;
+
+export type ForgotPasswordResponse = Ok<
+  paths["/api/v1/auth/forgot-password"]["post"]["responses"]["200"]
+>;
+
+export type ResetPasswordResponse = Ok<
+  paths["/api/v1/auth/reset-password"]["post"]["responses"]["200"]
+>;
+
 export type CategoryListResponse = Ok<
   paths["/api/v1/categories"]["get"]["responses"]["200"]
 >;

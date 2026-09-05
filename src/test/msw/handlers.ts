@@ -40,6 +40,10 @@ export const testUser = {
   user_id: 1,
   email: "learner@example.com",
   display_name: "Test Learner",
+  first_name: "Test",
+  last_name: "Learner",
+  country: "US",
+  email_verified: true,
   created_at: "2026-08-01T12:00:00Z",
 };
 
@@ -478,6 +482,8 @@ const communityCategoriesFixture = {
 } satisfies CommunityCategoriesResponse;
 
 const baseProfile = {
+  first_name: "Test",
+  last_name: "Learner",
   username: null,
   full_name: "Test Learner",
   display_name: "Test Learner",
@@ -603,6 +609,61 @@ export const handlers = [
   }),
 
   http.post(`${API}/auth/logout`, () => {
+    return HttpResponse.json({ ok: true });
+  }),
+
+  // ── Production auth phase — credentials ──
+  // Happy paths only: per-test failure branches use server.use(...)
+  // overrides (see auth-bootstrap.test.tsx for the established pattern).
+
+  http.post(`${API}/auth/register`, async ({ request }) => {
+    const body = (await request.json()) as { email?: string };
+    return HttpResponse.json(
+      { user_id: 2, email: body.email ?? "new@example.com", email_verified: false },
+      { status: 201 },
+    );
+  }),
+
+  http.post(`${API}/auth/login`, async ({ request }) => {
+    const body = (await request.json()) as { email?: string; password?: string };
+    if (body.email === "unverified@example.com") {
+      return HttpResponse.json(
+        {
+          error: {
+            code: "EMAIL_NOT_VERIFIED",
+            message: "Please verify your email address before signing in.",
+            details: { email: body.email },
+            request_id: "test-req-1",
+          },
+        },
+        { status: 403 },
+      );
+    }
+    if (body.password !== "Str0ng!Password#2026") {
+      return HttpResponse.json(errorEnvelope("INVALID_CREDENTIALS", "Invalid email or password."), { status: 401 });
+    }
+    return HttpResponse.json(testUser);
+  }),
+
+  http.post(`${API}/auth/verify-email`, () => {
+    return HttpResponse.json({ ok: true });
+  }),
+
+  http.post(`${API}/auth/resend-verification`, () => {
+    return HttpResponse.json({
+      ok: true,
+      message: "If a verification is pending for this email address, a new email has been sent.",
+    });
+  }),
+
+  http.post(`${API}/auth/forgot-password`, () => {
+    return HttpResponse.json({
+      ok: true,
+      message: "If an account exists for this email, a password reset email has been sent.",
+    });
+  }),
+
+  http.post(`${API}/auth/reset-password`, () => {
     return HttpResponse.json({ ok: true });
   }),
 

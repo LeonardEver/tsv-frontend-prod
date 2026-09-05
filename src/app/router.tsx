@@ -1,17 +1,23 @@
 /**
- * Route map (frontend spec §5.2).
+ * Route map (frontend spec §5.2 + production auth phase).
  *
  * - Canonical IDs in URLs; lesson/quiz nest under their module.
  * - Deep-link aliases (/lessons/:id, /quizzes/:id) resolve the module via
  *   the API and redirect to the canonical route.
- * - NO /register route: the backend auto-provisions accounts on first
- *   OIDC login (spec §6.1) — no registration behavior is invented.
+ * - Credential auth screens (/register, /verify-email, /forgot-password,
+ *   /reset-password) sit beside /login; /terms and /privacy are public.
  * - Quiz routes carry NO lesson-completion guard (DEC-022).
  */
 import { lazy } from "react";
 import { createBrowserRouter } from "react-router";
 import { RequireAuth, RedirectIfAuthed } from "@/features/auth/guards";
 import { LoginScreen } from "@/features/auth/LoginScreen";
+import { RegisterScreen } from "@/features/auth/RegisterScreen";
+import { VerifyEmailScreen } from "@/features/auth/VerifyEmailScreen";
+import { ForgotPasswordScreen } from "@/features/auth/ForgotPasswordScreen";
+import { ResetPasswordScreen } from "@/features/auth/ResetPasswordScreen";
+import { TermsScreen } from "@/features/legal/TermsScreen";
+import { PrivacyScreen } from "@/features/legal/PrivacyScreen";
 import { AppShell } from "@/components/layout/AppShell";
 import { PagePlaceholder } from "@/components/shared/PagePlaceholder";
 import { RootRedirect, LessonAlias, QuizAlias, LearnAlias } from "./redirects";
@@ -41,6 +47,41 @@ export const router = createBrowserRouter([
       </RedirectIfAuthed>
     ),
   },
+  {
+    path: "/register",
+    element: (
+      <RedirectIfAuthed>
+        <RegisterScreen />
+      </RedirectIfAuthed>
+    ),
+  },
+  {
+    path: "/verify-email",
+    element: (
+      <RedirectIfAuthed>
+        <VerifyEmailScreen />
+      </RedirectIfAuthed>
+    ),
+  },
+  {
+    path: "/forgot-password",
+    element: (
+      <RedirectIfAuthed>
+        <ForgotPasswordScreen />
+      </RedirectIfAuthed>
+    ),
+  },
+  {
+    path: "/reset-password",
+    element: (
+      <RedirectIfAuthed>
+        <ResetPasswordScreen />
+      </RedirectIfAuthed>
+    ),
+  },
+  // Legal pages — public, linked from registration and the footer.
+  { path: "/terms", element: <TermsScreen /> },
+  { path: "/privacy", element: <PrivacyScreen /> },
   {
     path: "/",
     element: (

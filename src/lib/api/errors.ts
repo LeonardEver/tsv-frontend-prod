@@ -81,9 +81,16 @@ interface RawErrorEnvelope {
 }
 
 function parseDetails(raw: unknown): ApiErrorDetails[] {
-  if (!Array.isArray(raw)) return [];
+  // Two accepted shapes: a bare array of field issues, or the backend's
+  // `{ issues: [...] }` VALIDATION_ERROR details object.
+  const list = Array.isArray(raw)
+    ? raw
+    : typeof raw === "object" && raw !== null && Array.isArray((raw as { issues?: unknown }).issues)
+      ? (raw as { issues: unknown[] }).issues
+      : null;
+  if (!list) return [];
   const out: ApiErrorDetails[] = [];
-  for (const item of raw) {
+  for (const item of list) {
     if (typeof item !== "object" || item === null) continue;
     const rec = item as Record<string, unknown>;
     out.push({

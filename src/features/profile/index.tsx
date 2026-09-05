@@ -22,6 +22,7 @@ import { useUiStore } from "@/stores/ui-store";
 import { Button } from "@/components/ui/Button";
 import { Dialog } from "@/components/ui/Dialog";
 import { Input, Label } from "@/components/ui/Input";
+import { CountrySelect } from "@/components/ui/CountrySelect";
 import { ErrorState } from "@/components/shared/ErrorState";
 import { Avatar, Chip, Eyebrow, ProgressBar, SectionHeader } from "@/components/sa/primitives";
 import { PageHeader } from "@/components/layout/AppShell";
@@ -295,6 +296,8 @@ function Section({
 // ═══════════════════════════════════════════════════════════════════════════
 
 interface DraftState {
+  first_name: string;
+  last_name: string;
   username: string;
   full_name: string;
   bio: string;
@@ -311,6 +314,8 @@ interface DraftState {
 
 function toDraft(profile: ProfileResponse): DraftState {
   return {
+    first_name: profile.first_name ?? "",
+    last_name: profile.last_name ?? "",
     username: profile.username ?? "",
     full_name: profile.full_name ?? "",
     bio: profile.bio ?? "",
@@ -349,6 +354,8 @@ function ProfileEditor({
   const saveMutation = useMutation({
     mutationFn: (d: DraftState) =>
       updateProfile({
+        first_name: emptyToNull(d.first_name),
+        last_name: emptyToNull(d.last_name),
         username: emptyToNull(d.username),
         full_name: emptyToNull(d.full_name),
         bio: emptyToNull(d.bio),
@@ -389,6 +396,26 @@ function ProfileEditor({
     >
       <Section id="profile" eyebrow="Identity" title="Profile">
         <div className="grid gap-4 sm:grid-cols-2">
+          <div className="space-y-1.5">
+            <Label htmlFor="pf-first-name">First name</Label>
+            <Input
+              id="pf-first-name"
+              value={draft.first_name}
+              onChange={(e) => { set("first_name")(e.target.value); }}
+              placeholder="Your first name"
+              maxLength={80}
+            />
+          </div>
+          <div className="space-y-1.5">
+            <Label htmlFor="pf-last-name">Last name</Label>
+            <Input
+              id="pf-last-name"
+              value={draft.last_name}
+              onChange={(e) => { set("last_name")(e.target.value); }}
+              placeholder="Your last name"
+              maxLength={80}
+            />
+          </div>
           <div className="space-y-1.5">
             <Label htmlFor="pf-full-name">Full name</Label>
             <Input
@@ -436,13 +463,11 @@ function ProfileEditor({
       <Section id="personal" eyebrow="Personal" title="Region & Language">
         <div className="grid gap-4 sm:grid-cols-3">
           <div className="space-y-1.5">
-            <Label htmlFor="pf-country">Country</Label>
-            <Input
+            <CountrySelect
+              label="Country"
               id="pf-country"
               value={draft.country}
               onChange={(e) => { set("country")(e.target.value); }}
-              placeholder="Brazil"
-              maxLength={100}
             />
           </div>
           <div className="space-y-1.5">

@@ -70,139 +70,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/.well-known/openid-configuration": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: {
-            parameters: {
-                query?: never;
-                header?: never;
-                path?: never;
-                cookie?: never;
-            };
-            requestBody?: never;
-            responses: {
-                /** @description Default Response */
-                200: {
-                    headers: {
-                        [name: string]: unknown;
-                    };
-                    content?: never;
-                };
-            };
-        };
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/mock/.well-known/openid-configuration": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: {
-            parameters: {
-                query?: never;
-                header?: never;
-                path?: never;
-                cookie?: never;
-            };
-            requestBody?: never;
-            responses: {
-                /** @description Default Response */
-                200: {
-                    headers: {
-                        [name: string]: unknown;
-                    };
-                    content?: never;
-                };
-            };
-        };
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/mock/jwks.json": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: {
-            parameters: {
-                query?: never;
-                header?: never;
-                path?: never;
-                cookie?: never;
-            };
-            requestBody?: never;
-            responses: {
-                /** @description Default Response */
-                200: {
-                    headers: {
-                        [name: string]: unknown;
-                    };
-                    content?: never;
-                };
-            };
-        };
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/mock/authorize": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: {
-            parameters: {
-                query?: never;
-                header?: never;
-                path?: never;
-                cookie?: never;
-            };
-            requestBody?: never;
-            responses: {
-                /** @description Default Response */
-                200: {
-                    headers: {
-                        [name: string]: unknown;
-                    };
-                    content?: never;
-                };
-            };
-        };
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/mock/token": {
+    "/api/v1/auth/register": {
         parameters: {
             query?: never;
             header?: never;
@@ -211,6 +79,10 @@ export interface paths {
         };
         get?: never;
         put?: never;
+        /**
+         * Register a new account (email + password)
+         * @description Creates an unverified account and sends a verification email. Legal acceptance is versioned; the server rejects acceptance of outdated Terms/Privacy versions.
+         */
         post: {
             parameters: {
                 query?: never;
@@ -218,50 +90,94 @@ export interface paths {
                 path?: never;
                 cookie?: never;
             };
-            requestBody?: never;
+            requestBody: {
+                content: {
+                    "application/json": {
+                        first_name: string;
+                        last_name: string;
+                        /** Format: email */
+                        email: string;
+                        date_of_birth: string;
+                        country: string;
+                        password: string;
+                        accept_terms: boolean;
+                        accept_privacy: boolean;
+                        terms_version: string;
+                        privacy_version: string;
+                        marketing_opt_in?: boolean;
+                    };
+                };
+            };
             responses: {
                 /** @description Default Response */
-                200: {
+                201: {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "application/json": {
+                            user_id: number;
+                            email: string;
+                            email_verified: boolean;
+                        };
+                    };
                 };
-            };
-        };
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/mock/userinfo": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: {
-            parameters: {
-                query?: never;
-                header?: never;
-                path?: never;
-                cookie?: never;
-            };
-            requestBody?: never;
-            responses: {
                 /** @description Default Response */
-                200: {
+                400: {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "application/json": {
+                            error?: {
+                                code?: string;
+                                message?: string;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
+                                request_id?: string;
+                            };
+                        };
+                    };
+                };
+                /** @description Default Response */
+                409: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            error?: {
+                                code?: string;
+                                message?: string;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
+                                request_id?: string;
+                            };
+                        };
+                    };
+                };
+                /** @description Default Response */
+                429: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            error?: {
+                                code?: string;
+                                message?: string;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
+                                request_id?: string;
+                            };
+                        };
+                    };
                 };
             };
         };
-        put?: never;
-        post?: never;
         delete?: never;
         options?: never;
         head?: never;
@@ -295,28 +211,590 @@ export interface paths {
                     };
                     content?: never;
                 };
-                /** @description Server error */
+                /** @description Default Response */
                 500: {
                     headers: {
                         [name: string]: unknown;
                     };
                     content: {
-                        "application/json": Record<string, never>;
+                        "application/json": {
+                            error?: {
+                                code?: string;
+                                message?: string;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
+                                request_id?: string;
+                            };
+                        };
                     };
                 };
-                /** @description OIDC not configured */
+                /** @description Default Response */
                 503: {
                     headers: {
                         [name: string]: unknown;
                     };
                     content: {
-                        "application/json": Record<string, never>;
+                        "application/json": {
+                            error?: {
+                                code?: string;
+                                message?: string;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
+                                request_id?: string;
+                            };
+                        };
                     };
                 };
             };
         };
         put?: never;
-        post?: never;
+        /**
+         * Log in with email and password
+         * @description Verifies credentials, enforces the email-verification policy, and starts a normal server-side session (same cookie as OIDC login).
+         */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody: {
+                content: {
+                    "application/json": {
+                        /** Format: email */
+                        email: string;
+                        password: string;
+                    };
+                };
+            };
+            responses: {
+                /** @description Default Response */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            user_id: number;
+                            email: string;
+                            display_name: null | string;
+                            first_name: null | string;
+                            last_name: null | string;
+                            country: null | string;
+                            email_verified: boolean;
+                            created_at: string;
+                        };
+                    };
+                };
+                /** @description Default Response */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            error?: {
+                                code?: string;
+                                message?: string;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
+                                request_id?: string;
+                            };
+                        };
+                    };
+                };
+                /** @description Default Response */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            error?: {
+                                code?: string;
+                                message?: string;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
+                                request_id?: string;
+                            };
+                        };
+                    };
+                };
+                /** @description Default Response */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            error?: {
+                                code?: string;
+                                message?: string;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
+                                request_id?: string;
+                            };
+                        };
+                    };
+                };
+                /** @description Default Response */
+                429: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            error?: {
+                                code?: string;
+                                message?: string;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
+                                request_id?: string;
+                            };
+                        };
+                    };
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/auth/verify-email": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Verify an email address (redirect)
+         * @description Consumes a single-use verification token and redirects to the web app's verification status page.
+         */
+        get: {
+            parameters: {
+                query: {
+                    token: string;
+                };
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Redirect to the web app */
+                302: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        put?: never;
+        /**
+         * Verify an email address (JSON)
+         * @description Consumes a single-use verification token. Used by the web app's verification page.
+         */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody: {
+                content: {
+                    "application/json": {
+                        token: string;
+                    };
+                };
+            };
+            responses: {
+                /** @description Default Response */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            ok: boolean;
+                        };
+                    };
+                };
+                /** @description Default Response */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            error?: {
+                                code?: string;
+                                message?: string;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
+                                request_id?: string;
+                            };
+                        };
+                    };
+                };
+                /** @description Default Response */
+                409: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            error?: {
+                                code?: string;
+                                message?: string;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
+                                request_id?: string;
+                            };
+                        };
+                    };
+                };
+                /** @description Default Response */
+                410: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            error?: {
+                                code?: string;
+                                message?: string;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
+                                request_id?: string;
+                            };
+                        };
+                    };
+                };
+                /** @description Default Response */
+                429: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            error?: {
+                                code?: string;
+                                message?: string;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
+                                request_id?: string;
+                            };
+                        };
+                    };
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/auth/resend-verification": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Resend the verification email
+         * @description Re-issues a verification email for an unverified account. The response is identical whether or not an unverified account exists for the email (anti-enumeration); resends are rate limited per IP and per email address.
+         */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody: {
+                content: {
+                    "application/json": {
+                        /** Format: email */
+                        email: string;
+                    };
+                };
+            };
+            responses: {
+                /** @description Default Response */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            ok: boolean;
+                            message: string;
+                        };
+                    };
+                };
+                /** @description Default Response */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            error?: {
+                                code?: string;
+                                message?: string;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
+                                request_id?: string;
+                            };
+                        };
+                    };
+                };
+                /** @description Default Response */
+                429: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            error?: {
+                                code?: string;
+                                message?: string;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
+                                request_id?: string;
+                            };
+                        };
+                    };
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/auth/forgot-password": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Request a password reset email
+         * @description The response is generic regardless of whether the account exists (anti-enumeration). Rate limited per IP and per email address.
+         */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody: {
+                content: {
+                    "application/json": {
+                        /** Format: email */
+                        email: string;
+                    };
+                };
+            };
+            responses: {
+                /** @description Default Response */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            ok: boolean;
+                            message: string;
+                        };
+                    };
+                };
+                /** @description Default Response */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            error?: {
+                                code?: string;
+                                message?: string;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
+                                request_id?: string;
+                            };
+                        };
+                    };
+                };
+                /** @description Default Response */
+                429: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            error?: {
+                                code?: string;
+                                message?: string;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
+                                request_id?: string;
+                            };
+                        };
+                    };
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/auth/reset-password": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Reset the password with a reset token
+         * @description Validates the single-use reset token, enforces the password policy, and revokes all existing sessions for the account.
+         */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody: {
+                content: {
+                    "application/json": {
+                        token: string;
+                        new_password: string;
+                    };
+                };
+            };
+            responses: {
+                /** @description Default Response */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            ok: boolean;
+                        };
+                    };
+                };
+                /** @description Default Response */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            error?: {
+                                code?: string;
+                                message?: string;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
+                                request_id?: string;
+                            };
+                        };
+                    };
+                };
+                /** @description Default Response */
+                409: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            error?: {
+                                code?: string;
+                                message?: string;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
+                                request_id?: string;
+                            };
+                        };
+                    };
+                };
+                /** @description Default Response */
+                410: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            error?: {
+                                code?: string;
+                                message?: string;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
+                                request_id?: string;
+                            };
+                        };
+                    };
+                };
+                /** @description Default Response */
+                429: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            error?: {
+                                code?: string;
+                                message?: string;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
+                                request_id?: string;
+                            };
+                        };
+                    };
+                };
+            };
+        };
         delete?: never;
         options?: never;
         head?: never;
@@ -350,31 +828,58 @@ export interface paths {
                     };
                     content?: never;
                 };
-                /** @description Invalid request */
+                /** @description Default Response */
                 400: {
                     headers: {
                         [name: string]: unknown;
                     };
                     content: {
-                        "application/json": Record<string, never>;
+                        "application/json": {
+                            error?: {
+                                code?: string;
+                                message?: string;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
+                                request_id?: string;
+                            };
+                        };
                     };
                 };
-                /** @description Authentication failed */
+                /** @description Default Response */
                 401: {
                     headers: {
                         [name: string]: unknown;
                     };
                     content: {
-                        "application/json": Record<string, never>;
+                        "application/json": {
+                            error?: {
+                                code?: string;
+                                message?: string;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
+                                request_id?: string;
+                            };
+                        };
                     };
                 };
-                /** @description Server error */
+                /** @description Default Response */
                 500: {
                     headers: {
                         [name: string]: unknown;
                     };
                     content: {
-                        "application/json": Record<string, never>;
+                        "application/json": {
+                            error?: {
+                                code?: string;
+                                message?: string;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
+                                request_id?: string;
+                            };
+                        };
                     };
                 };
             };
@@ -455,10 +960,14 @@ export interface paths {
                     };
                     content: {
                         "application/json": {
-                            user_id?: number;
-                            email?: string;
-                            display_name?: string;
-                            created_at?: string;
+                            user_id: number;
+                            email: string;
+                            display_name: null | string;
+                            first_name: null | string;
+                            last_name: null | string;
+                            country: null | string;
+                            email_verified: boolean;
+                            created_at: string;
                         };
                     };
                 };
@@ -569,7 +1078,9 @@ export interface paths {
                             error?: {
                                 code?: string;
                                 message?: string;
-                                details?: Record<string, never>;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
                                 request_id?: string;
                             };
                         };
@@ -724,7 +1235,9 @@ export interface paths {
                             error?: {
                                 code?: string;
                                 message?: string;
-                                details?: Record<string, never>;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
                                 request_id?: string;
                             };
                         };
@@ -820,7 +1333,9 @@ export interface paths {
                             error?: {
                                 code?: string;
                                 message?: string;
-                                details?: Record<string, never>;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
                                 request_id?: string;
                             };
                         };
@@ -896,7 +1411,9 @@ export interface paths {
                             error?: {
                                 code?: string;
                                 message?: string;
-                                details?: Record<string, never>;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
                                 request_id?: string;
                             };
                         };
@@ -1061,7 +1578,9 @@ export interface paths {
                             error?: {
                                 code?: string;
                                 message?: string;
-                                details?: Record<string, never>;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
                                 request_id?: string;
                             };
                         };
@@ -1126,7 +1645,9 @@ export interface paths {
                             error?: {
                                 code?: string;
                                 message?: string;
-                                details?: Record<string, never>;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
                                 request_id?: string;
                             };
                         };
@@ -1215,7 +1736,9 @@ export interface paths {
                             error?: {
                                 code?: string;
                                 message?: string;
-                                details?: Record<string, never>;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
                                 request_id?: string;
                             };
                         };
@@ -1231,7 +1754,9 @@ export interface paths {
                             error?: {
                                 code?: string;
                                 message?: string;
-                                details?: Record<string, never>;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
                                 request_id?: string;
                             };
                         };
@@ -1247,7 +1772,9 @@ export interface paths {
                             error?: {
                                 code?: string;
                                 message?: string;
-                                details?: Record<string, never>;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
                                 request_id?: string;
                             };
                         };
@@ -1263,7 +1790,9 @@ export interface paths {
                             error?: {
                                 code?: string;
                                 message?: string;
-                                details?: Record<string, never>;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
                                 request_id?: string;
                             };
                         };
@@ -1340,7 +1869,9 @@ export interface paths {
                             error?: {
                                 code?: string;
                                 message?: string;
-                                details?: Record<string, never>;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
                                 request_id?: string;
                             };
                         };
@@ -1455,7 +1986,9 @@ export interface paths {
                             error?: {
                                 code?: string;
                                 message?: string;
-                                details?: Record<string, never>;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
                                 request_id?: string;
                             };
                         };
@@ -1921,7 +2454,9 @@ export interface paths {
                             error?: {
                                 code?: string;
                                 message?: string;
-                                details?: Record<string, never>;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
                                 request_id?: string;
                             };
                         };
@@ -2006,7 +2541,9 @@ export interface paths {
                             error?: {
                                 code?: string;
                                 message?: string;
-                                details?: Record<string, never>;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
                                 request_id?: string;
                             };
                         };
@@ -2022,7 +2559,9 @@ export interface paths {
                             error?: {
                                 code?: string;
                                 message?: string;
-                                details?: Record<string, never>;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
                                 request_id?: string;
                             };
                         };
@@ -2038,7 +2577,9 @@ export interface paths {
                             error?: {
                                 code?: string;
                                 message?: string;
-                                details?: Record<string, never>;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
                                 request_id?: string;
                             };
                         };
@@ -2054,7 +2595,9 @@ export interface paths {
                             error?: {
                                 code?: string;
                                 message?: string;
-                                details?: Record<string, never>;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
                                 request_id?: string;
                             };
                         };
@@ -2070,7 +2613,9 @@ export interface paths {
                             error?: {
                                 code?: string;
                                 message?: string;
-                                details?: Record<string, never>;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
                                 request_id?: string;
                             };
                         };
@@ -2143,7 +2688,9 @@ export interface paths {
                             error?: {
                                 code?: string;
                                 message?: string;
-                                details?: Record<string, never>;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
                                 request_id?: string;
                             };
                         };
@@ -2159,7 +2706,9 @@ export interface paths {
                             error?: {
                                 code?: string;
                                 message?: string;
-                                details?: Record<string, never>;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
                                 request_id?: string;
                             };
                         };
@@ -2175,7 +2724,9 @@ export interface paths {
                             error?: {
                                 code?: string;
                                 message?: string;
-                                details?: Record<string, never>;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
                                 request_id?: string;
                             };
                         };
@@ -2191,7 +2742,9 @@ export interface paths {
                             error?: {
                                 code?: string;
                                 message?: string;
-                                details?: Record<string, never>;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
                                 request_id?: string;
                             };
                         };
@@ -2264,7 +2817,9 @@ export interface paths {
                             error?: {
                                 code?: string;
                                 message?: string;
-                                details?: Record<string, never>;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
                                 request_id?: string;
                             };
                         };
@@ -2280,7 +2835,9 @@ export interface paths {
                             error?: {
                                 code?: string;
                                 message?: string;
-                                details?: Record<string, never>;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
                                 request_id?: string;
                             };
                         };
@@ -2296,7 +2853,9 @@ export interface paths {
                             error?: {
                                 code?: string;
                                 message?: string;
-                                details?: Record<string, never>;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
                                 request_id?: string;
                             };
                         };
@@ -2312,7 +2871,9 @@ export interface paths {
                             error?: {
                                 code?: string;
                                 message?: string;
-                                details?: Record<string, never>;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
                                 request_id?: string;
                             };
                         };
@@ -2366,7 +2927,9 @@ export interface paths {
                             error?: {
                                 code?: string;
                                 message?: string;
-                                details?: Record<string, never>;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
                                 request_id?: string;
                             };
                         };
@@ -2382,7 +2945,9 @@ export interface paths {
                             error?: {
                                 code?: string;
                                 message?: string;
-                                details?: Record<string, never>;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
                                 request_id?: string;
                             };
                         };
@@ -2398,7 +2963,9 @@ export interface paths {
                             error?: {
                                 code?: string;
                                 message?: string;
-                                details?: Record<string, never>;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
                                 request_id?: string;
                             };
                         };
@@ -2414,7 +2981,9 @@ export interface paths {
                             error?: {
                                 code?: string;
                                 message?: string;
-                                details?: Record<string, never>;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
                                 request_id?: string;
                             };
                         };
@@ -2490,6 +3059,8 @@ export interface paths {
                     };
                     content: {
                         "application/json": {
+                            first_name: null | string;
+                            last_name: null | string;
                             username: null | string;
                             full_name: null | string;
                             display_name: null | string;
@@ -2538,6 +3109,8 @@ export interface paths {
                     };
                     content: {
                         "application/json": {
+                            first_name: null | string;
+                            last_name: null | string;
                             username: null | string;
                             full_name: null | string;
                             display_name: null | string;
@@ -2568,7 +3141,9 @@ export interface paths {
                             error?: {
                                 code?: string;
                                 message?: string;
-                                details?: Record<string, never>;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
                                 request_id?: string;
                             };
                         };
@@ -2584,7 +3159,9 @@ export interface paths {
                             error?: {
                                 code?: string;
                                 message?: string;
-                                details?: Record<string, never>;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
                                 request_id?: string;
                             };
                         };
@@ -2740,7 +3317,9 @@ export interface paths {
                             error?: {
                                 code?: string;
                                 message?: string;
-                                details?: Record<string, never>;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
                                 request_id?: string;
                             };
                         };
@@ -2804,7 +3383,9 @@ export interface paths {
                             error?: {
                                 code?: string;
                                 message?: string;
-                                details?: Record<string, never>;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
                                 request_id?: string;
                             };
                         };
@@ -2820,7 +3401,9 @@ export interface paths {
                             error?: {
                                 code?: string;
                                 message?: string;
-                                details?: Record<string, never>;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
                                 request_id?: string;
                             };
                         };
@@ -2890,7 +3473,9 @@ export interface paths {
                             error?: {
                                 code?: string;
                                 message?: string;
-                                details?: Record<string, never>;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
                                 request_id?: string;
                             };
                         };
@@ -2933,7 +3518,9 @@ export interface paths {
                             error?: {
                                 code?: string;
                                 message?: string;
-                                details?: Record<string, never>;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
                                 request_id?: string;
                             };
                         };
@@ -2949,7 +3536,9 @@ export interface paths {
                             error?: {
                                 code?: string;
                                 message?: string;
-                                details?: Record<string, never>;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
                                 request_id?: string;
                             };
                         };
@@ -3015,7 +3604,9 @@ export interface paths {
                             error?: {
                                 code?: string;
                                 message?: string;
-                                details?: Record<string, never>;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
                                 request_id?: string;
                             };
                         };
@@ -3031,7 +3622,9 @@ export interface paths {
                             error?: {
                                 code?: string;
                                 message?: string;
-                                details?: Record<string, never>;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
                                 request_id?: string;
                             };
                         };
@@ -3047,7 +3640,9 @@ export interface paths {
                             error?: {
                                 code?: string;
                                 message?: string;
-                                details?: Record<string, never>;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
                                 request_id?: string;
                             };
                         };
@@ -3100,7 +3695,9 @@ export interface paths {
                             error?: {
                                 code?: string;
                                 message?: string;
-                                details?: Record<string, never>;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
                                 request_id?: string;
                             };
                         };
@@ -3177,7 +3774,9 @@ export interface paths {
                             error?: {
                                 code?: string;
                                 message?: string;
-                                details?: Record<string, never>;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
                                 request_id?: string;
                             };
                         };
@@ -3238,7 +3837,9 @@ export interface paths {
                             error?: {
                                 code?: string;
                                 message?: string;
-                                details?: Record<string, never>;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
                                 request_id?: string;
                             };
                         };
@@ -3254,7 +3855,9 @@ export interface paths {
                             error?: {
                                 code?: string;
                                 message?: string;
-                                details?: Record<string, never>;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
                                 request_id?: string;
                             };
                         };
@@ -3270,7 +3873,9 @@ export interface paths {
                             error?: {
                                 code?: string;
                                 message?: string;
-                                details?: Record<string, never>;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
                                 request_id?: string;
                             };
                         };
@@ -3327,7 +3932,9 @@ export interface paths {
                             error?: {
                                 code?: string;
                                 message?: string;
-                                details?: Record<string, never>;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
                                 request_id?: string;
                             };
                         };
@@ -3343,7 +3950,9 @@ export interface paths {
                             error?: {
                                 code?: string;
                                 message?: string;
-                                details?: Record<string, never>;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
                                 request_id?: string;
                             };
                         };
@@ -3405,7 +4014,9 @@ export interface paths {
                             error?: {
                                 code?: string;
                                 message?: string;
-                                details?: Record<string, never>;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
                                 request_id?: string;
                             };
                         };
@@ -3421,7 +4032,9 @@ export interface paths {
                             error?: {
                                 code?: string;
                                 message?: string;
-                                details?: Record<string, never>;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
                                 request_id?: string;
                             };
                         };
@@ -3437,7 +4050,9 @@ export interface paths {
                             error?: {
                                 code?: string;
                                 message?: string;
-                                details?: Record<string, never>;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
                                 request_id?: string;
                             };
                         };
@@ -3490,7 +4105,9 @@ export interface paths {
                             error?: {
                                 code?: string;
                                 message?: string;
-                                details?: Record<string, never>;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
                                 request_id?: string;
                             };
                         };
@@ -3554,7 +4171,9 @@ export interface paths {
                             error?: {
                                 code?: string;
                                 message?: string;
-                                details?: Record<string, never>;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
                                 request_id?: string;
                             };
                         };
@@ -3570,7 +4189,9 @@ export interface paths {
                             error?: {
                                 code?: string;
                                 message?: string;
-                                details?: Record<string, never>;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
                                 request_id?: string;
                             };
                         };
@@ -3586,7 +4207,9 @@ export interface paths {
                             error?: {
                                 code?: string;
                                 message?: string;
-                                details?: Record<string, never>;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
                                 request_id?: string;
                             };
                         };
@@ -3650,7 +4273,9 @@ export interface paths {
                             error?: {
                                 code?: string;
                                 message?: string;
-                                details?: Record<string, never>;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
                                 request_id?: string;
                             };
                         };
@@ -3666,7 +4291,9 @@ export interface paths {
                             error?: {
                                 code?: string;
                                 message?: string;
-                                details?: Record<string, never>;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
                                 request_id?: string;
                             };
                         };
@@ -3682,7 +4309,9 @@ export interface paths {
                             error?: {
                                 code?: string;
                                 message?: string;
-                                details?: Record<string, never>;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
                                 request_id?: string;
                             };
                         };
@@ -3745,7 +4374,9 @@ export interface paths {
                             error?: {
                                 code?: string;
                                 message?: string;
-                                details?: Record<string, never>;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
                                 request_id?: string;
                             };
                         };
@@ -3761,7 +4392,9 @@ export interface paths {
                             error?: {
                                 code?: string;
                                 message?: string;
-                                details?: Record<string, never>;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
                                 request_id?: string;
                             };
                         };
@@ -3824,7 +4457,9 @@ export interface paths {
                             error?: {
                                 code?: string;
                                 message?: string;
-                                details?: Record<string, never>;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
                                 request_id?: string;
                             };
                         };
@@ -3840,7 +4475,9 @@ export interface paths {
                             error?: {
                                 code?: string;
                                 message?: string;
-                                details?: Record<string, never>;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
                                 request_id?: string;
                             };
                         };
