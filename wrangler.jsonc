@@ -1,0 +1,14 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  // ATTENTION: before the first deploy, set "name" to the existing
+  // Worker's name from the Cloudflare dashboard (a different name would
+  // create a NEW Worker instead of updating the current one).
+  "name": "tsv-frontend-prod",
+  "main": "./src/worker.ts",
+  "compatibility_date": "2026-09-06",
+  "assets": {
+    "directory": "./dist",
+    "not_found_handling": "single-page-application",
+    "run_worker_first": ["/api/*"]
+  }
+}
