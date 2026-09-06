@@ -1,6 +1,0 @@
-# Cloudflare Pages — SPA fallback.
-# Deep links must resolve to index.html (react-router BrowserRouter);
-# without this, refreshing /modules/... 404s on Pages.
-# Pages Functions (functions/api/[[path]].js) take precedence over
-# _redirects, so /api/* still reaches the API proxy.
-/* /index.html 200
