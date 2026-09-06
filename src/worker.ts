@@ -31,9 +31,23 @@ export default {
       return new Response("API_ORIGIN not configured", { status: 500 });
     }
 
+    // Forward the verified client IP. CF-Connecting-IP is set by the
+    // Cloudflare edge for every request and cannot be spoofed by the
+    // client; the client-supplied X-Forwarded-For chain is untrusted.
+    // The backend runs with trustProxy and reads the leftmost
+    // X-Forwarded-For entry for per-IP rate limiting (and session
+    // metadata) — replacing the header here (never appending) keeps a
+    // spoofable chain from reaching it.
+    const headers = new Headers(request.headers);
+    headers.delete("x-forwarded-for");
+    const clientIp = request.headers.get("cf-connecting-ip");
+    if (clientIp) {
+      headers.set("x-forwarded-for", clientIp);
+    }
+
     const init: RequestInit = {
       method: request.method,
-      headers: request.headers,
+      headers,
       redirect: "manual", // let 302s (OIDC/Stripe) pass through as-is
     };
     if (request.method !== "GET" && request.method !== "HEAD") {
@@ -42,19 +56,19 @@ export default {
 
     const res = await fetch(`${origin}${url.pathname}${url.search}`, init);
 
-    const headers = new Headers(res.headers);
+    const outHeaders = new Headers(res.headers);
     // The runtime transparently decompresses fetch bodies, so forwarding
     // content-encoding would describe a body that is no longer encoded;
     // Cloudflare re-compresses the response on egress.
-    headers.delete("content-encoding");
-    headers.delete("content-length");
+    outHeaders.delete("content-encoding");
+    outHeaders.delete("content-length");
 
     // Set-Cookie passes through untouched — session cookie must reach the
     // browser with the Worker origin as its host.
     return new Response(res.body, {
       status: res.status,
       statusText: res.statusText,
-      headers,
+      headers: outHeaders,
     });
   },
 };
