@@ -28,3 +28,5 @@ Thumbs.db
 *.log
 *.tsbuildinfo
 .claude/settings.json
+.claude/*
+.claude/settings.json
