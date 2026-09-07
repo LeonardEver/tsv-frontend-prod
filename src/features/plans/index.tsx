@@ -530,7 +530,7 @@ export default function PlansPage() {
 
       <p className="text-xs text-muted-foreground">
         {billingEnabled
-          ? "Payments are processed by Stripe in TEST mode — cards are simulated and nothing is charged."
+          ? "Payments are processed by Stripe."
           : "Billing is not configured in this environment — no payment is processed on this page."}
       </p>
     </div>
