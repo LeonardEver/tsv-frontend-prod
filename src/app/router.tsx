@@ -5,7 +5,8 @@
  * - Deep-link aliases (/lessons/:id, /quizzes/:id) resolve the module via
  *   the API and redirect to the canonical route.
  * - Credential auth screens (/register, /verify-email, /forgot-password,
- *   /reset-password) sit beside /login; /terms and /privacy are public.
+ *   /reset-password) sit beside /login; /terms, /privacy and /landing are
+ *   public.
  * - Quiz routes carry NO lesson-completion guard (DEC-022).
  */
 import { lazy } from "react";
@@ -37,6 +38,7 @@ const PlansPage = lazy(() => import("@/features/plans"));
 const CommunityPage = lazy(() => import("@/features/community"));
 const CreatePostPage = lazy(() => import("@/features/community/CreatePost"));
 const PostDetailPage = lazy(() => import("@/features/community/PostDetail"));
+const LandingPage = lazy(() => import("./landing/LandingPage"));
 
 export const router = createBrowserRouter([
   {
@@ -82,6 +84,9 @@ export const router = createBrowserRouter([
   // Legal pages — public, linked from registration and the footer.
   { path: "/terms", element: <TermsScreen /> },
   { path: "/privacy", element: <PrivacyScreen /> },
+  // Marketing landing — public, no shell and no auth guard. Its styles are a
+  // CSS module precisely so they cannot leak into the app routes above.
+  { path: "/landing", element: <LandingPage /> },
   {
     path: "/",
     element: (
