@@ -40,6 +40,29 @@ const CreatePostPage = lazy(() => import("@/features/community/CreatePost"));
 const PostDetailPage = lazy(() => import("@/features/community/PostDetail"));
 const LandingPage = lazy(() => import("./landing/LandingPage"));
 
+// ── Admin analytics (§ admin-only surface) ──
+// The layout is one lazy chunk; each tab is its own chunk so a section
+// loads only the endpoints it needs. Access is decided server-side — the
+// layout's capability probe renders the denied state, so these routes
+// stay registered for everyone and simply refuse to render data.
+const AdminAnalyticsPage = lazy(() => import("@/features/admin-analytics"));
+const AnalyticsOverviewTab = lazy(() => import("@/features/admin-analytics/tabs/OverviewTab"));
+const AnalyticsUsersTab = lazy(() => import("@/features/admin-analytics/tabs/UsersTab"));
+const AnalyticsEngagementTab = lazy(
+  () => import("@/features/admin-analytics/tabs/EngagementTab"),
+);
+const AnalyticsLearningTab = lazy(() => import("@/features/admin-analytics/tabs/LearningTab"));
+const AnalyticsContentTab = lazy(() => import("@/features/admin-analytics/tabs/ContentTab"));
+const AnalyticsGapsTab = lazy(() => import("@/features/admin-analytics/tabs/GapsTab"));
+const AnalyticsStalledTab = lazy(() => import("@/features/admin-analytics/tabs/StalledTab"));
+const AnalyticsRetentionTab = lazy(() => import("@/features/admin-analytics/tabs/RetentionTab"));
+const AnalyticsCommunityTab = lazy(() => import("@/features/admin-analytics/tabs/CommunityTab"));
+const AnalyticsGamificationTab = lazy(
+  () => import("@/features/admin-analytics/tabs/GamificationTab"),
+);
+const AnalyticsBillingTab = lazy(() => import("@/features/admin-analytics/tabs/BillingTab"));
+const AnalyticsGeographyTab = lazy(() => import("@/features/admin-analytics/tabs/GeographyTab"));
+
 export const router = createBrowserRouter([
   {
     path: "/login",
@@ -329,6 +352,30 @@ export const router = createBrowserRouter([
         </AppShell>
       </RequireAuth>
     ),
+  },
+  {
+    path: "/admin/analytics",
+    element: (
+      <RequireAuth>
+        <AppShell>
+          <AdminAnalyticsPage />
+        </AppShell>
+      </RequireAuth>
+    ),
+    children: [
+      { index: true, element: <AnalyticsOverviewTab /> },
+      { path: "users", element: <AnalyticsUsersTab /> },
+      { path: "engagement", element: <AnalyticsEngagementTab /> },
+      { path: "learning", element: <AnalyticsLearningTab /> },
+      { path: "content", element: <AnalyticsContentTab /> },
+      { path: "gaps", element: <AnalyticsGapsTab /> },
+      { path: "stalled", element: <AnalyticsStalledTab /> },
+      { path: "retention", element: <AnalyticsRetentionTab /> },
+      { path: "community", element: <AnalyticsCommunityTab /> },
+      { path: "gamification", element: <AnalyticsGamificationTab /> },
+      { path: "billing", element: <AnalyticsBillingTab /> },
+      { path: "geography", element: <AnalyticsGeographyTab /> },
+    ],
   },
   {
     path: "*",

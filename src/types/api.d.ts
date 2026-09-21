@@ -4491,6 +4491,1469 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/admin/analytics/overview": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** [admin] Executive KPIs with previous-period comparison */
+        get: {
+            parameters: {
+                query?: {
+                    /** @description Inclusive UTC start date (YYYY-MM-DD). Omit for all time. */
+                    from?: string;
+                    /** @description Inclusive UTC end date (YYYY-MM-DD). Defaults to today. */
+                    to?: string;
+                    /** @description Effective-plan filter. */
+                    plan?: "free" | "survivor" | "operator";
+                    /** @description ISO-3166-1 alpha-2 country filter (users.country). */
+                    country?: string;
+                };
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Default Response */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            range?: {
+                                from?: null | string;
+                                to?: string;
+                            } & {
+                                [key: string]: unknown;
+                            };
+                            metrics?: {
+                                [key: string]: unknown;
+                            };
+                            previous?: null | {
+                                [key: string]: unknown;
+                            };
+                            activity_windows?: {
+                                [key: string]: unknown;
+                            };
+                            limitations?: {
+                                [key: string]: unknown;
+                            };
+                        } & {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+                /** @description Default Response */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            error?: {
+                                code?: string;
+                                message?: string;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
+                                request_id?: string;
+                            };
+                        };
+                    };
+                };
+                /** @description Default Response */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            error?: {
+                                code?: string;
+                                message?: string;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
+                                request_id?: string;
+                            };
+                        };
+                    };
+                };
+                /** @description Default Response */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            error?: {
+                                code?: string;
+                                message?: string;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
+                                request_id?: string;
+                            };
+                        };
+                    };
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/admin/analytics/users": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** [admin] Users by plan, status, signup over time and country */
+        get: {
+            parameters: {
+                query?: {
+                    /** @description Inclusive UTC start date (YYYY-MM-DD). Omit for all time. */
+                    from?: string;
+                    /** @description Inclusive UTC end date (YYYY-MM-DD). Defaults to today. */
+                    to?: string;
+                    /** @description Effective-plan filter. */
+                    plan?: "free" | "survivor" | "operator";
+                    /** @description ISO-3166-1 alpha-2 country filter (users.country). */
+                    country?: string;
+                    /** @description Time-series bucket size. */
+                    granularity?: "day" | "week" | "month";
+                };
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Default Response */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            range?: {
+                                from?: null | string;
+                                to?: string;
+                            } & {
+                                [key: string]: unknown;
+                            };
+                            totals?: {
+                                [key: string]: unknown;
+                            };
+                            by_plan?: {
+                                [key: string]: unknown;
+                            }[];
+                            by_subscription_status?: {
+                                [key: string]: unknown;
+                            }[];
+                            new_users_series?: {
+                                [key: string]: unknown;
+                            }[];
+                            top_countries?: {
+                                [key: string]: unknown;
+                            }[];
+                            notes?: {
+                                [key: string]: unknown;
+                            };
+                        } & {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+                /** @description Default Response */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            error?: {
+                                code?: string;
+                                message?: string;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
+                                request_id?: string;
+                            };
+                        };
+                    };
+                };
+                /** @description Default Response */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            error?: {
+                                code?: string;
+                                message?: string;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
+                                request_id?: string;
+                            };
+                        };
+                    };
+                };
+                /** @description Default Response */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            error?: {
+                                code?: string;
+                                message?: string;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
+                                request_id?: string;
+                            };
+                        };
+                    };
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/admin/analytics/engagement": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** [admin] DAU/WAU/MAU and per-bucket activity series */
+        get: {
+            parameters: {
+                query?: {
+                    /** @description Inclusive UTC start date (YYYY-MM-DD). Omit for all time. */
+                    from?: string;
+                    /** @description Inclusive UTC end date (YYYY-MM-DD). Defaults to today. */
+                    to?: string;
+                    /** @description Effective-plan filter. */
+                    plan?: "free" | "survivor" | "operator";
+                    /** @description ISO-3166-1 alpha-2 country filter (users.country). */
+                    country?: string;
+                    /** @description Time-series bucket size. */
+                    granularity?: "day" | "week" | "month";
+                };
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Default Response */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            range?: {
+                                from?: null | string;
+                                to?: string;
+                            } & {
+                                [key: string]: unknown;
+                            };
+                            granularity?: string;
+                            totals?: {
+                                [key: string]: unknown;
+                            };
+                            windows?: {
+                                [key: string]: unknown;
+                            };
+                            series?: {
+                                [key: string]: unknown;
+                            }[];
+                            notes?: {
+                                [key: string]: unknown;
+                            };
+                        } & {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+                /** @description Default Response */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            error?: {
+                                code?: string;
+                                message?: string;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
+                                request_id?: string;
+                            };
+                        };
+                    };
+                };
+                /** @description Default Response */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            error?: {
+                                code?: string;
+                                message?: string;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
+                                request_id?: string;
+                            };
+                        };
+                    };
+                };
+                /** @description Default Response */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            error?: {
+                                code?: string;
+                                message?: string;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
+                                request_id?: string;
+                            };
+                        };
+                    };
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/admin/analytics/learning": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** [admin] Learning funnel with conversion and drop-off */
+        get: {
+            parameters: {
+                query?: {
+                    /** @description Inclusive UTC start date (YYYY-MM-DD). Omit for all time. */
+                    from?: string;
+                    /** @description Inclusive UTC end date (YYYY-MM-DD). Defaults to today. */
+                    to?: string;
+                    /** @description Effective-plan filter. */
+                    plan?: "free" | "survivor" | "operator";
+                    /** @description ISO-3166-1 alpha-2 country filter (users.country). */
+                    country?: string;
+                };
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Default Response */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            range?: {
+                                from?: null | string;
+                                to?: string;
+                            } & {
+                                [key: string]: unknown;
+                            };
+                            funnel?: {
+                                [key: string]: unknown;
+                            }[];
+                            by_plan?: {
+                                [key: string]: unknown;
+                            }[];
+                            notes?: {
+                                [key: string]: unknown;
+                            };
+                        } & {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+                /** @description Default Response */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            error?: {
+                                code?: string;
+                                message?: string;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
+                                request_id?: string;
+                            };
+                        };
+                    };
+                };
+                /** @description Default Response */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            error?: {
+                                code?: string;
+                                message?: string;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
+                                request_id?: string;
+                            };
+                        };
+                    };
+                };
+                /** @description Default Response */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            error?: {
+                                code?: string;
+                                message?: string;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
+                                request_id?: string;
+                            };
+                        };
+                    };
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/admin/analytics/content": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** [admin] Per-module, per-lesson and per-quiz performance */
+        get: {
+            parameters: {
+                query?: {
+                    /** @description Inclusive UTC start date (YYYY-MM-DD). Omit for all time. */
+                    from?: string;
+                    /** @description Inclusive UTC end date (YYYY-MM-DD). Defaults to today. */
+                    to?: string;
+                    /** @description Effective-plan filter. */
+                    plan?: "free" | "survivor" | "operator";
+                    /** @description ISO-3166-1 alpha-2 country filter (users.country). */
+                    country?: string;
+                    type?: "lesson" | "module" | "quiz";
+                    /** @description Case-insensitive title search. */
+                    q?: string;
+                    /** @description Field to sort by; prefix with '-' for descending. Defaults per type. */
+                    sort?: string;
+                    limit?: number;
+                    cursor?: string;
+                };
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Default Response */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            range?: {
+                                from?: null | string;
+                                to?: string;
+                            } & {
+                                [key: string]: unknown;
+                            };
+                            type?: string;
+                            items?: {
+                                [key: string]: unknown;
+                            }[];
+                            pagination?: {
+                                [key: string]: unknown;
+                            };
+                            notes?: {
+                                [key: string]: unknown;
+                            };
+                        } & {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+                /** @description Default Response */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            error?: {
+                                code?: string;
+                                message?: string;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
+                                request_id?: string;
+                            };
+                        };
+                    };
+                };
+                /** @description Default Response */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            error?: {
+                                code?: string;
+                                message?: string;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
+                                request_id?: string;
+                            };
+                        };
+                    };
+                };
+                /** @description Default Response */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            error?: {
+                                code?: string;
+                                message?: string;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
+                                request_id?: string;
+                            };
+                        };
+                    };
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/admin/analytics/knowledge-gaps": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** [admin] Weakest objectives, questions and knowledge items */
+        get: {
+            parameters: {
+                query?: {
+                    /** @description Inclusive UTC start date (YYYY-MM-DD). Omit for all time. */
+                    from?: string;
+                    /** @description Inclusive UTC end date (YYYY-MM-DD). Defaults to today. */
+                    to?: string;
+                    /** @description Effective-plan filter. */
+                    plan?: "free" | "survivor" | "operator";
+                    /** @description ISO-3166-1 alpha-2 country filter (users.country). */
+                    country?: string;
+                    limit?: number;
+                    /** @description Minimum answers in range before an item is reported. */
+                    min_sample?: number;
+                };
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Default Response */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            range?: {
+                                from?: null | string;
+                                to?: string;
+                            } & {
+                                [key: string]: unknown;
+                            };
+                            min_sample?: number;
+                            weakest_objectives?: {
+                                [key: string]: unknown;
+                            }[];
+                            weakest_questions?: {
+                                [key: string]: unknown;
+                            }[];
+                            weakest_knowledge_items?: {
+                                [key: string]: unknown;
+                            }[];
+                            notes?: {
+                                [key: string]: unknown;
+                            };
+                        } & {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+                /** @description Default Response */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            error?: {
+                                code?: string;
+                                message?: string;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
+                                request_id?: string;
+                            };
+                        };
+                    };
+                };
+                /** @description Default Response */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            error?: {
+                                code?: string;
+                                message?: string;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
+                                request_id?: string;
+                            };
+                        };
+                    };
+                };
+                /** @description Default Response */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            error?: {
+                                code?: string;
+                                message?: string;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
+                                request_id?: string;
+                            };
+                        };
+                    };
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/admin/analytics/stalled-users": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** [admin] Users whose learning activity has gone quiet */
+        get: {
+            parameters: {
+                query?: {
+                    /** @description Inclusive UTC start date (YYYY-MM-DD). Omit for all time. */
+                    from?: string;
+                    /** @description Inclusive UTC end date (YYYY-MM-DD). Defaults to today. */
+                    to?: string;
+                    /** @description Effective-plan filter. */
+                    plan?: "free" | "survivor" | "operator";
+                    /** @description ISO-3166-1 alpha-2 country filter (users.country). */
+                    country?: string;
+                    days_stalled?: number;
+                    /** @description Restrict to a current module. */
+                    module_id?: string;
+                    limit?: number;
+                    cursor?: string;
+                };
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Default Response */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            thresholds?: {
+                                [key: string]: unknown;
+                            };
+                            users?: {
+                                [key: string]: unknown;
+                            }[];
+                            pagination?: {
+                                [key: string]: unknown;
+                            };
+                        } & {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+                /** @description Default Response */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            error?: {
+                                code?: string;
+                                message?: string;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
+                                request_id?: string;
+                            };
+                        };
+                    };
+                };
+                /** @description Default Response */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            error?: {
+                                code?: string;
+                                message?: string;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
+                                request_id?: string;
+                            };
+                        };
+                    };
+                };
+                /** @description Default Response */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            error?: {
+                                code?: string;
+                                message?: string;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
+                                request_id?: string;
+                            };
+                        };
+                    };
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/admin/analytics/retention": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** [admin] Signup cohorts with D1/D7/D14/D30 learning retention */
+        get: {
+            parameters: {
+                query?: {
+                    /** @description Inclusive UTC start date (YYYY-MM-DD). Omit for all time. */
+                    from?: string;
+                    /** @description Inclusive UTC end date (YYYY-MM-DD). Defaults to today. */
+                    to?: string;
+                    /** @description Effective-plan filter. */
+                    plan?: "free" | "survivor" | "operator";
+                    /** @description ISO-3166-1 alpha-2 country filter (users.country). */
+                    country?: string;
+                    cohort?: "day" | "week" | "month";
+                    limit?: number;
+                };
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Default Response */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            range?: {
+                                from?: null | string;
+                                to?: string;
+                            } & {
+                                [key: string]: unknown;
+                            };
+                            definition?: {
+                                [key: string]: unknown;
+                            };
+                            cohorts?: {
+                                [key: string]: unknown;
+                            }[];
+                        } & {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+                /** @description Default Response */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            error?: {
+                                code?: string;
+                                message?: string;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
+                                request_id?: string;
+                            };
+                        };
+                    };
+                };
+                /** @description Default Response */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            error?: {
+                                code?: string;
+                                message?: string;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
+                                request_id?: string;
+                            };
+                        };
+                    };
+                };
+                /** @description Default Response */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            error?: {
+                                code?: string;
+                                message?: string;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
+                                request_id?: string;
+                            };
+                        };
+                    };
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/admin/analytics/community": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** [admin] Posts, comments, votes, reports and participation by plan */
+        get: {
+            parameters: {
+                query?: {
+                    /** @description Inclusive UTC start date (YYYY-MM-DD). Omit for all time. */
+                    from?: string;
+                    /** @description Inclusive UTC end date (YYYY-MM-DD). Defaults to today. */
+                    to?: string;
+                    /** @description Effective-plan filter. */
+                    plan?: "free" | "survivor" | "operator";
+                    /** @description ISO-3166-1 alpha-2 country filter (users.country). */
+                    country?: string;
+                    /** @description Time-series bucket size. */
+                    granularity?: "day" | "week" | "month";
+                };
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Default Response */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            range?: {
+                                from?: null | string;
+                                to?: string;
+                            } & {
+                                [key: string]: unknown;
+                            };
+                            totals?: {
+                                [key: string]: unknown;
+                            };
+                            unique_authors?: {
+                                [key: string]: unknown;
+                            };
+                            by_plan?: {
+                                [key: string]: unknown;
+                            }[];
+                            series?: {
+                                [key: string]: unknown;
+                            }[];
+                            notes?: {
+                                [key: string]: unknown;
+                            };
+                        } & {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+                /** @description Default Response */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            error?: {
+                                code?: string;
+                                message?: string;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
+                                request_id?: string;
+                            };
+                        };
+                    };
+                };
+                /** @description Default Response */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            error?: {
+                                code?: string;
+                                message?: string;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
+                                request_id?: string;
+                            };
+                        };
+                    };
+                };
+                /** @description Default Response */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            error?: {
+                                code?: string;
+                                message?: string;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
+                                request_id?: string;
+                            };
+                        };
+                    };
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/admin/analytics/gamification": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** [admin] XP, streaks and achievement unlocks */
+        get: {
+            parameters: {
+                query?: {
+                    /** @description Inclusive UTC start date (YYYY-MM-DD). Omit for all time. */
+                    from?: string;
+                    /** @description Inclusive UTC end date (YYYY-MM-DD). Defaults to today. */
+                    to?: string;
+                    /** @description Effective-plan filter. */
+                    plan?: "free" | "survivor" | "operator";
+                    /** @description ISO-3166-1 alpha-2 country filter (users.country). */
+                    country?: string;
+                    /** @description Time-series bucket size. */
+                    granularity?: "day" | "week" | "month";
+                };
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Default Response */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            range?: {
+                                from?: null | string;
+                                to?: string;
+                            } & {
+                                [key: string]: unknown;
+                            };
+                            xp?: {
+                                [key: string]: unknown;
+                            };
+                            streaks?: {
+                                [key: string]: unknown;
+                            };
+                            achievements?: {
+                                [key: string]: unknown;
+                            };
+                            notes?: {
+                                [key: string]: unknown;
+                            };
+                        } & {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+                /** @description Default Response */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            error?: {
+                                code?: string;
+                                message?: string;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
+                                request_id?: string;
+                            };
+                        };
+                    };
+                };
+                /** @description Default Response */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            error?: {
+                                code?: string;
+                                message?: string;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
+                                request_id?: string;
+                            };
+                        };
+                    };
+                };
+                /** @description Default Response */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            error?: {
+                                code?: string;
+                                message?: string;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
+                                request_id?: string;
+                            };
+                        };
+                    };
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/admin/analytics/billing": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** [admin] Subscriptions by plan/status, new, cancellations, trials */
+        get: {
+            parameters: {
+                query?: {
+                    /** @description Inclusive UTC start date (YYYY-MM-DD). Omit for all time. */
+                    from?: string;
+                    /** @description Inclusive UTC end date (YYYY-MM-DD). Defaults to today. */
+                    to?: string;
+                    /** @description Effective-plan filter. */
+                    plan?: "free" | "survivor" | "operator";
+                    /** @description ISO-3166-1 alpha-2 country filter (users.country). */
+                    country?: string;
+                    /** @description Time-series bucket size. */
+                    granularity?: "day" | "week" | "month";
+                };
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Default Response */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            range?: {
+                                from?: null | string;
+                                to?: string;
+                            } & {
+                                [key: string]: unknown;
+                            };
+                            subscriptions?: {
+                                [key: string]: unknown;
+                            };
+                            effective_plans?: {
+                                [key: string]: unknown;
+                            };
+                            movement?: {
+                                [key: string]: unknown;
+                            };
+                            revenue?: {
+                                [key: string]: unknown;
+                            };
+                            upgrades_downgrades?: {
+                                [key: string]: unknown;
+                            };
+                            notes?: {
+                                [key: string]: unknown;
+                            };
+                        } & {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+                /** @description Default Response */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            error?: {
+                                code?: string;
+                                message?: string;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
+                                request_id?: string;
+                            };
+                        };
+                    };
+                };
+                /** @description Default Response */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            error?: {
+                                code?: string;
+                                message?: string;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
+                                request_id?: string;
+                            };
+                        };
+                    };
+                };
+                /** @description Default Response */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            error?: {
+                                code?: string;
+                                message?: string;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
+                                request_id?: string;
+                            };
+                        };
+                    };
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/admin/analytics/geography": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** [admin] Users, activity and plans by declared country */
+        get: {
+            parameters: {
+                query?: {
+                    /** @description Inclusive UTC start date (YYYY-MM-DD). Omit for all time. */
+                    from?: string;
+                    /** @description Inclusive UTC end date (YYYY-MM-DD). Defaults to today. */
+                    to?: string;
+                    /** @description Effective-plan filter. */
+                    plan?: "free" | "survivor" | "operator";
+                    /** @description ISO-3166-1 alpha-2 country filter (users.country). */
+                    country?: string;
+                    limit?: number;
+                };
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Default Response */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            supported?: boolean;
+                            range?: {
+                                from?: null | string;
+                                to?: string;
+                            } & {
+                                [key: string]: unknown;
+                            };
+                            totals?: {
+                                [key: string]: unknown;
+                            };
+                            countries?: {
+                                [key: string]: unknown;
+                            }[];
+                            notes?: {
+                                [key: string]: unknown;
+                            };
+                        } & {
+                            [key: string]: unknown;
+                        };
+                    };
+                };
+                /** @description Default Response */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            error?: {
+                                code?: string;
+                                message?: string;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
+                                request_id?: string;
+                            };
+                        };
+                    };
+                };
+                /** @description Default Response */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            error?: {
+                                code?: string;
+                                message?: string;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
+                                request_id?: string;
+                            };
+                        };
+                    };
+                };
+                /** @description Default Response */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            error?: {
+                                code?: string;
+                                message?: string;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
+                                request_id?: string;
+                            };
+                        };
+                    };
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
 }
 export type webhooks = Record<string, never>;
 export interface components {

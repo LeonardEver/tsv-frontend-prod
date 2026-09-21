@@ -20,6 +20,7 @@ import {
   Users,
   User,
   CreditCard,
+  BarChart3,
   Search,
   Bell,
   Menu,
@@ -31,6 +32,7 @@ import { BrandMark } from "./BrandMark";
 import { catColorForCode } from "@/lib/category-visuals";
 import { queryKeys } from "@/lib/api/keys";
 import { useAuth } from "@/features/auth/auth-context";
+import { useAdminAccess } from "@/features/admin-analytics/use-admin-access";
 import { fetchCategories } from "@/features/categories/categories.api";
 import { fetchGamificationSummary } from "@/features/dashboard/dashboard.api";
 import { useOnlineStatus } from "@/hooks/useOnlineStatus";
@@ -148,6 +150,10 @@ function SidebarRegions({
 }
 
 function SidebarContent({ pathname, onNavigate }: { pathname: string; onNavigate?: (() => void) | undefined }) {
+  // Admin capability is decided by the backend (see use-admin-access);
+  // until it confirms, the entry stays hidden rather than flickering in.
+  const { isAdmin } = useAdminAccess();
+
   return (
     <div className="flex h-full flex-col gap-6 overflow-y-auto px-3 py-5">
       <Link to="/" className="px-2" onClick={onNavigate}>
@@ -178,6 +184,15 @@ function SidebarContent({ pathname, onNavigate }: { pathname: string; onNavigate
               onNavigate={onNavigate}
             />
           ))}
+          {isAdmin && (
+            <NavItem
+              to="/admin/analytics"
+              label="Analytics"
+              icon={BarChart3}
+              active={pathname.startsWith("/admin/analytics")}
+              onNavigate={onNavigate}
+            />
+          )}
           <button
             type="button"
             className="flex min-h-11 items-center gap-3 rounded-lg px-3 text-sm text-sidebar-foreground/80 transition-colors hover:bg-sidebar-accent"

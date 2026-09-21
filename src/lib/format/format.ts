@@ -8,6 +8,24 @@ export function formatScorePct(score: number): string {
   return `${Math.round(score)}%`;
 }
 
+/** Plain integer with thousands separators (analytics counts). */
+export function formatCount(value: number): string {
+  return new Intl.NumberFormat().format(value);
+}
+
+/** Percentage at the API's own precision — the analytics endpoints emit
+ * 0–100 to two decimals. NOT rounded: rounding would lose the difference
+ * between 0.4% and 0.04%, which is exactly what a low-retention cohort
+ * looks like. */
+export function formatPct(value: number, digits = 2): string {
+  return `${value.toFixed(digits)}%`;
+}
+
+/** Ratio at two decimals (the analytics endpoints' average precision). */
+export function formatAverage(value: number): string {
+  return value.toFixed(2);
+}
+
 /** Difficulty → badge tone (presentation mapping for the backend's
  * difficulty enum; status is never communicated by color alone). */
 export const difficultyTone: Record<string, "success" | "warning" | "danger"> = {

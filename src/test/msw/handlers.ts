@@ -29,6 +29,7 @@ import type {
   SubscriptionResponse,
   UsageResponse,
 } from "@/lib/api/types";
+import { adminAnalyticsHandlers } from "./admin-analytics";
 
 const API = "*/api/v1";
 
@@ -599,6 +600,11 @@ export function __resetCommunity(): void {
 }
 
 export const handlers = [
+  // ── Admin analytics ──
+  // Registered FIRST: the default session is a normal user, so the
+  // capability probe answers 403 and AppShell hides the admin entry.
+  ...adminAnalyticsHandlers,
+
   // ── Auth bootstrap ──
   http.get(`${API}/auth/me`, ({ request }) => {
     const cookie = request.headers.get("cookie") ?? "";

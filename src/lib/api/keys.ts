@@ -51,4 +51,17 @@ export const queryKeys = {
     comments: (userId: number, postId: number) =>
       ["community", "posts", userId, postId, "comments"] as const,
   },
+  /**
+   * Admin analytics (/api/v1/admin/analytics/*). Every analytics key
+   * carries the full filter set, so changing range, plan or country
+   * selects a different cache entry rather than rewriting a stale one.
+   *
+   * `access` is the capability probe — see features/admin-analytics/
+   * use-admin-access.ts.
+   */
+  admin: {
+    access: ["admin", "access"] as const,
+    analytics: (section: string, filters?: unknown) =>
+      ["admin", "analytics", section, filters ?? null] as const,
+  },
 } as const;
