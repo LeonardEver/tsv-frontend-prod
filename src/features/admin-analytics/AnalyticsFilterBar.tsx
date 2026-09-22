@@ -15,9 +15,13 @@ import { COUNTRIES } from "@/lib/geo/countries";
 import { useAnalyticsFilters } from "./filters";
 import { useTr } from "./i18n";
 
-type PresetId = "7d" | "30d" | "90d" | "365d";
+type PresetId = "today" | "yesterday" | "7d" | "30d" | "90d" | "365d";
 
+/** Rendered in this order; the window itself is computed in filters.ts so
+ * the bar never has to know what "yesterday" means. */
 const PRESETS: ReadonlyArray<{ id: PresetId; labelKey: `filters.preset.${PresetId}` }> = [
+  { id: "today", labelKey: "filters.preset.today" },
+  { id: "yesterday", labelKey: "filters.preset.yesterday" },
   { id: "7d", labelKey: "filters.preset.7d" },
   { id: "30d", labelKey: "filters.preset.30d" },
   { id: "90d", labelKey: "filters.preset.90d" },

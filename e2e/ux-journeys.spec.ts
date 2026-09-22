@@ -468,17 +468,19 @@ async function answerAll(page: Page): Promise<void> {
 }
 
 test.describe("UX journeys", () => {
-  test("UX-01 — new user: dashboard discovery → first region → first mission → lesson", async ({ page }) => {
+  test("UX-01 — new user: next mission → lesson, no browse step", async ({ page }) => {
     mockUxBackend(page, "new");
 
     await page.goto("/dashboard");
     await expect(page.getByRole("heading", { name: /welcome back, test/i })).toBeVisible();
 
-    // Discovery, not fabricated activity: deterministic first region.
-    const exploreWater = page.getByRole("link", { name: /explore water/i });
-    await expect(exploreWater).toBeVisible();
-    await expect(exploreWater).toHaveAttribute("href", "/categories/water");
-    await expect(page.getByText(/last:/i)).toHaveCount(0);
+    // Nothing is fabricated: the recommendation comes from the module
+    // inventory's own order and completed flags, and the first mission of
+    // the curriculum is the first unfinished one.
+    await expect(page.getByText("Your next mission")).toBeVisible();
+    await expect(
+      page.getByRole("heading", { name: "Boiling Water for Purification", exact: true }),
+    ).toBeVisible();
 
     // Honest new-user state: the expedition is empty with a discovery CTA,
     // and the region cards show the whole curriculum as not started.
@@ -486,19 +488,15 @@ test.describe("UX journeys", () => {
     await expect(page.getByRole("link", { name: /explore regions/i })).toBeVisible();
     await expect(page.getByText("0 complete").first()).toBeVisible();
 
-    // Discovery → region → first mission → lesson. (Each page is gated
-    // on a breadcrumb element unique to it — the router commits the URL
-    // before React paints the next route, so heading queries alone race
-    // the transition.)
-    await exploreWater.click();
-    await expect(page.getByRole("link", { name: "Regions", exact: true })).toBeVisible();
-    await expect(page.getByRole("heading", { name: "Water", exact: true })).toBeVisible();
-    await page.getByRole("link", { name: /boiling water for purification/i }).first().click();
-    await expect(page.getByRole("link", { name: "Regions", exact: true })).toBeVisible();
-    await expect(page.getByRole("heading", { name: "Boiling Water for Purification", exact: true })).toBeVisible();
-    await page.getByRole("link", { name: /start field manual/i }).click();
+    // Home → Lesson in one click. Browsing stays available (the discovery
+    // CTA above), but it is no longer the way into the first mission.
+    const takeLesson = page.getByRole("link", { name: /take lesson/i });
+    await expect(takeLesson).toHaveAttribute("href", "/modules/WAT-boiling/lesson");
+    await takeLesson.click();
     await expect(page.getByText(/field manual ·/i)).toBeVisible();
-    await expect(page.getByRole("heading", { name: "Boiling Water for Purification", exact: true })).toBeVisible();
+    await expect(
+      page.getByRole("heading", { name: "Boiling Water for Purification", exact: true }),
+    ).toBeVisible();
   });
 
   test("UX-02 — returning user: next mission card drives the continue action", async ({ page }) => {
@@ -508,19 +506,19 @@ test.describe("UX journeys", () => {
     await expect(page.getByRole("heading", { name: /welcome back, test/i })).toBeVisible();
 
     // The dominant card derives its CTA from authoritative flags
-    // (lesson not completed → lesson).
+    // (lesson not completed → lesson), and links STRAIGHT into the lesson.
     await expect(page.getByText("Your next mission")).toBeVisible();
     await expect(page.getByRole("heading", { name: "Boiling Water for Purification", exact: true })).toBeVisible();
-    const startLesson = page.getByRole("link", { name: /start lesson/i });
-    await expect(startLesson).toHaveAttribute("href", "/modules/WAT-boiling/lesson");
-    // The recent-activity trail projects the module row the hero derives
-    // from — the mission itself stays one click away.
+    const takeLesson = page.getByRole("link", { name: /take lesson/i });
+    await expect(takeLesson).toHaveAttribute("href", "/modules/WAT-boiling/lesson");
+    // The expedition trail still links the same mission to its module page —
+    // browse stays one click away without being in the recommended path.
     await expect(page.getByRole("link", { name: /boiling water for purification/i })).toHaveAttribute(
       "href",
       "/modules/WAT-boiling",
     );
 
-    await startLesson.click();
+    await takeLesson.click();
     await expect(page.getByText(/field manual ·/i)).toBeVisible();
     await expect(page.getByRole("heading", { name: "Boiling Water for Purification", exact: true })).toBeVisible();
   });
@@ -559,9 +557,9 @@ test.describe("UX journeys", () => {
     await page.goto("/dashboard");
 
     // Next mission is immediately visible — no scrolling required.
-    const startLesson = page.getByRole("link", { name: /start lesson/i });
-    await expect(startLesson).toBeVisible();
-    await expect(startLesson).toBeInViewport();
+    const takeLesson = page.getByRole("link", { name: /take lesson/i });
+    await expect(takeLesson).toBeVisible();
+    await expect(takeLesson).toBeInViewport();
 
     // The trail and rewards remain reachable below.
     await expect(page.getByRole("heading", { name: /your expedition/i })).toBeVisible();
@@ -576,7 +574,7 @@ test.describe("UX journeys", () => {
 
     await page.goto("/dashboard");
     await expect(page.getByRole("heading", { name: /welcome back, test/i })).toBeVisible();
-    await expect(page.getByRole("link", { name: /start lesson/i })).toBeVisible();
+    await expect(page.getByRole("link", { name: /take lesson/i })).toBeVisible();
 
     const overflows = await page.evaluate(
       () => document.documentElement.scrollWidth > document.documentElement.clientWidth + 1,

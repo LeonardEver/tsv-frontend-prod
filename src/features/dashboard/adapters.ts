@@ -34,6 +34,49 @@ export function missionCardModelFromListRow(
   };
 }
 
+/**
+ * The next mission to recommend: the first module in the server's own
+ * order that is not `completed`, or `null` when the whole curriculum is
+ * done.
+ *
+ * Ordering is a property of the response, not something computed here —
+ * `/modules` returns the canonical curriculum sequence, which is also how
+ * the region pages present it and how the expedition trail reads it. No
+ * client-side sort is applied, so the recommendation can never disagree
+ * with what the learner sees when they browse.
+ *
+ * `completed` is the backend's derived flag, never a frontend guess: a
+ * module with partial progress still counts as incomplete, and the server
+ * remains the only authority on what "done" means. Nothing is gated on
+ * this — it selects what to recommend, not what a learner may open.
+ */
+export function nextIncompleteModule(
+  rows: readonly ModuleRow[] | undefined,
+): ModuleRow | null {
+  return (rows ?? []).find((row) => !row.completed) ?? null;
+}
+
+/**
+ * Where the recommended mission's CTA goes, and what it says.
+ *
+ * The flow is Home → Lesson → Quiz, so the lesson is the target until the
+ * backend reports it completed; after that the next action is the field
+ * test. Both flags are the server's.
+ */
+export function nextMissionAction(
+  lessonDone: boolean,
+  quizAttempted: boolean,
+  moduleId: string,
+): { to: string; ctaLabel: string } {
+  if (!lessonDone) {
+    return { to: `/modules/${moduleId}/lesson`, ctaLabel: "Take lesson" };
+  }
+  return {
+    to: `/modules/${moduleId}/quiz`,
+    ctaLabel: quizAttempted ? "Retake quiz" : "Take quiz",
+  };
+}
+
 /** /community/posts row → CommunityPostModel. */
 export function communityPostModel(row: CommunityPostsResponse["posts"][number]): CommunityPostModel {
   return {

@@ -20,7 +20,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { Link, useParams } from "react-router";
 import { clsx } from "clsx";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { Check, Clock, FileText } from "lucide-react";
+import { Check, Clock, FileText, LockKeyhole } from "lucide-react";
 import { queryKeys } from "@/lib/api/keys";
 import { ApiError } from "@/lib/api/errors";
 import { describeError } from "@/lib/api/error-map";
@@ -36,8 +36,9 @@ import type { LessonResponse, ModuleDetailResponse } from "@/lib/api/types";
 import { useCurrentUserId } from "@/features/auth/use-user-id";
 import { fetchModule } from "@/features/modules/modules.api";
 import { fetchCategories } from "@/features/categories/categories.api";
-import { fetchSubscription, fetchUsage } from "@/features/plans/plans.api";
+import { fetchUsage } from "@/features/plans/plans.api";
 import { communityTopicForCategory } from "@/features/community/topic-map";
+import { useFieldTestGate } from "@/features/quiz/use-field-test-gate";
 import { completeLesson, fetchLesson } from "./lesson.api";
 
 export default function LessonPage() {
@@ -80,14 +81,10 @@ export default function LessonPage() {
   // Phase 21 §5 — the quiz CTA copy varies with the plan; the backend
   // enforces the rule regardless of what renders here.
   const userId = useCurrentUserId();
-  const subscriptionQuery = useQuery({
-    queryKey: queryKeys.plans.subscription(userId),
-    queryFn: fetchSubscription,
-    staleTime: 60_000,
-    enabled: userId > 0,
-  });
-  const quizBeforeLesson =
-    subscriptionQuery.data?.entitlements.quiz_before_lesson !== false;
+  // Phase 21 §5 — the SAME gate the quiz page enforces, so this CTA can
+  // never offer an attempt the quiz page would refuse: paid plans open the
+  // field test any time, the Free plan requires this module's lesson.
+  const gate = useFieldTestGate(moduleId);
 
   const usageQuery = useQuery({
     queryKey: queryKeys.plans.usage(userId),
@@ -372,7 +369,8 @@ export default function LessonPage() {
             </section>
           ))}
 
-          {/* Progression */}
+          {/* Progression — the lesson step, then the field test, in the
+              order they are meant to be taken. */}
           <section className="panel mt-12 p-6 text-center">
             {!completed ? (
               <>
@@ -410,26 +408,43 @@ export default function LessonPage() {
                   </Link>
                   .
                 </p>
+              </div>
+            )}
+
+            {/* The field test sits directly below the completion action:
+                locked and non-clickable until the backend says this
+                module's lesson is done (Free plan), open from the start on
+                plans that carry the entitlement. */}
+            <div className="mt-6 border-t border-border pt-6">
+              {gate === "open" ? (
                 <Link
                   to={`/modules/${mod.module_id}/quiz`}
-                  className="mt-5 inline-flex min-h-12 items-center rounded-lg bg-primary px-6 text-sm font-semibold tracking-wide text-primary-foreground uppercase transition-colors hover:bg-primary/90"
+                  className="glow-ember inline-flex min-h-12 items-center rounded-lg bg-primary px-6 text-sm font-semibold tracking-wide text-primary-foreground uppercase transition-colors hover:bg-primary/90"
                 >
                   Take field test →
                 </Link>
-              </div>
-            )}
+              ) : (
+                <>
+                  <button
+                    type="button"
+                    disabled
+                    aria-disabled="true"
+                    className="inline-flex min-h-12 cursor-not-allowed items-center gap-2 rounded-lg border border-border bg-surface-2 px-6 text-sm font-semibold tracking-wide text-muted-foreground uppercase opacity-60"
+                  >
+                    <LockKeyhole className="size-4" aria-hidden="true" /> Take field test
+                  </button>
+                  <p className="mt-2 text-xs text-muted-foreground">
+                    {gate === "checking"
+                      ? "Checking your progress…"
+                      : "Complete the lesson above to unlock the field test. Survivor and Operator members can test themselves any time."}
+                  </p>
+                </>
+              )}
+            </div>
           </section>
 
           {/* Next actions */}
           <div className="mt-6 flex flex-wrap items-center gap-4">
-            <Link
-              to={`/modules/${mod.module_id}/quiz`}
-              className="text-xs font-semibold tracking-wide text-primary uppercase"
-            >
-              {quizBeforeLesson
-                ? "Field tests are always open on your plan →"
-                : "Field test unlocked — earn XP →"}
-            </Link>
             <Link
               to={`/community?category=${communityTopicForCategory(mod.category)}`}
               className="text-xs font-semibold tracking-wide text-primary uppercase"

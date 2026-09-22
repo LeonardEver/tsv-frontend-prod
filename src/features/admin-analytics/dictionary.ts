@@ -65,7 +65,10 @@ export interface Dict {
   filters: {
     range: string;
     presetsAria: string;
-    preset: Record<"7d" | "30d" | "90d" | "365d", string>;
+    /** Single-day presets are CALENDAR days in the same UTC semantics
+     * the rest of the surface already uses — never rolling 24-hour
+     * windows. */
+    preset: Record<"today" | "yesterday" | "7d" | "30d" | "90d" | "365d", string>;
     allTime: string;
     from: string;
     to: string;
@@ -593,7 +596,14 @@ const en: Dict = {
   filters: {
     range: "Range",
     presetsAria: "Date range presets",
-    preset: { "7d": "7d", "30d": "30d", "90d": "90d", "365d": "12mo" },
+    preset: {
+      today: "Today",
+      yesterday: "Yesterday",
+      "7d": "7d",
+      "30d": "30d",
+      "90d": "90d",
+      "365d": "12mo",
+    },
     allTime: "All time",
     from: "From",
     to: "To",
@@ -1168,7 +1178,14 @@ const pt: Dict = {
   filters: {
     range: "Período",
     presetsAria: "Períodos predefinidos",
-    preset: { "7d": "7d", "30d": "30d", "90d": "90d", "365d": "12m" },
+    preset: {
+      today: "Hoje",
+      yesterday: "Ontem",
+      "7d": "7d",
+      "30d": "30d",
+      "90d": "90d",
+      "365d": "12m",
+    },
     allTime: "Todo o período",
     from: "De",
     to: "Até",

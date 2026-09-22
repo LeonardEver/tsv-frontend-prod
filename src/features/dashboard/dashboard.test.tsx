@@ -12,7 +12,12 @@ import { renderAtRoute, renderWithProviders, createTestQueryClient } from "@/tes
 import { AuthProvider } from "@/features/auth/use-auth";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { MemoryRouter } from "react-router";
-import { emptyProgress, moduleDetailFixture } from "@/test/msw/handlers";
+import {
+  activeProgress,
+  emptyProgress,
+  moduleDetailFixture,
+  modulesListFixture,
+} from "@/test/msw/handlers";
 import DashboardPage from "./index";
 import GamificationPage from "@/features/gamification";
 
@@ -28,23 +33,134 @@ function renderDashboard() {
 }
 
 describe("Dashboard — Base Camp", () => {
-  it("prioritizes the next mission from the most recent activity", async () => {
+  it("recommends the next incomplete mission and links straight into its lesson", async () => {
     renderDashboard();
     await waitFor(() => {
       expect(screen.getByRole("heading", { name: "Boiling Water for Purification" })).toBeInTheDocument();
     });
-    // Authoritative flags: the lesson is NOT completed → the next step is
-    // the lesson, and the expedition trail keeps the mission page one
-    // step away.
-    const startLesson = screen.getByRole("link", { name: /start lesson/i });
-    expect(startLesson).toHaveAttribute("href", "/modules/WAT-boiling/lesson");
-    expect(screen.getByRole("link", { name: "Boiling Water for Purification" })).toHaveAttribute(
+    // WAT-boiling is the first module in the server's order that is not
+    // completed, and its lesson is not completed either → the lesson.
+    const takeLesson = screen.getByRole("link", { name: /take lesson/i });
+    expect(takeLesson).toHaveAttribute("href", "/modules/WAT-boiling/lesson");
+    // Home → lesson. The module page is never in the path; it stays
+    // reachable through browse.
+    expect(screen.queryByRole("link", { name: "Boiling Water for Purification" })).toHaveAttribute(
       "href",
       "/modules/WAT-boiling",
     );
-    // The most recent learning event surfaces as the expedition's
-    // in-progress entry — human module state, never a raw action code.
+    // The expedition lists what was already engaged with.
     expect(screen.getByText("in progress")).toBeInTheDocument();
+  });
+
+  it("skips completed missions and advances as they are finished", async () => {
+    // Server order: WAT-boiling (complete) → WAT-filtration (complete) →
+    // WAT-storage (incomplete). The recommendation must walk past BOTH
+    // finished missions, not stop at the first row.
+    server.use(
+      http.get(`${API}/modules`, () =>
+        HttpResponse.json({
+          modules: [
+            { ...modulesListFixture.modules[0], completed: true, progress_pct: 100 },
+            { ...modulesListFixture.modules[1], completed: true, progress_pct: 100 },
+            {
+              module_id: "WAT-storage",
+              title: "Emergency Water Storage",
+              category: "water",
+              difficulty: "beginner",
+              estimated_duration: 15,
+              description: "Keep a reserve that lasts.",
+              completed: false,
+              progress_pct: 0,
+            },
+          ],
+          pagination: { next_cursor: null, has_more: false, page_size: 3 },
+        }),
+      ),
+      http.get(`${API}/modules/WAT-storage`, () =>
+        HttpResponse.json({
+          ...moduleDetailFixture,
+          module_id: "WAT-storage",
+          title: "Emergency Water Storage",
+          subcategory: "storage",
+          lesson: { ...moduleDetailFixture.lesson, lesson_id: "WAT-storage-L01", completed: false },
+          quiz: { ...moduleDetailFixture.quiz, quiz_id: "WAT-storage-Q01", attempt_count: 0 },
+        }),
+      ),
+    );
+    renderDashboard();
+
+    await waitFor(() => {
+      expect(screen.getByRole("heading", { name: "Emergency Water Storage" })).toBeInTheDocument();
+    });
+    expect(screen.getByRole("link", { name: /take lesson/i })).toHaveAttribute(
+      "href",
+      "/modules/WAT-storage/lesson",
+    );
+    // Neither finished mission is put forward.
+    expect(screen.queryByRole("heading", { name: "Boiling Water for Purification" })).toBeNull();
+    expect(screen.queryByRole("heading", { name: "Water Filtration" })).toBeNull();
+  });
+
+  it("recommends the first incomplete mission, not the last one touched", async () => {
+    // Recent activity points at WAT-boiling; the inventory says WAT-boiling
+    // is done. Following activity would re-recommend finished work — the
+    // recommendation must follow the curriculum instead.
+    server.use(
+      http.get(`${API}/progress`, () =>
+        HttpResponse.json({
+          ...activeProgress,
+          recent_activity: [
+            { module_id: "WAT-boiling", action: "lesson_completed", score: null, at: "2026-08-09T12:00:00Z" },
+            { module_id: "WAT-storage", action: "lesson_completed", score: null, at: "2026-08-11T12:00:00Z" },
+          ],
+        }),
+      ),
+      http.get(`${API}/modules`, () =>
+        HttpResponse.json({
+          modules: [
+            modulesListFixture.modules[0],
+            { ...modulesListFixture.modules[1], completed: true, progress_pct: 100 },
+          ],
+          pagination: { next_cursor: null, has_more: false, page_size: 2 },
+        }),
+      ),
+    );
+    renderDashboard();
+
+    await waitFor(() => {
+      expect(screen.getByRole("heading", { name: "Boiling Water for Purification" })).toBeInTheDocument();
+    });
+    expect(screen.getByRole("link", { name: /take lesson/i })).toHaveAttribute(
+      "href",
+      "/modules/WAT-boiling/lesson",
+    );
+  });
+
+  it("shows the end-of-curriculum state when every mission is complete", async () => {
+    server.use(
+      http.get(`${API}/modules`, () =>
+        HttpResponse.json({
+          modules: modulesListFixture.modules.map((m) => ({
+            ...m,
+            completed: true,
+            progress_pct: 100,
+          })),
+          pagination: { next_cursor: null, has_more: false, page_size: 2 },
+        }),
+      ),
+    );
+    renderDashboard();
+
+    await waitFor(() => {
+      expect(screen.getByText(/every mission complete/i)).toBeInTheDocument();
+    });
+    // No next mission is invented to fill the slot.
+    expect(screen.queryByText("Your next mission")).toBeNull();
+    expect(screen.queryByRole("link", { name: /take lesson|take quiz|retake quiz/i })).toBeNull();
+    expect(screen.getByRole("link", { name: /review your record/i })).toHaveAttribute(
+      "href",
+      "/progress",
+    );
   });
 
   it("routes to the quiz when the lesson is already completed", async () => {
@@ -106,19 +222,27 @@ describe("Dashboard — Base Camp", () => {
     );
   });
 
-  it("shows discovery for a new user instead of fabricating activity", async () => {
-    // NOTE: with no recent activity the module query is disabled and the
-    // redesigned hero keeps its loading skeleton — the DiscoveryHero
-    // fallback currently only renders on a module 404 (covered above).
-    // This test pins the deterministic part: the authoritative zero
-    // state renders and nothing is fabricated.
+  it("recommends the first mission to a brand-new user", async () => {
+    // A user with no activity at all: the recommendation comes from the
+    // module inventory's own order and completed flags, so it exists from
+    // the first visit — nothing is inferred from activity.
     server.use(http.get(`${API}/progress`, () => HttpResponse.json(emptyProgress)));
     renderDashboard();
     await waitFor(() => {
       expect(screen.getByText(/0 missions complete/i)).toBeInTheDocument();
     });
-    // No fabricated next action of any kind.
-    expect(screen.queryByRole("link", { name: /start lesson|take quiz|retake quiz/i })).not.toBeInTheDocument();
+
+    await waitFor(() => {
+      expect(screen.getByRole("heading", { name: "Boiling Water for Purification" })).toBeInTheDocument();
+    });
+    expect(screen.getByRole("link", { name: /take lesson/i })).toHaveAttribute(
+      "href",
+      "/modules/WAT-boiling/lesson",
+    );
+    // The zero state is still reported honestly — nothing was fabricated to
+    // produce that recommendation, and the trail stays empty.
+    expect(screen.getByText(/your expedition starts here/i)).toBeInTheDocument();
+    expect(screen.queryByText("in progress")).toBeNull();
   });
 
   it("renders authoritative progress and gamification summaries", async () => {
@@ -175,7 +299,7 @@ describe("Dashboard — Base Camp", () => {
 
     // No next-mission CTA is fabricated from the failed query.
     expect(
-      screen.queryByRole("link", { name: /start lesson|take quiz|retake quiz/i }),
+      screen.queryByRole("link", { name: /take lesson|take quiz|retake quiz/i }),
     ).not.toBeInTheDocument();
     // Independent authoritative queries keep rendering.
     await waitFor(() => {
@@ -187,13 +311,13 @@ describe("Dashboard — Base Camp", () => {
   it("keeps the next-mission CTA reachable by keyboard in document order", async () => {
     renderDashboard();
     await waitFor(() => {
-      expect(screen.getByRole("link", { name: /start lesson/i })).toBeInTheDocument();
+      expect(screen.getByRole("link", { name: /take lesson/i })).toBeInTheDocument();
     });
     const user = userEvent.setup();
     let focused = false;
     for (let i = 0; i < 40; i += 1) {
       await user.tab();
-      if (screen.getByRole("link", { name: /start lesson/i }) === document.activeElement) {
+      if (screen.getByRole("link", { name: /take lesson/i }) === document.activeElement) {
         focused = true;
         break;
       }

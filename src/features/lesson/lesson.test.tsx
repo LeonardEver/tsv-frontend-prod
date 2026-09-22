@@ -9,12 +9,16 @@ import userEvent from "@testing-library/user-event";
 import { http, HttpResponse } from "msw";
 import { server } from "@/test/msw/server";
 import { renderAtRoute } from "@/test/render";
-import { lessonFixture } from "@/test/msw/handlers";
+import { __setTestPlan, lessonFixture, testUser } from "@/test/msw/handlers";
 import LessonPage from "./index";
 
 const API = "*/api/v1";
 
 function renderLesson() {
+  // The default MSW session has no cookie, so /auth/me answers 401 and the
+  // user id is 0 — the plan-entitlement gate then has nothing to resolve
+  // against. Sign in as the shared fixture user, as the quiz tests do.
+  server.use(http.get(`${API}/auth/me`, () => HttpResponse.json(testUser)));
   return renderAtRoute(<LessonPage />, "/modules/WAT-boiling/lesson", "/modules/:moduleId/lesson");
 }
 
@@ -316,17 +320,114 @@ describe("LessonPage", () => {
     });
   });
 
-  describe("quiz transition (DEC-022)", () => {
-    it("offers the Quiz CTA before the lesson is completed", async () => {
+  describe("quiz transition", () => {
+    it("keeps the field test open before completion on a plan that allows it", async () => {
+      // Survivor is the mock default plan: the entitlement opens the field
+      // test from the start, so the CTA is a real link.
       renderLesson();
       await waitFor(() =>
         { expect(screen.getByRole("heading", { name: "Boiling Water for Purification" })).toBeInTheDocument(); },
       );
-      // Survivor is the mock default plan — the field test is always open.
-      const quizLink = screen.getByRole("link", { name: /field tests are always open/i });
+      const quizLink = await screen.findByRole("link", { name: /take field test/i });
       expect(quizLink).toHaveAttribute("href", "/modules/WAT-boiling/quiz");
-      expect(quizLink).not.toHaveAttribute("aria-disabled", "true");
+      // Completion is still offered, directly above it.
       expect(screen.getByRole("button", { name: /complete lesson/i })).toBeInTheDocument();
+    });
+
+    it("shows the field test disabled and non-clickable while the gate is closed", async () => {
+      // Free plan + this module's lesson not completed: the same rule the
+      // quiz page enforces.
+      __setTestPlan("free");
+      renderLesson();
+      await waitFor(() =>
+        { expect(screen.getByRole("heading", { name: "Boiling Water for Purification" })).toBeInTheDocument(); },
+      );
+
+      const disabledCta = await screen.findByRole("button", { name: /take field test/i });
+      expect(disabledCta).toBeDisabled();
+      // Renderable, but not a link — there is no route to the quiz from here
+      // until the backend reports the lesson done.
+      expect(screen.queryByRole("link", { name: /take field test/i })).toBeNull();
+      expect(screen.getByText(/complete the lesson above to unlock the field test/i)).toBeInTheDocument();
+      // The completion action it depends on is right there.
+      expect(screen.getByRole("button", { name: /complete lesson/i })).toBeInTheDocument();
+    });
+
+    it("opens the field test CTA once the lesson is completed", async () => {
+      __setTestPlan("free");
+      server.use(
+        // The backend reports the lesson completed (the lesson AND the
+        // per-module progress resource the gate reads).
+        http.get(`${API}/lessons/WAT-boiling-L01`, () =>
+          HttpResponse.json({
+            ...lessonFixture,
+            progress: { completed: true, last_position: 300 },
+          }),
+        ),
+        http.get(`${API}/progress/modules/WAT-boiling`, () =>
+          HttpResponse.json({
+            module_id: "WAT-boiling",
+            lesson_completed: true,
+            lesson_completed_at: "2026-08-12T12:00:00Z",
+            quiz_attempts: 0,
+            quiz_best_score: null,
+            quiz_last_passed: null,
+            lo_performance: [],
+          }),
+        ),
+      );
+      renderLesson();
+      await waitFor(() => { expect(screen.getByText(/lesson complete/i)).toBeInTheDocument(); });
+
+      const quizLink = await screen.findByRole("link", { name: /take field test/i });
+      expect(quizLink).toHaveAttribute("href", "/modules/WAT-boiling/quiz");
+      expect(screen.queryByRole("button", { name: /take field test/i })).toBeNull();
+    });
+
+    it("opens the field test CTA immediately after completing the lesson", async () => {
+      // The Free-plan flow end to end: locked → Complete lesson → open.
+      __setTestPlan("free");
+      let lessonDone = false;
+      server.use(
+        http.post(`${API}/lessons/WAT-boiling-L01/complete`, () => {
+          lessonDone = true;
+          return HttpResponse.json({
+            lesson_id: "WAT-boiling-L01",
+            completed: true,
+            completed_at: "2026-08-12T12:00:00Z",
+          });
+        }),
+        http.get(`${API}/lessons/WAT-boiling-L01`, () =>
+          HttpResponse.json({
+            ...lessonFixture,
+            progress: { completed: lessonDone, last_position: null },
+          }),
+        ),
+        http.get(`${API}/progress/modules/WAT-boiling`, () =>
+          HttpResponse.json({
+            module_id: "WAT-boiling",
+            lesson_completed: lessonDone,
+            lesson_completed_at: lessonDone ? "2026-08-12T12:00:00Z" : null,
+            quiz_attempts: 0,
+            quiz_best_score: null,
+            quiz_last_passed: null,
+            lo_performance: [],
+          }),
+        ),
+      );
+      renderLesson();
+      await waitFor(() =>
+        { expect(screen.getByRole("button", { name: /complete lesson/i })).toBeInTheDocument(); },
+      );
+      expect(await screen.findByRole("button", { name: /take field test/i })).toBeDisabled();
+
+      const user = userEvent.setup();
+      await user.click(screen.getByRole("button", { name: /complete lesson/i }));
+
+      // After the authoritative refetch the CTA is a working link.
+      const quizLink = await screen.findByRole("link", { name: /take field test/i });
+      expect(quizLink).toHaveAttribute("href", "/modules/WAT-boiling/quiz");
+      expect(screen.queryByRole("button", { name: /take field test/i })).toBeNull();
     });
   });
 });

@@ -68,14 +68,52 @@ function utcDaysAgo(days: number): string {
   return date.toISOString().slice(0, 10);
 }
 
-export type RangePreset = "7d" | "30d" | "90d" | "365d" | "all" | "custom";
+export type RangePreset = "today" | "yesterday" | "7d" | "30d" | "90d" | "365d" | "all" | "custom";
 
-const PRESETS: ReadonlyArray<{ id: Exclude<RangePreset, "custom" | "all">; label: string; days: number }> = [
-  { id: "7d", label: "7d", days: 7 },
-  { id: "30d", label: "30d", days: 30 },
-  { id: "90d", label: "90d", days: 90 },
-  { id: "365d", label: "12mo", days: 365 },
+/**
+ * Each preset is a closed window of `days` calendar days ending `offset`
+ * days before today: `days: 1, offset: 0` is today alone, `days: 1,
+ * offset: 1` is yesterday alone, `days: 7, offset: 0` is the inclusive
+ * 7-day window ending today.
+ *
+ * CALENDAR days, not rolling 24-hour windows. The whole surface already
+ * speaks in `YYYY-MM-DD` UTC days — this module dates every preset with
+ * `toISOString()`, the series endpoints bucket on UTC boundaries, and the
+ * response `range` echo comes back as plain dates. A rolling window would
+ * have to be expressed as a timestamp, which is not a thing this API
+ * accepts, and "Today" would stop matching the backend's own day.
+ *
+ * Order matters only for `activePreset`: the windows are matched
+ * narrowest-first, so a single-day window can never be reported as a
+ * multi-day one.
+ */
+const PRESETS: ReadonlyArray<{
+  id: Exclude<RangePreset, "custom" | "all">;
+  days: number;
+  offset: number;
+}> = [
+  { id: "today", days: 1, offset: 0 },
+  { id: "yesterday", days: 1, offset: 1 },
+  { id: "7d", days: 7, offset: 0 },
+  { id: "30d", days: 30, offset: 0 },
+  { id: "90d", days: 90, offset: 0 },
+  { id: "365d", days: 365, offset: 0 },
 ];
+
+/** Exported for the preset tests: the window arithmetic is the part worth
+ * pinning, and it must stay identical to what `setPreset` writes. */
+export function presetWindow(entry: { days: number; offset: number }): {
+  from: string;
+  to: string;
+} {
+  return {
+    from: utcDaysAgo(entry.offset + entry.days - 1),
+    to: utcDaysAgo(entry.offset),
+  };
+}
+
+/** The preset list, narrowest first. */
+export const PRESET_WINDOWS = PRESETS;
 
 /** Inclusive day count between two `YYYY-MM-DD` dates, or `null` when
  * either is unparseable. */
@@ -172,8 +210,8 @@ export function useAnalyticsFilters(): AnalyticsFilters {
       }
       const match = PRESETS.find((entry) => entry.id === preset);
       if (!match) return;
-      // Inclusive window: N days ending today.
-      update({ from: utcDaysAgo(match.days - 1), to: utcToday() });
+      // Inclusive window: N calendar days ending `offset` days ago.
+      update(presetWindow(match));
     },
     [update],
   );
@@ -185,7 +223,8 @@ export function useAnalyticsFilters(): AnalyticsFilters {
   const activePreset = useMemo<RangePreset>(() => {
     if (!filters.from && !filters.to) return "all";
     for (const entry of PRESETS) {
-      if (filters.from === utcDaysAgo(entry.days - 1) && filters.to === utcToday()) return entry.id;
+      const window = presetWindow(entry);
+      if (filters.from === window.from && filters.to === window.to) return entry.id;
     }
     return "custom";
   }, [filters.from, filters.to]);

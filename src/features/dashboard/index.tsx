@@ -6,10 +6,13 @@
  * columns.
  *
  * ALL values come from authoritative backend state:
- * - next-mission rule: most recent learning event's module (lesson not
- *   done → "Start lesson", lesson done + no attempt → "Take quiz",
- *   attempt exists → "Retake quiz"); new users → first /categories entry;
- *   404 on the module → discovery fallback (documented in Phase 15.5 §3).
+ * - next-mission rule: the first module in the /modules canonical order
+ *   whose backend `completed` flag is still false — never "the first
+ *   mission" and never the last thing touched. The CTA goes straight into
+ *   that mission's lesson (lesson not done → "Take lesson", lesson done →
+ *   "Take quiz" / "Retake quiz"), so Home → Lesson needs no module page
+ *   in between. All complete → the end-of-curriculum state; 404 on the
+ *   recommended module → discovery fallback (Phase 15.5 §3).
  * - progress percentages render verbatim from /modules.
  * - gamification values are never computed client-side.
  * - daily limits come from /usage; the UI is never the authority.
@@ -48,7 +51,12 @@ import { fetchUsage, fetchSubscription } from "@/features/plans/plans.api";
 import { fetchAchievements } from "@/features/gamification/gamification.api";
 import { fetchCommunityPosts, votePost } from "@/features/community/community.api";
 import { categoryCardModel } from "@/features/categories/adapters";
-import { communityPostModel, missionCardModelFromListRow } from "./adapters";
+import {
+  communityPostModel,
+  missionCardModelFromListRow,
+  nextIncompleteModule,
+  nextMissionAction,
+} from "./adapters";
 
 /** Daily-limit tile — unlimited plans render honestly without a bar. */
 function LimitTile({
@@ -87,8 +95,27 @@ function LimitTile({
   );
 }
 
-/** New-user state — no activity is fabricated: the first category in the
- * server's own order is the entry point (Phase 15.5 §3 rule 3). */
+/** The curriculum is complete — the honest end state, with the record as
+ * the next place to go. No next mission is invented to fill the slot. */
+function CurriculumCompleteHero() {
+  return (
+    <EmptyState
+      title="Every mission complete"
+      description="You have worked through the whole curriculum. Your full record — scores, streaks and achievements — is on your expedition page."
+      action={
+        <Link
+          to="/progress"
+          className="inline-flex min-h-11 items-center rounded-lg bg-primary px-5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
+        >
+          Review your record →
+        </Link>
+      }
+    />
+  );
+}
+
+/** No published content to recommend — the first category in the server's
+ * own order is the entry point (Phase 15.5 §3 rule 3). */
 function DiscoveryHero({
   firstCategory,
 }: {
@@ -125,8 +152,7 @@ function DiscoveryHero({
             {firstCategory.name} awaits
           </h2>
           <p className="mt-3 text-base text-muted-foreground">
-            Begin your expedition with your first mission. Every quiz is available any time —
-            with or without its lesson.
+            Begin your expedition with your first mission.
           </p>
           <div className="mt-4 flex flex-wrap gap-2">
             <Chip color={color}>{firstCategory.name}</Chip>
@@ -215,22 +241,31 @@ export default function DashboardPage() {
     (categoriesQuery.data?.categories ?? []).map((c) => [c.code, c.title]),
   );
 
-  // ── Next mission — deterministic rule (Phase 15.5 §3) ──
-  const recent = progressQuery.data?.recent_activity.find((a) => a.module_id);
-  const recentModuleQuery = useQuery({
-    queryKey: queryKeys.content.module(recent?.module_id ?? ""),
-    queryFn: () => fetchModule(recent?.module_id ?? ""),
+  // ── Next mission — the first INCOMPLETE mission in the server's own
+  // curriculum order, never the first mission outright and never driven by
+  // what the learner happened to touch last. ──
+  const recommendedRow = nextIncompleteModule(modulesQuery.data?.modules);
+  const recommendedId = recommendedRow?.module_id;
+
+  // The module detail supplies the lesson/quiz step the CTA targets; the
+  // recommendation itself is already decided above.
+  const recommendedModuleQuery = useQuery({
+    queryKey: queryKeys.content.module(recommendedId ?? ""),
+    queryFn: () => fetchModule(recommendedId ?? ""),
     staleTime: 5 * 60_000,
-    enabled: Boolean(recent?.module_id),
+    enabled: Boolean(recommendedId),
   });
 
   let nextMission: (MissionCardModel & { ctaLabel: string }) | null = null;
-  if (recent?.module_id && recentModuleQuery.data) {
-    const detail = recentModuleQuery.data;
-    const listRow = modulesQuery.data?.modules.find((m) => m.module_id === detail.module_id);
-    const code = categoriesBySlug.get(detail.category)?.code ?? codeFromSlug(detail.category) ?? detail.category;
+  if (recommendedRow && recommendedModuleQuery.data) {
+    const detail = recommendedModuleQuery.data;
+    const code =
+      categoriesBySlug.get(detail.category)?.code ??
+      codeFromSlug(detail.category) ??
+      detail.category;
     const lessonDone = detail.lesson?.completed ?? false;
     const quizAttempted = (detail.quiz?.attempt_count ?? 0) > 0;
+    const action = nextMissionAction(lessonDone, quizAttempted, detail.module_id);
     nextMission = {
       moduleId: detail.module_id,
       categoryCode: code,
@@ -239,28 +274,26 @@ export default function DashboardPage() {
       description: detail.description ?? "",
       difficulty: formatDifficulty(detail.difficulty),
       minutes: detail.estimated_duration ?? 0,
-      progress: listRow?.progress_pct ?? (detail.progress.completed ? 100 : 0),
-      status: detail.progress.completed
+      progress: recommendedRow.progress_pct,
+      status: recommendedRow.completed
         ? "complete"
-        : (listRow?.progress_pct ?? 0) > 0
+        : recommendedRow.progress_pct > 0
           ? "in-progress"
           : "available",
       image: categoryImage(code),
-      to: lessonDone
-        ? `/modules/${detail.module_id}/quiz`
-        : `/modules/${detail.module_id}/lesson`,
-      ctaLabel: lessonDone ? (quizAttempted ? "Retake quiz" : "Take quiz") : "Start lesson",
+      to: action.to,
+      ctaLabel: action.ctaLabel,
     };
   }
 
-  const recentGone =
-    recentModuleQuery.isError &&
-    recentModuleQuery.error instanceof ApiError &&
-    recentModuleQuery.error.status === 404;
-  // The hero query is enabled only when there IS a recent module; a new
-  // user's disabled query stays pending forever, so the discovery branch
-  // must not wait on it.
-  const heroPending = Boolean(recent?.module_id) && recentModuleQuery.isPending;
+  const recommendedGone =
+    recommendedModuleQuery.isError &&
+    recommendedModuleQuery.error instanceof ApiError &&
+    recommendedModuleQuery.error.status === 404;
+  // The detail query is enabled only when there IS a recommendation; with
+  // no incomplete mission left it stays disabled, so this branch must not
+  // wait on it.
+  const heroPending = Boolean(recommendedId) && recommendedModuleQuery.isPending;
 
   // ── Expedition timeline — recent activity, mapped onto the module
   // inventory (authoritative progress_pct), never fabricated. ──
@@ -277,7 +310,7 @@ export default function DashboardPage() {
 
   // ── Continue Training — modules in progress, excluding the hero. ──
   const inProgress = (modulesQuery.data?.modules ?? []).filter(
-    (m) => m.progress_pct > 0 && !m.completed && m.module_id !== recent?.module_id,
+    (m) => m.progress_pct > 0 && !m.completed && m.module_id !== recommendedId,
   );
   const continueTraining = inProgress.slice(0, 4).map((m) => missionCardModelFromListRow(m, categoriesBySlug));
 
@@ -369,7 +402,9 @@ export default function DashboardPage() {
           <ErrorState error={progressQuery.error} onRetry={() => void progressQuery.refetch()} />
         ) : heroPending ? (
           <div className="panel h-64 animate-pulse" aria-hidden="true" />
-        ) : recentGone || !nextMission ? (
+        ) : recommendedGone ? (
+          // The recommendation resolved to a module the backend no longer
+          // serves: fall back to discovery rather than offering a dead CTA.
           <DiscoveryHero
             firstCategory={
               categoriesQuery.data?.categories[0]
@@ -377,6 +412,8 @@ export default function DashboardPage() {
                 : undefined
             }
           />
+        ) : !nextMission ? (
+          <CurriculumCompleteHero />
         ) : (
           <MissionHero mission={nextMission} ctaLabel={nextMission.ctaLabel} />
         )}

@@ -24,9 +24,8 @@ import { ErrorState } from "@/components/shared/ErrorState";
 import type { AchievementsResponse, QuizResponse } from "@/lib/api/types";
 import { fetchModule } from "@/features/modules/modules.api";
 import { fetchAchievements } from "@/features/gamification/gamification.api";
-import { fetchModuleProgress } from "@/features/progress/progress.api";
-import { fetchSubscription } from "@/features/plans/plans.api";
 import { fetchQuiz } from "./quiz.api";
+import { useFieldTestGate } from "./use-field-test-gate";
 import { useQuizSession } from "./useQuizSession";
 import { QuestionCard } from "./QuestionCard";
 import { QuizResultView } from "./QuizResultView";
@@ -53,27 +52,13 @@ export default function QuizPage() {
     retry: false,
   });
 
-  // ── Phase 21 §5 — quiz-before-lesson entitlement (presentation only;
-  // the backend refuses attempt creation regardless). Free plan: the
-  // module's lesson must be completed before the field test unlocks.
-  const subscriptionQuery = useQuery({
-    queryKey: queryKeys.plans.subscription(user?.user_id ?? 0),
-    queryFn: fetchSubscription,
-    staleTime: 60_000,
-  });
-  const moduleProgressQuery = useQuery({
-    queryKey: queryKeys.learning.moduleProgress(moduleId),
-    queryFn: () => fetchModuleProgress(moduleId),
-    staleTime: 30_000,
-  });
-  const quizBeforeLesson =
-    subscriptionQuery.data?.entitlements.quiz_before_lesson !== false;
-  const lessonCompleted = moduleProgressQuery.data?.lesson_completed === true;
-  const quizLocked =
-    subscriptionQuery.data !== undefined &&
-    !quizBeforeLesson &&
-    moduleProgressQuery.data !== undefined &&
-    !lessonCompleted;
+  // ── Phase 21 §5 — quiz-before-lesson gate (presentation only; the
+  // backend refuses attempt creation regardless). The rule is shared with
+  // the lesson page's CTA so the two cannot disagree.
+  // The route's own module id — the gate asks about the module being
+  // viewed, not about whatever the detail response happens to contain.
+  const gate = useFieldTestGate(moduleId);
+  const quizBeforeLesson = gate !== "locked";
 
   // ── Achievement reveal support ──
   // Snapshot the authoritative earned list BEFORE the attempt; after
@@ -98,21 +83,18 @@ export default function QuizPage() {
   // must never unmount the session (which would lose the authoritative
   // result), so queries that already resolved keep rendering while
   // they refetch.
-  if (
-    moduleQuery.isPending ||
-    (moduleQuery.data && quizQuery.isPending) ||
-    (subscriptionQuery.data === undefined && subscriptionQuery.isPending && !quizLocked) ||
-    (moduleProgressQuery.data === undefined && moduleProgressQuery.isPending && !quizLocked)
-  ) {
+  // Module failure outranks the gate: with no module resolved the gate can
+  // only ever say "checking", and "checking" is not an error state.
+  if (moduleQuery.isError) {
+    return <ErrorState error={moduleQuery.error} onRetry={() => void moduleQuery.refetch()} />;
+  }
+  if (moduleQuery.isPending || quizQuery.isPending || gate === "checking") {
     return (
       <div role="status" aria-label="Loading quiz" className="space-y-6">
         <div className="panel h-16 animate-pulse" aria-hidden="true" />
         <div className="panel h-96 animate-pulse" aria-hidden="true" />
       </div>
     );
-  }
-  if (moduleQuery.isError) {
-    return <ErrorState error={moduleQuery.error} onRetry={() => void moduleQuery.refetch()} />;
   }
   if (!quizId) {
     return (
@@ -133,16 +115,12 @@ export default function QuizPage() {
   if (quizQuery.isError) {
     return <ErrorState error={quizQuery.error} onRetry={() => void quizQuery.refetch()} />;
   }
+  // Non-null by construction: the pending branch above covers the only
+  // state in which the payload is absent, and an errored query returned
+  // earlier.
   const quiz = quizQuery.data;
-  if (!quiz) {
-    return (
-      <div role="status" aria-label="Loading quiz" className="space-y-6">
-        <div className="panel h-96 animate-pulse" aria-hidden="true" />
-      </div>
-    );
-  }
 
-  if (quizLocked) {
+  if (gate === "locked") {
     return <QuizLocked moduleId={moduleId} quizTitle={quiz.title} />;
   }
 

@@ -66,6 +66,36 @@ function mockLessonSurface(page: Page): void {
           resources: [],
           progress: { lesson_completed: lessonCompleted, quiz_best_score: null, completed: false },
         });
+      // The lesson page's field-test CTA reads the SAME gate the quiz page
+      // enforces. This plan carries quiz_before_lesson, so the field test
+      // is open from the start.
+      case "/api/v1/plans/subscription":
+        return json({
+          plan_code: "survivor",
+          plan_name: "Survivor",
+          status: "active",
+          current_period_end: "2026-10-01T12:00:00Z",
+          cancel_at_period_end: false,
+          entitlements: {
+            daily_lessons: 10,
+            daily_quizzes: 10,
+            resource_download: true,
+            quiz_before_lesson: true,
+            community: true,
+          },
+        });
+      // Per-module progress — the flag behind both the lesson CTA and the
+      // quiz page's own gate.
+      case "/api/v1/progress/modules/WAT-boiling":
+        return json({
+          module_id: "WAT-boiling",
+          lesson_completed: lessonCompleted,
+          lesson_completed_at: lessonCompleted ? "2026-08-12T12:00:00Z" : null,
+          quiz_attempts: 0,
+          quiz_best_score: null,
+          quiz_last_passed: null,
+          lo_performance: [],
+        });
       case "/api/v1/lessons/WAT-boiling-L01":
         return json({
           lesson_id: "WAT-boiling-L01",
@@ -120,12 +150,13 @@ test.describe("lesson journey", () => {
     await page.getByRole("link", { name: /recap/i }).first().click();
     await expect(page.locator("section[id]").filter({ hasText: "Recap" })).toBeVisible();
 
-    // Quiz CTA exists BEFORE completion (DEC-022) — in the new layout the
-    // pre-completion quiz affordance is the "field tests always open" link.
-    const quizLink = page.getByRole("link", { name: /field tests are always open/i });
+    // The field test CTA sits directly below the completion action. On a
+    // plan that carries quiz_before_lesson it is already a working link.
+    const quizLink = page.getByRole("link", { name: /take field test/i });
     await expect(quizLink).toBeVisible();
     await expect(quizLink).toHaveAttribute("href", "/modules/WAT-boiling/quiz");
     await expect(quizLink).not.toHaveAttribute("aria-disabled", "true");
+    await expect(page.getByRole("button", { name: /complete lesson/i })).toBeVisible();
 
     // Complete the lesson — the panel flips into the completion state
     // (UX-04: explicit feedback, not just a disabled button).

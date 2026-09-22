@@ -142,14 +142,16 @@ test.describe("learning surface", () => {
     await page.goto("/dashboard");
     await expect(page.getByRole("heading", { name: /welcome back/i })).toBeVisible();
 
-    // Next mission from authoritative activity: the module behind the
-    // most recent event drives the CTA (lesson not completed → lesson).
-    // The hero eyebrow is a <p> in the new shell (not a heading).
+    // Next mission: the first mission in the server's order that is not
+    // completed, and the CTA goes straight into its lesson — Home → Lesson
+    // with no module page in between. The hero eyebrow is a <p> in the new
+    // shell (not a heading).
     await expect(page.getByText("Your next mission").first()).toBeVisible();
-    const missionStart = page.getByRole("link", { name: /start lesson/i });
+    const missionStart = page.getByRole("link", { name: /take lesson/i });
     await expect(missionStart).toBeVisible();
     await expect(missionStart).toHaveAttribute("href", "/modules/WAT-boiling/lesson");
-    // The expedition timeline links the same mission to its module page.
+    // The expedition timeline still links the mission to its module page —
+    // browsing stays available, it is just no longer the way in.
     await expect(
       page.getByRole("link", { name: /boiling water for purification/i }),
     ).toHaveAttribute("href", "/modules/WAT-boiling");
