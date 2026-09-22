@@ -245,6 +245,71 @@ describe("Dashboard — Base Camp", () => {
     expect(screen.queryByText("in progress")).toBeNull();
   });
 
+  it("recommends Survival Fundamentals when Agriculture sorts first alphabetically", async () => {
+    // The reported bug, reproduced at page level. `/modules` is ordered
+    // alphabetically by module_id, so AGR-composting leads the response
+    // while Survival Fundamentals — where a new learner must actually
+    // start — arrives later in the array. Trusting response order
+    // recommends Composting to someone who has finished nothing.
+    server.use(
+      http.get(`${API}/categories`, () =>
+        HttpResponse.json({
+          categories: [
+            { slug: "fundamentals", code: "SUR", title: "Survival Fundamentals", module_count: 1, completed_count: 0 },
+            { slug: "agriculture", code: "AGR", title: "Agriculture", module_count: 1, completed_count: 0 },
+          ],
+        }),
+      ),
+      http.get(`${API}/modules`, () =>
+        HttpResponse.json({
+          modules: [
+            {
+              module_id: "AGR-composting",
+              title: "Composting",
+              category: "agriculture",
+              difficulty: "beginner",
+              estimated_duration: 20,
+              description: null,
+              completed: false,
+              progress_pct: 0,
+            },
+            {
+              module_id: "SUR-prioritization",
+              title: "Emergency Planning",
+              category: "fundamentals",
+              difficulty: "beginner",
+              estimated_duration: 15,
+              description: null,
+              completed: false,
+              progress_pct: 0,
+            },
+          ],
+          pagination: { next_cursor: null, has_more: false, page_size: 20 },
+        }),
+      ),
+      http.get(`${API}/modules/SUR-prioritization`, () =>
+        HttpResponse.json({
+          ...moduleDetailFixture,
+          module_id: "SUR-prioritization",
+          title: "Emergency Planning",
+          category: "fundamentals",
+        }),
+      ),
+    );
+
+    renderDashboard();
+
+    await waitFor(() => {
+      expect(screen.getByRole("heading", { name: "Emergency Planning" })).toBeInTheDocument();
+    });
+    // The alphabetically-first module is never surfaced by the hero.
+    expect(screen.queryByRole("heading", { name: "Composting" })).toBeNull();
+    expect(screen.getByRole("link", { name: /take lesson/i })).toHaveAttribute(
+      "href",
+      "/modules/SUR-prioritization/lesson",
+    );
+  });
+
   it("renders authoritative progress and gamification summaries", async () => {
     renderDashboard();
     await waitFor(() => {

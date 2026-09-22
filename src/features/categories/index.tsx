@@ -19,6 +19,8 @@ import { fetchCategories, fetchCategoryDetail } from "./categories.api";
 import { fetchAllModules } from "@/features/modules/modules.api";
 import { categoryCardModel } from "./adapters";
 import { missionCardModelFromListRow } from "@/features/dashboard/adapters";
+import { codeFromSlug } from "@/lib/category-visuals";
+import { sortModulesByCurriculum } from "@/lib/curriculum";
 
 export default function CategoriesPage() {
   const queryClient = useQueryClient();
@@ -40,7 +42,14 @@ export default function CategoriesPage() {
   const pct = totalMissions > 0 ? Math.round((totalDone / totalMissions) * 100) : 0;
 
   const categoriesBySlug = new Map(categories.map((c) => [c.slug, { code: c.code, title: c.title }]));
-  const beginner = (modulesQuery.data?.modules ?? [])
+  // Curriculum order, not response order: `/modules` is alphabetical by
+  // `module_id`, which would surface Agriculture before Survival
+  // Fundamentals. Shares lib/curriculum.ts with the Home recommendation so
+  // both name the same "up next".
+  const beginner = sortModulesByCurriculum(
+    modulesQuery.data?.modules ?? [],
+    (slug) => categoriesBySlug.get(slug)?.code ?? codeFromSlug(slug) ?? undefined,
+  )
     .filter((m) => m.difficulty === "beginner" && !m.completed)
     .slice(0, 4)
     .map((m) => missionCardModelFromListRow(m, categoriesBySlug));

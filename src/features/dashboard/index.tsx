@@ -6,9 +6,11 @@
  * columns.
  *
  * ALL values come from authoritative backend state:
- * - next-mission rule: the first module in the /modules canonical order
- *   whose backend `completed` flag is still false — never "the first
- *   mission" and never the last thing touched. The CTA goes straight into
+ * - next-mission rule: the first module in CURRICULUM order (the teaching
+ *   sequence in lib/curriculum.ts, derived from /categories) whose backend
+ *   `completed` flag is still false — never "the first mission", never the
+ *   last thing touched, and never the alphabetically-first module that
+ *   /modules happens to return. The CTA goes straight into
  *   that mission's lesson (lesson not done → "Take lesson", lesson done →
  *   "Take quiz" / "Retake quiz"), so Home → Lesson needs no module page
  *   in between. All complete → the end-of-curriculum state; 404 on the
@@ -241,10 +243,15 @@ export default function DashboardPage() {
     (categoriesQuery.data?.categories ?? []).map((c) => [c.code, c.title]),
   );
 
-  // ── Next mission — the first INCOMPLETE mission in the server's own
-  // curriculum order, never the first mission outright and never driven by
-  // what the learner happened to touch last. ──
-  const recommendedRow = nextIncompleteModule(modulesQuery.data?.modules);
+  // ── Next mission — the first INCOMPLETE mission in CURRICULUM order,
+  // never the first mission outright and never driven by what the learner
+  // happened to touch last. `/modules` is alphabetical by `module_id`, so
+  // the teaching order is applied here from `/categories` — see
+  // lib/curriculum.ts. Without it the hero recommends whichever module
+  // happens to sort first alphabetically (AGR-composting). ──
+  const recommendedRow = nextIncompleteModule(modulesQuery.data?.modules, (slug) =>
+    categoriesBySlug.get(slug)?.code ?? codeFromSlug(slug) ?? undefined,
+  );
   const recommendedId = recommendedRow?.module_id;
 
   // The module detail supplies the lesson/quiz step the CTA targets; the

@@ -35,10 +35,13 @@ export function CountrySelect({
         aria-invalid={error ? true : undefined}
         aria-describedby={errorId}
         className={clsx(
-          "min-h-11 rounded-md border border-border-default bg-bg-surface px-3 py-2 text-text-primary",
-          "focus-visible:outline-2 focus-visible:outline-accent-ember focus-visible:outline-offset-0",
+          // `w-full` + `min-w-0`: a native select is as wide as its widest
+          // option unless constrained, and country names are long — inside
+          // a padded panel that is enough to push the page sideways.
+          "min-h-11 w-full min-w-0 rounded-lg border border-border bg-surface-2 px-3 py-2 text-foreground",
+          "focus-visible:outline-2 focus-visible:outline-[var(--ember)] focus-visible:outline-offset-0",
           "disabled:cursor-not-allowed disabled:opacity-50",
-          error && "border-danger-blood",
+          error && "border-[var(--destructive)]",
           className,
         )}
         {...props}
@@ -51,7 +54,7 @@ export function CountrySelect({
         ))}
       </select>
       {error ? (
-        <p id={errorId} className="text-sm text-danger-blood">
+        <p id={errorId} className="text-sm text-[var(--destructive)]">
           {error}
         </p>
       ) : null}

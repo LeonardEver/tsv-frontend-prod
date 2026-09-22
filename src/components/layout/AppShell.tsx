@@ -228,17 +228,21 @@ export function AppShell({ children }: { children: ReactNode }) {
   const summary = gamification.data;
 
   return (
-    <div className="topo grain relative min-h-screen">
+    <div className="topo grain relative min-h-dvh">
       <SkipLink />
-      <div className="relative flex min-h-screen">
+      <div className="relative flex min-h-dvh">
         {/* Desktop sidebar */}
-        <aside className="sticky top-0 hidden h-screen w-64 shrink-0 border-r border-sidebar-border bg-sidebar/80 backdrop-blur-sm lg:block">
+        <aside className="sticky top-0 hidden h-dvh w-64 shrink-0 border-r border-sidebar-border bg-sidebar/80 backdrop-blur-sm lg:block">
           <SidebarContent pathname={pathname} />
         </aside>
 
         <div className="flex min-w-0 flex-1 flex-col">
-          {/* Top utility bar */}
-          <header className="sticky top-0 z-30 border-b border-border bg-background/80 backdrop-blur-md">
+          {/* Top utility bar. The safe-area inset is padding rather than
+              margin so the blurred background still fills the notch. */}
+          <header
+            className="sticky top-0 z-[var(--z-chrome)] border-b border-border bg-background/80 backdrop-blur-md"
+            style={{ paddingTop: "env(safe-area-inset-top, 0px)" }}
+          >
             <div className="grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-3 px-4 py-3 sm:gap-4 sm:px-6">
               <div className="flex items-center gap-2 lg:hidden">
                 <button
@@ -318,14 +322,22 @@ export function AppShell({ children }: { children: ReactNode }) {
 
       {/* Mobile drawer */}
       {mobileNav && (
-        <div className="fixed inset-0 z-50 lg:hidden">
+        <div className="fixed inset-0 z-[var(--z-drawer)] lg:hidden">
           <button
             type="button"
             aria-label="Close navigation"
             className="absolute inset-0 bg-background/80 backdrop-blur-sm"
             onClick={() => { setMobileNav(false); }}
           />
-          <div className="absolute inset-y-0 left-0 w-[80%] max-w-72 border-r border-sidebar-border bg-sidebar">
+          <div
+            className="absolute inset-y-0 left-0 w-[80%] max-w-72 border-r border-sidebar-border bg-sidebar shadow-[var(--shadow-elevated)]"
+            style={{
+              // Keep the drawer's own content clear of the notch and the
+              // home indicator; the brand block sits at the very top.
+              paddingTop: "env(safe-area-inset-top, 0px)",
+              paddingBottom: "env(safe-area-inset-bottom, 0px)",
+            }}
+          >
             <button
               type="button"
               aria-label="Close navigation"
@@ -342,7 +354,7 @@ export function AppShell({ children }: { children: ReactNode }) {
       {/* Mobile bottom navigation */}
       <nav
         aria-label="Primary mobile"
-        className="fixed inset-x-0 bottom-0 z-40 border-t border-border bg-background/95 backdrop-blur-md lg:hidden"
+        className="fixed inset-x-0 bottom-0 z-[var(--z-nav)] border-t border-border bg-background/95 backdrop-blur-md lg:hidden"
         style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
       >
         <ul className="grid grid-cols-5">

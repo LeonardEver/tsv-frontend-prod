@@ -274,7 +274,7 @@ export default function LessonPage() {
         {/* Mobile section rail */}
         <nav
           aria-label="Lesson sections"
-          className="sticky top-28 z-30 -mx-4 overflow-x-auto border-y border-border bg-background/95 px-4 py-2 backdrop-blur-md xl:hidden"
+          className="sticky top-28 z-[var(--z-chrome)] -mx-4 overflow-x-auto border-y border-border bg-background/95 px-4 py-2 backdrop-blur-md xl:hidden"
         >
           <ul className="flex gap-2">
             {learningObjectives.length > 0 && (

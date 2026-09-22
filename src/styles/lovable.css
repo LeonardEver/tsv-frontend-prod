@@ -138,6 +138,23 @@
   color-scheme: dark;
   --radius: 0.5rem;
 
+  /* ── Layering scale ──────────────────────────────────────────────────
+     One ordered ladder, so overlays never have to guess. The chrome band
+     (30–50) is the app's own fixed furniture; anything portaled above it
+     must clear the whole band, which is why dialogs, menus and toasts sit
+     in 60–90 rather than competing with the header.
+
+     Portaled Radix content mounts on <body>, OUTSIDE the shell's stacking
+     context, so these values are compared against the shell's z-indexed
+     descendants — a menu at z-auto loses to the z-40 bottom navigation. */
+  --z-chrome: 30;   /* sticky header, sticky rails */
+  --z-nav: 40;      /* fixed bottom navigation */
+  --z-drawer: 50;   /* mobile drawer + its backdrop */
+  --z-overlay: 60;  /* dialog backdrop */
+  --z-modal: 70;    /* dialog content */
+  --z-popover: 80;  /* dropdown / select menus */
+  --z-toast: 90;    /* toasts — always readable, never buried */
+
   /* dark is primary */
   --background: oklch(0.17 0.008 220);
   --foreground: oklch(0.95 0.005 100);
@@ -192,44 +209,105 @@
 }
 
 /* Light theme — driven by the production theme mechanism (ThemeSync sets
-   `data-theme` on <html>). */
+   `data-theme` on <html>).
+
+   Design direction: a warm, paper-like light theme, NOT an inverted dark
+   one and NOT white-with-the-saturation-removed. Three rules give it its
+   character:
+
+   1. WARM NEUTRALS. Every neutral sits on a sand hue (~85) at very low
+      chroma, so a page reads as warm paper rather than a screen glow.
+      The previous block used pure `oklch(1 0 0)` for `--card`/`--popover`,
+      which is literally #FFFFFF — the source of the "glaring" complaint.
+
+   2. DEPTH RUNS THE RIGHT WAY. The page background is the DARKEST neutral
+      and cards sit lighter than it. The old block inverted this — a 0.97
+      page under 1.0 cards — so cards dissolved into the background and
+      every surface needed a shadow to separate at all.
+
+   3. BORDERS DO THE SEPARATION, SHADOWS ONLY CORROBORATE. Borders carry
+      real alpha (they were 14–20% before, effectively invisible on white),
+      which is what lets shadows stay restrained and gradients disappear.
+
+   Contrast: `--foreground` on `--card` is ~13:1 and `--muted-foreground`
+   on `--card` is ~5.4:1, both above WCAG AA for body text. */
 [data-theme="light"] {
   color-scheme: light;
-  --background: oklch(0.97 0.006 90);
-  --foreground: oklch(0.22 0.012 220);
-  --surface: oklch(0.99 0.004 90);
-  --surface-2: oklch(0.95 0.006 90);
-  --surface-3: oklch(0.92 0.008 90);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.22 0.012 220);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.22 0.012 220);
-  --primary: oklch(0.58 0.18 40);
-  --primary-foreground: oklch(0.99 0.004 90);
-  --secondary: oklch(0.93 0.008 90);
-  --secondary-foreground: oklch(0.25 0.012 220);
-  --muted: oklch(0.94 0.006 90);
-  --muted-foreground: oklch(0.48 0.012 220);
-  --accent: oklch(0.93 0.01 90);
-  --accent-foreground: oklch(0.22 0.012 220);
-  --border: oklch(0.28 0.01 220 / 15%);
-  --input: oklch(0.28 0.01 220 / 20%);
-  --ember: oklch(0.58 0.18 40);
-  --cat-water: oklch(0.55 0.14 220);
-  --cat-fire: oklch(0.58 0.18 45);
-  --cat-shelter: oklch(0.58 0.09 75);
-  --cat-food: oklch(0.62 0.14 85);
-  --cat-agriculture: oklch(0.55 0.14 145);
-  --cat-foraging: oklch(0.53 0.13 160);
-  --cat-medical: oklch(0.53 0.18 20);
-  --cat-navigation: oklch(0.55 0.12 195);
-  --cat-energy: oklch(0.55 0.15 235);
-  --cat-fundamentals: oklch(0.5 0.06 110);
-  --sidebar: oklch(0.98 0.005 90);
-  --sidebar-foreground: oklch(0.25 0.012 220);
-  --sidebar-accent: oklch(0.94 0.008 90);
-  --sidebar-accent-foreground: oklch(0.22 0.012 220);
-  --sidebar-border: oklch(0.28 0.01 220 / 14%);
+
+  /* ── Warm neutral ladder (darkest → lightest) ── */
+  --background: oklch(0.955 0.008 85);
+  --surface: oklch(0.972 0.007 85);
+  --surface-2: oklch(0.945 0.009 85);
+  --surface-3: oklch(0.915 0.011 85);
+  --card: oklch(0.985 0.005 85);
+  --popover: oklch(0.99 0.004 85);
+
+  /* A soft slate ink rather than near-black: readable without the
+     hard-edged contrast that makes a light UI feel clinical. */
+  --foreground: oklch(0.27 0.014 265);
+  --card-foreground: oklch(0.27 0.014 265);
+  --popover-foreground: oklch(0.27 0.014 265);
+
+  /* Ember, held back. Lightness 0.54 is measured, not chosen by eye: it is
+     the deepest value that clears WCAG AA both as body-size ember text on
+     the page (4.78:1) and as the background under the white button label
+     (5.29:1). At the dark theme's 0.66 it would be 2.9:1 on a pale page. */
+  --ember: oklch(0.54 0.17 42);
+  --primary: oklch(0.54 0.17 42);
+  --primary-foreground: oklch(0.99 0.005 85);
+
+  --secondary: oklch(0.93 0.01 85);
+  --secondary-foreground: oklch(0.3 0.014 265);
+  --muted: oklch(0.935 0.009 85);
+  --muted-foreground: oklch(0.5 0.014 265);
+  --accent: oklch(0.92 0.011 85);
+  --accent-foreground: oklch(0.27 0.014 265);
+
+  --border: oklch(0.42 0.014 265 / 22%);
+  --input: oklch(0.42 0.014 265 / 28%);
+  --ring: oklch(0.56 0.17 42 / 55%);
+
+  /* Semantic colours were never overridden for light, so chips, badges,
+     alerts and the offline banner kept their dark-theme values — bright
+     and low-contrast against a pale surface. These are the light twins. */
+  --destructive: oklch(0.52 0.19 27);
+  --destructive-foreground: oklch(0.99 0.005 85);
+  --success: oklch(0.5 0.12 155);
+  /* Amber at the dark theme's 0.78 is 1.9:1 on a pale card — invisible on
+     the offline banner and every warning badge. 0.54 clears AA on both the
+     card (4.94:1) and the page (4.53:1) while staying recognisably amber. */
+  --warning: oklch(0.54 0.135 75);
+
+  /* Category identities are the same hues as the dark theme at a lightness
+     that survives a pale page — they are used as chip text, accent dots and
+     stat values, so every one is measured against BOTH the page and the
+     card. Worst pair is 4.66:1 (food on the page), all above AA. The dark
+     values are far too light here: cat-food at 0.80 is 1.7:1 on the page. */
+  --cat-water: oklch(0.49 0.14 220);
+  --cat-fire: oklch(0.53 0.17 45);
+  --cat-shelter: oklch(0.51 0.09 75);
+  --cat-food: oklch(0.53 0.13 85);
+  --cat-agriculture: oklch(0.51 0.13 145);
+  --cat-foraging: oklch(0.49 0.12 160);
+  --cat-medical: oklch(0.51 0.18 20);
+  --cat-navigation: oklch(0.49 0.12 195);
+  --cat-energy: oklch(0.5 0.15 235);
+  --cat-fundamentals: oklch(0.46 0.06 110);
+
+  --sidebar: oklch(0.965 0.007 85);
+  --sidebar-foreground: oklch(0.3 0.014 265);
+  --sidebar-primary: oklch(0.56 0.17 42);
+  --sidebar-primary-foreground: oklch(0.99 0.005 85);
+  --sidebar-accent: oklch(0.925 0.011 85);
+  --sidebar-accent-foreground: oklch(0.27 0.014 265);
+  --sidebar-border: oklch(0.42 0.014 265 / 20%);
+  --sidebar-ring: oklch(0.56 0.17 42 / 55%);
+
+  /* A dark shadow at 70% (the dark-theme value) reads as a bruise under a
+     pale card. Light gets a softer, tighter, warm-tinted lift instead. */
+  --shadow-elevated: 0 18px 40px -24px oklch(0.32 0.03 265 / 30%);
+  --glow-ember: 0 0 0 1px oklch(0.56 0.17 42 / 26%),
+    0 0 26px -10px oklch(0.56 0.17 42 / 32%);
 }
 
 @layer base {

@@ -77,7 +77,7 @@ export const QuestionCard = memo(function QuestionCard({
   return (
     <div className="mx-auto max-w-3xl pb-24 lg:pb-0">
       {/* Sticky navigation (mobile) */}
-      <nav className="fixed inset-x-0 bottom-14 z-30 border-t border-border bg-background/95 p-3 backdrop-blur-md lg:static lg:mt-6 lg:border-0 lg:bg-transparent lg:p-0">
+      <nav className="fixed inset-x-0 bottom-14 z-[var(--z-chrome)] border-t border-border bg-background/95 p-3 backdrop-blur-md lg:static lg:mt-6 lg:border-0 lg:bg-transparent lg:p-0">
         <div className="mx-auto flex max-w-3xl items-center gap-3">
           <button
             type="button"

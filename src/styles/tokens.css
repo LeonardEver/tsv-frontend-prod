@@ -317,16 +317,18 @@
   opacity: 0.05;
 }
 
+/* Light separates surfaces with borders and one restrained shadow. The
+   white gradient + white inset highlight existed only to give pure-white
+   cards some form; on a warm page they read as glare, and cards no longer
+   sit on white, so they are gone. */
 [data-theme="light"] .surface-card {
-  background:
-    linear-gradient(180deg, rgb(255 255 255 / 0.6), transparent 45%),
-    var(--color-bg-surface);
-  box-shadow: var(--shadow-e1), inset 0 1px 0 rgb(255 255 255 / 0.8);
+  background: var(--color-bg-surface);
+  box-shadow: var(--shadow-e1);
 }
 
 [data-theme="light"] .surface-interactive:hover {
-  border-color: rgb(34 38 42 / 0.25);
-  box-shadow: var(--shadow-e2), inset 0 1px 0 rgb(255 255 255 / 0.9);
+  border-color: oklch(0.42 0.014 265 / 0.32);
+  box-shadow: var(--shadow-e2);
 }
 
 [data-theme="light"] .surface-featured {

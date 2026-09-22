@@ -5,6 +5,7 @@
 import type { CommunityPostsResponse, ModuleListResponse } from "@/lib/api/types";
 import type { CommunityPostModel, MissionCardModel } from "@/components/sa/types";
 import { categoryImage, codeFromSlug } from "@/lib/category-visuals";
+import { nextIncompleteModule as nextIncompleteModuleOrdered } from "@/lib/curriculum";
 import { formatDifficulty, formatRelativeTime } from "@/lib/format/format";
 
 type ModuleRow = ModuleListResponse["modules"][number];
@@ -35,25 +36,26 @@ export function missionCardModelFromListRow(
 }
 
 /**
- * The next mission to recommend: the first module in the server's own
- * order that is not `completed`, or `null` when the whole curriculum is
- * done.
+ * The next mission to recommend: the first module in CURRICULUM order
+ * that is not `completed`, or `null` when the whole curriculum is done.
  *
- * Ordering is a property of the response, not something computed here —
- * `/modules` returns the canonical curriculum sequence, which is also how
- * the region pages present it and how the expedition trail reads it. No
- * client-side sort is applied, so the recommendation can never disagree
- * with what the learner sees when they browse.
+ * The response array is not the curriculum. `/modules` is ordered
+ * alphabetically by `module_id`, so trusting it recommends `AGR-composting`
+ * to a learner who has not finished their first fundamentals lesson. The
+ * sequence lives in `lib/curriculum.ts`, which ranks by canonical category
+ * position and then `module_id` — the same order the sidebar, the Learn
+ * page and every region page render.
  *
- * `completed` is the backend's derived flag, never a frontend guess: a
- * module with partial progress still counts as incomplete, and the server
- * remains the only authority on what "done" means. Nothing is gated on
- * this — it selects what to recommend, not what a learner may open.
+ * `completed` is still the backend's derived flag, never a frontend guess:
+ * a module with partial progress counts as incomplete, so the learner
+ * finishes it before the queue advances. Nothing is gated on this — it
+ * selects what to recommend, not what a learner may open.
  */
 export function nextIncompleteModule(
   rows: readonly ModuleRow[] | undefined,
+  codeForSlug: (slug: string) => string | undefined,
 ): ModuleRow | null {
-  return (rows ?? []).find((row) => !row.completed) ?? null;
+  return nextIncompleteModuleOrdered(rows, codeForSlug);
 }
 
 /**
