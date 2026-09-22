@@ -94,6 +94,15 @@ export interface AnalyticsFilterState {
   granularity: AdminGranularity | undefined;
 }
 
+/**
+ * Why the window on screen would be refused. Returned as data rather than
+ * as a sentence: the copy is translated, and this module is headless — the
+ * filter bar owns the wording.
+ */
+export type RangeProblem =
+  | { kind: "inverted" }
+  | { kind: "tooLong"; days: number; maxDays: number };
+
 export interface AnalyticsFilters extends AnalyticsFilterState {
   /**
    * Serializable, identity-stable request params. Query keys must hold
@@ -107,7 +116,7 @@ export interface AnalyticsFilters extends AnalyticsFilterState {
   rangeDays: number | null;
   /** A series endpoint would reject this window (or it is inverted). */
   rangeRejected: boolean;
-  rangeProblem: string | null;
+  rangeProblem: RangeProblem | null;
   activePreset: RangePreset;
   setPreset: (preset: RangePreset) => void;
   update: (patch: FilterPatch) => void;
@@ -187,11 +196,11 @@ export function useAnalyticsFilters(): AnalyticsFilters {
     return inclusiveDays(filters.from, filters.to ?? utcToday());
   }, [filters.from, filters.to]);
 
-  let rangeProblem: string | null = null;
+  let rangeProblem: RangeProblem | null = null;
   if (rangeDays !== null && rangeDays <= 0) {
-    rangeProblem = "The start date is after the end date.";
+    rangeProblem = { kind: "inverted" };
   } else if (rangeDays !== null && rangeDays > SERIES_MAX_DAYS) {
-    rangeProblem = `This window is ${String(rangeDays)} days. Series endpoints accept at most ${String(SERIES_MAX_DAYS)} days — narrow the range or pick a shorter preset.`;
+    rangeProblem = { kind: "tooLong", days: rangeDays, maxDays: SERIES_MAX_DAYS };
   }
 
   const params = useMemo<AdminAnalyticsFilters>(

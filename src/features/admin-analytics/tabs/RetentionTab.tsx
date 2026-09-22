@@ -20,64 +20,75 @@ import type { AdminRetentionCohort, AdminRetentionWindow } from "@/lib/api/types
 import { fetchRetention } from "../analytics.api";
 import { DataTable, Num, SectionCard, type Column } from "../charts";
 import { useAnalyticsFilters } from "../filters";
+import { useTr, type Tr } from "../i18n";
 
-const COHORT_OPTIONS: ReadonlyArray<{ value: "day" | "week" | "month"; label: string }> = [
-  { value: "day", label: "Daily cohorts" },
-  { value: "week", label: "Weekly cohorts" },
-  { value: "month", label: "Monthly cohorts" },
-];
+type CohortSize = "day" | "week" | "month";
+
+function cohortOptions({ t }: Tr): ReadonlyArray<{ value: CohortSize; label: string }> {
+  return [
+    { value: "day", label: t("tabs.retention.cohortDay") },
+    { value: "week", label: t("tabs.retention.cohortWeek") },
+    { value: "month", label: t("tabs.retention.cohortMonth") },
+  ];
+}
 
 const LIMIT_OPTIONS = [6, 12, 24, 52] as const;
 
-const WINDOWS: ReadonlyArray<{ key: "d1" | "d7" | "d14" | "d30"; label: string }> = [
-  { key: "d1", label: "D1" },
-  { key: "d7", label: "D7" },
-  { key: "d14", label: "D14" },
-  { key: "d30", label: "D30" },
-];
+/** D1/D7/D14/D30 are window names, not copy — identical in both languages. */
+const WINDOWS: ReadonlyArray<"d1" | "d7" | "d14" | "d30"> = ["d1", "d7", "d14", "d30"];
 
 const controlClass =
   "h-9 rounded-lg border border-border bg-surface-2/70 px-2 text-[13px] text-foreground outline-none focus:border-primary/50";
 
-function RetentionCell({ value }: { value: AdminRetentionWindow | null }) {
+function RetentionCell({ value, tr }: { value: AdminRetentionWindow | null; tr: Tr }) {
+  const { t, tf } = tr;
   if (value === null) {
-    return <span className="text-[11px] text-muted-foreground italic">not yet observable</span>;
+    return (
+      <span className="text-[11px] text-muted-foreground italic">{t("charts.notYetObservable")}</span>
+    );
   }
   return (
     <>
       <Num>{formatPct(value.rate, 2)}</Num>
-      <span className="block text-[11px] text-muted-foreground">{formatCount(value.users)} users</span>
+      <span className="block text-[11px] text-muted-foreground">
+        {tf("tabs.retention.usersCount", { count: formatCount(value.users) })}
+      </span>
     </>
   );
 }
 
-const COLUMNS: Array<Column<AdminRetentionCohort>> = [
-  { key: "cohort", header: "Cohort", render: (row) => <Num>{row.cohort}</Num> },
-  {
-    key: "size",
-    header: "Size",
-    align: "right",
-    render: (row) => <Num>{formatCount(row.cohort_size)}</Num>,
-  },
-  {
-    key: "observable",
-    header: "Observable",
-    align: "right",
-    render: (row) => <Num muted>{`day ${String(row.max_observable_day)}`}</Num>,
-  },
-  ...WINDOWS.map(
-    (window): Column<AdminRetentionCohort> => ({
-      key: window.key,
-      header: window.label,
+function columns(tr: Tr): Array<Column<AdminRetentionCohort>> {
+  const { t, tf } = tr;
+  return [
+    { key: "cohort", header: t("tabs.retention.colCohort"), render: (row) => <Num>{row.cohort}</Num> },
+    {
+      key: "size",
+      header: t("tabs.retention.colSize"),
       align: "right",
-      render: (row) => <RetentionCell value={row[window.key]} />,
-    }),
-  ),
-];
+      render: (row) => <Num>{formatCount(row.cohort_size)}</Num>,
+    },
+    {
+      key: "observable",
+      header: t("tabs.retention.colObservable"),
+      align: "right",
+      render: (row) => <Num muted>{tf("tabs.retention.observableDay", { day: row.max_observable_day })}</Num>,
+    },
+    ...WINDOWS.map(
+      (window): Column<AdminRetentionCohort> => ({
+        key: window,
+        header: window.toUpperCase(),
+        align: "right",
+        render: (row) => <RetentionCell value={row[window]} tr={tr} />,
+      }),
+    ),
+  ];
+}
 
 export default function RetentionTab() {
   const { params, rangeRejected } = useAnalyticsFilters();
-  const [cohort, setCohort] = useState<"day" | "week" | "month">("week");
+  const tr = useTr();
+  const { t } = tr;
+  const [cohort, setCohort] = useState<CohortSize>("week");
   const [limit, setLimit] = useState<number>(24);
 
   const retention = useQuery({
@@ -90,22 +101,24 @@ export default function RetentionTab() {
   return (
     <div>
       <SectionCard
-        title="Signup cohorts"
-        description="Share of each signup cohort that came back to learn on day 1, 7, 14 and 30."
+        title={t("tabs.retention.title")}
+        description={t("tabs.retention.description")}
         action={
           <div className="flex gap-2">
             <label className="grid gap-1">
               <span className="font-mono text-[10px] tracking-[0.14em] text-muted-foreground uppercase">
-                Cohort by
+                {t("tabs.retention.cohortBy")}
               </span>
               <select
                 value={cohort}
                 onChange={(event) => {
-                  setCohort(event.target.value === "day" ? "day" : event.target.value === "month" ? "month" : "week");
+                  setCohort(
+                    event.target.value === "day" ? "day" : event.target.value === "month" ? "month" : "week",
+                  );
                 }}
                 className={controlClass}
               >
-                {COHORT_OPTIONS.map((option) => (
+                {cohortOptions(tr).map((option) => (
                   <option key={option.value} value={option.value}>
                     {option.label}
                   </option>
@@ -114,7 +127,7 @@ export default function RetentionTab() {
             </label>
             <label className="grid gap-1">
               <span className="font-mono text-[10px] tracking-[0.14em] text-muted-foreground uppercase">
-                Cohorts
+                {t("tabs.retention.cohorts")}
               </span>
               <select
                 value={String(limit)}
@@ -132,21 +145,24 @@ export default function RetentionTab() {
         }
       >
         {rangeRejected ? (
-          <p className="text-sm text-muted-foreground">
-            Adjust the date range above to load retention cohorts.
-          </p>
+          <p className="text-sm text-muted-foreground">{t("common.adjustRangeRetention")}</p>
         ) : retention.isError ? (
-          <ErrorState error={retention.error} onRetry={() => void retention.refetch()} />
+          <ErrorState
+            error={retention.error}
+            onRetry={() => void retention.refetch()}
+            explain={tr.errorCopy}
+            labels={{ retry: t("errors.retry"), reference: t("errors.reference") }}
+          />
         ) : retention.isPending ? (
           <div className="h-56 animate-pulse rounded-xl bg-surface-2" aria-hidden="true" />
         ) : (
           <>
             <DataTable
-              columns={COLUMNS}
+              columns={columns(tr)}
               rows={retention.data.cohorts}
               getRowKey={(row) => row.cohort}
-              caption="Retention by signup cohort"
-              emptyLabel="No cohorts in this range."
+              caption={t("tabs.retention.caption")}
+              emptyLabel={t("tabs.retention.empty")}
               minWidth={880}
             />
             <p className="mt-4 text-[13px] text-muted-foreground">

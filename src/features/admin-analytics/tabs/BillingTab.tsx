@@ -37,37 +37,44 @@ import {
   type Column,
 } from "../charts";
 import { useAnalyticsFilters } from "../filters";
+import { useTr, type Tr } from "../i18n";
 
-const PLAN_COLUMNS: Array<Column<AdminBillingPlanRow>> = [
-  {
-    key: "plan",
-    header: "Plan code on file",
-    render: (row) => <span className="font-medium capitalize">{row.plan}</span>,
-  },
-  {
-    key: "users",
-    header: "Subscription rows",
-    align: "right",
-    render: (row) => <MaybeNum value={row.users} />,
-  },
-];
+function planColumns({ t }: Tr): Array<Column<AdminBillingPlanRow>> {
+  return [
+    {
+      key: "plan",
+      header: t("tabs.billing.colPlanCode"),
+      render: (row) => <span className="font-medium capitalize">{row.plan}</span>,
+    },
+    {
+      key: "users",
+      header: t("tabs.billing.colSubscriptionRows"),
+      align: "right",
+      render: (row) => <MaybeNum value={row.users} />,
+    },
+  ];
+}
 
-const STATUS_COLUMNS: Array<Column<AdminBillingStatusRow>> = [
-  {
-    key: "status",
-    header: "Status",
-    render: (row) => <span>{row.status}</span>,
-  },
-  {
-    key: "users",
-    header: "Subscription rows",
-    align: "right",
-    render: (row) => <MaybeNum value={row.users} />,
-  },
-];
+function statusColumns({ t }: Tr): Array<Column<AdminBillingStatusRow>> {
+  return [
+    {
+      key: "status",
+      header: t("tabs.billing.colStatus"),
+      render: (row) => <span>{row.status}</span>,
+    },
+    {
+      key: "users",
+      header: t("tabs.billing.colSubscriptionRows"),
+      align: "right",
+      render: (row) => <MaybeNum value={row.users} />,
+    },
+  ];
+}
 
 export default function BillingTab() {
   const { seriesParams, rangeRejected } = useAnalyticsFilters();
+  const tr = useTr();
+  const { t, tf } = tr;
 
   const billing = useQuery({
     queryKey: queryKeys.admin.analytics("billing", seriesParams),
@@ -77,15 +84,18 @@ export default function BillingTab() {
   });
 
   if (rangeRejected) {
-    return (
-      <p className="panel p-6 text-sm text-muted-foreground">
-        Adjust the date range above to load these metrics.
-      </p>
-    );
+    return <p className="panel p-6 text-sm text-muted-foreground">{t("common.adjustRange")}</p>;
   }
 
   if (billing.isError) {
-    return <ErrorState error={billing.error} onRetry={() => void billing.refetch()} />;
+    return (
+      <ErrorState
+        error={billing.error}
+        onRetry={() => void billing.refetch()}
+        explain={tr.errorCopy}
+        labels={{ retry: t("errors.retry"), reference: t("errors.reference") }}
+      />
+    );
   }
 
   if (billing.isPending) {
@@ -109,31 +119,31 @@ export default function BillingTab() {
   } = billing.data;
 
   const effectiveKpis: ReadonlyArray<{ label: string; value: number; hint: string }> = [
-    { label: "Paying users", value: effectivePlans.paying_users, hint: "Effective plan ≠ free" },
-    { label: "Free users", value: effectivePlans.free_users, hint: "Effective plan is free" },
-    { label: "Trial users", value: effectivePlans.trial_users, hint: "Currently trialing" },
+    { label: t("tabs.billing.kpiPayingUsers"), value: effectivePlans.paying_users, hint: t("tabs.billing.kpiPayingUsersHint") },
+    { label: t("tabs.billing.kpiFreeUsers"), value: effectivePlans.free_users, hint: t("tabs.billing.kpiFreeUsersHint") },
+    { label: t("tabs.billing.kpiTrialUsers"), value: effectivePlans.trial_users, hint: t("tabs.billing.kpiTrialUsersHint") },
     {
-      label: "Churned users",
+      label: t("tabs.billing.kpiChurnedUsers"),
       value: effectivePlans.churned_users,
-      hint: "Non-free plan on file, effective free now",
+      hint: t("tabs.billing.kpiChurnedUsersHint"),
     },
   ];
 
   const movementKpis: ReadonlyArray<{ label: string; value: number; hint: string }> = [
-    { label: "New subscriptions", value: movement.new_subscriptions, hint: "Created in range" },
-    { label: "Cancellations", value: movement.cancellations, hint: "Cancelled in range" },
+    { label: t("tabs.billing.kpiNewSubscriptions"), value: movement.new_subscriptions, hint: t("tabs.billing.kpiNewSubscriptionsHint") },
+    { label: t("tabs.billing.kpiCancellations"), value: movement.cancellations, hint: t("tabs.billing.kpiCancellationsHint") },
     {
-      label: "Trials",
+      label: t("tabs.billing.kpiTrials"),
       value: movement.trials,
-      hint: "Currently trialing whose period began in range — not trials started",
+      hint: t("tabs.billing.kpiTrialsHint"),
     },
   ];
 
   return (
     <div>
       <SectionCard
-        title="Effective plans"
-        description="What each user's plan resolves to right now, after the stored status and period rules are applied — the plan the entitlement checks see."
+        title={t("tabs.billing.effectiveTitle")}
+        description={t("tabs.billing.effectiveDescription")}
         action={<RangeEcho from={range.from} to={range.to} />}
       >
         <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
@@ -144,8 +154,8 @@ export default function BillingTab() {
       </SectionCard>
 
       <SectionCard
-        title="Subscription movement"
-        description="Subscriptions created and cancelled in the selected window, and the ones trialing now."
+        title={t("tabs.billing.movementTitle")}
+        description={t("tabs.billing.movementDescription")}
       >
         <div className="grid gap-3 sm:grid-cols-3">
           {movementKpis.map((kpi) => (
@@ -154,21 +164,21 @@ export default function BillingTab() {
         </div>
         <div className="mt-6 grid gap-6 lg:grid-cols-2">
           <div>
-            <p className="eyebrow mb-2">New subscriptions</p>
+            <p className="eyebrow mb-2">{t("tabs.billing.newSubscriptions")}</p>
             <BarSeries
               data={movement.series}
               valueOf={(row) => row.new_subscriptions}
               labelOf={(row) => formatDate(row.bucket)}
-              ariaLabel="New subscriptions per bucket"
+              ariaLabel={t("tabs.billing.newSubscriptionsAria")}
             />
           </div>
           <div>
-            <p className="eyebrow mb-2">Cancellations</p>
+            <p className="eyebrow mb-2">{t("tabs.billing.cancellations")}</p>
             <BarSeries
               data={movement.series}
               valueOf={(row) => row.cancellations}
               labelOf={(row) => formatDate(row.bucket)}
-              ariaLabel="Cancellations per bucket"
+              ariaLabel={t("tabs.billing.cancellationsAria")}
               color="var(--destructive)"
             />
           </div>
@@ -176,43 +186,43 @@ export default function BillingTab() {
       </SectionCard>
 
       <SectionCard
-        title="Plan code on file"
-        description="Every subscription row grouped by its stored subscriptions.plan_code — raw state, before the effective-plan rules are applied. A cancelled or unpaid subscription still carries its stored code here, so this view differs from the effective-plan tiles above."
+        title={t("tabs.billing.planCodeTitle")}
+        description={t("tabs.billing.planCodeDescription")}
       >
         <DataTable
-          columns={PLAN_COLUMNS}
+          columns={planColumns(tr)}
           rows={subscriptions.by_plan}
           getRowKey={(row) => row.plan}
-          caption="Subscription rows by stored plan code"
-          emptyLabel="No subscription rows."
+          caption={t("tabs.billing.planCodeCaption")}
+          emptyLabel={t("tabs.billing.planCodeEmpty")}
           minWidth={520}
         />
         <p className="mt-4 text-[13px] text-muted-foreground">
-          {formatCount(subscriptions.total_rows)} subscription rows in total across these plans.
+          {tf("tabs.billing.totalRows", { count: formatCount(subscriptions.total_rows) })}
         </p>
       </SectionCard>
 
       <SectionCard
-        title="Subscription status"
-        description="The stored status behind each subscription row — the input the effective-plan rules read, not their output."
+        title={t("tabs.billing.statusTitle")}
+        description={t("tabs.billing.statusDescription")}
       >
         <DataTable
-          columns={STATUS_COLUMNS}
+          columns={statusColumns(tr)}
           rows={subscriptions.by_status}
           getRowKey={(row) => row.status}
-          caption="Subscription rows by status"
-          emptyLabel="No subscription rows."
+          caption={t("tabs.billing.statusCaption")}
+          emptyLabel={t("tabs.billing.statusEmpty")}
           minWidth={520}
         />
       </SectionCard>
 
       <SectionCard
-        title="Not measurable from this database"
-        description="The backend reports these as unsupported rather than approximating them."
+        title={t("tabs.billing.unsupportedTitle")}
+        description={t("tabs.billing.unsupportedDescription")}
       >
         <div className="grid gap-3 sm:grid-cols-2">
-          <UnsupportedBlock label="Revenue / MRR / ARR" metric={revenue} />
-          <UnsupportedBlock label="Upgrades & downgrades" metric={upgradesDowngrades} />
+          <UnsupportedBlock label={t("tabs.billing.unsupportedRevenue")} metric={revenue} />
+          <UnsupportedBlock label={t("tabs.billing.unsupportedPlanChanges")} metric={upgradesDowngrades} />
         </div>
       </SectionCard>
 

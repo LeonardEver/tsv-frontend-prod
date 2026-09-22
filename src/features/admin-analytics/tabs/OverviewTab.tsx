@@ -13,13 +13,67 @@
 import { useQuery } from "@tanstack/react-query";
 import { ErrorState } from "@/components/shared/ErrorState";
 import { queryKeys } from "@/lib/api/keys";
+import type { AdminOverviewMetrics } from "@/lib/api/types";
 import { formatAverage, formatCount } from "@/lib/format/format";
 import { fetchOverview } from "../analytics.api";
 import { DeltaHint, KpiTile, RangeEcho, SectionCard, UnsupportedBlock } from "../charts";
 import { useAnalyticsFilters } from "../filters";
+import { useTr, type Tr } from "../i18n";
+
+type MetricKey = keyof AdminOverviewMetrics;
+/** The four ratios, so `formatAverage` receives a number rather than the
+ * full metric union. */
+type RatioKey =
+  | "lessons_completed_per_active_user"
+  | "quiz_submissions_per_active_user"
+  | "xp_per_active_user"
+  | "active_days_per_active_user";
+
+function kpiTiles({ t }: Tr): ReadonlyArray<{ label: string; key: MetricKey; hint?: string }> {
+  return [
+    { label: t("tabs.overview.kpiTotalUsers"), key: "total_users" },
+    { label: t("tabs.overview.kpiNewUsers"), key: "new_users", hint: t("tabs.overview.hintSignedUpInRange") },
+    { label: t("tabs.overview.kpiPayingUsers"), key: "paying_users", hint: t("tabs.overview.hintEffectiveNotFree") },
+    { label: t("tabs.overview.kpiFreeUsers"), key: "free_users" },
+    { label: t("tabs.overview.kpiTrialUsers"), key: "trial_users", hint: t("tabs.overview.hintCurrentlyTrialing") },
+    { label: t("tabs.overview.kpiChurnedUsers"), key: "churned_users", hint: t("tabs.overview.hintChurned") },
+    { label: t("tabs.overview.kpiActiveUsers"), key: "active_users", hint: t("tabs.overview.hintLearningActive") },
+    { label: t("tabs.overview.kpiActiveDays"), key: "active_days" },
+    { label: t("tabs.overview.kpiLessonsCompleted"), key: "lessons_completed", hint: t("tabs.overview.hintAcceptedCompletions") },
+    { label: t("tabs.overview.kpiQuizSubmissions"), key: "quiz_submissions" },
+    { label: t("tabs.overview.kpiXpAwarded"), key: "xp_awarded" },
+  ];
+}
+
+function ratioTiles({ t }: Tr): ReadonlyArray<{ label: string; key: RatioKey; hint: string }> {
+  return [
+    {
+      label: t("tabs.overview.ratioLessonsPerActive"),
+      key: "lessons_completed_per_active_user",
+      hint: t("tabs.overview.ratioLessonsPerActiveHint"),
+    },
+    {
+      label: t("tabs.overview.ratioQuizzesPerActive"),
+      key: "quiz_submissions_per_active_user",
+      hint: t("tabs.overview.ratioQuizzesPerActiveHint"),
+    },
+    {
+      label: t("tabs.overview.ratioXpPerActive"),
+      key: "xp_per_active_user",
+      hint: t("tabs.overview.ratioXpPerActiveHint"),
+    },
+    {
+      label: t("tabs.overview.ratioActiveDaysPerActive"),
+      key: "active_days_per_active_user",
+      hint: t("tabs.overview.ratioActiveDaysPerActiveHint"),
+    },
+  ];
+}
 
 export default function OverviewTab() {
   const { params, rangeRejected } = useAnalyticsFilters();
+  const tr = useTr();
+  const { t } = tr;
 
   const overview = useQuery({
     queryKey: queryKeys.admin.analytics("overview", params),
@@ -29,15 +83,18 @@ export default function OverviewTab() {
   });
 
   if (rangeRejected) {
-    return (
-      <p className="panel p-6 text-sm text-muted-foreground">
-        Adjust the date range above to load these metrics.
-      </p>
-    );
+    return <p className="panel p-6 text-sm text-muted-foreground">{t("common.adjustRange")}</p>;
   }
 
   if (overview.isError) {
-    return <ErrorState error={overview.error} onRetry={() => void overview.refetch()} />;
+    return (
+      <ErrorState
+        error={overview.error}
+        onRetry={() => void overview.refetch()}
+        explain={tr.errorCopy}
+        labels={{ retry: t("errors.retry"), reference: t("errors.reference") }}
+      />
+    );
   }
 
   if (overview.isPending) {
@@ -52,48 +109,14 @@ export default function OverviewTab() {
 
   const { metrics, previous, activity_windows: windows, limitations, range } = overview.data;
 
-  const kpis: ReadonlyArray<{ label: string; key: keyof typeof metrics; hint?: string }> = [
-    { label: "Total users", key: "total_users" },
-    { label: "New users", key: "new_users", hint: "Signed up in range" },
-    { label: "Paying users", key: "paying_users", hint: "Effective plan ≠ free" },
-    { label: "Free users", key: "free_users" },
-    { label: "Trial users", key: "trial_users", hint: "Currently trialing" },
-    { label: "Churned users", key: "churned_users", hint: "Non-free plan on file, effective free now" },
-    { label: "Active users", key: "active_users", hint: "Learning-active, not visits" },
-    { label: "Active days", key: "active_days" },
-    { label: "Lessons completed", key: "lessons_completed", hint: "Accepted, not retry-inflated" },
-    { label: "Quiz submissions", key: "quiz_submissions" },
-    { label: "XP awarded", key: "xp_awarded" },
-  ];
-
-  const ratios: ReadonlyArray<{ label: string; value: number; hint: string }> = [
-    {
-      label: "Lessons / active user",
-      value: metrics.lessons_completed_per_active_user,
-      hint: "Lessons completed ÷ active users",
-    },
-    {
-      label: "Quiz submissions / active user",
-      value: metrics.quiz_submissions_per_active_user,
-      hint: "Submissions ÷ active users",
-    },
-    {
-      label: "XP / active user",
-      value: metrics.xp_per_active_user,
-      hint: "Awarded XP ÷ active users (retries inflate)",
-    },
-    {
-      label: "Active days / active user",
-      value: metrics.active_days_per_active_user,
-      hint: "Sessions of learning per active user",
-    },
-  ];
+  const kpis = kpiTiles(tr);
+  const ratios = ratioTiles(tr);
 
   return (
     <div>
       <SectionCard
-        title="Key metrics"
-        description="Totals for the selected window, with the equivalent figure from the preceding window of equal length."
+        title={t("tabs.overview.keyMetricsTitle")}
+        description={t("tabs.overview.keyMetricsDescription")}
         action={<RangeEcho from={range.from} to={range.to} />}
       >
         <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
@@ -104,7 +127,10 @@ export default function OverviewTab() {
               value={formatCount(metrics[kpi.key])}
               hint={kpi.hint}
               delta={
-                <DeltaHint current={metrics[kpi.key]} previous={previous === null ? null : previous[kpi.key]} />
+                <DeltaHint
+                  current={metrics[kpi.key]}
+                  previous={previous === null ? null : previous[kpi.key]}
+                />
               }
             />
           ))}
@@ -112,15 +138,15 @@ export default function OverviewTab() {
       </SectionCard>
 
       <SectionCard
-        title="Per active user"
-        description="Averages across the users who were learning-active in range — the backend's ratio precision is two decimals."
+        title={t("tabs.overview.perActiveUserTitle")}
+        description={t("tabs.overview.perActiveUserDescription")}
       >
         <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
           {ratios.map((ratio) => (
             <KpiTile
               key={ratio.label}
               label={ratio.label}
-              value={formatAverage(ratio.value)}
+              value={formatAverage(metrics[ratio.key])}
               hint={ratio.hint}
             />
           ))}
@@ -128,13 +154,25 @@ export default function OverviewTab() {
       </SectionCard>
 
       <SectionCard
-        title="Activity windows"
-        description="Measured as of the end of the selected range."
+        title={t("tabs.overview.windowsTitle")}
+        description={t("tabs.overview.windowsDescription")}
       >
         <div className="grid gap-3 sm:grid-cols-3">
-          <KpiTile label="DAU" value={formatCount(windows.dau)} hint="Active on the final day" />
-          <KpiTile label="WAU" value={formatCount(windows.wau)} hint="Active in the trailing 7 days" />
-          <KpiTile label="MAU" value={formatCount(windows.mau)} hint="Active in the trailing 30 days" />
+          <KpiTile
+            label={t("tabs.overview.dau")}
+            value={formatCount(windows.dau)}
+            hint={t("tabs.overview.dauHint")}
+          />
+          <KpiTile
+            label={t("tabs.overview.wau")}
+            value={formatCount(windows.wau)}
+            hint={t("tabs.overview.wauHint")}
+          />
+          <KpiTile
+            label={t("tabs.overview.mau")}
+            value={formatCount(windows.mau)}
+            hint={t("tabs.overview.mauHint")}
+          />
         </div>
         {/* The backend's own definition of "active" — shown verbatim
             because every number on this page depends on it. */}
@@ -144,13 +182,13 @@ export default function OverviewTab() {
       </SectionCard>
 
       <SectionCard
-        title="Not measurable from this database"
-        description="The backend reports these as unsupported rather than approximating them."
+        title={t("tabs.overview.unsupportedTitle")}
+        description={t("tabs.overview.unsupportedDescription")}
       >
         <div className="grid gap-3 sm:grid-cols-3">
-          <UnsupportedBlock label="Revenue / MRR / ARR" metric={limitations.revenue} />
-          <UnsupportedBlock label="Upgrades & downgrades" metric={limitations.plan_changes} />
-          <UnsupportedBlock label="Visit-based DAU" metric={limitations.visit_dau} />
+          <UnsupportedBlock label={t("tabs.overview.unsupportedRevenue")} metric={limitations.revenue} />
+          <UnsupportedBlock label={t("tabs.overview.unsupportedPlanChanges")} metric={limitations.plan_changes} />
+          <UnsupportedBlock label={t("tabs.overview.unsupportedVisitDau")} metric={limitations.visit_dau} />
         </div>
       </SectionCard>
 

@@ -27,22 +27,25 @@ import type {
 import { fetchLearning } from "../analytics.api";
 import { DataTable, MetricNotes, Num, RangeEcho, SectionCard, type Column } from "../charts";
 import { useAnalyticsFilters } from "../filters";
+import { useTr, type Tr } from "../i18n";
 
-/** Display names for the backend's stage codes. An unrecognised code falls
- * back to itself with the underscores opened up, so a stage the backend adds
- * later can never render blank. */
-const STAGE_LABELS: Record<string, string> = {
-  users: "All users in range",
-  lesson_started: "Started a lesson",
-  lesson_completed: "Completed a lesson",
-  quiz_started: "Started a quiz",
-  quiz_submitted: "Submitted a quiz",
-  quiz_passed: "Passed a quiz",
-  module_progressed: "Progressed a module",
-};
+/** The seven stage codes the backend emits. An unrecognised code falls
+ * back to itself with the underscores opened up, so a stage the backend
+ * adds later can never render blank. */
+const KNOWN_STAGES: readonly string[] = [
+  "users",
+  "lesson_started",
+  "lesson_completed",
+  "quiz_started",
+  "quiz_submitted",
+  "quiz_passed",
+  "module_progressed",
+];
 
-function stageLabel(stage: string): string {
-  return STAGE_LABELS[stage] ?? stage.replaceAll("_", " ");
+function stageLabel(stage: string, { t }: Tr): string {
+  return KNOWN_STAGES.includes(stage)
+    ? t(`tabs.learning.stage.${stage}` as "tabs.learning.stage.users")
+    : stage.replaceAll("_", " ");
 }
 
 /** One note by key, without assuming it is present. `notes` is an open
@@ -53,28 +56,39 @@ function noteText(notes: AdminAnalyticsNotes | undefined, key: string): string |
   return typeof value === "string" && value.length > 0 ? value : undefined;
 }
 
-const PLAN_COLUMNS: Array<Column<AdminLearningPlanRow>> = [
-  { key: "plan", header: "Plan", render: (row) => <Num>{row.plan}</Num> },
-  {
-    key: "started",
-    header: "Started a lesson",
-    align: "right",
-    render: (row) => <Num>{formatCount(row.lesson_started)}</Num>,
-  },
-  {
-    key: "completed",
-    header: "Completed a lesson",
-    align: "right",
-    render: (row) => <Num>{formatCount(row.lesson_completed)}</Num>,
-  },
-];
+function planColumns({ t }: Tr): Array<Column<AdminLearningPlanRow>> {
+  return [
+    { key: "plan", header: t("tabs.learning.colPlan"), render: (row) => <Num>{row.plan}</Num> },
+    {
+      key: "started",
+      header: t("tabs.learning.colStarted"),
+      align: "right",
+      render: (row) => <Num>{formatCount(row.lesson_started)}</Num>,
+    },
+    {
+      key: "completed",
+      header: t("tabs.learning.colCompleted"),
+      align: "right",
+      render: (row) => <Num>{formatCount(row.lesson_completed)}</Num>,
+    },
+  ];
+}
 
 /**
  * One row of the stage list. Every row's bar is drawn on the same 0–100
  * scale (`conversion_from_top_pct`), so the rows are comparable with each
  * other rather than reading as nested containers.
  */
-function FunnelStageRow({ stage, position }: { stage: AdminFunnelStage; position: number }) {
+function FunnelStageRow({
+  stage,
+  position,
+  tr,
+}: {
+  stage: AdminFunnelStage;
+  position: number;
+  tr: Tr;
+}) {
+  const { t, tf } = tr;
   return (
     <li className="grid gap-1.5">
       <div className="flex items-baseline justify-between gap-3 text-sm">
@@ -82,9 +96,11 @@ function FunnelStageRow({ stage, position }: { stage: AdminFunnelStage; position
           <span className="font-mono text-[10px] text-muted-foreground">
             {String(position).padStart(2, "0")}
           </span>
-          <span className="truncate">{stageLabel(stage.stage)}</span>
+          <span className="truncate">{stageLabel(stage.stage, tr)}</span>
         </span>
-        <span className="shrink-0 font-mono text-[13px]">{formatCount(stage.users)} users</span>
+        <span className="shrink-0 font-mono text-[13px]">
+          {tf("tabs.learning.usersCount", { count: formatCount(stage.users) })}
+        </span>
       </div>
       <div className="h-2 w-full overflow-hidden rounded-full bg-surface-3">
         <div
@@ -97,16 +113,16 @@ function FunnelStageRow({ stage, position }: { stage: AdminFunnelStage; position
         />
       </div>
       <div className="flex flex-wrap justify-between gap-x-4 text-[11px] text-muted-foreground">
-        <span>{formatPct(stage.conversion_from_top_pct)} of all users in range</span>
+        <span>{tf("tabs.learning.ofAllUsers", { pct: formatPct(stage.conversion_from_top_pct) })}</span>
         <span className="flex gap-x-3">
           <span>
-            From previous:{" "}
+            {t("tabs.learning.fromPrevious")}{" "}
             {stage.conversion_from_previous_pct === null
               ? "—"
               : formatPct(stage.conversion_from_previous_pct)}
           </span>
           <span>
-            Drop-off:{" "}
+            {t("tabs.learning.dropOff")}{" "}
             {stage.drop_off_from_previous_pct === null
               ? "—"
               : formatPct(stage.drop_off_from_previous_pct)}
@@ -119,6 +135,8 @@ function FunnelStageRow({ stage, position }: { stage: AdminFunnelStage; position
 
 export default function LearningTab() {
   const { params, rangeRejected } = useAnalyticsFilters();
+  const tr = useTr();
+  const { t } = tr;
 
   const learning = useQuery({
     queryKey: queryKeys.admin.analytics("learning", params),
@@ -129,14 +147,19 @@ export default function LearningTab() {
 
   if (rangeRejected) {
     return (
-      <p className="panel p-6 text-sm text-muted-foreground">
-        Adjust the date range above to load the learning stages.
-      </p>
+      <p className="panel p-6 text-sm text-muted-foreground">{t("common.adjustRangeLearning")}</p>
     );
   }
 
   if (learning.isError) {
-    return <ErrorState error={learning.error} onRetry={() => void learning.refetch()} />;
+    return (
+      <ErrorState
+        error={learning.error}
+        onRetry={() => void learning.refetch()}
+        explain={tr.errorCopy}
+        labels={{ retry: t("errors.retry"), reference: t("errors.reference") }}
+      />
+    );
   }
 
   if (learning.isPending) {
@@ -154,8 +177,8 @@ export default function LearningTab() {
   return (
     <div>
       <SectionCard
-        title="Learning stages"
-        description="Distinct users who performed each action in the selected window, drawn on one shared scale."
+        title={t("tabs.learning.stagesTitle")}
+        description={t("tabs.learning.stagesDescription")}
         action={<RangeEcho from={range.from} to={range.to} />}
       >
         {/* The backend's own statement of the non-nesting rule, placed beside
@@ -164,7 +187,7 @@ export default function LearningTab() {
         {stagesNote !== undefined && (
           <p className="mb-5 rounded-lg border-l-2 border-[var(--warning)] bg-surface-2/70 px-4 py-3 text-[13px] leading-relaxed text-foreground/85">
             <span className="mb-1 block font-mono text-[10px] tracking-[0.14em] text-[var(--warning)] uppercase">
-              Stages are not nested
+              {t("tabs.learning.notNestedLabel")}
             </span>
             {stagesNote}
           </p>
@@ -172,7 +195,7 @@ export default function LearningTab() {
 
         <ol className="grid gap-4">
           {funnel.map((stage, index) => (
-            <FunnelStageRow key={stage.stage} stage={stage} position={index + 1} />
+            <FunnelStageRow key={stage.stage} stage={stage} position={index + 1} tr={tr} />
           ))}
         </ol>
 
@@ -180,15 +203,15 @@ export default function LearningTab() {
       </SectionCard>
 
       <SectionCard
-        title="Started vs completed, by plan"
-        description="The two lesson stages split by the user's effective plan."
+        title={t("tabs.learning.byPlanTitle")}
+        description={t("tabs.learning.byPlanDescription")}
       >
         <DataTable
-          columns={PLAN_COLUMNS}
+          columns={planColumns(tr)}
           rows={byPlan}
           getRowKey={(row) => row.plan}
-          caption="Lesson starts and completions by plan"
-          emptyLabel="No plan rows in this range."
+          caption={t("tabs.learning.byPlanCaption")}
+          emptyLabel={t("tabs.learning.byPlanEmpty")}
           minWidth={560}
         />
       </SectionCard>

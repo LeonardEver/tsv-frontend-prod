@@ -23,7 +23,7 @@ import { useQuery } from "@tanstack/react-query";
 import { ErrorState } from "@/components/shared/ErrorState";
 import { queryKeys } from "@/lib/api/keys";
 import { formatCount } from "@/lib/format/format";
-import type { AdminEngagementBucket } from "@/lib/api/types";
+import type { AdminEngagementBucket, AdminGranularity } from "@/lib/api/types";
 import { fetchEngagement } from "../analytics.api";
 import {
   BarSeries,
@@ -37,57 +37,72 @@ import {
   type Column,
 } from "../charts";
 import { useAnalyticsFilters } from "../filters";
+import { useTr, type Tr } from "../i18n";
+
+type CounterKey = keyof Omit<AdminEngagementBucket, "bucket">;
 
 /** Every counter the endpoint pivots into a bucket, in the contract's own
  * order. The table renders all of them; the charts above deliberately
  * show a subset, so the table is what keeps the rest from being hidden. */
-const COUNTERS: ReadonlyArray<{
-  key: keyof Omit<AdminEngagementBucket, "bucket">;
-  header: string;
-}> = [
-  { key: "active_users", header: "Active users" },
-  { key: "lesson_completions", header: "Lessons completed" },
-  { key: "quiz_submissions", header: "Quiz submissions" },
-  { key: "lessons_started", header: "Lesson starts" },
-  { key: "lessons_completed_events", header: "Completion events" },
-  { key: "quizzes_started", header: "Quizzes started" },
-  { key: "quizzes_completed", header: "Quizzes completed" },
-  { key: "resource_downloads", header: "Downloads" },
-  { key: "community_posts", header: "Posts" },
-  { key: "community_comments", header: "Comments" },
-  { key: "community_votes", header: "Votes" },
-  { key: "xp_awarded", header: "XP awarded" },
-];
+function counters({ t }: Tr): ReadonlyArray<{ key: CounterKey; header: string }> {
+  return [
+    { key: "active_users", header: t("tabs.engagement.counterActiveUsers") },
+    { key: "lesson_completions", header: t("tabs.engagement.counterLessonCompletions") },
+    { key: "quiz_submissions", header: t("tabs.engagement.counterQuizSubmissions") },
+    { key: "lessons_started", header: t("tabs.engagement.counterLessonStarts") },
+    { key: "lessons_completed_events", header: t("tabs.engagement.counterCompletionEvents") },
+    { key: "quizzes_started", header: t("tabs.engagement.counterQuizzesStarted") },
+    { key: "quizzes_completed", header: t("tabs.engagement.counterQuizzesCompleted") },
+    { key: "resource_downloads", header: t("tabs.engagement.counterDownloads") },
+    { key: "community_posts", header: t("tabs.engagement.counterPosts") },
+    { key: "community_comments", header: t("tabs.engagement.counterComments") },
+    { key: "community_votes", header: t("tabs.engagement.counterVotes") },
+    { key: "xp_awarded", header: t("tabs.engagement.counterXpAwarded") },
+  ];
+}
 
-const COLUMNS: Array<Column<AdminEngagementBucket>> = [
-  { key: "bucket", header: "Bucket", render: (row) => <Num>{row.bucket}</Num> },
-  ...COUNTERS.map(
-    (counter): Column<AdminEngagementBucket> => ({
-      key: counter.key,
-      header: counter.header,
-      align: "right",
-      render: (row) => <Num>{formatCount(row[counter.key])}</Num>,
-    }),
-  ),
-];
+function columns(tr: Tr): Array<Column<AdminEngagementBucket>> {
+  const { t } = tr;
+  return [
+    { key: "bucket", header: t("tabs.community.colBucket"), render: (row) => <Num>{row.bucket}</Num> },
+    ...counters(tr).map(
+      (counter): Column<AdminEngagementBucket> => ({
+        key: counter.key,
+        header: counter.header,
+        align: "right",
+        render: (row) => <Num>{formatCount(row[counter.key])}</Num>,
+      }),
+    ),
+  ];
+}
 
 /** The counters worth looking at as a trend. Learning counters share the
  * ember accent; XP and the community counter keep their own. */
-const TRENDS: ReadonlyArray<{
-  key: keyof Omit<AdminEngagementBucket, "bucket">;
-  label: string;
-  color: string;
-}> = [
-  { key: "active_users", label: "Active users", color: "var(--ember)" },
-  { key: "lesson_completions", label: "Lessons completed", color: "var(--ember)" },
-  { key: "lessons_started", label: "Lesson starts", color: "var(--ember)" },
-  { key: "quiz_submissions", label: "Quiz submissions", color: "var(--ember)" },
-  { key: "xp_awarded", label: "XP awarded", color: "var(--cat-food)" },
-  { key: "community_posts", label: "Community posts", color: "var(--cat-water)" },
-];
+function trends({ t }: Tr): ReadonlyArray<{ key: CounterKey; label: string; color: string }> {
+  return [
+    { key: "active_users", label: t("tabs.engagement.counterActiveUsers"), color: "var(--ember)" },
+    { key: "lesson_completions", label: t("tabs.engagement.counterLessonCompletions"), color: "var(--ember)" },
+    { key: "lessons_started", label: t("tabs.engagement.counterLessonStarts"), color: "var(--ember)" },
+    { key: "quiz_submissions", label: t("tabs.engagement.counterQuizSubmissions"), color: "var(--ember)" },
+    { key: "xp_awarded", label: t("tabs.engagement.counterXpAwarded"), color: "var(--cat-food)" },
+    { key: "community_posts", label: t("tabs.engagement.trendCommunityPosts"), color: "var(--cat-water)" },
+  ];
+}
+
+/** The backend's bucket size, as a word the trend labels can use. */
+const GRANULARITY_LABEL: Record<
+  AdminGranularity,
+  "filters.granularityDay" | "filters.granularityWeek" | "filters.granularityMonth"
+> = {
+  day: "filters.granularityDay",
+  week: "filters.granularityWeek",
+  month: "filters.granularityMonth",
+};
 
 export default function EngagementTab() {
   const { seriesParams, rangeRejected } = useAnalyticsFilters();
+  const tr = useTr();
+  const { t, tf } = tr;
 
   const engagement = useQuery({
     queryKey: queryKeys.admin.analytics("engagement", seriesParams),
@@ -97,15 +112,18 @@ export default function EngagementTab() {
   });
 
   if (rangeRejected) {
-    return (
-      <p className="panel p-6 text-sm text-muted-foreground">
-        Adjust the date range above to load these metrics.
-      </p>
-    );
+    return <p className="panel p-6 text-sm text-muted-foreground">{t("common.adjustRange")}</p>;
   }
 
   if (engagement.isError) {
-    return <ErrorState error={engagement.error} onRetry={() => void engagement.refetch()} />;
+    return (
+      <ErrorState
+        error={engagement.error}
+        onRetry={() => void engagement.refetch()}
+        explain={tr.errorCopy}
+        labels={{ retry: t("errors.retry"), reference: t("errors.reference") }}
+      />
+    );
   }
 
   if (engagement.isPending) {
@@ -126,70 +144,90 @@ export default function EngagementTab() {
   return (
     <div>
       <SectionCard
-        title="Active users"
-        description="Two different populations, counted independently. They overlap, so the two figures are not added together."
+        title={t("tabs.engagement.activeUsersTitle")}
+        description={t("tabs.engagement.activeUsersDescription")}
         action={<RangeEcho from={range.from} to={range.to} />}
       >
         <div className="grid gap-3 sm:grid-cols-2">
           <KpiTile
-            label="Learning-active users"
+            label={t("tabs.engagement.kpiLearningActiveUsers")}
             value={formatCount(totals.learning_active_users)}
-            hint="Completed a lesson or submitted a quiz"
+            hint={t("tabs.engagement.kpiLearningActiveHint")}
           />
           <KpiTile
-            label="Community-active users"
+            label={t("tabs.engagement.kpiCommunityActiveUsers")}
             value={formatCount(totals.community_active_users)}
-            hint="Posted, commented or voted"
+            hint={t("tabs.engagement.kpiCommunityActiveHint")}
           />
         </div>
       </SectionCard>
 
       <SectionCard
-        title="Activity totals"
-        description="Totals for the selected window. All three come from learning activity — none of them describe the community."
+        title={t("tabs.engagement.activityTotalsTitle")}
+        description={t("tabs.engagement.activityTotalsDescription")}
       >
         <div className="grid gap-3 sm:grid-cols-3">
           <KpiTile
-            label="Active days"
+            label={t("tabs.engagement.kpiActiveDays")}
             value={formatCount(totals.active_days)}
-            hint="User-days with learning activity"
+            hint={t("tabs.engagement.kpiActiveDaysHint")}
           />
           <KpiTile
-            label="Lessons completed"
+            label={t("tabs.engagement.kpiLessonsCompleted")}
             value={formatCount(totals.lesson_completions)}
-            hint="Accepted completions, not retry-inflated"
+            hint={t("tabs.engagement.kpiLessonsCompletedHint")}
           />
-          <KpiTile label="Quiz submissions" value={formatCount(totals.quiz_submissions)} />
-        </div>
-      </SectionCard>
-
-      <SectionCard title="Activity windows" description="Measured as of the end of the selected range.">
-        <div className="grid gap-3 sm:grid-cols-3">
-          <KpiTile label="DAU" value={formatCount(windows.dau)} hint="Active on the final day" />
-          <KpiTile label="WAU" value={formatCount(windows.wau)} hint="Active in the trailing 7 days" />
-          <KpiTile label="MAU" value={formatCount(windows.mau)} hint="Active in the trailing 30 days" />
+          <KpiTile
+            label={t("tabs.engagement.kpiQuizSubmissions")}
+            value={formatCount(totals.quiz_submissions)}
+          />
         </div>
       </SectionCard>
 
       <SectionCard
-        title="Activity by bucket"
-        description="Active users in each bucket of the range, with the most-used counters trending beneath. A bucket with no activity is drawn as a faint stub, not as a gap."
+        title={t("tabs.engagement.windowsTitle")}
+        description={t("tabs.engagement.windowsDescription")}
+      >
+        <div className="grid gap-3 sm:grid-cols-3">
+          <KpiTile
+            label={t("tabs.engagement.dau")}
+            value={formatCount(windows.dau)}
+            hint={t("tabs.engagement.dauHint")}
+          />
+          <KpiTile
+            label={t("tabs.engagement.wau")}
+            value={formatCount(windows.wau)}
+            hint={t("tabs.engagement.wauHint")}
+          />
+          <KpiTile
+            label={t("tabs.engagement.mau")}
+            value={formatCount(windows.mau)}
+            hint={t("tabs.engagement.mauHint")}
+          />
+        </div>
+      </SectionCard>
+
+      <SectionCard
+        title={t("tabs.engagement.byBucketTitle")}
+        description={t("tabs.engagement.byBucketDescription")}
       >
         <BarSeries
           data={series}
           valueOf={(row) => row.active_users}
           labelOf={(row) => row.bucket}
-          ariaLabel={`Active users per ${granularity}`}
+          ariaLabel={tf("tabs.engagement.activePerBucketAria", {
+            granularity: t(GRANULARITY_LABEL[granularity as AdminGranularity]),
+          })}
         />
         <div className="mt-5 grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
-          {TRENDS.map((trend) => (
+          {trends(tr).map((trend) => (
             <div key={trend.key} className="panel-2 p-4">
               <p className="eyebrow">{trend.label}</p>
               <div className="mt-2">
                 <Sparkline
                   data={series}
                   valueOf={(row) => row[trend.key]}
-                  ariaLabel={`${trend.label} per bucket`}
+                  ariaLabel={tf("tabs.engagement.trendPerBucketAria", { label: trend.label })}
                   color={trend.color}
                   width={220}
                 />
@@ -200,23 +238,22 @@ export default function EngagementTab() {
       </SectionCard>
 
       <SectionCard
-        title="Every counter, per bucket"
-        description="All thirteen counters for every bucket, exactly as returned — including the ones the trends above do not chart."
+        title={t("tabs.engagement.allCountersTitle")}
+        description={t("tabs.engagement.allCountersDescription")}
       >
         <DataTable
-          columns={COLUMNS}
+          columns={columns(tr)}
           rows={series}
           getRowKey={(row) => row.bucket}
-          caption="Engagement counters per bucket"
-          emptyLabel="No buckets in this range."
+          caption={t("tabs.engagement.allCountersCaption")}
+          emptyLabel={t("tabs.engagement.allCountersEmpty")}
           minWidth={1240}
         />
         {/* Orientation for one column only: starts are a younger signal
             than completions, and the endpoint's notes do not carry a
             per-column label for it. */}
         <p className="mt-4 text-[13px] text-muted-foreground">
-          Lesson starts are recorded only from the date the lesson-start instrumentation shipped —
-          buckets before that undercount them.
+          {t("tabs.engagement.lessonStartsNote")}
         </p>
       </SectionCard>
 

@@ -18,7 +18,7 @@ import { useQuery } from "@tanstack/react-query";
 import { ErrorState } from "@/components/shared/ErrorState";
 import { cn } from "@/components/sa/primitives";
 import { queryKeys } from "@/lib/api/keys";
-import { formatCount, formatDifficulty, formatPct } from "@/lib/format/format";
+import { formatCount, formatPct } from "@/lib/format/format";
 import type {
   AdminWeakKnowledgeItemRow,
   AdminWeakObjectiveRow,
@@ -27,19 +27,21 @@ import type {
 import { fetchKnowledgeGaps } from "../analytics.api";
 import { DataTable, MetricNotes, Num, RangeEcho, SectionCard, type Column } from "../charts";
 import { useAnalyticsFilters } from "../filters";
+import { useTr, type Tr } from "../i18n";
 
 const LIMIT_OPTIONS = [10, 25, 50, 100] as const;
 
 const controlClass =
   "h-9 rounded-lg border border-border bg-surface-2/70 px-2 text-[13px] text-foreground outline-none focus:border-primary/50";
 
-/** `formatDifficulty` falls back to "Beginner" for a code it does not know;
- * that fallback would misreport the value, so anything outside the enum is
- * shown exactly as sent. */
+/** The difficulty enum, in display form; a code outside it (module rows can
+ * carry "unknown") is shown exactly as sent rather than approximated. */
 const KNOWN_DIFFICULTIES: readonly string[] = ["beginner", "intermediate", "advanced"];
 
-function difficultyLabel(value: string): string {
-  return KNOWN_DIFFICULTIES.includes(value) ? formatDifficulty(value) : value;
+function difficultyLabel(value: string, { t }: Tr): string {
+  return KNOWN_DIFFICULTIES.includes(value)
+    ? t(`tabs.content.knownDifficulty.${value}` as "tabs.content.knownDifficulty.beginner")
+    : value;
 }
 
 /** Local twin of the filter bar's private control shell. */
@@ -54,156 +56,166 @@ function Labelled({ label, children }: { label: string; children: ReactNode }) {
   );
 }
 
-const OBJECTIVE_COLUMNS: Array<Column<AdminWeakObjectiveRow>> = [
-  {
-    key: "objective",
-    header: "Learning objective",
-    render: (row) => (
-      <>
-        <span className="font-medium">{row.lo_label}</span>
-        <span className="block max-w-[26rem] truncate text-[11px] text-muted-foreground">
-          {row.description}
-        </span>
-        <span className="block font-mono text-[11px] text-muted-foreground">{row.lo_global_id}</span>
-      </>
-    ),
-  },
-  {
-    key: "where",
-    header: "Taught in",
-    render: (row) => (
-      <>
-        <span>{row.lesson_title}</span>
-        <span className="block text-[11px] text-muted-foreground">{row.module_title}</span>
-        <span className="block font-mono text-[11px] text-muted-foreground">{row.lesson_id}</span>
-      </>
-    ),
-  },
-  { key: "category", header: "Category", render: (row) => <Num muted>{row.category}</Num> },
-  {
-    key: "attempts",
-    header: "Answers",
-    align: "right",
-    render: (row) => <Num>{formatCount(row.attempts)}</Num>,
-  },
-  {
-    key: "correct",
-    header: "Correct",
-    align: "right",
-    render: (row) => <Num>{formatCount(row.correct)}</Num>,
-  },
-  {
-    key: "accuracy",
-    header: "Accuracy",
-    align: "right",
-    render: (row) => <Num>{formatPct(row.accuracy)}</Num>,
-  },
-  {
-    key: "users",
-    header: "Users",
-    align: "right",
-    render: (row) => <Num>{formatCount(row.users)}</Num>,
-  },
-];
+function objectiveColumns({ t }: Tr): Array<Column<AdminWeakObjectiveRow>> {
+  return [
+    {
+      key: "objective",
+      header: t("tabs.gaps.colObjective"),
+      render: (row) => (
+        <>
+          <span className="font-medium">{row.lo_label}</span>
+          <span className="block max-w-[26rem] truncate text-[11px] text-muted-foreground">
+            {row.description}
+          </span>
+          <span className="block font-mono text-[11px] text-muted-foreground">{row.lo_global_id}</span>
+        </>
+      ),
+    },
+    {
+      key: "where",
+      header: t("tabs.gaps.colTaughtIn"),
+      render: (row) => (
+        <>
+          <span>{row.lesson_title}</span>
+          <span className="block text-[11px] text-muted-foreground">{row.module_title}</span>
+          <span className="block font-mono text-[11px] text-muted-foreground">{row.lesson_id}</span>
+        </>
+      ),
+    },
+    { key: "category", header: t("tabs.gaps.colCategory"), render: (row) => <Num muted>{row.category}</Num> },
+    {
+      key: "attempts",
+      header: t("tabs.gaps.colAnswers"),
+      align: "right",
+      render: (row) => <Num>{formatCount(row.attempts)}</Num>,
+    },
+    {
+      key: "correct",
+      header: t("tabs.gaps.colCorrect"),
+      align: "right",
+      render: (row) => <Num>{formatCount(row.correct)}</Num>,
+    },
+    {
+      key: "accuracy",
+      header: t("tabs.gaps.colAccuracy"),
+      align: "right",
+      render: (row) => <Num>{formatPct(row.accuracy)}</Num>,
+    },
+    {
+      key: "users",
+      header: t("tabs.gaps.colUsers"),
+      align: "right",
+      render: (row) => <Num>{formatCount(row.users)}</Num>,
+    },
+  ];
+}
 
-const QUESTION_COLUMNS: Array<Column<AdminWeakQuestionRow>> = [
-  {
-    key: "question",
-    header: "Question",
-    render: (row) => (
-      <>
-        <span className="font-medium">{row.question_text}</span>
-        <span className="block font-mono text-[11px] text-muted-foreground">{row.question_id}</span>
-      </>
-    ),
-  },
-  {
-    key: "difficulty",
-    header: "Difficulty",
-    render: (row) => <Num muted>{difficultyLabel(row.difficulty)}</Num>,
-  },
-  {
-    key: "quiz",
-    header: "Asked in",
-    render: (row) => (
-      <>
-        <span>{row.quiz_title}</span>
-        <span className="block font-mono text-[11px] text-muted-foreground">{row.quiz_id}</span>
-        <span className="block font-mono text-[11px] text-muted-foreground">{row.module_id}</span>
-      </>
-    ),
-  },
-  {
-    key: "attempts",
-    header: "Answers",
-    align: "right",
-    render: (row) => <Num>{formatCount(row.attempts)}</Num>,
-  },
-  {
-    key: "correct",
-    header: "Correct",
-    align: "right",
-    render: (row) => <Num>{formatCount(row.correct)}</Num>,
-  },
-  {
-    key: "accuracy",
-    header: "Accuracy",
-    align: "right",
-    render: (row) => <Num>{formatPct(row.accuracy)}</Num>,
-  },
-  {
-    key: "users",
-    header: "Users",
-    align: "right",
-    render: (row) => <Num>{formatCount(row.users)}</Num>,
-  },
-];
+function questionColumns(tr: Tr): Array<Column<AdminWeakQuestionRow>> {
+  const { t } = tr;
+  return [
+    {
+      key: "question",
+      header: t("tabs.gaps.colQuestion"),
+      render: (row) => (
+        <>
+          <span className="font-medium">{row.question_text}</span>
+          <span className="block font-mono text-[11px] text-muted-foreground">{row.question_id}</span>
+        </>
+      ),
+    },
+    {
+      key: "difficulty",
+      header: t("tabs.gaps.colDifficulty"),
+      render: (row) => <Num muted>{difficultyLabel(row.difficulty, tr)}</Num>,
+    },
+    {
+      key: "quiz",
+      header: t("tabs.gaps.colAskedIn"),
+      render: (row) => (
+        <>
+          <span>{row.quiz_title}</span>
+          <span className="block font-mono text-[11px] text-muted-foreground">{row.quiz_id}</span>
+          <span className="block font-mono text-[11px] text-muted-foreground">{row.module_id}</span>
+        </>
+      ),
+    },
+    {
+      key: "attempts",
+      header: t("tabs.gaps.colAnswers"),
+      align: "right",
+      render: (row) => <Num>{formatCount(row.attempts)}</Num>,
+    },
+    {
+      key: "correct",
+      header: t("tabs.gaps.colCorrect"),
+      align: "right",
+      render: (row) => <Num>{formatCount(row.correct)}</Num>,
+    },
+    {
+      key: "accuracy",
+      header: t("tabs.gaps.colAccuracy"),
+      align: "right",
+      render: (row) => <Num>{formatPct(row.accuracy)}</Num>,
+    },
+    {
+      key: "users",
+      header: t("tabs.gaps.colUsers"),
+      align: "right",
+      render: (row) => <Num>{formatCount(row.users)}</Num>,
+    },
+  ];
+}
 
-const KNOWLEDGE_COLUMNS: Array<Column<AdminWeakKnowledgeItemRow>> = [
-  {
-    key: "item",
-    header: "Knowledge item",
-    render: (row) => (
-      <>
-        <span className="font-medium">{row.title}</span>
-        <span className="block font-mono text-[11px] text-muted-foreground">{row.knowledge_id}</span>
-      </>
-    ),
-  },
-  { key: "category", header: "Category", render: (row) => <Num muted>{row.category}</Num> },
-  {
-    key: "difficulty",
-    header: "Difficulty",
-    render: (row) => <Num muted>{difficultyLabel(row.difficulty)}</Num>,
-  },
-  {
-    key: "attempts",
-    header: "Answers",
-    align: "right",
-    render: (row) => <Num>{formatCount(row.attempts)}</Num>,
-  },
-  {
-    key: "correct",
-    header: "Correct",
-    align: "right",
-    render: (row) => <Num>{formatCount(row.correct)}</Num>,
-  },
-  {
-    key: "accuracy",
-    header: "Accuracy",
-    align: "right",
-    render: (row) => <Num>{formatPct(row.accuracy)}</Num>,
-  },
-  {
-    key: "users",
-    header: "Users",
-    align: "right",
-    render: (row) => <Num>{formatCount(row.users)}</Num>,
-  },
-];
+function knowledgeColumns(tr: Tr): Array<Column<AdminWeakKnowledgeItemRow>> {
+  const { t } = tr;
+  return [
+    {
+      key: "item",
+      header: t("tabs.gaps.colKnowledgeItem"),
+      render: (row) => (
+        <>
+          <span className="font-medium">{row.title}</span>
+          <span className="block font-mono text-[11px] text-muted-foreground">{row.knowledge_id}</span>
+        </>
+      ),
+    },
+    { key: "category", header: t("tabs.gaps.colCategory"), render: (row) => <Num muted>{row.category}</Num> },
+    {
+      key: "difficulty",
+      header: t("tabs.gaps.colDifficulty"),
+      render: (row) => <Num muted>{difficultyLabel(row.difficulty, tr)}</Num>,
+    },
+    {
+      key: "attempts",
+      header: t("tabs.gaps.colAnswers"),
+      align: "right",
+      render: (row) => <Num>{formatCount(row.attempts)}</Num>,
+    },
+    {
+      key: "correct",
+      header: t("tabs.gaps.colCorrect"),
+      align: "right",
+      render: (row) => <Num>{formatCount(row.correct)}</Num>,
+    },
+    {
+      key: "accuracy",
+      header: t("tabs.gaps.colAccuracy"),
+      align: "right",
+      render: (row) => <Num>{formatPct(row.accuracy)}</Num>,
+    },
+    {
+      key: "users",
+      header: t("tabs.gaps.colUsers"),
+      align: "right",
+      render: (row) => <Num>{formatCount(row.users)}</Num>,
+    },
+  ];
+}
 
 export default function GapsTab() {
   const { params, rangeRejected } = useAnalyticsFilters();
+  const tr = useTr();
+  const { t, tf } = tr;
   const [minSample, setMinSample] = useState(5);
   const [limit, setLimit] = useState(25);
 
@@ -215,15 +227,18 @@ export default function GapsTab() {
   });
 
   if (rangeRejected) {
-    return (
-      <p className="panel p-6 text-sm text-muted-foreground">
-        Adjust the date range above to load the knowledge gaps.
-      </p>
-    );
+    return <p className="panel p-6 text-sm text-muted-foreground">{t("common.adjustRangeGaps")}</p>;
   }
 
   if (gaps.isError) {
-    return <ErrorState error={gaps.error} onRetry={() => void gaps.refetch()} />;
+    return (
+      <ErrorState
+        error={gaps.error}
+        onRetry={() => void gaps.refetch()}
+        explain={tr.errorCopy}
+        labels={{ retry: t("errors.retry"), reference: t("errors.reference") }}
+      />
+    );
   }
 
   if (gaps.isPending) {
@@ -248,11 +263,11 @@ export default function GapsTab() {
   return (
     <div>
       <SectionCard
-        title="Weakest objectives"
-        description="Lowest accuracy first, exactly as the backend orders them."
+        title={t("tabs.gaps.weakestObjectivesTitle")}
+        description={t("tabs.gaps.lowestAccuracyFirst")}
         action={
           <div className="flex flex-wrap items-end gap-x-3 gap-y-2">
-            <Labelled label="Min answers">
+            <Labelled label={t("tabs.gaps.minAnswers")}>
               <input
                 type="number"
                 min={1}
@@ -266,7 +281,7 @@ export default function GapsTab() {
               />
             </Labelled>
 
-            <Labelled label="Rows per list">
+            <Labelled label={t("tabs.gaps.rowsPerList")}>
               <select
                 value={String(limit)}
                 onChange={(event) => {
@@ -289,43 +304,43 @@ export default function GapsTab() {
         {/* The floor the server actually applied, echoed back on the response
             rather than assumed from the control. */}
         <p className="mb-3 text-[13px] text-muted-foreground">
-          Floor in effect: {formatCount(resolvedMinSample)} answers per row.
+          {tf("tabs.gaps.floorInEffect", { floor: formatCount(resolvedMinSample) })}
         </p>
 
         <DataTable
-          columns={OBJECTIVE_COLUMNS}
+          columns={objectiveColumns(tr)}
           rows={objectives}
           getRowKey={(row) => `${row.lo_id}-${row.lesson_id}`}
-          caption="Weakest learning objectives by accuracy"
-          emptyLabel="No objective clears the sample floor in this range."
+          caption={t("tabs.gaps.objectivesCaption")}
+          emptyLabel={t("tabs.gaps.objectivesEmpty")}
           minWidth={1080}
         />
       </SectionCard>
 
       <SectionCard
-        title="Weakest questions"
-        description="Lowest accuracy first, exactly as the backend orders them."
+        title={t("tabs.gaps.weakestQuestionsTitle")}
+        description={t("tabs.gaps.lowestAccuracyFirst")}
       >
         <DataTable
-          columns={QUESTION_COLUMNS}
+          columns={questionColumns(tr)}
           rows={questions}
           getRowKey={(row) => row.question_db_id}
-          caption="Weakest quiz questions by accuracy"
-          emptyLabel="No question clears the sample floor in this range."
+          caption={t("tabs.gaps.questionsCaption")}
+          emptyLabel={t("tabs.gaps.questionsEmpty")}
           minWidth={1040}
         />
       </SectionCard>
 
       <SectionCard
-        title="Weakest knowledge items"
-        description="Lowest accuracy first, exactly as the backend orders them."
+        title={t("tabs.gaps.weakestItemsTitle")}
+        description={t("tabs.gaps.lowestAccuracyFirst")}
       >
         <DataTable
-          columns={KNOWLEDGE_COLUMNS}
+          columns={knowledgeColumns(tr)}
           rows={items}
           getRowKey={(row) => row.knowledge_db_id}
-          caption="Weakest knowledge items by accuracy"
-          emptyLabel="No knowledge item clears the sample floor in this range."
+          caption={t("tabs.gaps.itemsCaption")}
+          emptyLabel={t("tabs.gaps.itemsEmpty")}
           minWidth={900}
         />
 

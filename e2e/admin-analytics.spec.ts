@@ -202,6 +202,30 @@ test.describe("admin analytics", () => {
     await expect(page.getByText("25.00%", { exact: true })).toBeVisible();
   });
 
+  test("the console switches to Portuguese without touching the API's own wording", async ({
+    page,
+  }) => {
+    mockSession(page, true);
+    await page.goto("/admin/analytics");
+
+    await expect(page.getByText(/total users/i)).toBeVisible();
+
+    await page.getByRole("group", { name: "Language" }).getByRole("button", { name: "PT" }).click();
+
+    await expect(page.getByRole("heading", { name: /analytics de produto/i })).toBeVisible();
+    await expect(page.getByText(/usuários totais/i)).toBeVisible();
+    // The backend's own explanation of "active" survives the switch.
+    await expect(page.getByText(/learning activity, not visits/i)).toBeVisible();
+    // And the English chrome is genuinely replaced, not merely joined.
+    await expect(page.getByRole("heading", { name: /^product analytics$/i })).toHaveCount(0);
+
+    // The preference is device-scoped, so a reload keeps it (the choice is
+    // made once in this console, not re-made on every visit).
+    await page.reload();
+    await expect(page.getByRole("heading", { name: /analytics de produto/i })).toBeVisible();
+    await expect(page.getByRole("button", { name: "PT" })).toHaveAttribute("aria-pressed", "true");
+  });
+
   test("a series range beyond the documented limit is refused before the request", async ({ page }) => {
     mockSession(page, true);
     const engagement: string[] = [];

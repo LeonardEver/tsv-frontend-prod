@@ -36,53 +36,60 @@ import {
   type Column,
 } from "../charts";
 import { useAnalyticsFilters } from "../filters";
+import { useTr, type Tr } from "../i18n";
 
-const SERIES_COLUMNS: Array<Column<AdminCommunityBucket>> = [
-  { key: "bucket", header: "Bucket", render: (row) => <Num>{row.bucket}</Num> },
-  {
-    key: "posts",
-    header: "Posts",
-    align: "right",
-    render: (row) => <Num>{formatCount(row.posts)}</Num>,
-  },
-  {
-    key: "comments",
-    header: "Comments",
-    align: "right",
-    render: (row) => <Num>{formatCount(row.comments)}</Num>,
-  },
-  {
-    key: "votes",
-    header: "Votes",
-    align: "right",
-    render: (row) => <Num>{formatCount(row.votes)}</Num>,
-  },
-];
+function seriesColumns({ t }: Tr): Array<Column<AdminCommunityBucket>> {
+  return [
+    { key: "bucket", header: t("tabs.community.colBucket"), render: (row) => <Num>{row.bucket}</Num> },
+    {
+      key: "posts",
+      header: t("tabs.community.colPosts"),
+      align: "right",
+      render: (row) => <Num>{formatCount(row.posts)}</Num>,
+    },
+    {
+      key: "comments",
+      header: t("tabs.community.colComments"),
+      align: "right",
+      render: (row) => <Num>{formatCount(row.comments)}</Num>,
+    },
+    {
+      key: "votes",
+      header: t("tabs.community.colVotes"),
+      align: "right",
+      render: (row) => <Num>{formatCount(row.votes)}</Num>,
+    },
+  ];
+}
 
-const PLAN_COLUMNS: Array<Column<AdminCommunityPlanRow>> = [
-  { key: "plan", header: "Plan", render: (row) => <Num>{row.plan}</Num> },
-  {
-    key: "authors",
-    header: "Authors",
-    align: "right",
-    render: (row) => <Num>{formatCount(row.authors)}</Num>,
-  },
-  {
-    key: "posts",
-    header: "Posts",
-    align: "right",
-    render: (row) => <Num>{formatCount(row.posts)}</Num>,
-  },
-  {
-    key: "comments",
-    header: "Comments",
-    align: "right",
-    render: (row) => <Num>{formatCount(row.comments)}</Num>,
-  },
-];
+function planColumns({ t }: Tr): Array<Column<AdminCommunityPlanRow>> {
+  return [
+    { key: "plan", header: t("tabs.community.colPlan"), render: (row) => <Num>{row.plan}</Num> },
+    {
+      key: "authors",
+      header: t("tabs.community.colAuthors"),
+      align: "right",
+      render: (row) => <Num>{formatCount(row.authors)}</Num>,
+    },
+    {
+      key: "posts",
+      header: t("tabs.community.colPosts"),
+      align: "right",
+      render: (row) => <Num>{formatCount(row.posts)}</Num>,
+    },
+    {
+      key: "comments",
+      header: t("tabs.community.colComments"),
+      align: "right",
+      render: (row) => <Num>{formatCount(row.comments)}</Num>,
+    },
+  ];
+}
 
 export default function CommunityTab() {
   const { seriesParams, rangeRejected } = useAnalyticsFilters();
+  const tr = useTr();
+  const { t } = tr;
 
   const community = useQuery({
     queryKey: queryKeys.admin.analytics("community", seriesParams),
@@ -92,15 +99,18 @@ export default function CommunityTab() {
   });
 
   if (rangeRejected) {
-    return (
-      <p className="panel p-6 text-sm text-muted-foreground">
-        Adjust the date range above to load these metrics.
-      </p>
-    );
+    return <p className="panel p-6 text-sm text-muted-foreground">{t("common.adjustRange")}</p>;
   }
 
   if (community.isError) {
-    return <ErrorState error={community.error} onRetry={() => void community.refetch()} />;
+    return (
+      <ErrorState
+        error={community.error}
+        onRetry={() => void community.refetch()}
+        explain={tr.errorCopy}
+        labels={{ retry: t("errors.retry"), reference: t("errors.reference") }}
+      />
+    );
   }
 
   if (community.isPending) {
@@ -122,82 +132,94 @@ export default function CommunityTab() {
   return (
     <div>
       <SectionCard
-        title="Community activity"
-        description="Row counts for every action in range — one row per event, not one per person."
+        title={t("tabs.community.activityTitle")}
+        description={t("tabs.community.activityDescription")}
         action={<RangeEcho from={range.from} to={range.to} />}
       >
         <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-5">
-          <KpiTile label="Posts" value={formatCount(totals.posts)} />
-          <KpiTile label="Comments" value={formatCount(totals.comments)} />
-          <KpiTile label="Votes" value={formatCount(totals.votes)} hint="Upvote only" />
+          <KpiTile label={t("tabs.community.kpiPosts")} value={formatCount(totals.posts)} />
+          <KpiTile label={t("tabs.community.kpiComments")} value={formatCount(totals.comments)} />
           <KpiTile
-            label="Reports"
-            value={formatCount(totals.reports)}
-            hint="Unique per reporter and target"
+            label={t("tabs.community.kpiVotes")}
+            value={formatCount(totals.votes)}
+            hint={t("tabs.community.kpiVotesHint")}
           />
           <KpiTile
-            label="Active users"
+            label={t("tabs.community.kpiReports")}
+            value={formatCount(totals.reports)}
+            hint={t("tabs.community.kpiReportsHint")}
+          />
+          <KpiTile
+            label={t("tabs.community.kpiActiveUsers")}
             value={formatCount(totals.active_users)}
-            hint="Posted, commented or voted"
+            hint={t("tabs.community.kpiActiveUsersHint")}
           />
         </div>
       </SectionCard>
 
       <SectionCard
-        title="Distinct authors"
-        description="People, not rows. Someone who posted five times is one author here and five posts in the panel above."
+        title={t("tabs.community.authorsTitle")}
+        description={t("tabs.community.authorsDescription")}
       >
         <div className="grid gap-3 sm:grid-cols-3">
-          <KpiTile label="Post authors" value={formatCount(authors.posts)} hint="Distinct people" />
           <KpiTile
-            label="Comment authors"
-            value={formatCount(authors.comments)}
-            hint="Distinct people"
+            label={t("tabs.community.kpiPostAuthors")}
+            value={formatCount(authors.posts)}
+            hint={t("tabs.community.distinctPeople")}
           />
-          <KpiTile label="Vote authors" value={formatCount(authors.votes)} hint="Distinct people" />
+          <KpiTile
+            label={t("tabs.community.kpiCommentAuthors")}
+            value={formatCount(authors.comments)}
+            hint={t("tabs.community.distinctPeople")}
+          />
+          <KpiTile
+            label={t("tabs.community.kpiVoteAuthors")}
+            value={formatCount(authors.votes)}
+            hint={t("tabs.community.distinctPeople")}
+          />
         </div>
       </SectionCard>
 
       <SectionCard
-        title="Posts by bucket"
-        description="Posts created in each bucket of the range, with the comments and votes recorded alongside them."
+        title={t("tabs.community.byBucketTitle")}
+        description={t("tabs.community.byBucketDescription")}
       >
         <BarSeries
           data={series}
           valueOf={(row) => row.posts}
           labelOf={(row) => row.bucket}
-          ariaLabel="Community posts per bucket"
+          ariaLabel={t("tabs.community.byBucketAria")}
           color="var(--cat-water)"
         />
         <div className="mt-5">
           <DataTable
-            columns={SERIES_COLUMNS}
+            columns={seriesColumns(tr)}
             rows={series}
             getRowKey={(row) => row.bucket}
-            caption="Community rows per bucket"
-            emptyLabel="No buckets in this range."
+            caption={t("tabs.community.byBucketCaption")}
+            emptyLabel={t("tabs.community.byBucketEmpty")}
           />
         </div>
       </SectionCard>
 
       <SectionCard
-        title="By plan"
-        description="Posts and comments attributed to the plan of their author. Votes are not broken down by plan."
+        title={t("tabs.community.byPlanTitle")}
+        description={t("tabs.community.byPlanDescription")}
       >
         <HBars
           rows={byPlan}
           labelOf={(row) => row.plan}
           valueOf={(row) => row.posts}
-          ariaLabel="Posts per plan"
+          ariaLabel={t("tabs.community.byPlanAria")}
           color="var(--cat-water)"
         />
         <div className="mt-5">
           <DataTable
-            columns={PLAN_COLUMNS}
+            columns={planColumns(tr)}
             rows={byPlan}
             getRowKey={(row) => row.plan}
-            caption="Community activity by plan"
-            emptyLabel="No plans to break down for this range."
+            caption={t("tabs.community.byPlanCaption")}
+            emptyLabel={t("tabs.community.byPlanEmpty")}
           />
         </div>
       </SectionCard>

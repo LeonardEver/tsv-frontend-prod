@@ -14,35 +14,67 @@
  * The filter bar and tab strip are shared by all twelve sections; each
  * section is its own route so only the endpoints that section needs are
  * ever requested.
+ *
+ * This is the app's only locale-aware surface. The language switch sits in
+ * the page header and every string below it comes from `dictionary.ts`;
+ * `LangSync` keeps the document's `lang` attribute honest.
  */
-import { Suspense } from "react";
+import { Suspense, useEffect } from "react";
 import { NavLink, Outlet, useLocation } from "react-router";
 import { PageHeader } from "@/components/layout/AppShell";
 import { cn, EmptyState } from "@/components/sa/primitives";
 import { AnalyticsFilterBar } from "./AnalyticsFilterBar";
 import { isSeriesPath } from "./filters";
+import { useTr } from "./i18n";
+import { LanguageToggle } from "./LanguageToggle";
 import { useAdminAccess } from "./use-admin-access";
 
-const TABS: ReadonlyArray<{ to: string; label: string; end?: boolean }> = [
-  { to: "/admin/analytics", label: "Overview", end: true },
-  { to: "/admin/analytics/users", label: "Users" },
-  { to: "/admin/analytics/engagement", label: "Engagement" },
-  { to: "/admin/analytics/learning", label: "Funnel" },
-  { to: "/admin/analytics/content", label: "Content" },
-  { to: "/admin/analytics/gaps", label: "Knowledge gaps" },
-  { to: "/admin/analytics/stalled", label: "Stalled" },
-  { to: "/admin/analytics/retention", label: "Retention" },
-  { to: "/admin/analytics/community", label: "Community" },
-  { to: "/admin/analytics/gamification", label: "Gamification" },
-  { to: "/admin/analytics/billing", label: "Billing" },
-  { to: "/admin/analytics/geography", label: "Geography" },
+/** One per section route; the tab id doubles as its dictionary key. */
+type TabId =
+  | "overview"
+  | "users"
+  | "engagement"
+  | "learning"
+  | "content"
+  | "gaps"
+  | "stalled"
+  | "retention"
+  | "community"
+  | "gamification"
+  | "billing"
+  | "geography";
+
+const TABS: ReadonlyArray<{ to: string; id: TabId; end?: boolean }> = [
+  { to: "/admin/analytics", id: "overview", end: true },
+  { to: "/admin/analytics/users", id: "users" },
+  { to: "/admin/analytics/engagement", id: "engagement" },
+  { to: "/admin/analytics/learning", id: "learning" },
+  { to: "/admin/analytics/content", id: "content" },
+  { to: "/admin/analytics/gaps", id: "gaps" },
+  { to: "/admin/analytics/stalled", id: "stalled" },
+  { to: "/admin/analytics/retention", id: "retention" },
+  { to: "/admin/analytics/community", id: "community" },
+  { to: "/admin/analytics/gamification", id: "gamification" },
+  { to: "/admin/analytics/billing", id: "billing" },
+  { to: "/admin/analytics/geography", id: "geography" },
 ];
+
+/** The whole console is rendered in the selected language, so the
+ * document says so. Scoped to this subtree: nothing else translates. */
+function LangSync() {
+  const { language } = useTr();
+  useEffect(() => {
+    document.documentElement.lang = language;
+  }, [language]);
+  return null;
+}
 
 function AdminAnalyticsNav() {
   const { pathname, search } = useLocation();
+  const { t } = useTr();
 
   return (
-    <nav aria-label="Analytics sections" className="mb-6 -mx-1 overflow-x-auto">
+    <nav aria-label={t("nav.sectionsAria")} className="mb-6 -mx-1 overflow-x-auto">
       <ul className="flex min-w-max gap-1 px-1 pb-1">
         {TABS.map((tab) => (
           <li key={tab.to}>
@@ -59,7 +91,7 @@ function AdminAnalyticsNav() {
               }
               aria-current={pathname === tab.to ? "page" : undefined}
             >
-              {tab.label}
+              {t(`nav.tab.${tab.id}`)}
             </NavLink>
           </li>
         ))}
@@ -71,13 +103,20 @@ function AdminAnalyticsNav() {
 export default function AdminAnalyticsLayout() {
   const { pathname } = useLocation();
   const access = useAdminAccess();
+  const { t } = useTr();
 
   return (
     <div>
+      <LangSync />
       <PageHeader
-        eyebrow="Admin"
-        title="Product analytics"
-        description="Operational metrics for Survival Academy, read straight from the backend analytics API. Every figure is server-computed; definitions and known limitations are shown alongside the numbers."
+        eyebrow={t("nav.eyebrow")}
+        title={t("nav.title")}
+        description={t("nav.description")}
+        aside={
+          <div className="flex justify-end sm:pb-1">
+            <LanguageToggle />
+          </div>
+        }
       />
 
       {access.status === "checking" ? (
@@ -104,12 +143,12 @@ export default function AdminAnalyticsLayout() {
       ) : (
         <EmptyState
           title={
-            access.status === "unreachable" ? "Couldn't verify admin access" : "Admin access required"
+            access.status === "unreachable" ? t("access.unreachableTitle") : t("access.deniedTitle")
           }
           description={
             access.status === "unreachable"
-              ? "The analytics API couldn't be reached, so access could not be confirmed. Reload the page to try again."
-              : "This surface is restricted to administrators. Your account doesn't have the admin role."
+              ? t("access.unreachableDescription")
+              : t("access.deniedDescription")
           }
         />
       )}

@@ -17,7 +17,9 @@
  * The one state that must not be drawn as a bare zero is an unseeded
  * achievement catalogue: when `definition_count` is 0 nothing can unlock,
  * so the section renders the backend's `achievements_empty` explanation
- * instead of tiles reading 0.
+ * instead of tiles reading 0. That note is a backend string and is shown
+ * verbatim; the fallback used when it is absent is frontend copy and is
+ * translated.
  */
 import { useQuery } from "@tanstack/react-query";
 import { ErrorState } from "@/components/shared/ErrorState";
@@ -37,36 +39,43 @@ import {
   type Column,
 } from "../charts";
 import { useAnalyticsFilters } from "../filters";
+import { useTr, type Tr } from "../i18n";
 
-const XP_COLUMNS: Array<Column<AdminXpBucket>> = [
-  { key: "bucket", header: "Bucket", render: (row) => <Num>{row.bucket}</Num> },
-  {
-    key: "xp_awarded",
-    header: "XP awarded",
-    align: "right",
-    render: (row) => <Num>{formatXp(row.xp_awarded)}</Num>,
-  },
-  {
-    key: "users",
-    header: "Users awarded",
-    align: "right",
-    render: (row) => <Num>{formatCount(row.users)}</Num>,
-  },
-];
+function xpColumns({ t }: Tr): Array<Column<AdminXpBucket>> {
+  return [
+    { key: "bucket", header: t("tabs.gamification.colBucket"), render: (row) => <Num>{row.bucket}</Num> },
+    {
+      key: "xp_awarded",
+      header: t("tabs.gamification.colXpAwarded"),
+      align: "right",
+      render: (row) => <Num>{formatXp(row.xp_awarded)}</Num>,
+    },
+    {
+      key: "users",
+      header: t("tabs.gamification.colUsersAwarded"),
+      align: "right",
+      render: (row) => <Num>{formatCount(row.users)}</Num>,
+    },
+  ];
+}
 
-const ACHIEVEMENT_COLUMNS: Array<Column<AdminAchievementRow>> = [
-  { key: "title", header: "Achievement", render: (row) => row.title },
-  { key: "key", header: "Key", render: (row) => <Num muted>{row.achievement_key}</Num> },
-  {
-    key: "unlocks",
-    header: "Unlocks",
-    align: "right",
-    render: (row) => <Num>{formatCount(row.unlocks)}</Num>,
-  },
-];
+function achievementColumns({ t }: Tr): Array<Column<AdminAchievementRow>> {
+  return [
+    { key: "title", header: t("tabs.gamification.colAchievement"), render: (row) => row.title },
+    { key: "key", header: t("tabs.gamification.colKey"), render: (row) => <Num muted>{row.achievement_key}</Num> },
+    {
+      key: "unlocks",
+      header: t("tabs.gamification.colUnlocks"),
+      align: "right",
+      render: (row) => <Num>{formatCount(row.unlocks)}</Num>,
+    },
+  ];
+}
 
 export default function GamificationTab() {
   const { seriesParams, rangeRejected } = useAnalyticsFilters();
+  const tr = useTr();
+  const { t } = tr;
 
   const gamification = useQuery({
     queryKey: queryKeys.admin.analytics("gamification", seriesParams),
@@ -76,15 +85,18 @@ export default function GamificationTab() {
   });
 
   if (rangeRejected) {
-    return (
-      <p className="panel p-6 text-sm text-muted-foreground">
-        Adjust the date range above to load these metrics.
-      </p>
-    );
+    return <p className="panel p-6 text-sm text-muted-foreground">{t("common.adjustRange")}</p>;
   }
 
   if (gamification.isError) {
-    return <ErrorState error={gamification.error} onRetry={() => void gamification.refetch()} />;
+    return (
+      <ErrorState
+        error={gamification.error}
+        onRetry={() => void gamification.refetch()}
+        explain={tr.errorCopy}
+        labels={{ retry: t("errors.retry"), reference: t("errors.reference") }}
+      />
+    );
   }
 
   if (gamification.isPending) {
@@ -110,20 +122,20 @@ export default function GamificationTab() {
   return (
     <div>
       <SectionCard
-        title="XP"
-        description="Every XP transaction in the window, summed per bucket."
+        title={t("tabs.gamification.xpTitle")}
+        description={t("tabs.gamification.xpDescription")}
         action={<RangeEcho from={range.from} to={range.to} />}
       >
         <div className="grid gap-3 sm:grid-cols-2">
           <KpiTile
-            label="XP awarded"
+            label={t("tabs.gamification.kpiXpAwarded")}
             value={formatXp(xp.total_awarded)}
-            hint="Awarded amounts — retries can re-award"
+            hint={t("tabs.gamification.kpiXpAwardedHint")}
           />
           <KpiTile
-            label="XP / active user"
+            label={t("tabs.gamification.kpiXpPerActive")}
             value={formatAverage(xp.per_active_user)}
-            hint="Awarded XP ÷ users active in the trailing 30 days"
+            hint={t("tabs.gamification.kpiXpPerActiveHint")}
           />
         </div>
         <div className="mt-5">
@@ -131,96 +143,107 @@ export default function GamificationTab() {
             data={xp.series}
             valueOf={(row) => row.xp_awarded}
             labelOf={(row) => row.bucket}
-            ariaLabel="XP awarded per bucket"
+            ariaLabel={t("tabs.gamification.xpPerBucketAria")}
             formatValue={formatXp}
           />
         </div>
         <div className="mt-5">
           <DataTable
-            columns={XP_COLUMNS}
+            columns={xpColumns(tr)}
             rows={xp.series}
             getRowKey={(row) => row.bucket}
-            caption="XP awarded per bucket"
-            emptyLabel="No XP was awarded in this range."
+            caption={t("tabs.gamification.xpCaption")}
+            emptyLabel={t("tabs.gamification.xpEmpty")}
           />
         </div>
       </SectionCard>
 
       <SectionCard
-        title="Streaks"
-        description="Streak lengths are day counts. The distribution below draws only the lengths that have users — a length nobody is on has no bar, rather than a bar at zero."
+        title={t("tabs.gamification.streaksTitle")}
+        description={t("tabs.gamification.streaksDescription")}
       >
         <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
           <KpiTile
-            label="Users with a streak"
+            label={t("tabs.gamification.kpiUsersWithStreak")}
             value={formatCount(streaks.users_with_active_streak)}
-            hint="Current streak above zero"
+            hint={t("tabs.gamification.kpiUsersWithStreakHint")}
           />
-          <KpiTile label="Avg current streak" value={formatAverage(streaks.avg_current_streak)} />
-          <KpiTile label="Avg longest streak" value={formatAverage(streaks.avg_longest_streak)} />
-          <KpiTile label="Max current streak" value={formatCount(streaks.max_current_streak)} />
-          <KpiTile label="Max longest streak" value={formatCount(streaks.max_longest_streak)} />
           <KpiTile
-            label="Streak rows"
+            label={t("tabs.gamification.kpiAvgCurrentStreak")}
+            value={formatAverage(streaks.avg_current_streak)}
+          />
+          <KpiTile
+            label={t("tabs.gamification.kpiAvgLongestStreak")}
+            value={formatAverage(streaks.avg_longest_streak)}
+          />
+          <KpiTile
+            label={t("tabs.gamification.kpiMaxCurrentStreak")}
+            value={formatCount(streaks.max_current_streak)}
+          />
+          <KpiTile
+            label={t("tabs.gamification.kpiMaxLongestStreak")}
+            value={formatCount(streaks.max_longest_streak)}
+          />
+          <KpiTile
+            label={t("tabs.gamification.kpiStreakRows")}
             value={formatCount(streaks.streak_rows)}
-            hint="Not an engagement signal"
+            hint={t("tabs.gamification.kpiStreakRowsHint")}
           />
         </div>
         <div className="mt-5">
-          <p className="eyebrow mb-3">Users by current streak length</p>
+          <p className="eyebrow mb-3">{t("tabs.gamification.distributionLabel")}</p>
           <HBars
             rows={streaks.distribution}
             labelOf={(row) => row.bucket}
             valueOf={(row) => row.users}
-            ariaLabel="Users by current streak length, in days"
+            ariaLabel={t("tabs.gamification.distributionAria")}
             color="var(--cat-fire)"
           />
         </div>
       </SectionCard>
 
       <SectionCard
-        title="Achievements"
+        title={t("tabs.gamification.achievementsTitle")}
         description={
           definitionsMissing
-            ? "The backend reports no achievement definitions in this database."
-            : "Unlocks recorded in range, and the definition catalogue they come from."
+            ? t("tabs.gamification.achievementsDescriptionEmpty")
+            : t("tabs.gamification.achievementsDescription")
         }
       >
         {definitionsMissing ? (
           <div className="panel-2 border-dashed p-5">
             <span className="inline-flex items-center gap-1.5 rounded-md border border-border bg-surface-3 px-2 py-0.5 font-mono text-[10px] tracking-[0.14em] text-muted-foreground uppercase">
-              Nothing can unlock
+              {t("tabs.gamification.nothingCanUnlock")}
             </span>
             <p className="mt-3 max-w-3xl text-sm text-muted-foreground">
-              {achievementsEmptyNote ??
-                "No achievement definitions have been seeded in this database, so no achievement can unlock."}
+              {achievementsEmptyNote ?? t("tabs.gamification.achievementsFallback")}
             </p>
           </div>
         ) : (
           <>
             <div className="grid gap-3 sm:grid-cols-3">
               <KpiTile
-                label="Unlocked in range"
+                label={t("tabs.gamification.kpiUnlockedInRange")}
                 value={formatCount(achievements.unlocked_in_range)}
               />
               <KpiTile
-                label="Users with unlocks"
+                label={t("tabs.gamification.kpiUsersWithUnlocks")}
                 value={formatCount(achievements.users_with_unlocks)}
-                hint="Distinct people"
+                hint={t("tabs.gamification.kpiUsersWithUnlocksHint")}
               />
               <KpiTile
-                label="Defined achievements"
+                label={t("tabs.gamification.kpiDefinedAchievements")}
                 value={formatCount(achievements.definition_count)}
-                hint="Available to unlock"
+                hint={t("tabs.gamification.kpiDefinedAchievementsHint")}
               />
             </div>
             <div className="mt-5">
               <DataTable
-                columns={ACHIEVEMENT_COLUMNS}
+                columns={achievementColumns(tr)}
                 rows={achievements.top}
                 getRowKey={(row) => row.achievement_key}
-                caption="Most-unlocked achievements in range"
-                emptyLabel="No achievements were unlocked in this range."
+                caption={t("tabs.gamification.achievementsCaption")}
+                emptyLabel={t("tabs.gamification.achievementsEmpty")}
               />
             </div>
           </>

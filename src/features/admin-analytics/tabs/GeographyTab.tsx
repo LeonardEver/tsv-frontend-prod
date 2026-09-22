@@ -33,6 +33,7 @@ import {
   type Column,
 } from "../charts";
 import { useAnalyticsFilters } from "../filters";
+import { useTr, type Tr } from "../i18n";
 
 const LIMIT_OPTIONS = [10, 25, 50, 100] as const;
 
@@ -41,65 +42,75 @@ const controlClass =
 
 /** ISO alpha-2 → display name; the raw stored code when the list is
  * silent (the column is validated on write, so this is a fallback, not
- * an expected case). */
+ * an expected case). Country names stay in the reference list's own
+ * language — they are data, not interface copy. */
 function countryLabel(code: string): string {
   return COUNTRIES.find((country) => country.code === code)?.name ?? code;
 }
 
-const COLUMNS: Array<Column<AdminGeographyCountryRow>> = [
-  {
-    key: "country",
-    header: "Country",
-    render: (row) => (
-      <>
-        <span>{countryLabel(row.country)}</span>
-        <span className="block">
-          <Num muted>{row.country}</Num>
-        </span>
-      </>
-    ),
-  },
-  { key: "users", header: "Users", align: "right", render: (row) => <MaybeNum value={row.users} /> },
-  {
-    key: "share",
-    header: "Share",
-    align: "right",
-    render: (row) => <MaybeNum value={row.percentage_of_users} format={formatPct} />,
-  },
-  {
-    key: "active",
-    header: "Active users",
-    align: "right",
-    render: (row) => <MaybeNum value={row.active_users} />,
-  },
-  {
-    key: "active_rate",
-    header: "Active rate",
-    align: "right",
-    render: (row) => <MaybeNum value={row.active_rate} format={formatPct} />,
-  },
-  {
-    key: "paying",
-    header: "Paying users",
-    align: "right",
-    render: (row) => <MaybeNum value={row.paying_users} />,
-  },
-  {
-    key: "paying_rate",
-    header: "Paying rate",
-    align: "right",
-    render: (row) => <MaybeNum value={row.paying_rate} format={formatPct} />,
-  },
-  {
-    key: "trial",
-    header: "Trial users",
-    align: "right",
-    render: (row) => <MaybeNum value={row.trial_users} />,
-  },
-];
+function columns({ t }: Tr): Array<Column<AdminGeographyCountryRow>> {
+  return [
+    {
+      key: "country",
+      header: t("tabs.geography.colCountry"),
+      render: (row) => (
+        <>
+          <span>{countryLabel(row.country)}</span>
+          <span className="block">
+            <Num muted>{row.country}</Num>
+          </span>
+        </>
+      ),
+    },
+    {
+      key: "users",
+      header: t("tabs.geography.colUsers"),
+      align: "right",
+      render: (row) => <MaybeNum value={row.users} />,
+    },
+    {
+      key: "share",
+      header: t("tabs.geography.colShare"),
+      align: "right",
+      render: (row) => <MaybeNum value={row.percentage_of_users} format={formatPct} />,
+    },
+    {
+      key: "active",
+      header: t("tabs.geography.colActiveUsers"),
+      align: "right",
+      render: (row) => <MaybeNum value={row.active_users} />,
+    },
+    {
+      key: "active_rate",
+      header: t("tabs.geography.colActiveRate"),
+      align: "right",
+      render: (row) => <MaybeNum value={row.active_rate} format={formatPct} />,
+    },
+    {
+      key: "paying",
+      header: t("tabs.geography.colPayingUsers"),
+      align: "right",
+      render: (row) => <MaybeNum value={row.paying_users} />,
+    },
+    {
+      key: "paying_rate",
+      header: t("tabs.geography.colPayingRate"),
+      align: "right",
+      render: (row) => <MaybeNum value={row.paying_rate} format={formatPct} />,
+    },
+    {
+      key: "trial",
+      header: t("tabs.geography.colTrialUsers"),
+      align: "right",
+      render: (row) => <MaybeNum value={row.trial_users} />,
+    },
+  ];
+}
 
 export default function GeographyTab() {
   const { params, rangeRejected } = useAnalyticsFilters();
+  const tr = useTr();
+  const { t } = tr;
   const [limit, setLimit] = useState<number>(50);
 
   const geography = useQuery({
@@ -110,15 +121,18 @@ export default function GeographyTab() {
   });
 
   if (rangeRejected) {
-    return (
-      <p className="panel p-6 text-sm text-muted-foreground">
-        Adjust the date range above to load these metrics.
-      </p>
-    );
+    return <p className="panel p-6 text-sm text-muted-foreground">{t("common.adjustRange")}</p>;
   }
 
   if (geography.isError) {
-    return <ErrorState error={geography.error} onRetry={() => void geography.refetch()} />;
+    return (
+      <ErrorState
+        error={geography.error}
+        onRetry={() => void geography.refetch()}
+        explain={tr.errorCopy}
+        labels={{ retry: t("errors.retry"), reference: t("errors.reference") }}
+      />
+    );
   }
 
   if (geography.isPending) {
@@ -136,13 +150,13 @@ export default function GeographyTab() {
   return (
     <div>
       <SectionCard
-        title="Coverage"
-        description="Country is the value a user declared on their profile, validated as an ISO code on write — not where they connected from."
+        title={t("tabs.geography.coverageTitle")}
+        description={t("tabs.geography.coverageDescription")}
         action={
           <div className="flex items-end gap-3">
             <label className="grid gap-1">
               <span className="font-mono text-[10px] tracking-[0.14em] text-muted-foreground uppercase">
-                Countries
+                {t("tabs.geography.countries")}
               </span>
               <select
                 value={String(limit)}
@@ -164,54 +178,52 @@ export default function GeographyTab() {
       >
         <div className="grid gap-3 sm:grid-cols-3">
           <KpiTile
-            label="Users with a country"
+            label={t("tabs.geography.kpiUsersWithCountry")}
             value={formatCount(totals.users_with_country)}
-            hint="Declared on their profile"
+            hint={t("tabs.geography.kpiUsersWithCountryHint")}
           />
           <KpiTile
-            label="Users without a country"
+            label={t("tabs.geography.kpiUsersWithoutCountry")}
             value={formatCount(totals.users_without_country)}
-            hint="Not required at signup"
+            hint={t("tabs.geography.kpiUsersWithoutCountryHint")}
           />
           <KpiTile
-            label="Coverage"
+            label={t("tabs.geography.kpiCoverage")}
             value={formatPct(totals.coverage_pct)}
-            hint="Share of users with a country"
+            hint={t("tabs.geography.kpiCoverageHint")}
           />
         </div>
         {/* The gap is stated rather than implied: coverage below 100% is
             missing declaration, and the country percentages below are of
             the users who declared — not of the whole base. */}
         <p className="mt-4 rounded-lg border-l-2 border-[var(--cat-navigation)] bg-surface-2/70 px-4 py-3 text-[13px] leading-relaxed text-foreground/85">
-          Coverage below 100% means the remaining users have no country on file — unknown, not
-          zero. Every percentage in the table below is of users WITH a country, so those users sit
-          outside the denominator.
+          {t("tabs.geography.coverageNote")}
         </p>
       </SectionCard>
 
       <SectionCard
-        title="Users by country"
-        description="The returned rows in rank order — one bar per country, the same order the table below uses."
+        title={t("tabs.geography.byCountryTitle")}
+        description={t("tabs.geography.byCountryDescription")}
       >
         <BarSeries
           data={countries}
           valueOf={(row) => row.users}
           labelOf={(row) => countryLabel(row.country)}
-          ariaLabel="Users by country"
+          ariaLabel={t("tabs.geography.byCountryAria")}
           color="var(--cat-navigation)"
         />
       </SectionCard>
 
       <SectionCard
-        title="Country breakdown"
-        description="One row per returned country, ranked by users and capped at the row limit selected above. Share is of users WITH a country, and the active, paying and trial columns are subsets of that country's users."
+        title={t("tabs.geography.breakdownTitle")}
+        description={t("tabs.geography.breakdownDescription")}
       >
         <DataTable
-          columns={COLUMNS}
+          columns={columns(tr)}
           rows={countries}
           getRowKey={(row) => row.country}
-          caption="Users, activity and paying rate by country"
-          emptyLabel="No country rows in this range."
+          caption={t("tabs.geography.breakdownCaption")}
+          emptyLabel={t("tabs.geography.breakdownEmpty")}
           minWidth={1000}
         />
       </SectionCard>

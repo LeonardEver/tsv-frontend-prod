@@ -10,12 +10,18 @@
  * Accessibility: charts are `role="img"` with a label that states the
  * bucket count and the peak, so a screen reader gets the shape of the
  * data rather than a run of unlabelled rectangles. Where the exact
- * numbers matter they are repeated in a `DataTable` beside the chart.
+ * numbers matter they are repeated in a `DataTable` beside the chart. The
+ * label is assembled here from a base phrase plus the figures, so the
+ * sentence around the numbers is translated while the numbers are not.
+ *
+ * These components are used only by this surface, so they read the
+ * console's language directly rather than taking it through props.
  */
 import type { ReactNode } from "react";
 import { cn } from "@/components/sa/primitives";
 import { formatCount, formatPct } from "@/lib/format/format";
 import type { AdminAnalyticsNotes, UnsupportedMetric } from "@/lib/api/types";
+import { useTr } from "./i18n";
 
 // ── Layout ─────────────────────────────────────────────────────────────────
 
@@ -86,7 +92,7 @@ export function DataTable<T>({
   rows,
   getRowKey,
   caption,
-  emptyLabel = "No rows in this range.",
+  emptyLabel,
   minWidth = 640,
 }: {
   columns: Array<Column<T>>;
@@ -96,8 +102,12 @@ export function DataTable<T>({
   emptyLabel?: string | undefined;
   minWidth?: number | undefined;
 }) {
+  const { t } = useTr();
+
   if (rows.length === 0) {
-    return <p className="panel-2 p-4 text-sm text-muted-foreground">{emptyLabel}</p>;
+    return (
+      <p className="panel-2 p-4 text-sm text-muted-foreground">{emptyLabel ?? t("charts.noRows")}</p>
+    );
   }
   return (
     <div className="-mx-5 overflow-x-auto px-5">
@@ -148,12 +158,18 @@ export function Num({ children, muted = false }: { children: ReactNode; muted?: 
 /** A `null` metric is missing data, never zero. Both the retention
  * windows and `avg_seconds_to_complete` rely on this distinction. */
 export function MaybeNum({ value, format = formatCount }: { value: number | null; format?: (v: number) => string }) {
-  if (value === null) return <span className="text-muted-foreground italic">not yet observable</span>;
+  const { t } = useTr();
+  if (value === null) {
+    return <span className="text-muted-foreground italic">{t("charts.notYetObservable")}</span>;
+  }
   return <Num>{format(value)}</Num>;
 }
 
 // ── Charts ─────────────────────────────────────────────────────────────────
 
+/** `ariaLabel` is the base phrase ("New users per bucket"); the bucket
+ * count and peak are appended in the console's language, so the numbers
+ * stay exactly as formatted and only the sentence around them changes. */
 export function BarSeries<T>({
   data,
   valueOf,
@@ -171,8 +187,10 @@ export function BarSeries<T>({
   height?: number | undefined;
   formatValue?: ((value: number) => string) | undefined;
 }) {
+  const { t, tf } = useTr();
+
   if (data.length === 0) {
-    return <p className="panel-2 p-4 text-sm text-muted-foreground">No buckets in this range.</p>;
+    return <p className="panel-2 p-4 text-sm text-muted-foreground">{t("charts.noBuckets")}</p>;
   }
 
   const max = data.reduce((acc, row) => Math.max(acc, valueOf(row)), 0);
@@ -184,7 +202,12 @@ export function BarSeries<T>({
     <div className="grid gap-2">
       <div
         role="img"
-        aria-label={`${ariaLabel}. ${data.length} buckets. Peak ${formatValue(max)} at ${labelOf(peak)}.`}
+        aria-label={tf("charts.barsAria", {
+          base: ariaLabel,
+          buckets: data.length,
+          peak: formatValue(max),
+          peakLabel: labelOf(peak),
+        })}
         className="flex items-end gap-px"
         style={{ height }}
       >
@@ -231,8 +254,12 @@ export function Sparkline<T>({
   width?: number | undefined;
   height?: number | undefined;
 }) {
+  const { t, tf } = useTr();
+
   if (data.length < 2) {
-    return <p className="font-mono text-[11px] text-muted-foreground">Not enough buckets to trend.</p>;
+    return (
+      <p className="font-mono text-[11px] text-muted-foreground">{t("charts.notEnoughBuckets")}</p>
+    );
   }
 
   const values = data.map(valueOf);
@@ -251,7 +278,12 @@ export function Sparkline<T>({
   return (
     <svg
       role="img"
-      aria-label={`${ariaLabel}. ${data.length} buckets, low ${formatCount(min)}, high ${formatCount(max)}.`}
+      aria-label={tf("charts.sparkAria", {
+        base: ariaLabel,
+        buckets: data.length,
+        low: formatCount(min),
+        high: formatCount(max),
+      })}
       width={width}
       height={height}
       className="overflow-visible"
@@ -276,8 +308,10 @@ export function HBars<T>({
   color?: string | undefined;
   formatValue?: ((value: number) => string) | undefined;
 }) {
+  const { t } = useTr();
+
   if (rows.length === 0) {
-    return <p className="panel-2 p-4 text-sm text-muted-foreground">No rows in this range.</p>;
+    return <p className="panel-2 p-4 text-sm text-muted-foreground">{t("charts.noRows")}</p>;
   }
   const max = rows.reduce((acc, row) => Math.max(acc, valueOf(row)), 0);
 
@@ -314,13 +348,15 @@ export function HBars<T>({
  * Renders one of the backend's `supported: false` objects. The reason
  * string is shown verbatim — it is the backend explaining why the metric
  * cannot be answered from this database, and paraphrasing it would make
- * the limitation sound like a UI gap instead of a data one.
+ * the limitation sound like a UI gap instead of a data one. The badge and
+ * the metric's own name are frontend copy and are translated.
  */
 export function UnsupportedBlock({ label, metric }: { label: string; metric: UnsupportedMetric }) {
+  const { t } = useTr();
   return (
     <div className="panel-2 border-dashed p-4">
       <span className="inline-flex items-center gap-1.5 rounded-md border border-border bg-surface-3 px-2 py-0.5 font-mono text-[10px] tracking-[0.14em] text-muted-foreground uppercase">
-        Not available
+        {t("charts.notAvailable")}
       </span>
       <p className="mt-2 text-sm font-semibold">{label}</p>
       <p className="mt-1 text-sm text-muted-foreground">{metric.reason}</p>
@@ -333,21 +369,25 @@ export function UnsupportedBlock({ label, metric }: { label: string; metric: Uns
  * carries one precisely so a number cannot be read as something it is
  * not ("active" means learning-active, `xp_awarded` is inflated by
  * retries, and so on). Collapsed by default to keep pages scannable.
+ *
+ * Only the summary line is frontend copy; the note keys and their text
+ * are the backend's and stay exactly as sent.
  */
 export function MetricNotes({
   notes,
-  title = "Definitions & caveats",
+  title,
 }: {
   notes: AdminAnalyticsNotes | undefined;
   title?: string | undefined;
 }) {
+  const { t } = useTr();
   const entries = Object.entries(notes ?? {}).filter(([, value]) => value !== null);
   if (entries.length === 0) return null;
 
   return (
     <details className="mt-4 rounded-lg border border-border bg-surface-2/60 px-4 py-3">
       <summary className="cursor-pointer font-mono text-[10px] tracking-[0.14em] text-muted-foreground uppercase">
-        {title}
+        {title ?? t("charts.definitions")}
       </summary>
       <dl className="mt-3 grid gap-2.5">
         {entries.map(([key, value]) => (
@@ -366,9 +406,10 @@ export function MetricNotes({
 /** The resolved window the server actually used — echoed back on every
  * response, including the substituted 30-day default on series endpoints. */
 export function RangeEcho({ from, to }: { from: string | null; to: string }) {
+  const { t } = useTr();
   return (
     <p className="font-mono text-[11px] text-muted-foreground">
-      {from === null ? "All time" : `${from} → ${to}`}
+      {from === null ? t("charts.allTime") : `${from} → ${to}`}
     </p>
   );
 }
@@ -384,13 +425,15 @@ export function DeltaHint({
   previous: number | null | undefined;
   format?: ((value: number) => string) | undefined;
 }) {
+  const { t, tf } = useTr();
+
   if (previous === null || previous === undefined) {
-    return <span className="text-muted-foreground">No comparison period</span>;
+    return <span className="text-muted-foreground">{t("charts.noComparisonPeriod")}</span>;
   }
   if (previous === 0) {
     return (
       <span className="text-muted-foreground">
-        {current === 0 ? "No change (0 before)" : `New (0 → ${format(current)})`}
+        {current === 0 ? t("charts.noChange") : tf("charts.newlyObserved", { current: format(current) })}
       </span>
     );
   }
@@ -398,8 +441,11 @@ export function DeltaHint({
   const rounded = Math.abs(delta) < 0.05 ? 0 : delta;
   return (
     <span className={cn(rounded === 0 ? "text-muted-foreground" : rounded > 0 ? "text-success" : "text-warning")}>
-      {rounded > 0 ? "▲" : rounded < 0 ? "▼" : "—"} {formatPct(Math.abs(rounded), 1)} vs previous (
-      {format(previous)})
+      {rounded > 0 ? "▲" : rounded < 0 ? "▼" : "—"}{" "}
+      {tf("charts.versusPrevious", {
+        pct: formatPct(Math.abs(rounded), 1),
+        previous: format(previous),
+      })}
     </span>
   );
 }

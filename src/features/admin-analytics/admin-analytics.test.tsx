@@ -11,8 +11,9 @@
  * promotes it by overriding the single handler that answers both the
  * probe and the geography data call.
  */
-import { describe, expect, it, vi } from "vitest";
-import { render, screen, waitFor } from "@testing-library/react";
+import { beforeEach, describe, expect, it, vi } from "vitest";
+import { render, screen, waitFor, within } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { createMemoryRouter, RouterProvider } from "react-router";
 import { http, HttpResponse } from "msw";
@@ -28,8 +29,19 @@ import {
   adminOverview,
 } from "@/test/msw/admin-analytics";
 import { router as appRouter } from "@/app/router";
+import { __resetAdminLanguage } from "./language";
 
 const API = "*/api/v1";
+
+// The console's language is device state that outlives a component, so
+// every test starts from the default rather than from the previous test's
+// choice. The English assertions below are the same ones that guarded this
+// surface before the toggle existed — which is the point: English is the
+// default and the previously shipped copy.
+beforeEach(() => {
+  __resetAdminLanguage();
+  window.localStorage.clear();
+});
 
 /** Long enough to absorb a slow first paint, short enough that a genuine
  * failure reports as an assertion rather than as a vitest timeout. */
@@ -192,6 +204,127 @@ describe("admin analytics — overview", () => {
       },
       SETTLE,
     );
+  });
+});
+
+describe("admin analytics — language", () => {
+  /** The header's language switch, as the admin sees it. */
+  function languageSwitch() {
+    return screen.getByRole("group", { name: /language|idioma/i });
+  }
+
+  it("renders in English by default", async () => {
+    asAdmin();
+    renderAt("/admin/analytics");
+
+    await waitFor(
+      () => {
+        expect(screen.getByRole("heading", { name: /product analytics/i })).toBeInTheDocument();
+      },
+      SETTLE,
+    );
+
+    const toggle = languageSwitch();
+    expect(within(toggle).getByRole("button", { name: "EN" })).toHaveAttribute(
+      "aria-pressed",
+      "true",
+    );
+    expect(within(toggle).getByRole("button", { name: "PT" })).toHaveAttribute(
+      "aria-pressed",
+      "false",
+    );
+  });
+
+  it("switches the whole interface to Portuguese", async () => {
+    asAdmin();
+    renderAt("/admin/analytics");
+
+    await waitFor(
+      () => {
+        expect(screen.getByText(/total users/i)).toBeInTheDocument();
+      },
+      SETTLE,
+    );
+
+    await userEvent.click(within(languageSwitch()).getByRole("button", { name: "PT" }));
+
+    // Page chrome, tab strip, filter bar and KPI labels all follow.
+    expect(screen.getByRole("heading", { name: /analytics de produto/i })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Visão geral" })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Retenção" })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Todo o período" })).toBeInTheDocument();
+    expect(within(document.body).getByText(/métricas principais/i)).toBeInTheDocument();
+    expect(screen.getByText(/usuários totais/i)).toBeInTheDocument();
+    // The English copy is gone, not merely joined.
+    expect(screen.queryByText(/total users/i)).toBeNull();
+  });
+
+  it("keeps the choice across navigation within the console", async () => {
+    asAdmin();
+    renderAt("/admin/analytics");
+
+    await waitFor(
+      () => {
+        expect(screen.getByText(/total users/i)).toBeInTheDocument();
+      },
+      SETTLE,
+    );
+    await userEvent.click(within(languageSwitch()).getByRole("button", { name: "PT" }));
+
+    await userEvent.click(screen.getByRole("link", { name: "Usuários" }));
+
+    await waitFor(
+      () => {
+        expect(screen.getByRole("navigation", { name: /seções de analytics/i })).toBeInTheDocument();
+      },
+      SETTLE,
+    );
+    expect(within(languageSwitch()).getByRole("button", { name: "PT" })).toHaveAttribute(
+      "aria-pressed",
+      "true",
+    );
+    expect(await screen.findByText(/distribuição por plano/i)).toBeInTheDocument();
+  });
+
+  it("leaves backend strings in the API's own words", async () => {
+    asAdmin();
+    renderAt("/admin/analytics/billing");
+
+    await waitFor(
+      () => {
+        expect(screen.getAllByText(/effective plan/i).length).toBeGreaterThan(0);
+      },
+      SETTLE,
+    );
+    await userEvent.click(within(languageSwitch()).getByRole("button", { name: "PT" }));
+
+    // The limitation reason and the endpoint's notes are the backend's
+    // explanation of what it cannot compute; paraphrasing them would turn a
+    // data limitation into what looks like a UI gap.
+    expect(screen.getByText(adminBilling.revenue.reason)).toBeInTheDocument();
+    expect(screen.getByText(adminBilling.notes.trials)).toBeInTheDocument();
+    // The metric's own name IS frontend copy, so it does translate.
+    expect(screen.getByText(/receita \/ mrr \/ arr/i)).toBeInTheDocument();
+  });
+
+  it("translates the access messages", async () => {
+    renderAt("/admin/analytics");
+
+    await waitFor(
+      () => {
+        expect(screen.getByText(/admin access required/i)).toBeInTheDocument();
+      },
+      SETTLE,
+    );
+
+    // The gate renders before any admin-only chrome, so the switch is
+    // reached through the page header rather than the dashboard.
+    await userEvent.click(within(languageSwitch()).getByRole("button", { name: "PT" }));
+
+    expect(
+      screen.getByText(/acesso de administrador necessário/i),
+    ).toBeInTheDocument();
+    expect(screen.queryByText(/admin access required/i)).toBeNull();
   });
 });
 
