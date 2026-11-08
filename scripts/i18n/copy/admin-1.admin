@@ -1,0 +1,115 @@
+Language|Idioma|Langue|Sprache|Lingua
+English|Inglés|Anglais|Englisch|Inglese
+Portuguese|Portugués|Portugais|Portugiesisch|Portoghese
+Admin|Administrador|Administration|Administration|Amministrazione
+Product analytics|Analítica del producto|Statistiques produit|Produktanalysen|Analisi del prodotto
+Operational metrics for Survival Academy, read straight from the backend analytics API. Every figure is server-computed; definitions and known limitations are shown alongside the numbers.|Métricas operativas de Survival Academy, obtenidas directamente de la API de analítica. Cada cifra se calcula en el servidor; las definiciones y limitaciones conocidas acompañan a los números.|Indicateurs opérationnels de Survival Academy, lus directement depuis l'API d'analyse. Chaque chiffre est calculé par le serveur ; définitions et limites connues sont présentées à côté.|Betriebskennzahlen von Survival Academy direkt aus der Analyse-API. Alle Werte werden serverseitig berechnet; Definitionen und bekannte Einschränkungen stehen neben den Zahlen.|Metriche operative di Survival Academy lette direttamente dall'API di analisi. Ogni valore è calcolato dal server; definizioni e limiti noti accompagnano i numeri.
+Analytics sections|Secciones de analítica|Sections d'analyse|Analysebereiche|Sezioni di analisi
+Overview|Resumen|Vue d'ensemble|Übersicht|Panoramica
+Users|Usuarios|Utilisateurs|Nutzer|Utenti
+Engagement|Participación|Engagement|Interaktion|Coinvolgimento
+Funnel|Embudo|Entonnoir|Trichter|Percorso di conversione
+Content|Contenido|Contenu|Inhalte|Contenuti
+Knowledge gaps|Lagunas de conocimiento|Lacunes de connaissances|Wissenslücken|Lacune di conoscenza
+Stalled|Sin avances|En stagnation|Stillstand|Inattivi nel percorso
+Retention|Retención|Rétention|Bindung|Fidelizzazione
+Gamification|Gamificación|Ludification|Gamifizierung|Gamification
+Billing|Facturación|Facturation|Abrechnung|Fatturazione
+Geography|Geografía|Géographie|Geografie|Geografia
+Admin access required|Se requiere acceso de administrador|Accès administrateur requis|Administratorzugriff erforderlich|Accesso amministratore richiesto
+This surface is restricted to administrators. Your account doesn't have the admin role.|Esta sección está restringida a administradores. Tu cuenta no tiene ese rol.|Cette section est réservée aux administrateurs. Votre compte ne possède pas ce rôle.|Dieser Bereich ist Administratoren vorbehalten. Dein Konto hat keine Administratorrolle.|Questa sezione è riservata agli amministratori. Il tuo account non ha questo ruolo.
+Couldn't verify admin access|No se pudo verificar el acceso de administrador|Impossible de vérifier l'accès administrateur|Administratorzugriff konnte nicht geprüft werden|Impossibile verificare l'accesso amministratore
+The analytics API couldn't be reached, so access could not be confirmed. Reload the page to try again.|No se pudo contactar con la API de analítica y confirmar el acceso. Recarga la página para reintentar.|L'API d'analyse n'a pas pu être jointe ; l'accès n'a donc pas été confirmé. Rechargez la page pour réessayer.|Die Analyse-API war nicht erreichbar, daher konnte der Zugang nicht bestätigt werden. Lade die Seite neu, um es erneut zu versuchen.|L'API di analisi non è raggiungibile e l'accesso non è stato confermato. Ricarica la pagina per riprovare.
+Range|Período|Période|Zeitraum|Periodo
+Date range presets|Períodos predefinidos|Périodes prédéfinies|Zeitraumvorlagen|Periodi predefiniti
+Yesterday|Ayer|Hier|Gestern|Ieri
+7d|7d|7j|7T|7g
+30d|30d|30j|30T|30g
+90d|90d|90j|90T|90g
+12mo|12m|12m|12M|12m
+From|Desde|Du|Von|Dal
+To|Hasta|Au|Bis|Al
+Plan|Plan|Offre|Abo|Piano
+All plans|Todos los planes|Toutes les offres|Alle Abos|Tutti i piani
+All countries|Todos los países|Tous les pays|Alle Länder|Tutti i paesi
+Bucket|Intervalo|Intervalle|Intervall|Intervallo
+Monthly|Mensual|Mensuel|Monatlich|Mensile
+Range not requested ·|Período no solicitado ·|Période non demandée ·|Zeitraum nicht abgefragt ·|Periodo non richiesto ·
+The start date is after the end date.|La fecha inicial es posterior a la final.|La date de début est postérieure à la date de fin.|Das Startdatum liegt nach dem Enddatum.|La data iniziale è successiva a quella finale.
+This window is {{days}} days. Series endpoints accept at most {{maxDays}} days — narrow the range or pick a shorter preset.|Este período tiene {{days}} días. Las series aceptan como máximo {{maxDays}} días: reduce el período o elige uno más corto.|Cette période couvre {{days}} jours. Les séries acceptent au maximum {{maxDays}} jours : réduisez la période ou choisissez un préréglage plus court.|Dieser Zeitraum umfasst {{days}} Tage. Serien akzeptieren höchstens {{maxDays}} Tage. Grenze den Zeitraum ein oder wähle eine kürzere Vorlage.|Questo periodo comprende {{days}} giorni. Le serie accettano al massimo {{maxDays}} giorni: riduci il periodo o scegli una durata inferiore.
+No rows in this range.|No hay filas en este período.|Aucune ligne sur cette période.|Keine Zeilen in diesem Zeitraum.|Nessuna riga in questo periodo.
+No buckets in this range.|No hay intervalos en este período.|Aucun intervalle sur cette période.|Keine Intervalle in diesem Zeitraum.|Nessun intervallo in questo periodo.
+Not enough buckets to trend.|No hay suficientes intervalos para mostrar una tendencia.|Pas assez d'intervalles pour une tendance.|Zu wenige Intervalle für einen Trend.|Intervalli insufficienti per una tendenza.
+not yet observable|aún no observable|pas encore observable|noch nicht beobachtbar|non ancora osservabile
+Not available|No disponible|Indisponible|Nicht verfügbar|Non disponibile
+Definitions & caveats|Definiciones y limitaciones|Définitions et réserves|Definitionen und Einschränkungen|Definizioni e limiti
+No comparison period|Sin período de comparación|Aucune période de comparaison|Kein Vergleichszeitraum|Nessun periodo di confronto
+No change (0 before)|Sin cambios (antes 0)|Aucun changement (0 auparavant)|Keine Änderung (zuvor 0)|Nessuna variazione (prima 0)
+New (0 → {{current}})|Nuevo (0 → {{current}})|Nouveau (0 → {{current}})|Neu (0 → {{current}})|Nuovo (0 → {{current}})
+{{pct}} vs previous ({{previous}})|{{pct}} frente al anterior ({{previous}})|{{pct}} par rapport à la période précédente ({{previous}})|{{pct}} gegenüber vorher ({{previous}})|{{pct}} rispetto al precedente ({{previous}})
+{{base}}. {{buckets}} buckets. Peak {{peak}} at {{peakLabel}}.|{{base}}. {{buckets}} intervalos. Máximo {{peak}} en {{peakLabel}}.|{{base}}. {{buckets}} intervalles. Pic de {{peak}} à {{peakLabel}}.|{{base}}. {{buckets}} Intervalle. Höchstwert {{peak}} bei {{peakLabel}}.|{{base}}. {{buckets}} intervalli. Picco {{peak}} in {{peakLabel}}.
+{{base}}. {{buckets}} buckets, low {{low}}, high {{high}}.|{{base}}. {{buckets}} intervalos, mínimo {{low}}, máximo {{high}}.|{{base}}. {{buckets}} intervalles, minimum {{low}}, maximum {{high}}.|{{base}}. {{buckets}} Intervalle, Minimum {{low}}, Maximum {{high}}.|{{base}}. {{buckets}} intervalli, minimo {{low}}, massimo {{high}}.
+Adjust the date range above to load these metrics.|Ajusta el período de arriba para cargar estas métricas.|Ajustez la période ci-dessus pour charger ces indicateurs.|Passe oben den Zeitraum an, um diese Kennzahlen zu laden.|Modifica il periodo sopra per caricare queste metriche.
+Adjust the date range above to load the learning stages.|Ajusta el período de arriba para cargar las etapas de aprendizaje.|Ajustez la période ci-dessus pour charger les étapes d'apprentissage.|Passe oben den Zeitraum an, um die Lernphasen zu laden.|Modifica il periodo sopra per caricare le fasi di apprendimento.
+Adjust the date range above to load content performance.|Ajusta el período de arriba para cargar el rendimiento del contenido.|Ajustez la période ci-dessus pour charger les résultats des contenus.|Passe oben den Zeitraum an, um die Inhaltsleistung zu laden.|Modifica il periodo sopra per caricare i risultati dei contenuti.
+Adjust the date range above to load the knowledge gaps.|Ajusta el período de arriba para cargar las lagunas de conocimiento.|Ajustez la période ci-dessus pour charger les lacunes de connaissances.|Passe oben den Zeitraum an, um die Wissenslücken zu laden.|Modifica il periodo sopra per caricare le lacune di conoscenza.
+Adjust the date range above to load stalled users.|Ajusta el período de arriba para cargar los usuarios sin avances.|Ajustez la période ci-dessus pour charger les utilisateurs en stagnation.|Passe oben den Zeitraum an, um Nutzer mit Stillstand zu laden.|Modifica il periodo sopra per caricare gli utenti bloccati nel percorso.
+Adjust the date range above to load retention cohorts.|Ajusta el período de arriba para cargar las cohortes de retención.|Ajustez la période ci-dessus pour charger les cohortes de rétention.|Passe oben den Zeitraum an, um Bindungskohorten zu laden.|Modifica il periodo sopra per caricare le coorti di fidelizzazione.
+Please wait a moment and try again.|Espera un momento e inténtalo de nuevo.|Patientez un instant et réessayez.|Warte einen Moment und versuche es erneut.|Attendi un momento e riprova.
+Try again in about {{seconds}} seconds.|Reintenta en unos {{seconds}} segundos.|Réessayez dans environ {{seconds}} secondes.|Versuche es in etwa {{seconds}} Sekunden erneut.|Riprova tra circa {{seconds}} secondi.
+Total users|Usuarios totales|Utilisateurs totaux|Nutzer gesamt|Utenti totali
+New users|Nuevos usuarios|Nouveaux utilisateurs|Neue Nutzer|Nuovi utenti
+Paying users|Usuarios de pago|Utilisateurs payants|Zahlende Nutzer|Utenti paganti
+Free users|Usuarios Free|Utilisateurs Free|Free-Nutzer|Utenti Free
+Trial users|Usuarios en prueba|Utilisateurs en essai|Nutzer in Testphase|Utenti in prova
+Churned users|Usuarios que abandonaron el plan de pago|Utilisateurs ayant quitté l'offre payante|Abgewanderte zahlende Nutzer|Utenti usciti dal piano a pagamento
+Active users|Usuarios activos|Utilisateurs actifs|Aktive Nutzer|Utenti attivi
+Active days|Días activos|Jours actifs|Aktive Tage|Giorni attivi
+Lessons completed|Lecciones completadas|Leçons terminées|Abgeschlossene Lektionen|Lezioni completate
+Quiz submissions|Cuestionarios enviados|Quiz soumis|Quizabgaben|Quiz inviati
+XP awarded|XP otorgados|XP attribués|Vergebene XP|XP assegnati
+Signed up in range|Registrados en el período|Inscrits sur la période|Im Zeitraum registriert|Registrati nel periodo
+Effective plan ≠ free|Plan efectivo ≠ Free|Offre effective ≠ Free|Effektives Abo ≠ Free|Piano effettivo ≠ Free
+Currently trialing|Actualmente en prueba|Actuellement en essai|Derzeit in Testphase|Attualmente in prova
+Non-free plan on file, effective free now|Plan de pago registrado, actualmente Free efectivo|Offre payante enregistrée, offre effective Free actuellement|Kostenpflichtiges Abo hinterlegt, derzeit effektiv Free|Piano a pagamento registrato, attualmente Free effettivo
+Learning-active, not visits|Actividad de aprendizaje, no visitas|Activité d'apprentissage, pas les visites|Lernaktiv, keine Besuche|Attivi nell'apprendimento, non visite
+Accepted, not retry-inflated|Aceptadas, sin inflar por reintentos|Validées, sans gonflement par les tentatives répétées|Akzeptiert, ohne Aufblähung durch Wiederholungen|Accettati, senza duplicazioni da nuovi tentativi
+Lessons / active user|Lecciones / usuario activo|Leçons / utilisateur actif|Lektionen / aktiver Nutzer|Lezioni / utente attivo
+Lessons completed ÷ active users|Lecciones completadas ÷ usuarios activos|Leçons terminées ÷ utilisateurs actifs|Abgeschlossene Lektionen ÷ aktive Nutzer|Lezioni completate ÷ utenti attivi
+Quiz submissions / active user|Cuestionarios enviados / usuario activo|Quiz soumis / utilisateur actif|Quizabgaben / aktiver Nutzer|Quiz inviati / utente attivo
+Submissions ÷ active users|Envíos ÷ usuarios activos|Soumissions ÷ utilisateurs actifs|Abgaben ÷ aktive Nutzer|Invii ÷ utenti attivi
+XP / active user|XP / usuario activo|XP / utilisateur actif|XP / aktiver Nutzer|XP / utente attivo
+Awarded XP ÷ active users (retries inflate)|XP otorgados ÷ usuarios activos (los reintentos inflan)|XP attribués ÷ utilisateurs actifs (gonflés par les nouvelles tentatives)|Vergebene XP ÷ aktive Nutzer (Wiederholungen erhöhen den Wert)|XP assegnati ÷ utenti attivi (i nuovi tentativi aumentano il valore)
+Active days / active user|Días activos / usuario activo|Jours actifs / utilisateur actif|Aktive Tage / aktiver Nutzer|Giorni attivi / utente attivo
+Sessions of learning per active user|Sesiones de aprendizaje por usuario activo|Sessions d'apprentissage par utilisateur actif|Lernsitzungen pro aktivem Nutzer|Sessioni di apprendimento per utente attivo
+Key metrics|Métricas principales|Indicateurs clés|Wichtige Kennzahlen|Metriche principali
+Totals for the selected window, with the equivalent figure from the preceding window of equal length.|Totales del período seleccionado y la cifra equivalente del período anterior de igual duración.|Totaux de la période sélectionnée, avec le chiffre équivalent de la période précédente de même durée.|Summen für den gewählten Zeitraum mit dem Vergleichswert des vorherigen gleich langen Zeitraums.|Totali del periodo selezionato con il valore equivalente del periodo precedente di uguale durata.
+Per active user|Por usuario activo|Par utilisateur actif|Pro aktivem Nutzer|Per utente attivo
+Averages across the users who were learning-active in range — the backend's ratio precision is two decimals.|Promedios de usuarios activos en el aprendizaje durante el período; los cocientes del servidor tienen dos decimales.|Moyennes parmi les utilisateurs actifs dans l'apprentissage sur la période ; les ratios du serveur ont deux décimales.|Durchschnitte über lernaktive Nutzer im Zeitraum. Serverseitige Verhältnisse haben zwei Dezimalstellen.|Medie sugli utenti attivi nell'apprendimento nel periodo; i rapporti del server hanno due decimali.
+Activity windows|Ventanas de actividad|Fenêtres d'activité|Aktivitätsfenster|Finestre di attività
+Measured as of the end of the selected range.|Medido al final del período seleccionado.|Mesuré à la fin de la période sélectionnée.|Gemessen zum Ende des gewählten Zeitraums.|Misurato alla fine del periodo selezionato.
+DAU|DAU|DAU|DAU|DAU
+WAU|WAU|WAU|WAU|WAU
+MAU|MAU|MAU|MAU|MAU
+Active on the final day|Activos el último día|Actifs le dernier jour|Am letzten Tag aktiv|Attivi l'ultimo giorno
+Active in the trailing 7 days|Activos en los últimos 7 días|Actifs sur les 7 derniers jours|In den letzten 7 Tagen aktiv|Attivi negli ultimi 7 giorni
+Active in the trailing 30 days|Activos en los últimos 30 días|Actifs sur les 30 derniers jours|In den letzten 30 Tagen aktiv|Attivi negli ultimi 30 giorni
+Not measurable from this database|No medible con esta base de datos|Non mesurable depuis cette base de données|Mit dieser Datenbank nicht messbar|Non misurabile da questo database
+The backend reports these as unsupported rather than approximating them.|El servidor las indica como no disponibles en lugar de aproximarlas.|Le serveur les indique comme non prises en charge plutôt que de les estimer.|Der Server meldet diese als nicht unterstützt, statt sie zu schätzen.|Il server le indica come non supportate invece di stimarle.
+Revenue / MRR / ARR|Ingresos / MRR / ARR|Revenus / MRR / ARR|Umsatz / MRR / ARR|Ricavi / MRR / ARR
+Upgrades & downgrades|Cambios a planes superiores e inferiores|Montées et descentes en gamme|Abo-Upgrades und -Downgrades|Passaggi a piani superiori e inferiori
+Visit-based DAU|DAU basados en visitas|DAU fondés sur les visites|Besuchsbasierte DAU|DAU basati sulle visite
+Effective plan is free|El plan efectivo es Free|L'offre effective est Free|Effektives Abo ist Free|Il piano effettivo è Free
+Share of users|Proporción de usuarios|Part des utilisateurs|Nutzeranteil|Quota di utenti
+Active rate|Tasa de actividad|Taux d'activité|Aktivitätsrate|Tasso di attività
+Distinct lessons|Lecciones distintas|Leçons distinctes|Unterschiedliche Lektionen|Lezioni distinte
+Who the platform holds, as of the end of the selected window.|Usuarios de la plataforma al final del período seleccionado.|Utilisateurs de la plateforme à la fin de la période sélectionnée.|Nutzerbestand der Plattform zum Ende des gewählten Zeitraums.|Utenti presenti nella piattaforma alla fine del periodo selezionato.
+Signups per bucket across the selected window.|Registros por intervalo en el período seleccionado.|Inscriptions par intervalle sur la période sélectionnée.|Registrierungen pro Intervall im gewählten Zeitraum.|Registrazioni per intervallo nel periodo selezionato.
+New users per bucket|Nuevos usuarios por intervalo|Nouveaux utilisateurs par intervalle|Neue Nutzer pro Intervall|Nuovi utenti per intervallo
+Plan breakdown|Desglose por plan|Répartition par offre|Aufschlüsselung nach Abo|Distribuzione per piano
+Always three rows — one per plan code, zero-filled. Lessons completed counts accepted completions in range; distinct lessons counts distinct lessons from progress rows.|Siempre tres filas, una por código de plan, completadas con ceros. Las lecciones completadas cuentan finalizaciones aceptadas en el período; las distintas cuentan lecciones únicas en los registros de progreso.|Toujours trois lignes, une par code d'offre, complétées par des zéros. Les leçons terminées comptent les fins validées sur la période ; les leçons distinctes comptent les leçons uniques des lignes de progression.|Immer drei Zeilen, eine pro Abocode, mit Nullen aufgefüllt. Abgeschlossene Lektionen zählt akzeptierte Abschlüsse im Zeitraum; unterschiedliche Lektionen zählt eindeutige Lektionen aus Fortschrittszeilen.|Sempre tre righe, una per codice piano, con zeri per i valori mancanti. Le lezioni completate contano i completamenti accettati nel periodo; le lezioni distinte contano quelle uniche nei registri di progresso.
+Users by effective plan|Usuarios por plan efectivo|Utilisateurs par offre effective|Nutzer nach effektivem Abo|Utenti per piano effettivo
+No plan rows in this range.|No hay filas de planes en este período.|Aucune ligne d'offre sur cette période.|Keine Abozeilen in diesem Zeitraum.|Nessuna riga di piano in questo periodo.
+Subscription status|Estado de la suscripción|Statut de l'abonnement|Abonnementstatus|Stato dell'abbonamento
+The stored status on each subscription row — the input the effective-plan rules read, not their output. Users with no subscription row at all are absent here.|El estado guardado en cada suscripción: la entrada de las reglas del plan efectivo, no su resultado. Los usuarios sin registro de suscripción no aparecen aquí.|Le statut enregistré sur chaque ligne d'abonnement, utilisé en entrée par les règles d'offre effective, et non leur résultat. Les utilisateurs sans ligne d'abonnement sont absents.|Der gespeicherte Status jeder Abonnementzeile ist die Eingabe der Regeln zum effektiven Abo, nicht deren Ergebnis. Nutzer ohne Abonnementzeile sind hier nicht enthalten.|Lo stato memorizzato in ogni abbonamento è l'input delle regole del piano effettivo, non il loro risultato. Gli utenti senza un record di abbonamento non compaiono qui.
+Users by subscription status|Usuarios por estado de suscripción|Utilisateurs par statut d'abonnement|Nutzer nach Abonnementstatus|Utenti per stato dell'abbonamento

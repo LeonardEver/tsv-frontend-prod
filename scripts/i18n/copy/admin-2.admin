@@ -1,0 +1,125 @@
+Top countries|Países principales|Principaux pays|Wichtigste Länder|Paesi principali
+Ranked by users. The server caps this list at 20 rows, so it is the head of the distribution and not the whole of it.|Ordenados por usuarios. El servidor limita la lista a 20 filas: muestra el inicio de la distribución, no su totalidad.|Classés par utilisateurs. Le serveur limite la liste à 20 lignes : seul le début de la distribution est présenté.|Nach Nutzern sortiert. Der Server begrenzt die Liste auf 20 Zeilen; sie zeigt die Spitze der Verteilung, nicht die gesamte Verteilung.|Ordinati per utenti. Il server limita la lista a 20 righe: mostra la parte iniziale della distribuzione, non tutta.
+Top countries by users|Países principales por usuarios|Principaux pays par utilisateurs|Wichtigste Länder nach Nutzern|Paesi principali per utenti
+No country rows in this range.|No hay filas de países en este período.|Aucune ligne de pays sur cette période.|Keine Länderzeilen in diesem Zeitraum.|Nessuna riga di paese in questo periodo.
+Lesson starts|Lecciones iniciadas|Leçons commencées|Lektionsstarts|Lezioni iniziate
+Completion events|Eventos de finalización|Événements de fin|Abschlussereignisse|Eventi di completamento
+Quizzes started|Cuestionarios iniciados|Quiz commencés|Gestartete Quiz|Quiz iniziati
+Quizzes completed|Cuestionarios completados|Quiz terminés|Abgeschlossene Quiz|Quiz completati
+Downloads|Descargas|Téléchargements|Downloads|Download
+Posts|Publicaciones|Publications|Beiträge|Post
+Comments|Comentarios|Commentaires|Kommentare|Commenti
+Votes|Votos|Votes|Bewertungen|Voti
+Community posts|Publicaciones de la comunidad|Publications communautaires|Community-Beiträge|Post della community
+Two different populations, counted independently. They overlap, so the two figures are not added together.|Dos poblaciones diferentes, contadas por separado. Se solapan, por lo que las cifras no se suman.|Deux populations différentes, comptées indépendamment. Elles se chevauchent ; les chiffres ne sont donc pas additionnés.|Zwei unterschiedliche, unabhängig gezählte Gruppen. Sie überschneiden sich, daher werden die Zahlen nicht addiert.|Due popolazioni diverse, contate separatamente. Si sovrappongono, quindi i valori non vengono sommati.
+Learning-active users|Usuarios activos en el aprendizaje|Utilisateurs actifs dans l'apprentissage|Lernaktive Nutzer|Utenti attivi nell'apprendimento
+Completed a lesson or submitted a quiz|Completaron una lección o enviaron un cuestionario|Ont terminé une leçon ou soumis un quiz|Lektion abgeschlossen oder Quiz abgegeben|Hanno completato una lezione o inviato un quiz
+Community-active users|Usuarios activos en la comunidad|Utilisateurs actifs dans la communauté|Community-aktive Nutzer|Utenti attivi nella community
+Posted, commented or voted|Publicaron, comentaron o votaron|Ont publié, commenté ou voté|Beitrag, Kommentar oder Bewertung erstellt|Hanno pubblicato, commentato o votato
+Activity totals|Totales de actividad|Totaux d'activité|Aktivitätssummen|Totali delle attività
+Totals for the selected window. All three come from learning activity — none of them describe the community.|Totales del período seleccionado. Los tres proceden de la actividad de aprendizaje; ninguno describe la comunidad.|Totaux de la période sélectionnée. Les trois proviennent de l'activité d'apprentissage ; aucun ne décrit la communauté.|Summen für den gewählten Zeitraum. Alle drei stammen aus Lernaktivitäten und beschreiben nicht die Community.|Totali del periodo selezionato. Tutti e tre derivano dall'apprendimento; nessuno descrive la community.
+User-days with learning activity|Días-usuario con actividad de aprendizaje|Jours-utilisateurs avec activité d'apprentissage|Nutzertage mit Lernaktivität|Giorni-utente con attività di apprendimento
+Accepted completions, not retry-inflated|Finalizaciones aceptadas, sin inflar por reintentos|Fins validées, sans gonflement par les nouvelles tentatives|Akzeptierte Abschlüsse, ohne Erhöhung durch Wiederholungen|Completamenti accettati, senza duplicazioni da nuovi tentativi
+Activity by bucket|Actividad por intervalo|Activité par intervalle|Aktivität nach Intervall|Attività per intervallo
+Active users in each bucket of the range, with the most-used counters trending beneath. A bucket with no activity is drawn as a faint stub, not as a gap.|Usuarios activos en cada intervalo, con las tendencias de los contadores más usados debajo. Un intervalo sin actividad se dibuja como una marca tenue, no como un hueco.|Utilisateurs actifs dans chaque intervalle, avec les tendances des compteurs les plus utilisés en dessous. Un intervalle sans activité est représenté par une petite barre pâle, sans trou.|Aktive Nutzer pro Intervall, darunter Trends der meistgenutzten Zähler. Ein Intervall ohne Aktivität wird als blasser kurzer Balken statt als Lücke gezeichnet.|Utenti attivi in ogni intervallo, con le tendenze dei contatori più usati sotto. Un intervallo senza attività appare come una piccola barra tenue, non come uno spazio vuoto.
+Active users per {{granularity}}|Usuarios activos por {{granularity}}|Utilisateurs actifs par {{granularity}}|Aktive Nutzer pro {{granularity}}|Utenti attivi per {{granularity}}
+{{label}} per bucket|{{label}} por intervalo|{{label}} par intervalle|{{label}} pro Intervall|{{label}} per intervallo
+Every counter, per bucket|Todos los contadores, por intervalo|Tous les compteurs, par intervalle|Alle Zähler pro Intervall|Tutti i contatori per intervallo
+All thirteen counters for every bucket, exactly as returned — including the ones the trends above do not chart.|Los trece contadores de cada intervalo, tal como se reciben, incluidos los que no muestran las tendencias de arriba.|Les treize compteurs de chaque intervalle, exactement tels que renvoyés, y compris ceux absents des tendances ci-dessus.|Alle dreizehn Zähler pro Intervall, genau wie zurückgegeben, einschließlich der oben nicht dargestellten.|Tutti i tredici contatori per ogni intervallo, esattamente come restituiti, inclusi quelli non mostrati nei grafici sopra.
+Engagement counters per bucket|Contadores de participación por intervalo|Compteurs d'engagement par intervalle|Interaktionszähler pro Intervall|Contatori di coinvolgimento per intervallo
+Lesson starts are recorded only from the date the lesson-start instrumentation shipped — buckets before that undercount them.|Los inicios de lección solo se registran desde que se implementó su medición; los intervalos anteriores los infravaloran.|Les débuts de leçon ne sont enregistrés que depuis le déploiement de leur instrumentation ; les intervalles antérieurs les sous-estiment.|Lektionsstarts werden erst seit Einführung der entsprechenden Erfassung gespeichert. Frühere Intervalle zählen sie unvollständig.|Gli inizi delle lezioni vengono registrati solo dalla data di introduzione del tracciamento; gli intervalli precedenti li sottostimano.
+All users in range|Todos los usuarios del período|Tous les utilisateurs de la période|Alle Nutzer im Zeitraum|Tutti gli utenti nel periodo
+Started a lesson|Iniciaron una lección|Ont commencé une leçon|Eine Lektion begonnen|Hanno iniziato una lezione
+Completed a lesson|Completaron una lección|Ont terminé une leçon|Eine Lektion abgeschlossen|Hanno completato una lezione
+Started a quiz|Iniciaron un cuestionario|Ont commencé un quiz|Ein Quiz begonnen|Hanno iniziato un quiz
+Submitted a quiz|Enviaron un cuestionario|Ont soumis un quiz|Ein Quiz abgegeben|Hanno inviato un quiz
+Passed a quiz|Aprobaron un cuestionario|Ont réussi un quiz|Ein Quiz bestanden|Hanno superato un quiz
+Progressed a module|Avanzaron en un módulo|Ont progressé dans un module|In einem Modul vorangekommen|Hanno fatto progressi in un modulo
+{{count}} users|{{count}} usuarios|{{count}} utilisateurs|{{count}} Nutzer|{{count}} utenti
+{{pct}} of all users in range|{{pct}} de todos los usuarios del período|{{pct}} de tous les utilisateurs de la période|{{pct}} aller Nutzer im Zeitraum|{{pct}} di tutti gli utenti nel periodo
+From previous:|Desde la etapa anterior:|Depuis l'étape précédente :|Von der vorherigen Phase:|Dalla fase precedente:
+Drop-off:|Abandono:|Abandon :|Abbruch:|Abbandono:
+Learning stages|Etapas de aprendizaje|Étapes d'apprentissage|Lernphasen|Fasi di apprendimento
+Distinct users who performed each action in the selected window, drawn on one shared scale.|Usuarios distintos que realizaron cada acción en el período seleccionado, en una escala común.|Utilisateurs distincts ayant effectué chaque action sur la période sélectionnée, sur une même échelle.|Eindeutige Nutzer, die jede Aktion im gewählten Zeitraum ausgeführt haben, auf gemeinsamer Skala.|Utenti distinti che hanno compiuto ogni azione nel periodo selezionato, su una scala comune.
+Stages are not nested|Las etapas no están anidadas|Les étapes ne sont pas imbriquées|Phasen sind nicht verschachtelt|Le fasi non sono annidate
+Started vs completed, by plan|Iniciadas frente a completadas, por plan|Commencées et terminées, par offre|Begonnen und abgeschlossen, nach Abo|Iniziate e completate per piano
+The two lesson stages split by the user's effective plan.|Las dos etapas de lección según el plan efectivo del usuario.|Les deux étapes des leçons réparties selon l'offre effective de l'utilisateur.|Die beiden Lektionsphasen nach dem effektiven Abo des Nutzers.|Le due fasi delle lezioni suddivise per piano effettivo dell'utente.
+Lesson starts and completions by plan|Inicios y finalizaciones de lecciones por plan|Débuts et fins de leçons par offre|Lektionsstarts und -abschlüsse nach Abo|Inizi e completamenti delle lezioni per piano
+Module|Módulo|Module|Modul|Modulo
+Difficulty|Dificultad|Difficulté|Schwierigkeit|Difficoltà
+Est. minutes|Minutos estimados|Minutes estimées|Geschätzte Minuten|Minuti stimati
+Users started|Usuarios que iniciaron|Utilisateurs ayant commencé|Nutzer mit Start|Utenti che hanno iniziato
+Users completed|Usuarios que completaron|Utilisateurs ayant terminé|Nutzer mit Abschluss|Utenti che hanno completato
+Completion rate|Tasa de finalización|Taux de fin|Abschlussrate|Tasso di completamento
+Users stalled|Usuarios sin avances|Utilisateurs en stagnation|Nutzer mit Stillstand|Utenti bloccati nel percorso
+Avg seconds to complete|Segundos medios hasta completar|Secondes moyennes pour terminer|Durchschnittliche Sekunden bis Abschluss|Secondi medi per completare
+Duration sample|Muestra de duración|Échantillon de durée|Zeitstichprobe|Campione di durata
+Quiz attempts|Intentos de cuestionarios|Tentatives aux quiz|Quizversuche|Tentativi dei quiz
+Quiz pass rate|Tasa de aprobación de cuestionarios|Taux de réussite aux quiz|Quiz-Bestehensquote|Tasso di superamento dei quiz
+Quiz avg score (0–100)|Nota media de cuestionarios (0–100)|Score moyen aux quiz (0–100)|Durchschnittliches Quizergebnis (0–100)|Punteggio medio dei quiz (0–100)
+Passing score (0–1)|Nota mínima (0–1)|Seuil de réussite (0–1)|Bestehensgrenze (0–1)|Soglia di superamento (0–1)
+Unique users|Usuarios únicos|Utilisateurs uniques|Eindeutige Nutzer|Utenti unici
+Attempts|Intentos|Tentatives|Versuche|Tentativi
+Pass rate|Tasa de aprobación|Taux de réussite|Bestehensquote|Tasso di superamento
+First-attempt pass rate|Tasa de aprobación al primer intento|Taux de réussite à la première tentative|Bestehensquote beim ersten Versuch|Tasso di superamento al primo tentativo
+Avg score (0–100)|Nota media (0–100)|Score moyen (0–100)|Durchschnittliches Ergebnis (0–100)|Punteggio medio (0–100)
+Attempts / user|Intentos / usuario|Tentatives / utilisateur|Versuche / Nutzer|Tentativi / utente
+Modules|Módulos|Modules|Module|Moduli
+Search title|Buscar título|Rechercher un titre|Titel suchen|Cerca titolo
+Lesson or module title|Título de lección o módulo|Titre de leçon ou de module|Lektions- oder Modultitel|Titolo della lezione o del modulo
+Search|Buscar|Rechercher|Suchen|Cerca
+Sort by|Ordenar por|Trier par|Sortieren nach|Ordina per
+Most started (default)|Más iniciados (predeterminado)|Les plus commencés (par défaut)|Meiste Starts (Standard)|Più iniziati (predefinito)
+Most completed|Más completados|Les plus terminés|Meiste Abschlüsse|Più completati
+Lowest completion rate|Menor tasa de finalización|Taux de fin le plus faible|Niedrigste Abschlussrate|Tasso di completamento più basso
+Most stalled users|Más usuarios sin avances|Le plus d'utilisateurs en stagnation|Meiste Nutzer mit Stillstand|Più utenti bloccati nel percorso
+Longest estimated|Mayor duración estimada|Durée estimée la plus longue|Längste geschätzte Dauer|Durata stimata più lunga
+Title (A–Z)|Título (A–Z)|Titre (A–Z)|Titel (A–Z)|Titolo (A–Z)
+Most quiz attempts|Más intentos de cuestionarios|Le plus de tentatives aux quiz|Meiste Quizversuche|Più tentativi dei quiz
+Lowest quiz pass rate|Menor tasa de aprobación de cuestionarios|Taux de réussite aux quiz le plus faible|Niedrigste Quiz-Bestehensquote|Tasso di superamento dei quiz più basso
+Most attempts (default)|Más intentos (predeterminado)|Le plus de tentatives (par défaut)|Meiste Versuche (Standard)|Più tentativi (predefinito)
+Most users|Más usuarios|Le plus d'utilisateurs|Meiste Nutzer|Più utenti
+Lowest pass rate|Menor tasa de aprobación|Taux de réussite le plus faible|Niedrigste Bestehensquote|Tasso di superamento più basso
+Lowest first-attempt pass rate|Menor tasa de aprobación al primer intento|Taux de réussite à la première tentative le plus faible|Niedrigste Bestehensquote beim ersten Versuch|Tasso di superamento al primo tentativo più basso
+Lowest average score|Menor nota media|Score moyen le plus faible|Niedrigstes Durchschnittsergebnis|Punteggio medio più basso
+backend default order|orden predeterminado del servidor|ordre par défaut du serveur|Standardreihenfolge des Servers|ordine predefinito del server
+Content performance|Rendimiento del contenido|Résultats des contenus|Inhaltsleistung|Risultati dei contenuti
+One row shape per type: lessons, modules and quizzes each get their own table, sort vocabulary and columns.|Una estructura por tipo: lecciones, módulos y cuestionarios tienen su propia tabla, opciones de orden y columnas.|Une structure par type : leçons, modules et quiz ont chacun leur tableau, leurs tris et leurs colonnes.|Eine Zeilenstruktur pro Typ: Lektionen, Module und Quiz haben jeweils eigene Tabellen, Sortieroptionen und Spalten.|Una struttura per tipo: lezioni, moduli e quiz hanno ciascuno una tabella, opzioni di ordinamento e colonne proprie.
+Lesson performance in range|Rendimiento de lecciones en el período|Résultats des leçons sur la période|Lektionsleistung im Zeitraum|Risultati delle lezioni nel periodo
+Module performance in range|Rendimiento de módulos en el período|Résultats des modules sur la période|Modulleistung im Zeitraum|Risultati dei moduli nel periodo
+Quiz performance in range|Rendimiento de cuestionarios en el período|Résultats des quiz sur la période|Quizleistung im Zeitraum|Risultati dei quiz nel periodo
+No lessons match this view.|Ninguna lección coincide con esta vista.|Aucune leçon ne correspond à cette vue.|Keine Lektionen entsprechen dieser Ansicht.|Nessuna lezione corrisponde a questa vista.
+No modules match this view.|Ningún módulo coincide con esta vista.|Aucun module ne correspond à cette vue.|Keine Module entsprechen dieser Ansicht.|Nessun modulo corrisponde a questa vista.
+No quizzes match this view.|Ningún cuestionario coincide con esta vista.|Aucun quiz ne correspond à cette vue.|Keine Quiz entsprechen dieser Ansicht.|Nessun quiz corrisponde a questa vista.
+{{pageSize}} lessons per page|{{pageSize}} lecciones por página|{{pageSize}} leçons par page|{{pageSize}} Lektionen pro Seite|{{pageSize}} lezioni per pagina
+lessons matching "{{query}}", {{pageSize}} per page|lecciones que coinciden con «{{query}}», {{pageSize}} por página|leçons correspondant à « {{query}} », {{pageSize}} par page|Lektionen passend zu „{{query}}“, {{pageSize}} pro Seite|lezioni corrispondenti a «{{query}}», {{pageSize}} per pagina
+Learning objective|Objetivo de aprendizaje|Objectif d'apprentissage|Lernziel|Obiettivo di apprendimento
+Taught in|Enseñado en|Enseigné dans|Vermittelt in|Insegnato in
+Answers|Respuestas|Réponses|Antworten|Risposte
+Accuracy|Precisión|Exactitude|Genauigkeit|Accuratezza
+Asked in|Preguntado en|Demandé dans|Gefragt in|Chiesto in
+Knowledge item|Elemento de conocimiento|Élément de connaissance|Wissenseinheit|Elemento di conoscenza
+Weakest objectives|Objetivos con menor precisión|Objectifs les moins maîtrisés|Schwächste Lernziele|Obiettivi meno acquisiti
+Weakest questions|Preguntas con menor precisión|Questions les moins réussies|Schwächste Fragen|Domande meno corrette
+Weakest knowledge items|Conocimientos con menor precisión|Connaissances les moins maîtrisées|Schwächste Wissenseinheiten|Conoscenze meno acquisite
+Lowest accuracy first, exactly as the backend orders them.|Menor precisión primero, exactamente como lo ordena el servidor.|Exactitude la plus faible en premier, dans l'ordre exact du serveur.|Niedrigste Genauigkeit zuerst, genau in der Serverreihenfolge.|Accuratezza più bassa per prima, esattamente nell'ordine del server.
+Min answers|Respuestas mínimas|Réponses minimales|Mindestantworten|Risposte minime
+Rows per list|Filas por lista|Lignes par liste|Zeilen pro Liste|Righe per elenco
+Floor in effect: {{floor}} answers per row.|Mínimo aplicado: {{floor}} respuestas por fila.|Seuil appliqué : {{floor}} réponses par ligne.|Aktive Untergrenze: {{floor}} Antworten pro Zeile.|Soglia applicata: {{floor}} risposte per riga.
+Weakest learning objectives by accuracy|Objetivos de aprendizaje con menor precisión|Objectifs d'apprentissage les moins réussis|Schwächste Lernziele nach Genauigkeit|Obiettivi di apprendimento con minore accuratezza
+No objective clears the sample floor in this range.|Ningún objetivo supera el mínimo de muestra en este período.|Aucun objectif ne dépasse le seuil d'échantillon sur cette période.|Kein Lernziel erreicht die Mindeststichprobe im Zeitraum.|Nessun obiettivo supera la soglia del campione in questo periodo.
+Weakest quiz questions by accuracy|Preguntas de cuestionarios con menor precisión|Questions de quiz les moins réussies|Schwächste Quizfragen nach Genauigkeit|Domande dei quiz con minore accuratezza
+No question clears the sample floor in this range.|Ninguna pregunta supera el mínimo de muestra en este período.|Aucune question ne dépasse le seuil d'échantillon sur cette période.|Keine Frage erreicht die Mindeststichprobe im Zeitraum.|Nessuna domanda supera la soglia del campione in questo periodo.
+Weakest knowledge items by accuracy|Conocimientos con menor precisión|Connaissances les moins réussies|Schwächste Wissenseinheiten nach Genauigkeit|Conoscenze con minore accuratezza
+No knowledge item clears the sample floor in this range.|Ningún conocimiento supera el mínimo de muestra en este período.|Aucune connaissance ne dépasse le seuil d'échantillon sur cette période.|Keine Wissenseinheit erreicht die Mindeststichprobe im Zeitraum.|Nessuna conoscenza supera la soglia del campione in questo periodo.
+opened lessons, never completed|lecciones abiertas y nunca completadas|leçons ouvertes, jamais terminées|Lektionen geöffnet, nie abgeschlossen|lezioni aperte e mai completate
+inactive 30+ days|inactivos durante 30 días o más|inactifs depuis au moins 30 jours|seit mindestens 30 Tagen inaktiv|inattivi da almeno 30 giorni
+single-session user|usuario de una sola sesión|utilisateur à session unique|Nutzer mit einer einzigen Sitzung|utente con una sola sessione
+quizzes without lesson progress|cuestionarios sin progreso en lecciones|quiz sans progression dans les leçons|Quiz ohne Lektionsfortschritt|quiz senza progressi nelle lezioni
+User|Usuario|Utilisateur|Nutzer|Utente
+Signed up|Registro|Inscription|Registriert|Registrazione
+Last activity|Última actividad|Dernière activité|Letzte Aktivität|Ultima attività
+{{days}} days stalled|{{days}} días sin avances|{{days}} jours sans progression|{{days}} Tage Stillstand|{{days}} giorni senza progressi
+Last progress|Último progreso|Dernière progression|Letzter Fortschritt|Ultimo progresso
+Unanswered starts|Inicios sin respuesta|Débuts sans réponse|Starts ohne Antwort|Avvii senza risposta
+Last known position|Última posición conocida|Dernière position connue|Letzte bekannte Position|Ultima posizione nota

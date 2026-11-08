@@ -70,6 +70,204 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/.well-known/openid-configuration": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Default Response */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/mock/.well-known/openid-configuration": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Default Response */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/mock/jwks.json": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Default Response */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/mock/authorize": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Default Response */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/mock/token": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Default Response */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/mock/userinfo": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Default Response */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/v1/auth/register": {
         parameters: {
             query?: never;
@@ -105,6 +303,7 @@ export interface paths {
                         terms_version: string;
                         privacy_version: string;
                         marketing_opt_in?: boolean;
+                        preferred_language?: string;
                     };
                 };
             };
@@ -286,6 +485,8 @@ export interface paths {
                             country: null | string;
                             email_verified: boolean;
                             created_at: string;
+                            preferred_language?: string;
+                            language_confirmed_at?: null | string;
                         };
                     };
                 };
@@ -968,6 +1169,8 @@ export interface paths {
                             country: null | string;
                             email_verified: boolean;
                             created_at: string;
+                            preferred_language?: string;
+                            language_confirmed_at?: null | string;
                         };
                     };
                 };
@@ -991,7 +1194,9 @@ export interface paths {
         /** List categories with published module counts */
         get: {
             parameters: {
-                query?: never;
+                query?: {
+                    locale?: "en" | "pt-BR" | "es" | "fr" | "de" | "it";
+                };
                 header?: never;
                 path?: never;
                 cookie?: never;
@@ -1012,6 +1217,14 @@ export interface paths {
                                 module_count: number;
                                 completed_count: number;
                             }[];
+                            localization?: {
+                                requested_locale: string;
+                                content_locale: string;
+                                fallback: boolean;
+                                missing_count: number;
+                                reasons: string[];
+                                artifact_locale: null | string;
+                            };
                         };
                     };
                 };
@@ -1035,7 +1248,9 @@ export interface paths {
         /** Category detail with subcategories and modules */
         get: {
             parameters: {
-                query?: never;
+                query?: {
+                    locale?: "en" | "pt-BR" | "es" | "fr" | "de" | "it";
+                };
                 header?: never;
                 path: {
                     category_slug: string;
@@ -1065,6 +1280,14 @@ export interface paths {
                                     progress_pct: number;
                                 }[];
                             }[];
+                            localization?: {
+                                requested_locale: string;
+                                content_locale: string;
+                                fallback: boolean;
+                                missing_count: number;
+                                reasons: string[];
+                                artifact_locale: null | string;
+                            };
                         };
                     };
                 };
@@ -1111,6 +1334,7 @@ export interface paths {
                     difficulty?: "beginner" | "intermediate" | "advanced";
                     cursor?: string;
                     limit?: number;
+                    locale?: "en" | "pt-BR" | "es" | "fr" | "de" | "it";
                 };
                 header?: never;
                 path?: never;
@@ -1140,6 +1364,14 @@ export interface paths {
                                 has_more: boolean;
                                 page_size: number;
                             };
+                            localization?: {
+                                requested_locale: string;
+                                content_locale: string;
+                                fallback: boolean;
+                                missing_count: number;
+                                reasons: string[];
+                                artifact_locale: null | string;
+                            };
                         };
                     };
                 };
@@ -1163,7 +1395,9 @@ export interface paths {
         /** Module detail with lesson, quiz, and resources */
         get: {
             parameters: {
-                query?: never;
+                query?: {
+                    locale?: "en" | "pt-BR" | "es" | "fr" | "de" | "it";
+                };
                 header?: never;
                 path: {
                     module_id: string;
@@ -1215,6 +1449,14 @@ export interface paths {
                                 quiz_best_score: null | number;
                                 completed: boolean;
                             };
+                            localization?: {
+                                requested_locale: string;
+                                content_locale: string;
+                                fallback: boolean;
+                                missing_count: number;
+                                reasons: string[];
+                                artifact_locale: null | string;
+                            };
                         };
                     };
                 };
@@ -1265,6 +1507,7 @@ export interface paths {
             parameters: {
                 query?: {
                     format?: "markdown";
+                    locale?: "en" | "pt-BR" | "es" | "fr" | "de" | "it";
                 };
                 header?: never;
                 path: {
@@ -1300,6 +1543,14 @@ export interface paths {
                                 completed: boolean;
                                 last_position: number | null;
                             };
+                            localization?: {
+                                requested_locale: string;
+                                content_locale: string;
+                                fallback: boolean;
+                                missing_count: number;
+                                reasons: string[];
+                                artifact_locale: null | string;
+                            };
                         } | {
                             lesson_id: string;
                             module_id: string;
@@ -1312,6 +1563,14 @@ export interface paths {
                             progress: {
                                 completed: boolean;
                                 last_position: number | null;
+                            };
+                            localization?: {
+                                requested_locale: string;
+                                content_locale: string;
+                                fallback: boolean;
+                                missing_count: number;
+                                reasons: string[];
+                                artifact_locale: null | string;
                             };
                         };
                     };
@@ -1361,7 +1620,9 @@ export interface paths {
         /** Quiz with questions (correct answers NEVER exposed) */
         get: {
             parameters: {
-                query?: never;
+                query?: {
+                    locale?: "en" | "pt-BR" | "es" | "fr" | "de" | "it";
+                };
                 header?: never;
                 path: {
                     quiz_id: string;
@@ -1398,6 +1659,14 @@ export interface paths {
                                 passed: null | boolean;
                                 attempted_at: string;
                             }[];
+                            localization?: {
+                                requested_locale: string;
+                                content_locale: string;
+                                fallback: boolean;
+                                missing_count: number;
+                                reasons: string[];
+                                artifact_locale: null | string;
+                            };
                         };
                     };
                 };
@@ -1439,7 +1708,9 @@ export interface paths {
         /** Resource metadata */
         get: {
             parameters: {
-                query?: never;
+                query?: {
+                    locale?: "en" | "pt-BR" | "es" | "fr" | "de" | "it";
+                };
                 header?: never;
                 path: {
                     resource_id: string;
@@ -1467,6 +1738,14 @@ export interface paths {
                             module_id: string;
                             module_title: string;
                             artifact_available: boolean;
+                            localization?: {
+                                requested_locale: string;
+                                content_locale: string;
+                                fallback: boolean;
+                                missing_count: number;
+                                reasons: string[];
+                                artifact_locale: null | string;
+                            };
                         };
                     };
                 };
@@ -1723,6 +2002,14 @@ export interface paths {
                             }[];
                             xp_earned: number;
                             completed_at: null | string;
+                            localization?: {
+                                requested_locale: string;
+                                content_locale: string;
+                                fallback: boolean;
+                                missing_count: number;
+                                reasons: string[];
+                                artifact_locale: null | string;
+                            };
                         };
                     };
                 };
@@ -1816,7 +2103,9 @@ export interface paths {
         /** Get specific attempt detail with results */
         get: {
             parameters: {
-                query?: never;
+                query?: {
+                    locale?: "en" | "pt-BR" | "es" | "fr" | "de" | "it";
+                };
                 header?: never;
                 path: {
                     quiz_id: string;
@@ -1856,6 +2145,14 @@ export interface paths {
                             }[];
                             xp_earned: number;
                             completed_at: null | string;
+                            localization?: {
+                                requested_locale: string;
+                                content_locale: string;
+                                fallback: boolean;
+                                missing_count: number;
+                                reasons: string[];
+                                artifact_locale: null | string;
+                            };
                         };
                     };
                 };
@@ -2100,7 +2397,9 @@ export interface paths {
         /** Earned and unearned achievements */
         get: {
             parameters: {
-                query?: never;
+                query?: {
+                    locale?: "en" | "pt-BR" | "es" | "fr" | "de" | "it";
+                };
                 header?: never;
                 path?: never;
                 cookie?: never;
@@ -2132,6 +2431,14 @@ export interface paths {
                                     pct: number;
                                 };
                             }[];
+                            localization?: {
+                                requested_locale: string;
+                                content_locale: string;
+                                fallback: boolean;
+                                missing_count: number;
+                                reasons: string[];
+                                artifact_locale: null | string;
+                            };
                         };
                     };
                 };
@@ -3204,6 +3511,167 @@ export interface paths {
                 };
             };
         };
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/notifications": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Latest 30 account notifications with persisted read state */
+        get: {
+            parameters: {
+                query?: {
+                    locale?: "en" | "pt-BR" | "es" | "fr" | "de" | "it";
+                };
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Default Response */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            items: {
+                                notification_id: string;
+                                /** @enum {string} */
+                                kind: "lesson_completed" | "quiz_completed" | "achievement" | "community_reply";
+                                at: string;
+                                read_at: null | string;
+                                target: string;
+                                subject: null | {
+                                    /** @enum {string} */
+                                    entity_type: "module" | "achievement" | "post";
+                                    entity_id: string;
+                                    title: string;
+                                    description: null | string;
+                                };
+                            }[];
+                            unread_count: number;
+                            localization?: {
+                                requested_locale: string;
+                                content_locale: string;
+                                fallback: boolean;
+                                missing_count: number;
+                                reasons: string[];
+                                artifact_locale: null | string;
+                            };
+                        };
+                    };
+                };
+                /** @description Default Response */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            error?: {
+                                code?: string;
+                                message?: string;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
+                                request_id?: string;
+                            };
+                        };
+                    };
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/notifications/read": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Mark visible account notifications as read */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody: {
+                content: {
+                    "application/json": {
+                        notification_ids: string[];
+                    };
+                };
+            };
+            responses: {
+                /** @description Default Response */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            ok: boolean;
+                        };
+                    };
+                };
+                /** @description Default Response */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            error?: {
+                                code?: string;
+                                message?: string;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
+                                request_id?: string;
+                            };
+                        };
+                    };
+                };
+                /** @description Default Response */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            error?: {
+                                code?: string;
+                                message?: string;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
+                                request_id?: string;
+                            };
+                        };
+                    };
+                };
+            };
+        };
+        delete?: never;
         options?: never;
         head?: never;
         patch?: never;

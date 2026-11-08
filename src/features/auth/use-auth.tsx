@@ -20,6 +20,7 @@ import { ApiError, NetworkError } from "@/lib/api/errors";
 import { clearServerCache } from "@/app/query-client";
 import { fetchCurrentUser, logoutSession } from "./auth.api";
 import { AuthContext, type AuthContextValue } from "./auth-context";
+import { useAccountLocale } from "@/i18n/use-account-locale";
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const activeClient = useQueryClient();
@@ -30,6 +31,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     gcTime: 0, // never keep the user object beyond memory (spec §6.1)
     retry: false, // bootstrap errors surface as "error", not retry loops
   });
+  const languageReady = useAccountLocale(query.data);
 
   const logoutMutation = useMutation({
     mutationFn: logoutSession,
@@ -58,7 +60,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, [activeClient]);
 
   const value = useMemo<AuthContextValue>(() => {
-    if (query.isPending) {
+    if (query.isPending || query.isSuccess && !languageReady) {
       return {
         status: "loading",
         user: null,
@@ -96,7 +98,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       logout: handleLogout,
       isUnauthenticated: false,
     };
-  }, [query.isPending, query.isError, query.error, query.data, handleRefresh, handleLogout]);
+  }, [query.isPending, query.isSuccess, query.isError, query.error, query.data, languageReady, handleRefresh, handleLogout]);
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }

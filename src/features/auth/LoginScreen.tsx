@@ -11,6 +11,7 @@
  * bootstrap query is refreshed and the app navigates to the redirect
  * target (sanitized, root-relative only).
  */
+import { tr as uiText, useLocale as useInterfaceLocale } from "@/i18n";
 import { useState } from "react";
 import { Link, useNavigate, useSearchParams } from "react-router";
 import { BrandMark } from "@/components/layout/BrandMark";
@@ -27,8 +28,11 @@ import { ApiError } from "@/lib/api/errors";
 import { loginAccount } from "./auth.api";
 import { useAuth } from "./auth-context";
 import loginHero from "@/assets/login-hero.jpg";
+import { AuthLanguageChoice } from "@/i18n/AuthLanguageChoice";
+import { confirmLocaleChoice } from "@/i18n";
 
 export function LoginScreen() {
+  useInterfaceLocale();
   const [params] = useSearchParams();
   const redirectTo = safeRedirectPath(params.get("redirect_to"));
   const navigate = useNavigate();
@@ -43,6 +47,7 @@ export function LoginScreen() {
   const loginUrl = `${API_BASE}/auth/login?redirect_to=${encodeURIComponent(redirectTo)}`;
 
   async function submit(): Promise<void> {
+    confirmLocaleChoice();
     setError(null);
     setNeedsVerification(false);
     setSubmitting(true);
@@ -71,20 +76,13 @@ export function LoginScreen() {
         <div className="relative w-full max-w-md">
           <BrandMark />
           <Eyebrow className="mt-10">Survival Academy</Eyebrow>
-          <h1 className="mt-3 font-display text-4xl leading-[1.05] font-semibold tracking-wide uppercase sm:text-5xl">
-            Practical survival,
-            <br />
-            preparedness and
-            <br />
-            self-reliance.
-          </h1>
-          <p className="mt-4 text-sm text-muted-foreground">
-            Field manuals, missions and field tests built for people who want usable skills — not
-            trivia.
-          </p>
+          <h1 className="mt-3 font-display text-4xl leading-[1.05] font-semibold tracking-wide uppercase sm:text-5xl">{uiText("authentication:practical_survival_c825a9")}<br />{uiText("authentication:preparedness_and_30cd0b")}<br />{uiText("authentication:self_reliance_44c71e")}</h1>
+          <p className="mt-4 text-sm text-muted-foreground">{uiText("authentication:field_manuals_missions_and_field_tests_built_0b4504")}</p>
 
+          <AuthLanguageChoice />
           <a
             href={loginUrl}
+            onClick={() => { confirmLocaleChoice(); }}
             className="glow-ember mt-8 flex min-h-13 w-full items-center justify-center gap-3 rounded-lg bg-primary px-6 text-sm font-semibold tracking-wide text-primary-foreground uppercase transition-colors hover:bg-primary/90"
           >
             <svg viewBox="0 0 24 24" className="size-5" aria-hidden="true">
@@ -92,15 +90,11 @@ export function LoginScreen() {
                 fill="currentColor"
                 d="M21.35 11.1H12v2.9h5.35c-.23 1.4-1.63 4.1-5.35 4.1a5.9 5.9 0 1 1 0-11.8c1.68 0 2.8.72 3.45 1.33l2.35-2.27C16.4 3.86 14.4 3 12 3a9 9 0 1 0 0 18c5.2 0 8.65-3.65 8.65-8.8 0-.6-.1-1.4-.3-2.1Z"
               />
-            </svg>
-            Continue with Google
-          </a>
+            </svg>{uiText("authentication:continue_with_google_ccc5b0")}</a>
 
           <div className="mt-8 flex items-center gap-3">
             <span className="h-px flex-1 bg-border-default" />
-            <span className="font-mono text-[11px] tracking-widest text-text-disabled uppercase">
-              or use email
-            </span>
+            <span className="font-mono text-[11px] tracking-widest text-text-disabled uppercase">{uiText("authentication:or_use_email_be1bca")}</span>
             <span className="h-px flex-1 bg-border-default" />
           </div>
 
@@ -113,7 +107,7 @@ export function LoginScreen() {
             className="mt-6 flex flex-col gap-4"
           >
             <div className="flex flex-col gap-1">
-              <Label htmlFor="login-email">Email address</Label>
+              <Label htmlFor="login-email">{uiText("authentication:email_address_c94d31")}</Label>
               <Input
                 id="login-email"
                 type="email"
@@ -126,7 +120,7 @@ export function LoginScreen() {
 
             <div className="flex flex-col gap-1">
               <PasswordInput
-                label="Password"
+                label={uiText("authentication:password_8be3c9")}
                 name="password"
                 autoComplete="current-password"
                 required
@@ -137,34 +131,25 @@ export function LoginScreen() {
                 <Link
                   to="/forgot-password"
                   className="text-accent-ember underline underline-offset-2"
-                >
-                  Forgot password?
-                </Link>
+                >{uiText("authentication:forgot_password_4c29f7")}</Link>
               </p>
             </div>
 
             {needsVerification ? (
-              <Alert tone="warning" title="Verify your email before signing in.">
+              <Alert tone="warning" title={uiText("authentication:verify_your_email_before_signing_in_dbe562")}>
                 <Link
                   to={`/verify-email?email=${encodeURIComponent(email)}`}
                   className="underline underline-offset-2"
-                >
-                  Resend the verification email
-                </Link>
+                >{uiText("authentication:resend_the_verification_email_b45640")}</Link>
               </Alert>
             ) : null}
             {error ? <Alert tone="danger" title={error} /> : null}
 
-            <Button type="submit" loading={submitting} className="w-full">
-              Sign in
-            </Button>
+            <Button type="submit" loading={submitting} className="w-full">{uiText("authentication:sign_in_ada2e9")}</Button>
           </form>
 
-          <p className="mt-6 text-center text-sm text-text-secondary">
-            New to Survival Academy?{" "}
-            <Link to="/register" className="text-accent-ember underline underline-offset-2">
-              Create an account
-            </Link>
+          <p className="mt-6 text-center text-sm text-text-secondary">{uiText("authentication:new_to_survival_academy_8eb698")}{" "}
+            <Link to="/register" className="text-accent-ember underline underline-offset-2">{uiText("authentication:create_an_account_3f4f54")}</Link>
           </p>
         </div>
       </div>
@@ -172,19 +157,15 @@ export function LoginScreen() {
       <div className="relative hidden lg:block">
         <img
           src={loginHero}
-          alt="Illuminated tent on a mountain ridge at blue hour"
+          alt={uiText("authentication:illuminated_tent_on_a_mountain_ridge_at_28faa8")}
           width={1400}
           height={1600}
           className="absolute inset-0 size-full object-cover"
         />
         <div className="absolute inset-0 bg-linear-to-r from-background via-transparent to-transparent" />
         <div className="absolute right-0 bottom-0 left-0 bg-linear-to-t from-background to-transparent p-12">
-          <p className="font-mono text-[11px] tracking-[0.3em] text-primary uppercase">
-            Expedition begins at base camp
-          </p>
-          <p className="mt-2 max-w-md text-sm text-muted-foreground">
-            Water · Fire · Shelter · Food · Agriculture · Foraging · Medical · Navigation · Energy
-          </p>
+          <p className="font-mono text-[11px] tracking-[0.3em] text-primary uppercase">{uiText("authentication:expedition_begins_at_base_camp_6edccf")}</p>
+          <p className="mt-2 max-w-md text-sm text-muted-foreground">{uiText("authentication:water_fire_shelter_food_agriculture_foraging_medical_76bb5d")}</p>
         </div>
       </div>
     </div>

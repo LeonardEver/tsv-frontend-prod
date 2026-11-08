@@ -5,6 +5,7 @@
  * Mirrors backend/src/modules/auth/password.ts. Keep in sync.
  */
 
+import { tr as uiText } from "@/i18n";
 export interface PasswordRule {
   id: string;
   label: string;
@@ -12,13 +13,13 @@ export interface PasswordRule {
 }
 
 export const PASSWORD_RULES: PasswordRule[] = [
-  { id: "length", label: "At least 12 characters", test: (p) => p.length >= 12 },
-  { id: "lower", label: "One lowercase letter", test: (p) => /[a-z]/.test(p) },
-  { id: "upper", label: "One uppercase letter", test: (p) => /[A-Z]/.test(p) },
-  { id: "number", label: "One number", test: (p) => /[0-9]/.test(p) },
+  { id: "length", get label() { return uiText("authentication:at_least_12_characters_feb7e2"); }, test: (p) => p.length >= 12 },
+  { id: "lower", get label() { return uiText("authentication:one_lowercase_letter_731c24"); }, test: (p) => /[a-z]/.test(p) },
+  { id: "upper", get label() { return uiText("authentication:one_uppercase_letter_6d8f16"); }, test: (p) => /[A-Z]/.test(p) },
+  { id: "number", get label() { return uiText("authentication:one_number_77d594"); }, test: (p) => /[0-9]/.test(p) },
   {
     id: "special",
-    label: "One special character",
+    get label() { return uiText("authentication:one_special_character_45fba4"); },
     test: (p) => /[^A-Za-z0-9\s]/.test(p),
   },
 ];

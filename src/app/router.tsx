@@ -9,8 +9,10 @@
  *   public.
  * - Quiz routes carry NO lesson-completion guard (DEC-022).
  */
+import { NotFoundPage } from "./not-found";
 import { lazy } from "react";
-import { createBrowserRouter } from "react-router";
+import { createBrowserRouter, type RouteObject } from "react-router";
+import { RouteErrorElement } from "./route-error";
 import { RequireAuth, RedirectIfAuthed } from "@/features/auth/guards";
 import { LoginScreen } from "@/features/auth/LoginScreen";
 import { RegisterScreen } from "@/features/auth/RegisterScreen";
@@ -20,7 +22,6 @@ import { ResetPasswordScreen } from "@/features/auth/ResetPasswordScreen";
 import { TermsScreen } from "@/features/legal/TermsScreen";
 import { PrivacyScreen } from "@/features/legal/PrivacyScreen";
 import { AppShell } from "@/components/layout/AppShell";
-import { PagePlaceholder } from "@/components/shared/PagePlaceholder";
 import { RootRedirect, LessonAlias, QuizAlias, LearnAlias } from "./redirects";
 
 const DashboardPage = lazy(() => import("@/features/dashboard"));
@@ -34,11 +35,26 @@ const ResourcePage = lazy(() => import("@/features/resources"));
 const ProgressPage = lazy(() => import("@/features/progress"));
 const GamificationPage = lazy(() => import("@/features/gamification"));
 const ProfilePage = lazy(() => import("@/features/profile"));
+
 const PlansPage = lazy(() => import("@/features/plans"));
 const CommunityPage = lazy(() => import("@/features/community"));
 const CreatePostPage = lazy(() => import("@/features/community/CreatePost"));
 const PostDetailPage = lazy(() => import("@/features/community/PostDetail"));
 const LandingPage = lazy(() => import("./landing/LandingPage"));
+
+// ── Simplified experience (§ guided-learning) ──
+// An additive experience beside PRO, not a replacement: nothing here
+// changes a PRO route. All three surfaces sit OUTSIDE AppShell because
+// SimplifiedShell supplies its own chrome (header, mode switch, bottom
+// nav) — they still carry RequireAuth. The mode preference alone does
+// not gate these routes: a learner may deep-link either experience.
+const SimplifiedHomePage = lazy(() => import("@/features/simplified"));
+const SimplifiedMissionPage = lazy(() =>
+  import("@/features/simplified").then((module) => ({ default: module.SimplifiedMission })),
+);
+const SimplifiedFieldTestPage = lazy(() =>
+  import("@/features/simplified").then((module) => ({ default: module.SimplifiedFieldTest })),
+);
 
 // ── Admin analytics (§ admin-only surface) ──
 // The layout is one lazy chunk; each tab is its own chunk so a section
@@ -63,7 +79,7 @@ const AnalyticsGamificationTab = lazy(
 const AnalyticsBillingTab = lazy(() => import("@/features/admin-analytics/tabs/BillingTab"));
 const AnalyticsGeographyTab = lazy(() => import("@/features/admin-analytics/tabs/GeographyTab"));
 
-export const router = createBrowserRouter([
+const appRoutes: RouteObject[] = [
   {
     path: "/login",
     element: (
@@ -117,6 +133,30 @@ export const router = createBrowserRouter([
         <AppShell>
           <RootRedirect />
         </AppShell>
+      </RequireAuth>
+    ),
+  },
+  {
+    path: "/simplified",
+    element: (
+      <RequireAuth>
+        <SimplifiedHomePage />
+      </RequireAuth>
+    ),
+  },
+  {
+    path: "/simplified/missions/:moduleId",
+    element: (
+      <RequireAuth>
+        <SimplifiedMissionPage />
+      </RequireAuth>
+    ),
+  },
+  {
+    path: "/simplified/missions/:moduleId/test",
+    element: (
+      <RequireAuth>
+        <SimplifiedFieldTestPage />
       </RequireAuth>
     ),
   },
@@ -382,9 +422,23 @@ export const router = createBrowserRouter([
     element: (
       <RequireAuth>
         <AppShell>
-          <PagePlaceholder title="Not found" note="This page doesn't exist." />
+          <NotFoundPage />
         </AppShell>
       </RequireAuth>
     ),
+  },
+];
+
+/**
+ * One pathless root wraps every route above. It renders no element of its own
+ * — the children flow straight through the implicit Outlet — and exists only
+ * to give the whole map a styled errorElement, so no screen can ever fall back
+ * to React Router's raw crash page. Declaring it once here is the reason the
+ * route list below needs no per-route error handling.
+ */
+export const router = createBrowserRouter([
+  {
+    errorElement: <RouteErrorElement />,
+    children: appRoutes,
   },
 ]);

@@ -1,3 +1,4 @@
+import { rankTitle } from "@/features/gamification/rewards-presenter";
 /**
  * Application shell (Phase 23) — the Lovable reference shell
  * (`frontend-reference/.../components/layout/AppShell.tsx`) is the visual
@@ -9,6 +10,7 @@
  * XP/level from the canonical gamification query, identity from /auth/me.
  * Navigation targets the existing production route contracts.
  */
+import { tr as uiText, useLocale as useInterfaceLocale, uiValue } from "@/i18n";
 import { useState, type ReactNode } from "react";
 import { Link, useLocation } from "react-router";
 import { useQuery } from "@tanstack/react-query";
@@ -22,7 +24,6 @@ import {
   CreditCard,
   BarChart3,
   Search,
-  Bell,
   Menu,
   X,
   Settings,
@@ -41,20 +42,26 @@ import { OfflineBanner } from "./OfflineBanner";
 import { ToastHost } from "./ToastHost";
 import { ThemeToggle } from "./ThemeToggle";
 import { UserMenu } from "./UserMenu";
+import { NotificationCenter } from "@/features/notifications/NotificationCenter";
+// Imported from its own module rather than the feature barrel: the barrel
+// re-exports the lazily-routed Simplified screens, and pulling it in here
+// would drag all three into the main chunk.
+import { ModeSwitch } from "@/features/simplified/ModeSwitch";
+import styles from "./app-shell.module.css";
 
 /** VISUAL — application shell. Navigation only; no business logic. */
 
 const primary = [
-  { to: "/", label: "Base Camp", icon: Home },
-  { to: "/categories", label: "Learn", icon: BookOpen },
-  { to: "/progress", label: "Progress", icon: TrendingUp },
-  { to: "/gamification", label: "Rewards", icon: Trophy },
-  { to: "/community", label: "Community", icon: Users },
+  { to: "/", get label() { return uiText("navigation:base_camp_8e2aa8"); }, icon: Home },
+  { to: "/categories", get label() { return uiText("navigation:learn_b04837"); }, icon: BookOpen },
+  { to: "/progress", get label() { return uiText("navigation:progress_1b9027"); }, icon: TrendingUp },
+  { to: "/gamification", get label() { return uiText("navigation:rewards_2f4f4b"); }, icon: Trophy },
+  { to: "/community", get label() { return uiText("navigation:community_bfd58e"); }, icon: Users },
 ] as const;
 
 const account = [
-  { to: "/profile", label: "Profile", icon: User },
-  { to: "/plans", label: "Plans", icon: CreditCard },
+  { to: "/profile", get label() { return uiText("navigation:profile_ff4fc0"); }, icon: User },
+  { to: "/plans", get label() { return uiText("navigation:plans_cf2e5f"); }, icon: CreditCard },
 ] as const;
 
 function NavItem({
@@ -70,6 +77,7 @@ function NavItem({
   active: boolean;
   onNavigate?: (() => void) | undefined;
 }) {
+  useInterfaceLocale();
   return (
     <Link
       to={to}
@@ -98,6 +106,7 @@ function SidebarRegions({
   pathname: string;
   onNavigate?: (() => void) | undefined;
 }) {
+  useInterfaceLocale();
   const { status } = useAuth();
   const authed = status === "authenticated";
   const categories = useQuery({
@@ -110,8 +119,8 @@ function SidebarRegions({
 
   return (
     <div>
-      <p className="eyebrow px-3 pb-2">Regions</p>
-      <nav aria-label="Regions" className="grid gap-0.5">
+      <p className="eyebrow px-3 pb-2">{uiText("navigation:regions_039711")}</p>
+      <nav aria-label={uiText("navigation:regions_039711")} className="grid gap-0.5">
         {!authed || categories.isPending
           ? Array.from({ length: 4 }, (_, i) => (
               <span key={i} className="mx-3 mb-0.5 block h-6 animate-pulse rounded-md bg-sidebar-accent" />
@@ -150,6 +159,7 @@ function SidebarRegions({
 }
 
 function SidebarContent({ pathname, onNavigate }: { pathname: string; onNavigate?: (() => void) | undefined }) {
+  useInterfaceLocale();
   // Admin capability is decided by the backend (see use-admin-access);
   // until it confirms, the entry stays hidden rather than flickering in.
   const { isAdmin } = useAdminAccess();
@@ -160,7 +170,7 @@ function SidebarContent({ pathname, onNavigate }: { pathname: string; onNavigate
         <BrandMark />
       </Link>
 
-      <nav aria-label="Primary" className="grid gap-1">
+      <nav aria-label={uiText("navigation:primary_a9a96e")} className="grid gap-1">
         {primary.map((i) => (
           <NavItem
             key={i.to}
@@ -174,8 +184,8 @@ function SidebarContent({ pathname, onNavigate }: { pathname: string; onNavigate
       <SidebarRegions pathname={pathname} onNavigate={onNavigate} />
 
       <div className="mt-auto">
-        <p className="eyebrow px-3 pb-2">Account</p>
-        <nav aria-label="Account" className="grid gap-1">
+        <p className="eyebrow px-3 pb-2">{uiText("navigation:account_85dfa3")}</p>
+        <nav aria-label={uiText("navigation:account_85dfa3")} className="grid gap-1">
           {account.map((i) => (
             <NavItem
               key={i.to}
@@ -187,7 +197,7 @@ function SidebarContent({ pathname, onNavigate }: { pathname: string; onNavigate
           {isAdmin && (
             <NavItem
               to="/admin/analytics"
-              label="Analytics"
+              label={uiText("navigation:analytics_25bc96")}
               icon={BarChart3}
               active={pathname.startsWith("/admin/analytics")}
               onNavigate={onNavigate}
@@ -197,8 +207,7 @@ function SidebarContent({ pathname, onNavigate }: { pathname: string; onNavigate
             type="button"
             className="flex min-h-11 items-center gap-3 rounded-lg px-3 text-sm text-sidebar-foreground/80 transition-colors hover:bg-sidebar-accent"
           >
-            <Settings className="size-4" /> Settings
-          </button>
+            <Settings className="size-4" />{" "}{uiText("navigation:settings_c7f73b")}</button>
         </nav>
       </div>
     </div>
@@ -220,19 +229,21 @@ function useShellGamification() {
 }
 
 export function AppShell({ children }: { children: ReactNode }) {
+  useInterfaceLocale();
   useOnlineStatus();
   const { pathname } = useLocation();
   const [mobileNav, setMobileNav] = useState(false);
   const gamification = useShellGamification();
 
   const summary = gamification.data;
+  const focusedQuiz = /^\/modules\/[^/]+\/quiz(?:\/|$)/.test(pathname);
 
   return (
-    <div className="topo grain relative min-h-dvh">
+    <div className={cn("topo grain relative min-h-dvh", styles.shell, focusedQuiz && styles.focusedQuiz)}>
       <SkipLink />
       <div className="relative flex min-h-dvh">
         {/* Desktop sidebar */}
-        <aside className="sticky top-0 hidden h-dvh w-64 shrink-0 border-r border-sidebar-border bg-sidebar/80 backdrop-blur-sm lg:block">
+        <aside className={cn("sticky top-0 hidden h-dvh w-64 shrink-0 border-r border-sidebar-border bg-sidebar/80 backdrop-blur-sm lg:block", styles.sidebarScenery)}>
           <SidebarContent pathname={pathname} />
         </aside>
 
@@ -240,43 +251,41 @@ export function AppShell({ children }: { children: ReactNode }) {
           {/* Top utility bar. The safe-area inset is padding rather than
               margin so the blurred background still fills the notch. */}
           <header
-            className="sticky top-0 z-[var(--z-chrome)] border-b border-border bg-background/80 backdrop-blur-md"
+            className={cn("sticky top-0 z-[var(--z-chrome)] border-b border-border bg-background/80 backdrop-blur-md", styles.utilityBar)}
             style={{ paddingTop: "env(safe-area-inset-top, 0px)" }}
           >
-            <div className="grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-3 px-4 py-3 sm:gap-4 sm:px-6">
-              <div className="flex items-center gap-2 lg:hidden">
+            <div className={styles.toolbar}>
+              <div className={`flex items-center gap-2 lg:hidden ${styles.mobileIdentity}`}>
                 <button
                   type="button"
-                  aria-label="Open navigation"
+                  aria-label={uiText("navigation:open_navigation_0f53b3")}
                   onClick={() => { setMobileNav(true); }}
                   className="grid size-10 place-items-center rounded-lg border border-border"
                 >
                   <Menu className="size-5" />
                 </button>
                 <Link to="/">
-                  <BrandMark compact />
+                  <BrandMark className={styles.mobileBrand} />
                 </Link>
               </div>
 
-              <div className="hidden min-w-0 lg:block">
+              <div className={`hidden min-w-0 lg:block ${styles.search}`}>
                 <label className="relative block max-w-md">
-                  <span className="sr-only">Search lessons, missions, resources</span>
+                  <span className="sr-only">{uiText("navigation:search_lessons_missions_resources_75b249")}</span>
                   <Search className="pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2 text-muted-foreground" />
                   <input
                     type="search"
-                    placeholder="Search missions, field manuals, resources…"
+                    placeholder={uiText("navigation:search_missions_field_manuals_resources_01aad1")}
                     className="h-10 w-full rounded-lg border border-border bg-surface-2/70 pr-3 pl-9 text-sm outline-none placeholder:text-muted-foreground focus:border-primary/50"
                   />
                 </label>
               </div>
-              <div className="lg:hidden" />
-
-              <div className="flex items-center justify-end gap-2 sm:gap-3">
-                <div className="hidden items-center gap-2 sm:flex">
+                <div className={styles.statusControls} title={summary ? summary.xp_to_next_level === null ? uiText("navigation:max_level_reached_c28dc6") : uiText("navigation:value_xp_to_lvl_value_082826", { value0: uiValue(summary.xp_to_next_level), value1: uiValue(summary.level + 1) }) : undefined}>
                   {summary ? (
                     <>
                       <XPBadge xp={summary.total_xp} />
-                      <LevelBadge level={summary.level} title={summary.level_title} />
+                      <LevelBadge level={summary.level} title={rankTitle(summary.level, summary.level_title)} />
+                      <span className="sr-only">{summary.xp_to_next_level === null ? uiText("navigation:max_level_reached_c28dc6") : uiText("navigation:value_xp_to_lvl_value_082826", { value0: uiValue(summary.xp_to_next_level), value1: uiValue(summary.level + 1) })}</span>
                     </>
                   ) : (
                     <>
@@ -285,36 +294,18 @@ export function AppShell({ children }: { children: ReactNode }) {
                     </>
                   )}
                 </div>
-                <button
-                  type="button"
-                  aria-label="Notifications"
-                  className="relative grid size-10 place-items-center rounded-lg border border-border text-muted-foreground transition-colors hover:text-foreground"
-                >
-                  <Bell className="size-4" />
-                  <span className="absolute top-2 right-2 size-1.5 rounded-full bg-primary" />
-                </button>
+                <div className={styles.modeControls}><ModeSwitch compact /></div>
+              <div className={cn("flex items-center justify-end gap-2 sm:gap-3", styles.utilities)}>
+                <NotificationCenter />
                 <ThemeToggle />
                 <UserMenu />
-              </div>
-            </div>
-            <div className="px-4 pb-2 sm:hidden">
-              <div className="flex items-center gap-2">
-                {summary ? (
-                  <>
-                    <XPBadge xp={summary.total_xp} />
-                    <LevelBadge level={summary.level} />
-                    <span className="ml-auto font-mono text-[10px] text-muted-foreground">
-                      {summary.xp_to_next_level} XP to LVL {summary.level + 1}
-                    </span>
-                  </>
-                ) : null}
               </div>
             </div>
           </header>
 
           <OfflineBanner />
 
-          <main id="main" className="min-w-0 flex-1 px-4 pt-6 pb-28 sm:px-6 lg:px-10 lg:pb-14">
+          <main id="main" className={cn("min-w-0 flex-1 px-4 pt-6 pb-28 sm:px-6 lg:px-10 lg:pb-14", styles.main)}>
             {children}
           </main>
         </div>
@@ -325,12 +316,12 @@ export function AppShell({ children }: { children: ReactNode }) {
         <div className="fixed inset-0 z-[var(--z-drawer)] lg:hidden">
           <button
             type="button"
-            aria-label="Close navigation"
+            aria-label={uiText("navigation:close_navigation_917c4c")}
             className="absolute inset-0 bg-background/80 backdrop-blur-sm"
             onClick={() => { setMobileNav(false); }}
           />
           <div
-            className="absolute inset-y-0 left-0 w-[80%] max-w-72 border-r border-sidebar-border bg-sidebar shadow-[var(--shadow-elevated)]"
+            className={cn("absolute inset-y-0 left-0 w-[80%] max-w-72 border-r border-sidebar-border bg-sidebar shadow-[var(--shadow-elevated)]", styles.sidebarScenery)}
             style={{
               // Keep the drawer's own content clear of the notch and the
               // home indicator; the brand block sits at the very top.
@@ -340,7 +331,7 @@ export function AppShell({ children }: { children: ReactNode }) {
           >
             <button
               type="button"
-              aria-label="Close navigation"
+              aria-label={uiText("navigation:close_navigation_917c4c")}
               onClick={() => { setMobileNav(false); }}
               className="absolute top-4 right-3 grid size-9 place-items-center rounded-lg border border-border"
             >
@@ -353,17 +344,17 @@ export function AppShell({ children }: { children: ReactNode }) {
 
       {/* Mobile bottom navigation */}
       <nav
-        aria-label="Primary mobile"
-        className="fixed inset-x-0 bottom-0 z-[var(--z-nav)] border-t border-border bg-background/95 backdrop-blur-md lg:hidden"
+        aria-label={uiText("navigation:primary_mobile_f455b6")}
+        className={cn("fixed inset-x-0 bottom-0 z-[var(--z-nav)] border-t border-border bg-background/95 backdrop-blur-md lg:hidden", styles.bottomNav)}
         style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
       >
         <ul className="grid grid-cols-5">
           {[
-            { to: "/", label: "Home", icon: Home },
-            { to: "/categories", label: "Learn", icon: BookOpen },
-            { to: "/community", label: "Community", icon: Users },
-            { to: "/progress", label: "Progress", icon: TrendingUp },
-            { to: "/profile", label: "Profile", icon: User },
+            { to: "/", get label() { return uiText("navigation:home_70f8bb"); }, icon: Home },
+            { to: "/categories", get label() { return uiText("navigation:learn_b04837"); }, icon: BookOpen },
+            { to: "/community", get label() { return uiText("navigation:community_bfd58e"); }, icon: Users },
+            { to: "/progress", get label() { return uiText("navigation:progress_1b9027"); }, icon: TrendingUp },
+            { to: "/profile", get label() { return uiText("navigation:profile_ff4fc0"); }, icon: User },
           ].map(({ to, label, icon: Icon }) => {
             const active = to === "/" ? pathname === "/" || pathname === "/dashboard" : pathname.startsWith(to);
             return (
@@ -401,6 +392,7 @@ export function PageHeader({
   description?: string | undefined;
   aside?: ReactNode;
 }) {
+  useInterfaceLocale();
   return (
     <header className="rise mb-8 grid gap-4 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-end">
       <div className="min-w-0">

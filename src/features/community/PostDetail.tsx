@@ -9,6 +9,8 @@
  * whitespace-pre-wrap and React's default escaping — nothing raw ever
  * reaches the DOM.
  */
+import { tr as uiText, useLocale as useInterfaceLocale, uiValue } from "@/i18n";
+import { communityCategoryTitle } from "@/i18n/community-category";
 import { useState } from "react";
 import { Link, useNavigate, useParams } from "react-router";
 import {
@@ -47,14 +49,15 @@ import { formatDate, formatRelativeTime } from "@/lib/format/format";
 
 const COMMENT_MAX = 2000;
 const REPORT_REASONS = [
-  { value: "spam", label: "Spam" },
-  { value: "harassment", label: "Harassment" },
-  { value: "misinformation", label: "Misinformation" },
-  { value: "safety", label: "Safety concern" },
-  { value: "other", label: "Other" },
+  { value: "spam", get label() { return uiText("community:spam_d8628a"); } },
+  { value: "harassment", get label() { return uiText("community:harassment_8fddd7"); } },
+  { value: "misinformation", get label() { return uiText("community:misinformation_075739"); } },
+  { value: "safety", get label() { return uiText("community:safety_concern_f86f99"); } },
+  { value: "other", get label() { return uiText("community:other_6e6a6f"); } },
 ] as const;
 
 export default function PostDetailPage() {
+  useInterfaceLocale();
   const { postId } = useParams();
   const parsed = Number(postId);
   const navigate = useNavigate();
@@ -188,15 +191,13 @@ export default function PostDetailPage() {
     if (postQuery.error instanceof ApiError && postQuery.error.status === 404) {
       return (
         <EmptyState
-          title="This post isn't available"
-          description="It may have been removed."
+          title={uiText("community:this_post_isn_t_available_e47d46")}
+          description={uiText("community:it_may_have_been_removed_295468")}
           action={
             <Link
               to="/community"
               className="mt-6 inline-flex min-h-11 items-center rounded-lg border border-border px-5 text-sm font-semibold uppercase transition-colors hover:bg-accent"
-            >
-              Back to community
-            </Link>
+            >{uiText("community:back_to_community_4f1597")}</Link>
           }
         />
       );
@@ -213,21 +214,19 @@ export default function PostDetailPage() {
 
   return (
     <div className="mx-auto max-w-3xl">
-      <nav aria-label="Breadcrumb" className="mb-4 font-mono text-[11px] tracking-widest uppercase">
-        <Link to="/community" className="text-muted-foreground hover:text-foreground">
-          ← Community
-        </Link>
+      <nav aria-label={uiText("community:breadcrumb_c766e6")} className="mb-4 font-mono text-[11px] tracking-widest uppercase">
+        <Link to="/community" className="text-muted-foreground hover:text-foreground">{uiText("community:community_1cf6a3")}</Link>
       </nav>
 
       <article className="rise panel p-6 sm:p-8">
         <div className="flex flex-wrap items-center gap-2 text-xs text-muted-foreground">
           <Avatar name={post.author.display_name} size={26} />
           <span className="truncate text-foreground">{post.author.display_name}</span>
-          <Chip>{post.category_name}</Chip>
+          <Chip>{communityCategoryTitle(post.category_code, post.category_name)}</Chip>
           <span className="font-mono" title={formatDate(post.created_at)}>
             {formatRelativeTime(post.created_at)}
           </span>
-          {post.updated_at !== post.created_at ? <span>· edited</span> : null}
+          {post.updated_at !== post.created_at ? <span>{uiText("community:edited_b27c76")}</span> : null}
         </div>
 
         <h1 className="mt-4 font-display text-3xl leading-none font-semibold tracking-wide uppercase">
@@ -240,7 +239,7 @@ export default function PostDetailPage() {
             voted={post.voted_by_me}
             score={post.vote_score}
             pending={votePostMutation.isPending}
-            label="Vote on this post"
+            label={uiText("community:vote_on_this_post_eb6350")}
             onClick={() => { votePostMutation.mutate(); }}
           />
           {post.mine ? (
@@ -251,9 +250,9 @@ export default function PostDetailPage() {
                 onSave={(patch) => { updatePostMutation.mutate(patch); }}
               />
               <ConfirmDelete
-                label="Delete"
-                title="Delete this post?"
-                description="Comments are deleted with it. This cannot be undone."
+                label={uiText("community:delete_f6fdbe")}
+                title={uiText("community:delete_this_post_81bc1f")}
+                description={uiText("community:comments_are_deleted_with_it_this_cannot_425a8a")}
                 pending={deletePostMutation.isPending}
                 onConfirm={() => { deletePostMutation.mutate(); }}
               />
@@ -276,9 +275,7 @@ export default function PostDetailPage() {
 
       {/* ── Comments ── */}
       <section aria-labelledby="comments-heading" className="mt-10">
-        <h2 id="comments-heading" className="eyebrow mb-4">
-          {post.comment_count} comments
-        </h2>
+        <h2 id="comments-heading" className="eyebrow mb-4">{uiText("community:value_comments_c638de", { value0: uiValue(post.comment_count) })}</h2>
 
         <CommentForm
           pending={addCommentMutation.isPending}
@@ -289,9 +286,7 @@ export default function PostDetailPage() {
           {commentsQuery.isPending && comments.length === 0 ? (
             <PostSkeleton />
           ) : comments.length === 0 ? (
-            <p className="text-sm text-muted-foreground">
-              No comments yet — start the discussion.
-            </p>
+            <p className="text-sm text-muted-foreground">{uiText("community:no_comments_yet_start_the_discussion_6d8475")}</p>
           ) : (
             <ul className="grid gap-3">
               {comments.map((comment) => (
@@ -324,7 +319,7 @@ export default function PostDetailPage() {
                 onClick={() => void commentsQuery.fetchNextPage()}
                 className="inline-flex min-h-11 items-center rounded-lg border border-border px-5 text-xs font-semibold tracking-wide uppercase transition-colors hover:bg-accent disabled:opacity-60"
               >
-                {commentsQuery.isFetchingNextPage ? "Loading…" : "Load more comments"}
+                {commentsQuery.isFetchingNextPage ? uiText("community:loading_33ce41") : uiText("community:load_more_comments_fcf82c")}
               </button>
             </div>
           ) : null}
@@ -349,6 +344,7 @@ function VoteButton({
   label: string;
   onClick: () => void;
 }) {
+  useInterfaceLocale();
   return (
     <button
       type="button"
@@ -375,6 +371,7 @@ function CommentForm({
   pending: boolean;
   onSubmit: (body: string) => void;
 }) {
+  useInterfaceLocale();
   const [body, setBody] = useState("");
   return (
     <form
@@ -387,7 +384,7 @@ function CommentForm({
       className="panel space-y-2 p-4"
     >
       <div className="flex items-baseline justify-between gap-3">
-        <Label htmlFor="comment-body">Add a comment</Label>
+        <Label htmlFor="comment-body">{uiText("community:add_a_comment_3e1836")}</Label>
         <span className="font-mono text-xs text-muted-foreground">
           {body.length}/{COMMENT_MAX}
         </span>
@@ -398,7 +395,7 @@ function CommentForm({
         maxLength={COMMENT_MAX}
         onChange={(e) => { setBody(e.target.value); }}
         rows={3}
-        placeholder="Share what you know — or ask a follow-up."
+        placeholder={uiText("community:share_what_you_know_or_ask_a_753ad3")}
         className="w-full rounded-lg border border-border bg-surface-2 px-3 py-2 text-sm outline-none placeholder:text-muted-foreground focus:border-primary/50"
       />
       <button
@@ -406,7 +403,7 @@ function CommentForm({
         disabled={pending || body.trim().length === 0}
         className="inline-flex min-h-10 items-center rounded-lg bg-primary px-4 text-xs font-semibold tracking-wide text-primary-foreground uppercase transition-colors hover:bg-primary/90 disabled:opacity-60"
       >
-        {pending ? "Posting…" : "Post comment"}
+        {pending ? uiText("community:posting_20c00d") : uiText("community:post_comment_92323a")}
       </button>
     </form>
   );
@@ -442,6 +439,7 @@ function CommentItem({
   onReport: (payload: { reason: string; details?: string }) => void;
   reportPending: boolean;
 }) {
+  useInterfaceLocale();
   const [editing, setEditing] = useState(false);
   const [draft, setDraft] = useState(comment.body);
 
@@ -456,7 +454,7 @@ function CommentItem({
         <span className="font-mono" title={formatDate(comment.created_at)}>
           {formatRelativeTime(comment.created_at)}
         </span>
-        {comment.updated_at !== comment.created_at ? <span>· edited</span> : null}
+        {comment.updated_at !== comment.created_at ? <span>{uiText("community:edited_b27c76")}</span> : null}
       </div>
 
       {editing ? (
@@ -477,9 +475,7 @@ function CommentItem({
                 onEdit(draft.trim());
                 setEditing(false);
               }}
-            >
-              Save
-            </Button>
+            >{uiText("community:save_efc007")}</Button>
             <Button
               size="sm"
               variant="secondary"
@@ -487,9 +483,7 @@ function CommentItem({
                 setDraft(comment.body);
                 setEditing(false);
               }}
-            >
-              Cancel
-            </Button>
+            >{uiText("community:cancel_77dfd2")}</Button>
           </div>
         </div>
       ) : (
@@ -501,19 +495,17 @@ function CommentItem({
           voted={comment.voted_by_me}
           score={comment.vote_score}
           pending={votePending}
-          label="Vote on this comment"
+          label={uiText("community:vote_on_this_comment_6717ce")}
           onClick={onVote}
         />
         {comment.mine ? (
           <>
             <Button size="sm" variant="ghost" onClick={() => { setEditing(true); }}>
-              <Pencil aria-hidden="true" className="size-3.5" />
-              Edit
-            </Button>
+              <Pencil aria-hidden="true" className="size-3.5" />{uiText("community:edit_530164")}</Button>
             <ConfirmDelete
-              label="Delete"
-              title="Delete this comment?"
-              description="This cannot be undone."
+              label={uiText("community:delete_f6fdbe")}
+              title={uiText("community:delete_this_comment_b88a2b")}
+              description={uiText("community:this_cannot_be_undone_ad2526")}
               pending={deletePending}
               onConfirm={onDelete}
               small
@@ -540,6 +532,7 @@ function EditPostDialog({
   pending: boolean;
   onSave: (patch: { title?: string; body?: string }) => void;
 }) {
+  useInterfaceLocale();
   const [open, setOpen] = useState(false);
   const [title, setTitle] = useState(post.title);
   const [body, setBody] = useState(post.body);
@@ -547,24 +540,22 @@ function EditPostDialog({
   return (
     <>
       <Button size="sm" variant="ghost" onClick={() => { setOpen(true); }}>
-        <Pencil aria-hidden="true" className="size-3.5" />
-        Edit
-      </Button>
+        <Pencil aria-hidden="true" className="size-3.5" />{uiText("community:edit_530164")}</Button>
       <Dialog
         open={open}
         onOpenChange={setOpen}
-        title="Edit post"
-        description="Plain text only — formatting is stripped."
+        title={uiText("community:edit_post_3de7f4")}
+        description={uiText("community:plain_text_only_formatting_is_stripped_de1e43")}
       >
         <div className="space-y-3 pt-2">
           <Input
-            aria-label="Post title"
+            aria-label={uiText("community:post_title_a1cf72")}
             value={title}
             maxLength={120}
             onChange={(e) => { setTitle(e.target.value); }}
           />
           <textarea
-            aria-label="Post body"
+            aria-label={uiText("community:post_body_841db8")}
             value={body}
             maxLength={8000}
             rows={6}
@@ -572,9 +563,7 @@ function EditPostDialog({
             className="w-full rounded-md border border-border bg-surface-2 px-3 py-2 text-sm"
           />
           <div className="flex justify-end gap-3">
-            <Button variant="secondary" onClick={() => { setOpen(false); }} disabled={pending}>
-              Cancel
-            </Button>
+            <Button variant="secondary" onClick={() => { setOpen(false); }} disabled={pending}>{uiText("community:cancel_77dfd2")}</Button>
             <Button
               loading={pending}
               disabled={title.trim().length === 0 || body.trim().length === 0}
@@ -582,9 +571,7 @@ function EditPostDialog({
                 onSave({ title: title.trim(), body: body.trim() });
                 setOpen(false);
               }}
-            >
-              Save
-            </Button>
+            >{uiText("community:save_efc007")}</Button>
           </div>
         </div>
       </Dialog>
@@ -604,6 +591,7 @@ export function ReportButton({
   onReported?: () => void;
   small?: boolean;
 }) {
+  useInterfaceLocale();
   const [open, setOpen] = useState(false);
   const [reason, setReason] = useState<string>("spam");
   const [details, setDetails] = useState("");
@@ -611,18 +599,16 @@ export function ReportButton({
   return (
     <>
       <Button size={small ? "sm" : undefined} variant="ghost" onClick={() => { setOpen(true); }}>
-        <Flag aria-hidden="true" className="size-3.5" />
-        Report
-      </Button>
+        <Flag aria-hidden="true" className="size-3.5" />{uiText("community:report_ee45c3")}</Button>
       <Dialog
         open={open}
         onOpenChange={setOpen}
-        title="Report this content"
-        description="Reports go to the moderation queue — your name is not shown to the author."
+        title={uiText("community:report_this_content_214afe")}
+        description={uiText("community:reports_go_to_the_moderation_queue_your_9dd712")}
       >
         <div className="space-y-3 pt-2">
           <select
-            aria-label="Reason"
+            aria-label={uiText("community:reason_f219cc")}
             className="w-full rounded-md border border-border bg-surface-2 px-3 py-2 text-sm"
             value={reason}
             onChange={(e) => { setReason(e.target.value); }}
@@ -634,18 +620,16 @@ export function ReportButton({
             ))}
           </select>
           <textarea
-            aria-label="Details (optional)"
+            aria-label={uiText("community:details_optional_138a57")}
             value={details}
             maxLength={300}
             rows={3}
             onChange={(e) => { setDetails(e.target.value); }}
-            placeholder="What's wrong? (optional)"
+            placeholder={uiText("community:what_s_wrong_optional_7ef748")}
             className="w-full rounded-md border border-border bg-surface-2 px-3 py-2 text-sm"
           />
           <div className="flex justify-end gap-3">
-            <Button variant="secondary" onClick={() => { setOpen(false); }} disabled={pending}>
-              Cancel
-            </Button>
+            <Button variant="secondary" onClick={() => { setOpen(false); }} disabled={pending}>{uiText("community:cancel_77dfd2")}</Button>
             <Button
               loading={pending}
               onClick={() => {
@@ -654,9 +638,7 @@ export function ReportButton({
                 setDetails("");
                 onReported?.();
               }}
-            >
-              Send report
-            </Button>
+            >{uiText("community:send_report_a5b32a")}</Button>
           </div>
         </div>
       </Dialog>
@@ -680,6 +662,7 @@ export function ConfirmDelete({
   onConfirm: () => void;
   small?: boolean;
 }) {
+  useInterfaceLocale();
   const [open, setOpen] = useState(false);
 
   return (
@@ -690,9 +673,7 @@ export function ConfirmDelete({
       </Button>
       <Dialog open={open} onOpenChange={setOpen} title={title} description={description}>
         <div className="flex justify-end gap-3 pt-2">
-          <Button variant="secondary" onClick={() => { setOpen(false); }} disabled={pending}>
-            Cancel
-          </Button>
+          <Button variant="secondary" onClick={() => { setOpen(false); }} disabled={pending}>{uiText("community:cancel_77dfd2")}</Button>
           <Button
             variant="danger"
             loading={pending}
@@ -700,9 +681,7 @@ export function ConfirmDelete({
               onConfirm();
               setOpen(false);
             }}
-          >
-            Delete
-          </Button>
+          >{uiText("community:delete_f6fdbe")}</Button>
         </div>
       </Dialog>
     </>
@@ -710,8 +689,9 @@ export function ConfirmDelete({
 }
 
 function PostSkeleton() {
+  useInterfaceLocale();
   return (
-    <div role="status" aria-label="Loading post" className="space-y-4">
+    <div role="status" aria-label={uiText("community:loading_post_e26c95")} className="space-y-4">
       <div className="panel h-8 w-2/3 animate-pulse" aria-hidden="true" />
       <div className="panel h-40 animate-pulse" aria-hidden="true" />
     </div>

@@ -7,6 +7,7 @@
  * is the authority for every fact on this card; the card never
  * computes entitlements.
  */
+import { tr as uiText, useLocale as useInterfaceLocale, uiValue } from "@/i18n";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { CalendarClock, CreditCard, Undo2 } from "lucide-react";
 import { Card } from "@/components/ui/Card";
@@ -34,55 +35,55 @@ function statusFor(subscription: SubscriptionResponse): {
 } {
   if (subscription.cancel_at_period_end) {
     return {
-      label: "Cancellation pending",
+      get label() { return uiText("subscriptions:cancellation_pending_199752"); },
       tone: "warning",
-      detail: `${subscription.plan_name} stays active until ${formatDate(subscription.ends_at)}. You won't be charged again.`,
+      detail: uiText("subscriptions:cancelDetail", { plan: subscription.plan_name, date: formatDate(subscription.ends_at) }),
     };
   }
   switch (subscription.status) {
     case "active":
       return {
-        label: "Active",
+        get label() { return uiText("subscriptions:active_a733b8"); },
         tone: "success",
         detail: subscription.renews_at
-          ? `Next payment on ${formatDate(subscription.renews_at)}.`
-          : "Subscription is active.",
+          ? uiText("subscriptions:nextPayment", { date: formatDate(subscription.renews_at) })
+          : uiText("subscriptions:activeDetail"),
       };
     case "trialing":
       return {
-        label: "Trial",
+        get label() { return uiText("subscriptions:trial_5f7537"); },
         tone: "info",
         detail: subscription.renews_at
-          ? `Paid period starts ${formatDate(subscription.renews_at)}.`
-          : "Trial active.",
+          ? uiText("subscriptions:trialStarts", { date: formatDate(subscription.renews_at) })
+          : uiText("subscriptions:trialDetail"),
       };
     case "past_due":
       return {
-        label: "Payment past due",
+        get label() { return uiText("subscriptions:payment_past_due_2de950"); },
         tone: "danger",
-        detail: "Your payment method needs attention. Update it to keep full access.",
+        detail: uiText("subscriptions:updatePayment"),
       };
     case "incomplete":
       return {
-        label: "Payment incomplete",
+        get label() { return uiText("subscriptions:payment_incomplete_62caf9"); },
         tone: "warning",
-        detail: "Your payment hasn't been completed yet.",
+        detail: uiText("subscriptions:incompletePayment"),
       };
     case "unpaid":
       return {
-        label: "Unpaid",
+        get label() { return uiText("subscriptions:unpaid_50cc12"); },
         tone: "danger",
-        detail: "Payment failed after retries — paid features are paused.",
+        detail: uiText("subscriptions:unpaidDetail"),
       };
     case "canceled":
       return {
-        label: "Canceled",
+        get label() { return uiText("subscriptions:canceled_f840ac"); },
         tone: "info",
-        detail: "The subscription has ended. Choose a plan to come back.",
+        detail: uiText("subscriptions:endedDetail"),
       };
     default:
       return {
-        label: subscription.status,
+        label: uiText("subscriptions:unknownStatus"),
         tone: "info",
         detail: "",
       };
@@ -90,6 +91,7 @@ function statusFor(subscription: SubscriptionResponse): {
 }
 
 export function BillingCard({ subscription }: { subscription: SubscriptionResponse }) {
+  useInterfaceLocale();
   const userId = useCurrentUserId();
   const queryClient = useQueryClient();
   const status = statusFor(subscription);
@@ -139,14 +141,13 @@ export function BillingCard({ subscription }: { subscription: SubscriptionRespon
           </span>
           <div>
             <p className="flex items-center gap-2 font-semibold">
-              {subscription.plan_name} plan
-              <Badge tone={status.tone}>{status.label}</Badge>
+              {subscription.plan_name}{" "}{uiText("subscriptions:plan_bed971")}<Badge tone={status.tone}>{status.label}</Badge>
             </p>
             <p className="text-sm text-text-secondary">
               {subscription.price === 0
                 ? formatMoney(subscription.price, subscription.currency)
-                : `${formatMoney(subscription.price, subscription.currency)} /month`}
-              {status.detail ? ` — ${status.detail}` : ""}
+                : uiText("subscriptions:value_month_801a11", { value0: uiValue(formatMoney(subscription.price, subscription.currency)) })}
+              {status.detail ? uiText("subscriptions:value_dd094d", { value0: uiValue(status.detail) }) : ""}
             </p>
           </div>
         </div>
@@ -160,9 +161,7 @@ export function BillingCard({ subscription }: { subscription: SubscriptionRespon
               loading={cancelMutation.isPending}
               onClick={() => { cancelMutation.mutate(); }}
             >
-              <CalendarClock aria-hidden="true" className="size-4" />
-              Cancel subscription
-            </Button>
+              <CalendarClock aria-hidden="true" className="size-4" />{uiText("subscriptions:cancel_subscription_6d7f05")}</Button>
           ) : null}
           {canResume ? (
             <Button
@@ -170,17 +169,13 @@ export function BillingCard({ subscription }: { subscription: SubscriptionRespon
               loading={resumeMutation.isPending}
               onClick={() => { resumeMutation.mutate(); }}
             >
-              <Undo2 aria-hidden="true" className="size-4" />
-              Keep my subscription
-            </Button>
+              <Undo2 aria-hidden="true" className="size-4" />{uiText("subscriptions:keep_my_subscription_65dd79")}</Button>
           ) : null}
           <Button
             variant="ghost"
             loading={portalMutation.isPending}
             onClick={() => { portalMutation.mutate(); }}
-          >
-            Manage billing
-          </Button>
+          >{uiText("subscriptions:manage_billing_a8f311")}</Button>
           {cancelMutation.isError || resumeMutation.isError || portalMutation.isError ? (
             <p role="alert" className="w-full text-sm text-danger-blood">
               {describeError(

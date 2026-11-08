@@ -5,6 +5,7 @@
  * recipes are kept verbatim; the only changes are the Link import and the
  * `cn` helper location.
  */
+import { tr as uiText, useLocale as useInterfaceLocale, uiValue } from "@/i18n";
 import type { ReactNode } from "react";
 import { Link } from "react-router";
 import { clsx, type ClassValue } from "clsx";
@@ -19,6 +20,7 @@ export function cn(...inputs: ClassValue[]) {
 export const catColor = catColorForCode;
 
 export function Eyebrow({ children, className }: { children: ReactNode; className?: string }) {
+  useInterfaceLocale();
   return <p className={cn("eyebrow", className)}>{children}</p>;
 }
 
@@ -33,6 +35,7 @@ export function SectionHeader({
   description?: string | undefined;
   action?: ReactNode;
 }) {
+  useInterfaceLocale();
   return (
     <div className="mb-5 grid grid-cols-[minmax(0,1fr)_auto] items-end gap-4">
       <div className="min-w-0">
@@ -56,13 +59,14 @@ export function ProgressBar({
   className?: string | undefined;
   label?: string | undefined;
 }) {
+  useInterfaceLocale();
   return (
     <div
       role="progressbar"
       aria-valuenow={Math.round(Math.max(0, Math.min(100, value)))}
       aria-valuemin={0}
       aria-valuemax={100}
-      aria-label={label ?? "Progress"}
+      aria-label={label ?? uiText("common:progress_1b9027")}
       className={cn("h-1.5 w-full overflow-hidden rounded-full bg-surface-3", className)}
     >
       <div
@@ -90,6 +94,7 @@ export function ProgressRing({
   color?: string | undefined;
   children?: ReactNode;
 }) {
+  useInterfaceLocale();
   const r = (size - stroke) / 2;
   const c = 2 * Math.PI * r;
   return (
@@ -115,24 +120,22 @@ export function ProgressRing({
 }
 
 export function XPBadge({ xp, pulse = false }: { xp: number; pulse?: boolean }) {
+  useInterfaceLocale();
   return (
     <span
       className={cn(
         "inline-flex items-center gap-1.5 rounded-full border border-primary/40 bg-primary/10 px-2.5 py-1 font-mono text-[11px] tracking-widest text-primary uppercase",
         pulse && "xp-pulse",
       )}
-    >
-      {xp.toLocaleString()} XP
-    </span>
+    >{uiText("common:value_xp_621cd3", { value0: uiValue(xp.toLocaleString()) })}</span>
   );
 }
 
 export function LevelBadge({ level, title }: { level: number; title?: string }) {
+  useInterfaceLocale();
   return (
     <span className="inline-flex items-center gap-2 rounded-full border border-border bg-surface-2 px-2.5 py-1">
-      <span className="font-mono text-[11px] tracking-widest text-muted-foreground uppercase">
-        LVL {level}
-      </span>
+      <span className="font-mono text-[11px] tracking-widest text-muted-foreground uppercase">{uiText("common:lvl_value_f2fece", { value0: uiValue(level) })}</span>
       {title && <span className="text-xs text-foreground">{title}</span>}
     </span>
   );
@@ -147,6 +150,7 @@ export function Chip({
   color?: string | undefined;
   className?: string | undefined;
 }) {
+  useInterfaceLocale();
   return (
     <span
       className={cn(
@@ -179,6 +183,7 @@ export function Stat({
   hint?: string | undefined;
   color?: string | undefined;
 }) {
+  useInterfaceLocale();
   return (
     <div className="panel-2 p-4">
       <p className="eyebrow">{label}</p>
@@ -200,6 +205,7 @@ export function FieldCallout({
   kind: "FIELD NOTE" | "IMPORTANT" | "WARNING" | "SAFETY" | "PROCEDURE" | "REMEMBER" | "KNOWLEDGE CHECK";
   children: ReactNode;
 }) {
+  useInterfaceLocale();
   const tone: Record<string, string> = {
     "FIELD NOTE": "var(--cat-navigation)",
     IMPORTANT: "var(--ember)",
@@ -232,6 +238,7 @@ export function EmptyState({
   description: string;
   action?: ReactNode;
 }) {
+  useInterfaceLocale();
   return (
     <div className="panel grid place-items-center px-6 py-14 text-center">
       <div className="max-w-sm">
@@ -252,6 +259,7 @@ export function LockedState({
   description: string;
   cta?: string;
 }) {
+  useInterfaceLocale();
   return (
     <div className="panel grain relative overflow-hidden px-6 py-16 text-center">
       <div
@@ -262,7 +270,7 @@ export function LockedState({
         }}
       />
       <div className="relative mx-auto max-w-md">
-        <Eyebrow>Entitlement required</Eyebrow>
+        <Eyebrow>{uiText("common:entitlement_required_d7cfad")}</Eyebrow>
         <h3 className="mt-2 text-2xl font-semibold tracking-wide uppercase">{title}</h3>
         <p className="mt-3 text-sm text-muted-foreground">{description}</p>
         <Link
@@ -277,6 +285,7 @@ export function LockedState({
 }
 
 export function CardSkeleton({ className }: { className?: string }) {
+  useInterfaceLocale();
   return <div className={cn("animate-pulse rounded-xl bg-surface-2", className)} />;
 }
 
@@ -289,6 +298,7 @@ export function Avatar({
   size?: number | undefined;
   color?: string | undefined;
 }) {
+  useInterfaceLocale();
   const initials = name
     .split(/[\s_]+/)
     .slice(0, 2)

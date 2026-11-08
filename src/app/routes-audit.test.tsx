@@ -11,10 +11,24 @@ import { renderWithProviders } from "@/test/render";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { createTestQueryClient } from "@/test/render";
 import { AuthProvider } from "@/features/auth/use-auth";
-import { createMemoryRouter, RouterProvider } from "react-router";
+import { createMemoryRouter, RouterProvider, type RouteObject } from "react-router";
 import { router as appRouter } from "./router";
 
 const API = "*/api/v1";
+
+/**
+ * Every `path` in the route tree, at any depth.
+ *
+ * The map is a TREE — a pathless root carries the shared error element and
+ * everything else hangs off it — so a flat walk over `routes` would see no
+ * paths at all and the href audit below would fail every link.
+ */
+function collectRoutePaths(routes: readonly RouteObject[]): string[] {
+  return routes.flatMap((route) => [
+    ...(typeof route.path === "string" ? [route.path] : []),
+    ...(route.children ? collectRoutePaths(route.children) : []),
+  ]);
+}
 
 function renderRoute(path: string) {
   const queryClient = createTestQueryClient();
@@ -52,7 +66,7 @@ describe("route audit", () => {
     ["/modules/WAT-boiling/quiz", /boiling water quiz/i],
     ["/resources/WAT-boiling-R01", /boiling water quick reference/i],
     ["/progress", /^progress$/i],
-    ["/gamification", /^progression$/i],
+    ["/gamification", /^rewards and progression$/i],
     ["/profile", /test learner|learner@example\.com/i],
   ];
 
@@ -108,9 +122,7 @@ describe("route audit", () => {
     });
     const links = Array.from(document.querySelectorAll<HTMLAnchorElement>("a[href^='/']"));
     const knownPaths = new Set(
-      appRouter.routes
-        .flatMap((r) => (typeof r.path === "string" ? [r.path] : []))
-        .filter((p) => p && !p.includes(":")),
+      collectRoutePaths(appRouter.routes).filter((p) => p && !p.includes(":")),
     );
     for (const link of links) {
       const target = link.getAttribute("href") ?? "";

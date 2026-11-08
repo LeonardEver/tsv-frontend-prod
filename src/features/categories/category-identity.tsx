@@ -13,6 +13,7 @@
  * declare. Registered-but-unseen future regions (energy, engineering,
  * military, maps) already have identities waiting.
  */
+import { tr as uiText } from "@/i18n";
 import type { LucideIcon } from "lucide-react";
 import {
   Compass,
@@ -54,27 +55,27 @@ export interface CategoryIdentity {
 }
 
 const IDENTITIES: Record<string, CategoryIdentity> = {
-  WAT: { icon: Droplets, tone: "info", envClass: "env-water", label: "Water region" },
-  FIR: { icon: Flame, tone: "warning", envClass: "env-fire", label: "Fire region" },
-  SUR: { icon: Mountain, tone: "field", envClass: "env-sur", label: "Survival Fundamentals region" },
-  SHE: { icon: Tent, tone: "canvas", envClass: "env-she", label: "Shelter region" },
-  FOD: { icon: Wheat, tone: "harvest", envClass: "env-fod", label: "Food region" },
-  AGR: { icon: Sprout, tone: "success", envClass: "env-agr", label: "Agriculture region" },
-  MED: { icon: HeartPulse, tone: "medic", envClass: "env-med", label: "Medical & First Aid region" },
-  FOR: { icon: Leaf, tone: "forage", envClass: "env-for", label: "Foraging & Plants region" },
-  NAV: { icon: Compass, tone: "azimuth", envClass: "env-nav", label: "Navigation region" },
+  WAT: { icon: Droplets, tone: "info", envClass: "env-water", get label() { return uiText("learning:water_region_c0080b"); } },
+  FIR: { icon: Flame, tone: "warning", envClass: "env-fire", get label() { return uiText("learning:fire_region_874658"); } },
+  SUR: { icon: Mountain, tone: "field", envClass: "env-sur", get label() { return uiText("learning:survival_fundamentals_region_7be79e"); } },
+  SHE: { icon: Tent, tone: "canvas", envClass: "env-she", get label() { return uiText("learning:shelter_region_1a4be0"); } },
+  FOD: { icon: Wheat, tone: "harvest", envClass: "env-fod", get label() { return uiText("learning:food_region_f3dc20"); } },
+  AGR: { icon: Sprout, tone: "success", envClass: "env-agr", get label() { return uiText("learning:agriculture_region_fead15"); } },
+  MED: { icon: HeartPulse, tone: "medic", envClass: "env-med", get label() { return uiText("learning:medical_first_aid_region_67fd59"); } },
+  FOR: { icon: Leaf, tone: "forage", envClass: "env-for", get label() { return uiText("learning:foraging_plants_region_b32612"); } },
+  NAV: { icon: Compass, tone: "azimuth", envClass: "env-nav", get label() { return uiText("learning:navigation_region_cc7c9c"); } },
   // Future registered regions — identities ready before content lands.
-  ENE: { icon: Zap, tone: "warning", envClass: "env-fire", label: "Energy region" },
-  ENG: { icon: Wrench, tone: "field", envClass: "env-sur", label: "Engineering region" },
-  MIL: { icon: Shield, tone: "field", envClass: "env-sur", label: "Military region" },
-  MAP: { icon: Map, tone: "azimuth", envClass: "env-nav", label: "Maps region" },
+  ENE: { icon: Zap, tone: "warning", envClass: "env-fire", get label() { return uiText("learning:energy_region_7d61a0"); } },
+  ENG: { icon: Wrench, tone: "field", envClass: "env-sur", get label() { return uiText("learning:engineering_region_3a1c95"); } },
+  MIL: { icon: Shield, tone: "field", envClass: "env-sur", get label() { return uiText("learning:military_region_6d647a"); } },
+  MAP: { icon: Map, tone: "azimuth", envClass: "env-nav", get label() { return uiText("learning:maps_region_381a15"); } },
 };
 
 const FALLBACK: CategoryIdentity = {
   icon: Globe,
   tone: "neutral",
   envClass: "",
-  label: "Uncharted region",
+  get label() { return uiText("learning:uncharted_region_c443cb"); },
 };
 
 /** Slugs the backend uses for categories (imported editorial content

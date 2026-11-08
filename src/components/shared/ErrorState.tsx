@@ -7,6 +7,7 @@
  * the same backend `code`. Omitted — as it is on every public route — the
  * component behaves exactly as before.
  */
+import { tr as uiText, useLocale as useInterfaceLocale } from "@/i18n";
 import { ApiError } from "@/lib/api/errors";
 import { describeError, type ErrorCopy } from "@/lib/api/error-map";
 
@@ -21,6 +22,7 @@ export function ErrorState({
   explain?: ((error: unknown) => ErrorCopy) | undefined;
   labels?: { retry: string; reference: string } | undefined;
 }) {
+  useInterfaceLocale();
   const copy = explain(error);
   const requestId =
     error instanceof ApiError ? error.requestId : undefined;
@@ -35,11 +37,11 @@ export function ErrorState({
           onClick={onRetry}
           className="rounded-md bg-accent-ember px-4 py-2 text-sm font-semibold text-accent-on hover:bg-accent-ember-hover"
         >
-          {labels?.retry ?? "Retry"}
+          {labels?.retry ?? uiText("common:retry_9f5cd8")}
         </button>
       ) : null}
       {requestId ? (
-        <p className="text-xs text-text-disabled">{labels?.reference ?? "Reference:"} {requestId}</p>
+        <p className="text-xs text-text-disabled">{labels?.reference ?? uiText("common:reference_45c3dc")} {requestId}</p>
       ) : null}
     </div>
   );

@@ -202,7 +202,7 @@ test.describe("admin analytics", () => {
     await expect(page.getByText("25.00%", { exact: true })).toBeVisible();
   });
 
-  test("the console switches to Portuguese without touching the API's own wording", async ({
+  test("the console shares the persisted account language without touching API diagnostics", async ({
     page,
   }) => {
     mockSession(page, true);
@@ -210,7 +210,9 @@ test.describe("admin analytics", () => {
 
     await expect(page.getByText(/total users/i)).toBeVisible();
 
-    await page.getByRole("group", { name: "Language" }).getByRole("button", { name: "PT" }).click();
+    // The account-entry preference is shared with analytics; no duplicate selector.
+    await page.evaluate(() => { localStorage.setItem("survival-academy-language", "pt-BR"); });
+    await page.reload();
 
     await expect(page.getByRole("heading", { name: /analytics de produto/i })).toBeVisible();
     await expect(page.getByText(/usuários totais/i)).toBeVisible();
@@ -219,11 +221,10 @@ test.describe("admin analytics", () => {
     // And the English chrome is genuinely replaced, not merely joined.
     await expect(page.getByRole("heading", { name: /^product analytics$/i })).toHaveCount(0);
 
-    // The preference is device-scoped, so a reload keeps it (the choice is
-    // made once in this console, not re-made on every visit).
+    // Refresh preserves the shared explicit preference.
     await page.reload();
     await expect(page.getByRole("heading", { name: /analytics de produto/i })).toBeVisible();
-    await expect(page.getByRole("button", { name: "PT" })).toHaveAttribute("aria-pressed", "true");
+    await expect(page.getByRole("group", { name: "Language" })).toHaveCount(0);
   });
 
   test("a series range beyond the documented limit is refused before the request", async ({ page }) => {

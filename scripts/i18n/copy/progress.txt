@@ -1,0 +1,63 @@
+Start your journey|Comece sua jornada|Comienza tu recorrido|Commencez votre parcours|Beginne deine Reise|Inizia il tuo percorso
+Begin a lesson or field test|Inicie uma aula ou teste prático|Inicia una lección o prueba de campo|Commencez une leçon ou une épreuve|Beginne eine Lektion oder einen Praxistest|Inizia una lezione o una prova sul campo
+Complete 3 missions|Conclua 3 missões|Completa 3 misiones|Terminez 3 missions|Schließe 3 Missionen ab|Completa 3 missioni
+{{value0}} / 3 missions|{{value0}} / 3 missões|{{value0}} / 3 misiones|{{value0}} / 3 missions|{{value0}} / 3 Missionen|{{value0}} / 3 missioni
+Finish 1 region|Conclua 1 região|Completa 1 región|Terminez 1 région|Schließe 1 Region ab|Completa 1 regione
+Reach level 2|Alcance o nível 2|Alcanza el nivel 2|Atteignez le niveau 2|Erreiche Stufe 2|Raggiungi il livello 2
+Build a 3 day streak|Mantenha uma sequência de 3 dias|Consigue una racha de 3 días|Atteignez une série de 3 jours|Lerne an 3 Tagen in Folge|Crea una serie di 3 giorni
+Personal best: {{value0}} days|Recorde pessoal: {{value0}} dias|Récord personal: {{value0}} días|Record personnel : {{value0}} jours|Persönlicher Rekord: {{value0}} Tage|Record personale: {{value0}} giorni
+Expedition overview|Visão geral da expedição|Resumen de la expedición|Vue d'ensemble de l'expédition|Expeditionsübersicht|Panoramica della spedizione
+Track your journey, build essential survival skills, and prepare for the challenges ahead.|Acompanhe sua jornada, desenvolva habilidades essenciais de sobrevivência e prepare-se para os desafios que vêm pela frente.|Sigue tu recorrido, desarrolla habilidades esenciales de supervivencia y prepárate para los desafíos que vienen.|Suivez votre parcours, développez des compétences essentielles de survie et préparez-vous aux défis à venir.|Verfolge deinen Weg, entwickle wichtige Überlebensfähigkeiten und bereite dich auf kommende Herausforderungen vor.|Segui il tuo percorso, sviluppa abilità essenziali di sopravvivenza e preparati alle sfide future.
+Expedition statistics|Estatísticas da expedição|Estadísticas de la expedición|Statistiques de l'expédition|Expeditionsstatistiken|Statistiche della spedizione
+Level unavailable|Nível indisponível|Nivel no disponible|Niveau indisponible|Stufe nicht verfügbar|Livello non disponibile
+All time|Desde o início|Desde el inicio|Depuis le début|Gesamter Zeitraum|Dall'inizio
+Personal best: {{value0}} {{value1}}|Recorde pessoal: {{value0}} {{value1}}|Récord personal: {{value0}} {{value1}}|Record personnel : {{value0}} {{value1}}|Persönlicher Rekord: {{value0}} {{value1}}|Record personale: {{value0}} {{value1}}
+Missions complete|Missões concluídas|Misiones completadas|Missions terminées|Abgeschlossene Missionen|Missioni completate
+Across {{value0}} regions|Em {{value0}} regiões|En {{value0}} regiones|Sur {{value0}} régions|In {{value0}} Regionen|In {{value0}} regioni
+Across the academy|Em toda a academia|En toda la academia|Dans toute l'académie|In der gesamten Akademie|In tutta l'accademia
+Regions Progress|Progresso por região|Progreso por región|Progression par région|Fortschritt nach Region|Progressi per regione
+{{value0}} of {{value1}} regions with completions · {{value2}}% overall|{{value0}} de {{value1}} regiões com conclusões · {{value2}}% no total|{{value0}} de {{value1}} regiones con completados · {{value2}}% global|{{value0}} régions sur {{value1}} avec des missions terminées · {{value2}} % au total|{{value0}} von {{value1}} Regionen mit Abschlüssen · {{value2}} % insgesamt|{{value0}} regioni su {{value1}} con completamenti · {{value2}}% totale
+regions with completions ·|regiões com conclusões ·|regiones con completados ·|régions avec des missions terminées ·|Regionen mit Abschlüssen ·|regioni con completamenti ·
+% overall|% no total|% global|% au total|% insgesamt|% totale
+No regions yet|Ainda não há regiões|Aún no hay regiones|Aucune région pour le moment|Noch keine Regionen|Nessuna regione per ora
+Content is being prepared. Check back soon.|O conteúdo está sendo preparado. Volte em breve.|Se está preparando el contenido. Vuelve pronto.|Le contenu est en préparation. Revenez bientôt.|Inhalte werden vorbereitet. Schau bald wieder vorbei.|I contenuti sono in preparazione. Torna presto.
+{{value0}} completion|Conclusão de {{value0}}|Finalización de {{value0}}|Progression de {{value0}}|Abschluss von {{value0}}|Completamento di {{value0}}
+Recent Activity|Atividade recente|Actividad reciente|Activité récente|Letzte Aktivitäten|Attività recenti
+Show less|Mostrar menos|Mostrar menos|Afficher moins|Weniger anzeigen|Mostra meno
+View all|Ver tudo|Ver todo|Tout voir|Alle anzeigen|Vedi tutto
+No learning activity yet|Ainda não há atividade de aprendizado|Aún no hay actividad de aprendizaje|Aucune activité d'apprentissage pour le moment|Noch keine Lernaktivität|Nessuna attività di apprendimento per ora
+Complete a lesson or take a quiz to see your activity here.|Conclua uma aula ou faça um quiz para ver sua atividade aqui.|Completa una lección o un cuestionario para ver tu actividad aquí.|Terminez une leçon ou passez un quiz pour voir votre activité ici.|Schließe eine Lektion ab oder mache ein Quiz, um deine Aktivität hier zu sehen.|Completa una lezione o svolgi un quiz per vedere qui le tue attività.
+Field test|Teste prático|Prueba de campo|Épreuve pratique|Praxistest|Prova sul campo
+Learning session|Sessão de aprendizado|Sesión de aprendizaje|Session d'apprentissage|Lernsitzung|Sessione di apprendimento
+Score {{value0}}|Nota {{value0}}|Puntuación {{value0}}|Score {{value0}}|Ergebnis {{value0}}|Punteggio {{value0}}
+Expedition Progress|Progresso da expedição|Progreso de la expedición|Progression de l'expédition|Expeditionsfortschritt|Progressi della spedizione
+Keep going! Maintain your {{value0}} day streak.|Continue! Mantenha sua sequência de {{value0}} dias.|¡Sigue así! Mantén tu racha de {{value0}} días.|Continuez ! Prolongez votre série de {{value0}} jours.|Weiter so! Halte deine Serie von {{value0}} Tagen aufrecht.|Continua così! Mantieni la tua serie di {{value0}} giorni.
+Start your expedition.|Comece sua expedição.|Comienza tu expedición.|Commencez votre expédition.|Beginne deine Expedition.|Inizia la tua spedizione.
+Achieved.|Conquistado.|Conseguido.|Atteint.|Erreicht.|Raggiunto.
+In progress.|Em andamento.|En curso.|En cours.|In Bearbeitung.|In corso.
+Mission Details|Detalhes da missão|Detalles de la misión|Détails de la mission|Missionsdetails|Dettagli della missione
+Progress, quiz scores and attempts|Progresso, notas e tentativas dos quizzes|Progreso, notas e intentos de cuestionarios|Progression, scores et tentatives aux quiz|Fortschritt, Quizergebnisse und Versuche|Progressi, punteggi e tentativi dei quiz
+No modules available|Nenhum módulo disponível|No hay módulos disponibles|Aucun module disponible|Keine Module verfügbar|Nessun modulo disponibile
+{{value0}} · {{value1}} min|{{value0}} · {{value1}} min|{{value0}} · {{value1}} min|{{value0}} · {{value1}} min|{{value0}} · {{value1}} Min.|{{value0}} · {{value1}} min
+{{value0}}: {{value1}}% complete|{{value0}}: {{value1}}% concluído|{{value0}}: {{value1}}% completado|{{value0}} : {{value1}} % terminé|{{value0}}: {{value1}} % abgeschlossen|{{value0}}: {{value1}}% completato
+In progress|Em andamento|En curso|En cours|In Bearbeitung|In corso
+Not started|Não iniciado|Sin empezar|Non commencé|Nicht begonnen|Non iniziato
+Loading quiz results…|Carregando resultados do quiz…|Cargando resultados del cuestionario…|Chargement des résultats du quiz…|Quizergebnisse werden geladen…|Caricamento dei risultati del quiz…
+Quiz: {{value0}} · {{value1}} attempt{{value2}}|Quiz: {{value0}} · {{value1}} tentativa{{value2}}|Cuestionario: {{value0}} · {{value1}} intento{{value2}}|Quiz : {{value0}} · {{value1}} tentative{{value2}}|Quiz: {{value0}} · {{value1}} Versuch{{value2}}|Quiz: {{value0}} · {{value1}} tentativo{{value2}}
+Quiz:|Quiz:|Cuestionario:|Quiz :|Quiz:|Quiz:
+attempt|tentativa|intento|tentative|Versuch|tentativo
+Quiz results unavailable|Resultados do quiz indisponíveis|Resultados del cuestionario no disponibles|Résultats du quiz indisponibles|Quizergebnisse nicht verfügbar|Risultati del quiz non disponibili
+Loading progress|Carregando progresso|Cargando progreso|Chargement de la progression|Fortschritt wird geladen|Caricamento dei progressi
+Lesson Performance|Desempenho por aula|Rendimiento por lección|Résultats par leçon|Leistung pro Lektion|Risultati per lezione
+Your best quiz score for each lesson.|Sua melhor nota no quiz de cada aula.|Tu mejor nota en el cuestionario de cada lección.|Votre meilleur score au quiz de chaque leçon.|Dein bestes Quizergebnis für jede Lektion.|Il tuo miglior punteggio al quiz di ogni lezione.
+Lesson results unavailable.|Resultados das aulas indisponíveis.|Resultados de lecciones no disponibles.|Résultats des leçons indisponibles.|Lektionsergebnisse nicht verfügbar.|Risultati delle lezioni non disponibili.
+No lesson results yet|Ainda não há resultados de aulas|Aún no hay resultados de lecciones|Aucun résultat de leçon pour le moment|Noch keine Lektionsergebnisse|Nessun risultato delle lezioni per ora
+Take a lesson quiz to see your performance here.|Faça o quiz de uma aula para ver seu desempenho aqui.|Haz el cuestionario de una lección para ver tu rendimiento aquí.|Passez le quiz d'une leçon pour voir vos résultats ici.|Mache das Quiz einer Lektion, um deine Leistung hier zu sehen.|Svolgi il quiz di una lezione per vedere qui i tuoi risultati.
+Lesson {{value0}}: {{value1}}|Aula {{value0}}: {{value1}}|Lección {{value0}}: {{value1}}|Leçon {{value0}} : {{value1}}|Lektion {{value0}}: {{value1}}|Lezione {{value0}}: {{value1}}
+{{value0}} · Best quiz score: {{value1}} · {{value2}} attempt{{value3}}|{{value0}} · Melhor nota: {{value1}} · {{value2}} tentativa{{value3}}|{{value0}} · Mejor nota: {{value1}} · {{value2}} intento{{value3}}|{{value0}} · Meilleur score : {{value1}} · {{value2}} tentative{{value3}}|{{value0}} · Bestes Ergebnis: {{value1}} · {{value2}} Versuch{{value3}}|{{value0}} · Miglior punteggio: {{value1}} · {{value2}} tentativo{{value3}}
+Lesson {{value0}}|Aula {{value0}}|Lección {{value0}}|Leçon {{value0}}|Lektion {{value0}}|Lezione {{value0}}
+Lesson {{value0}} best quiz score|Melhor nota no quiz da aula {{value0}}|Mejor nota del cuestionario de la lección {{value0}}|Meilleur score au quiz de la leçon {{value0}}|Bestes Quizergebnis von Lektion {{value0}}|Miglior punteggio al quiz della lezione {{value0}}
+{{value0}} attempt{{value1}}|{{value0}} tentativa{{value1}}|{{value0}} intento{{value1}}|{{value0}} tentative{{value1}}|{{value0}} Versuch{{value1}}|{{value0}} tentativo{{value1}}
+Review Lesson {{value0}}|Revisar aula {{value0}}|Repasar lección {{value0}}|Revoir la leçon {{value0}}|Lektion {{value0}} wiederholen|Ripassa la lezione {{value0}}
+Review lesson|Revisar aula|Repasar lección|Revoir la leçon|Lektion wiederholen|Ripassa la lezione
+Some lesson results could not be loaded.|Não foi possível carregar alguns resultados das aulas.|No se pudieron cargar algunos resultados de lecciones.|Certains résultats de leçons n'ont pas pu être chargés.|Einige Lektionsergebnisse konnten nicht geladen werden.|Impossibile caricare alcuni risultati delle lezioni.

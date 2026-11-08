@@ -1,0 +1,81 @@
+# Canonical module id|pt-BR|es|fr|de|it — authored metadata, not instructional verification
+AGR-composting|Compostagem|Compostaje|Compostage|Kompostierung|Compostaggio
+AGR-crop-planning|Planejamento de cultivos|Planificación de cultivos|Planification des cultures|Anbauplanung|Pianificazione delle colture
+AGR-food-production|Produção básica de alimentos para preparação|Producción básica de alimentos para la preparación|Production alimentaire de base pour la préparation|Grundlagen der Nahrungsproduktion zur Vorsorge|Produzione alimentare di base per la preparazione
+AGR-garden-planning|Fundamentos de planejamento de hortas|Fundamentos de planificación del huerto|Fondamentaux de la planification du potager|Grundlagen der Gartenplanung|Fondamenti di progettazione dell'orto
+AGR-greenhouses|Estufas|Invernaderos|Serres|Gewächshäuser|Serre
+AGR-irrigation|Irrigação|Riego|Irrigation|Bewässerung|Irrigazione
+AGR-pest-management|Manejo de pragas|Gestión de plagas|Gestion des ravageurs|Schädlingsmanagement|Gestione dei parassiti
+AGR-seed-saving|Fundamentos de conservação de sementes|Fundamentos de conservación de semillas|Fondamentaux de la conservation des semences|Grundlagen der Saatgutgewinnung|Fondamenti di conservazione dei semi
+AGR-soil-fundamentals|Fundamentos de solo e cultivo|Fundamentos del suelo y el cultivo|Fondamentaux du sol et de la culture|Boden- und Anbaugrundlagen|Fondamenti del suolo e della coltivazione
+FIR-emergency-cooking|Culinária de emergência|Cocina de emergencia|Cuisine d'urgence|Kochen im Notfall|Cucina di emergenza
+FIR-fire-fuel|Combustíveis para fogo e seleção|Combustibles para el fuego y selección|Combustibles pour le feu et choix|Brennstoffe und Brennstoffauswahl|Combustibili per il fuoco e scelta
+FIR-fire-fundamentals|Fundamentos do fogo|Fundamentos del fuego|Fondamentaux du feu|Feuergrundlagen|Fondamenti del fuoco
+FIR-fire-laying|Montagem de fogueiras|Preparación de fogatas|Construction d'un foyer|Feueraufbau|Preparazione del focolare
+FIR-fire-maintenance|Manutenção do fogo|Mantenimiento del fuego|Entretien du feu|Feuerpflege|Mantenimento del fuoco
+FIR-safety|Segurança com fogo|Seguridad con el fuego|Sécurité incendie|Feuersicherheit|Sicurezza con il fuoco
+FIR-starting|Acendimento de fogo|Encendido del fuego|Allumage du feu|Feuer entfachen|Accensione del fuoco
+FOD-canning|Conservas|Conservas|Mise en conserve|Einkochen|Conservazione in barattolo
+FOD-drying|Desidratação e secagem de alimentos|Deshidratación y secado de alimentos|Déshydratation et séchage des aliments|Lebensmitteltrocknung und -dehydrierung|Disidratazione ed essiccazione degli alimenti
+FOD-emergency-food|Alimentos de emergência|Alimentos de emergencia|Alimentation d'urgence|Notfallnahrung|Cibo di emergenza
+FOD-fermentation|Fermentação|Fermentación|Fermentation|Fermentation|Fermentazione
+FOD-food-safety|Segurança dos alimentos|Seguridad alimentaria|Sécurité des aliments|Lebensmittelsicherheit|Sicurezza alimentare
+FOD-food-storage|Fundamentos de armazenamento de alimentos|Fundamentos del almacenamiento de alimentos|Fondamentaux du stockage alimentaire|Grundlagen der Lebensmittellagerung|Fondamenti di conservazione degli alimenti
+FOD-long-term-storage|Armazenamento de alimentos a longo prazo|Almacenamiento de alimentos a largo plazo|Stockage alimentaire à long terme|Langzeitlagerung von Lebensmitteln|Conservazione alimentare a lungo termine
+FOD-nutrition|Nutrição de emergência|Nutrición de emergencia|Nutrition d'urgence|Ernährung im Notfall|Nutrizione di emergenza
+FOD-off-grid-cooking|Culinária fora da rede|Cocina sin conexión a la red|Cuisine hors réseau|Kochen ohne Versorgungsnetz|Cucina fuori rete
+FOD-smoking|Defumação de alimentos|Ahumado de alimentos|Fumage des aliments|Räuchern von Lebensmitteln|Affumicatura degli alimenti
+FOR-dangerous-plants|Plantas perigosas e tóxicas|Plantas peligrosas y tóxicas|Plantes dangereuses et toxiques|Gefährliche und giftige Pflanzen|Piante pericolose e tossiche
+FOR-edibility-safety|Comestibilidade e segurança de alimentos silvestres|Comestibilidad silvestre y seguridad|Comestibilité sauvage et sécurité|Essbarkeit von Wildpflanzen und Sicherheit|Commestibilità selvatica e sicurezza
+FOR-ethical-foraging|Coleta sustentável e ética|Recolección sostenible y ética|Cueillette durable et éthique|Nachhaltiges und ethisches Sammeln|Raccolta sostenibile ed etica
+FOR-foraging-practice|Prática de coleta em campo|Técnicas de recolección en el campo|Pratique de la cueillette sur le terrain|Sammelpraxis im Gelände|Pratica della raccolta sul campo
+FOR-fruits-berries|Frutas e bagas silvestres|Frutas y bayas silvestres|Fruits et baies sauvages|Wildfrüchte und Beeren|Frutti e bacche selvatici
+FOR-leaves|Folhas, brotos e verduras comestíveis|Hojas, brotes y verduras comestibles|Feuilles, pousses et verdures comestibles|Essbare Blätter, Triebe und Wildgemüse|Foglie, germogli e verdure commestibili
+FOR-lookalikes|Espécies semelhantes perigosas|Especies parecidas peligrosas|Sosies dangereux|Gefährliche Doppelgänger|Specie simili pericolose
+FOR-mushrooms|Cogumelos silvestres e segurança|Setas silvestres y seguridad|Champignons sauvages et sécurité|Wildpilze und Pilzsicherheit|Funghi selvatici e sicurezza
+FOR-plant-identification|Fundamentos de identificação de plantas|Fundamentos de identificación de plantas|Fondamentaux de l'identification des plantes|Grundlagen der Pflanzenbestimmung|Fondamenti di identificazione delle piante
+FOR-roots-tubers|Raízes, tubérculos e alimentos subterrâneos|Raíces, tubérculos y alimentos subterráneos|Racines, tubercules et aliments souterrains|Wurzeln, Knollen und unterirdische Nahrung|Radici, tuberi e alimenti sotterranei
+MED-bleeding-control|Controle de sangramentos|Control de hemorragias|Contrôle des hémorragies|Blutstillung|Controllo delle emorragie
+MED-burns|Queimaduras|Quemaduras|Brûlures|Verbrennungen|Ustioni
+MED-emergency-assessment|Avaliação de emergência|Evaluación de emergencias|Évaluation d'urgence|Notfallbeurteilung|Valutazione di emergenza
+MED-emergency-kit|Kit de emergência|Kit de emergencia|Kit d'urgence|Notfallausrüstung|Kit di emergenza
+MED-fractures|Fraturas e imobilização|Fracturas e inmovilización|Fractures et immobilisation|Frakturen und Ruhigstellung|Fratture e immobilizzazione
+MED-heat-cold|Emergências por calor e frio|Emergencias por calor y frío|Urgences liées à la chaleur et au froid|Hitze- und Kältenotfälle|Emergenze da caldo e freddo
+MED-wound-care|Cuidados com feridas|Cuidado de heridas|Soins des plaies|Wundversorgung|Cura delle ferite
+NAV-compass|Navegação com bússola|Orientación con brújula|Orientation à la boussole|Kompassnavigation|Orientamento con la bussola
+NAV-coordinate-systems|Coordenadas e navegação em grade|Coordenadas y navegación por cuadrícula|Coordonnées et orientation sur quadrillage|Koordinaten und Gitternavigation|Coordinate e navigazione su griglia
+NAV-emergency-location|Localização e sinalização de emergência|Localización y señalización de emergencia|Localisation et signalisation d'urgence|Notfallortung und Signalgebung|Localizzazione e segnalazione di emergenza
+NAV-gps-offline|GPS e navegação offline|GPS y navegación sin conexión|GPS et orientation hors ligne|GPS und Offline-Navigation|GPS e orientamento offline
+NAV-map-reading|Fundamentos de leitura de mapas|Fundamentos de lectura de mapas|Fondamentaux de la lecture de carte|Grundlagen des Kartenlesens|Fondamenti di lettura delle mappe
+NAV-navigation-errors|Erros de navegação e recuperação|Errores de orientación y recuperación|Erreurs d'orientation et récupération|Navigationsfehler und Wiederorientierung|Errori di orientamento e recupero
+NAV-navigation-fundamentals|Fundamentos de navegação|Fundamentos de orientación|Fondamentaux de l'orientation|Orientierungsgrundlagen|Fondamenti di orientamento
+NAV-night-navigation|Navegação noturna|Orientación nocturna|Orientation de nuit|Nachtnavigation|Orientamento notturno
+NAV-route-planning|Planejamento de rotas|Planificación de rutas|Planification d'itinéraires|Routenplanung|Pianificazione dei percorsi
+NAV-terrain-association|Reconhecimento e associação do terreno|Asociación del terreno|Association du terrain|Geländeabgleich|Associazione del terreno
+NAV-water-navigation|Rios, lagos e travessias aquáticas|Ríos, lagos y cruces de agua|Rivières, lacs et traversées d'eau|Flüsse, Seen und Gewässerquerungen|Fiumi, laghi e attraversamenti d'acqua
+NAV-weather-navigation|Clima, visibilidade e navegação|Tiempo, visibilidad y orientación|Météo, visibilité et orientation|Wetter, Sicht und Orientierung|Meteo, visibilità e orientamento
+SHE-insulation|Isolamento do abrigo|Aislamiento del refugio|Isolation de l'abri|Isolierung von Unterkünften|Isolamento del riparo
+SHE-long-term-shelter|Abrigo de longa duração|Refugio a largo plazo|Abri à long terme|Langzeitunterkunft|Riparo a lungo termine
+SHE-natural-shelter|Abrigo natural|Refugio natural|Abri naturel|Natürlicher Schutz|Riparo naturale
+SHE-shelter-materials|Materiais para abrigos|Materiales para refugios|Matériaux pour abris|Unterkunftsmaterialien|Materiali per ripari
+SHE-site-selection|Escolha do local do abrigo|Selección del lugar del refugio|Choix de l'emplacement d'un abri|Standortwahl für Unterkünfte|Scelta del luogo del riparo
+SHE-tarp-shelters|Abrigos de lona|Refugios de lona|Abris sous bâche|Planenunterkünfte|Ripari con telo
+SHE-tents|Barracas|Tiendas de campaña|Tentes|Zelte|Tende
+SHE-weather-protection|Proteção contra o clima|Protección frente al tiempo|Protection contre les intempéries|Wetterschutz|Protezione dalle intemperie
+SUR-emergency-planning|Planejamento de emergência familiar|Planificación de emergencias del hogar|Planification des urgences du foyer|Notfallplanung für den Haushalt|Pianificazione delle emergenze domestiche
+SUR-preparedness|Noções básicas de preparação para emergências|Fundamentos de preparación para emergencias|Bases de la préparation aux urgences|Grundlagen der Notfallvorsorge|Basi di preparazione alle emergenze
+SUR-prioritization|Definição de prioridades|Priorización|Définition des priorités|Priorisierung|Definizione delle priorità
+SUR-risk-assessment|Avaliação de riscos|Evaluación de riesgos|Évaluation des risques|Risikobewertung|Valutazione dei rischi
+SUR-situational-awareness|Consciência situacional|Conciencia situacional|Conscience de la situation|Lagebewusstsein|Consapevolezza situazionale
+SUR-survival-psychology|Psicologia da sobrevivência|Psicología de la supervivencia|Psychologie de la survie|Überlebenspsychologie|Psicologia della sopravvivenza
+WAT-boiling|Fervura da água para purificação|Hervido del agua para purificarla|Ébullition de l'eau pour la purifier|Wasserreinigung durch Abkochen|Bollitura dell'acqua per la purificazione
+WAT-chemical-purification|Purificação química da água|Purificación química del agua|Purification chimique de l'eau|Chemische Wasserreinigung|Purificazione chimica dell'acqua
+WAT-distillation|Destilação da água|Destilación del agua|Distillation de l'eau|Wasserdestillation|Distillazione dell'acqua
+WAT-filtration|Filtragem da água|Filtración del agua|Filtration de l'eau|Wasserfiltration|Filtrazione dell'acqua
+WAT-finding-water|Como encontrar água|Cómo encontrar agua|Trouver de l'eau|Wasser finden|Trovare l'acqua
+WAT-purification|Purificação da água|Purificación del agua|Purification de l'eau|Wasserreinigung|Purificazione dell'acqua
+WAT-rainwater-collection|Captação da água da chuva|Recogida de agua de lluvia|Collecte de l'eau de pluie|Regenwassersammlung|Raccolta dell'acqua piovana
+WAT-sodis|Desinfecção solar (SODIS)|Desinfección solar (SODIS)|Désinfection solaire (SODIS)|Solare Desinfektion (SODIS)|Disinfezione solare (SODIS)
+WAT-storage|Armazenamento de água para emergências|Almacenamiento de agua para emergencias|Stockage d'eau pour les urgences|Notfallwasservorrat|Conservazione dell'acqua per le emergenze
+WAT-water-systems|Sistemas de água|Sistemas de agua|Systèmes d'eau|Wassersysteme|Sistemi idrici
+WAT-water-testing|Análise da água|Análisis del agua|Analyse de l'eau|Wasserprüfung|Analisi dell'acqua

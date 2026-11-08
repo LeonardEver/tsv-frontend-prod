@@ -2,12 +2,13 @@
  * Category detail — Region page (Phase 23). The Lovable reference
  * `src/routes/learn.$category.index.tsx` is the visual source of truth:
  * breadcrumb, full-bleed hero (category artwork, scrim, colored title,
- * chips, ProgressRing), missions grouped by subcategory.
+ * chips, ProgressRing), and a responsive grid of module-specific covers.
  *
  * Loading / empty / error-with-retry / 404 (existence-hiding) preserved.
  * Progress derives from authoritative counts only (the /categories list
  * row; the detail rows' completed flags as the fallback).
  */
+import { tr as uiText, useLocale as useInterfaceLocale, uiValue } from "@/i18n";
 import { Link, useParams } from "react-router";
 import { useQuery } from "@tanstack/react-query";
 import { queryKeys } from "@/lib/api/keys";
@@ -31,8 +32,10 @@ import { ErrorState } from "@/components/shared/ErrorState";
 import { getCategoryIdentity } from "./category-identity";
 import { fetchCategories, fetchCategoryDetail } from "./categories.api";
 import { missionCardModelFromDetailRow, subcategoryLabel } from "./adapters";
+import styles from "./category-detail.module.css";
 
 export default function CategoryDetailPage() {
+  useInterfaceLocale();
   const { categorySlug = "" } = useParams();
 
   const query = useQuery({
@@ -56,7 +59,7 @@ export default function CategoryDetailPage() {
   const completedCount =
     listRow?.completed_count ?? moduleRows.filter((m) => m.completed).length;
   const pct = missionCount > 0 ? Math.round((completedCount / missionCount) * 100) : 0;
-  const groups = detail?.subcategories ?? [];
+  const groups = (detail?.subcategories ?? []).filter((group) => group.modules.length > 0);
 
   const model: CategoryCardModel | null = detail
     ? {
@@ -76,10 +79,8 @@ export default function CategoryDetailPage() {
 
   return (
     <div>
-      <nav aria-label="Breadcrumb" className="mb-4 font-mono text-[11px] tracking-widest uppercase">
-        <Link to="/categories" className="text-muted-foreground hover:text-foreground">
-          Regions
-        </Link>
+      <nav aria-label={uiText("learning:breadcrumb_c766e6")} className="mb-4 font-mono text-[11px] tracking-widest uppercase">
+        <Link to="/categories" className="text-muted-foreground hover:text-foreground">{uiText("learning:regions_039711")}</Link>
         <span className="mx-2 text-muted-foreground">/</span>
         {model ? <span style={{ color }}>{model.name}</span> : null}
       </nav>
@@ -110,7 +111,7 @@ export default function CategoryDetailPage() {
             <div className="absolute inset-0 bg-linear-to-r from-background via-background/88 to-background/25" />
             <div className="relative grid gap-6 p-6 sm:p-10 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center">
               <div className="min-w-0 max-w-xl">
-                <Eyebrow>Region</Eyebrow>
+                <Eyebrow>{uiText("learning:region_0f2171")}</Eyebrow>
                 <h1
                   className="page-title mt-2 font-display text-4xl leading-none font-semibold tracking-wide uppercase sm:text-5xl"
                   style={{ color }}
@@ -119,9 +120,9 @@ export default function CategoryDetailPage() {
                 </h1>
                 <p className="mt-3 text-base text-muted-foreground">{categoryDescription(detail.code)}</p>
                 <div className="mt-4 flex flex-wrap gap-2">
-                  <Chip color={color}>{missionCount} missions</Chip>
-                  <Chip>{completedCount} complete</Chip>
-                  <Chip>{groups.length} sections</Chip>
+                  <Chip color={color}>{uiText("learning:value_missions_d4bb5e", { value0: uiValue(missionCount) })}</Chip>
+                  <Chip>{uiText("learning:value_complete_732282", { value0: uiValue(completedCount) })}</Chip>
+                  <Chip>{uiText("learning:value_sections_bfb9b2", { value0: uiValue(groups.length) })}</Chip>
                 </div>
               </div>
               <div className="flex items-center gap-4">
@@ -129,11 +130,9 @@ export default function CategoryDetailPage() {
                   <span className="font-display text-xl font-semibold">{pct}%</span>
                 </ProgressRing>
                 <div className="max-w-40">
-                  <p className="eyebrow">Region progress</p>
-                  <ProgressBar className="mt-2" value={pct} color={color} label="Region progress" />
-                  <p className="mt-2 font-mono text-[11px] text-muted-foreground">
-                    {completedCount} of {missionCount} missions
-                  </p>
+                  <p className="eyebrow">{uiText("learning:region_progress_ab4cd6")}</p>
+                  <ProgressBar className="mt-2" value={pct} color={color} label={uiText("learning:region_progress_ab4cd6")} />
+                  <p className="mt-2 font-mono text-[11px] text-muted-foreground">{uiText("learning:value_of_value_missions_7cc4c2", { value0: uiValue(completedCount), value1: uiValue(missionCount) })}</p>
                 </div>
               </div>
             </div>
@@ -141,23 +140,23 @@ export default function CategoryDetailPage() {
 
           {moduleRows.length === 0 ? (
             <EmptyState
-              title="No missions yet"
-              description="This region is being built. Field manuals will appear here as soon as they are published."
+              title={uiText("learning:no_missions_yet_097b38")}
+              description={uiText("learning:this_region_is_being_built_field_manuals_228caf")}
             />
           ) : (
-            groups.map((group) => (
-              <section key={group.slug} className="mb-12">
-                <SectionHeader eyebrow="Section" title={subcategoryLabel(group.slug)} />
-                <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-                  {group.modules.map((m) => (
+            <section aria-label={uiText("learning:region_missions_5a3fbe")} className="mb-12">
+              <SectionHeader eyebrow={uiText("learning:training_b6fe7f")} title={uiText("learning:your_missions_a8a720")} description={uiText("learning:build_your_skills_one_mission_at_a_8ba262")} />
+              <div className={styles.missionGrid}>
+                {groups.flatMap((group) =>
+                  group.modules.map((m) => (
                     <MissionCard
                       key={m.module_id}
                       mission={missionCardModelFromDetailRow(m, detail.code, subcategoryLabel(group.slug))}
                     />
-                  ))}
-                </div>
-              </section>
-            ))
+                  )),
+                )}
+              </div>
+            </section>
           )}
         </>
       ) : null}

@@ -21,16 +21,39 @@ describe("GamificationPage", () => {
   it("renders authoritative XP, level and next-level values", async () => {
     renderGamification();
     await waitFor(() => { expect(screen.getByText("125")).toBeInTheDocument(); });
-    // Level and title are rendered textually in the hero — no invented
-    // progression ring or bar is drawn.
+    // Current rank remains server-owned; the roadmap repeats its label.
     expect(screen.getByRole("heading", { name: "Novice" })).toBeInTheDocument();
-    expect(screen.getByText("LVL 1")).toBeInTheDocument();
-    // No invented progression curve — the backend exposes no level
-    // threshold, so the UI shows the raw "XP to next level" value only.
+    const hero = screen.getByRole("region", { name: "Current rank" });
+    expect(within(hero).getByText("LVL 1")).toBeInTheDocument();
+    // Cumulative progress is 125 / (125 + 175), using the API snapshot.
     expect(screen.getByText(/175 xp toward level 2/i)).toBeInTheDocument();
-    expect(
-      screen.queryByRole("progressbar", { name: /xp to the next level/i }),
-    ).not.toBeInTheDocument();
+    expect(within(hero).getByRole("progressbar", { name: "Total XP toward Level 2" })).toHaveAttribute("aria-valuenow", "42");
+  });
+
+  it("derives the displayed target from server XP remaining rather than a local curve", async () => {
+    server.use(http.get(`${API}/gamification`, () => HttpResponse.json({
+      total_xp: 500, level: 2, level_title: "Custom server title", xp_to_next_level: 500,
+      current_streak: 1, longest_streak: 3, achievements_earned: 1, recent_transactions: [],
+    })));
+    renderGamification();
+    const hero = await screen.findByRole("region", { name: "Current rank" });
+    expect(within(hero).getByRole("heading", { name: "Custom server title" })).toBeInTheDocument();
+    expect(within(hero).getByText(/500 \/ 1[,.]000 XP/)).toBeInTheDocument();
+    expect(within(hero).getByRole("progressbar", { name: "Total XP toward Level 3" })).toHaveAttribute("aria-valuenow", "50");
+  });
+
+  it("handles maximum rank without inventing another level or XP target", async () => {
+    server.use(http.get(`${API}/gamification`, () => HttpResponse.json({
+      total_xp: 100000, level: 10, level_title: "Transcendent", xp_to_next_level: null,
+      current_streak: 0, longest_streak: 9, achievements_earned: 1, recent_transactions: [],
+    })));
+    renderGamification();
+    const hero = await screen.findByRole("region", { name: "Current rank" });
+    expect(within(hero).getByText("Maximum level reached")).toBeInTheDocument();
+    expect(within(hero).queryByRole("progressbar")).not.toBeInTheDocument();
+    expect(screen.queryByText(/level 11/i)).not.toBeInTheDocument();
+    const roadmap = screen.getByRole("region", { name: "Reward progression" });
+    expect(within(roadmap).getByText("Transcendent")).toBeInTheDocument();
   });
 
   it("renders the authoritative streak without local calculation", async () => {

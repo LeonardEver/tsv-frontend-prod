@@ -2,9 +2,11 @@
  * Dashboard adapters (Phase 23) — map real API responses into the sa/
  * visual view models. Pure presentation mapping; no business rules.
  */
+import { communityCategoryTitle } from "@/i18n/community-category";
 import type { CommunityPostsResponse, ModuleListResponse } from "@/lib/api/types";
 import type { CommunityPostModel, MissionCardModel } from "@/components/sa/types";
-import { categoryImage, codeFromSlug } from "@/lib/category-visuals";
+import { codeFromSlug } from "@/lib/category-visuals";
+import { moduleImage } from "@/lib/module-visuals";
 import { nextIncompleteModule as nextIncompleteModuleOrdered } from "@/lib/curriculum";
 import { formatDifficulty, formatRelativeTime } from "@/lib/format/format";
 
@@ -30,7 +32,7 @@ export function missionCardModelFromListRow(
     minutes: row.estimated_duration ?? 0,
     progress,
     status: row.completed ? "complete" : progress > 0 ? "in-progress" : "available",
-    image: categoryImage(code),
+    image: moduleImage(row.module_id),
     to: `/modules/${row.module_id}`,
   };
 }
@@ -86,7 +88,7 @@ export function communityPostModel(row: CommunityPostsResponse["posts"][number])
     title: row.title,
     excerpt: row.body_excerpt ?? "",
     author: row.author.display_name,
-    category: row.category_name,
+    get category() { return communityCategoryTitle(row.category_code, row.category_name); },
     votes: row.vote_score,
     comments: row.comment_count,
     time: formatRelativeTime(row.created_at),

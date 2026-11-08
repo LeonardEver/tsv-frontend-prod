@@ -16,15 +16,18 @@
  * - Quiz CTA copy varies with the plan; the backend enforces regardless.
  * - "Discuss this lesson" links to the matching Community topic.
  */
+import { tr as uiText, useLocale as useInterfaceLocale, uiValue } from "@/i18n";
+import { ContentLanguageNotice } from "@/i18n/ContentLanguageNotice";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Link, useParams } from "react-router";
 import { clsx } from "clsx";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { Check, Clock, FileText, LockKeyhole } from "lucide-react";
-import { queryKeys } from "@/lib/api/keys";
+import { allLocales, queryKeys } from "@/lib/api/keys";
 import { ApiError } from "@/lib/api/errors";
 import { describeError } from "@/lib/api/error-map";
-import { catColorForCode, categoryImage, codeFromSlug } from "@/lib/category-visuals";
+import { catColorForCode, codeFromSlug } from "@/lib/category-visuals";
+import { moduleImage } from "@/lib/module-visuals";
 import { formatDifficulty } from "@/lib/format/format";
 import { Chip, Eyebrow, ProgressBar } from "@/components/sa/primitives";
 import { ErrorState } from "@/components/shared/ErrorState";
@@ -40,8 +43,10 @@ import { fetchUsage } from "@/features/plans/plans.api";
 import { communityTopicForCategory } from "@/features/community/topic-map";
 import { useFieldTestGate } from "@/features/quiz/use-field-test-gate";
 import { completeLesson, fetchLesson } from "./lesson.api";
+import styles from "./lesson.module.css";
 
 export default function LessonPage() {
+  useInterfaceLocale();
   const { moduleId = "" } = useParams();
   const queryClient = useQueryClient();
   const pushToast = useUiStore((s) => s.pushToast);
@@ -51,6 +56,7 @@ export default function LessonPage() {
   const moduleQuery = useQuery<ModuleDetailResponse | undefined>({
     queryKey: queryKeys.content.module(moduleId),
     queryFn: () => fetchModule(moduleId),
+    placeholderData: (previous) => previous?.module_id === moduleId ? previous : undefined,
     staleTime: 30_000,
     refetchOnWindowFocus: true,
     retry: false,
@@ -61,6 +67,7 @@ export default function LessonPage() {
   const lessonQuery = useQuery<LessonResponse | undefined>({
     queryKey: lessonId ? queryKeys.content.lesson(lessonId) : ["lessons", "pending"],
     queryFn: () => fetchLesson(lessonId as string),
+    placeholderData: (previous) => previous?.lesson_id === lessonId ? previous : undefined,
     enabled: Boolean(lessonId),
     staleTime: 5 * 60_000,
     retry: false,
@@ -74,7 +81,7 @@ export default function LessonPage() {
   const categoryRow = categoriesQuery.data?.categories.find(
     (c) => c.slug === moduleQuery.data?.category,
   );
-  const categoryTitle = categoryRow?.title ?? "Region";
+  const categoryTitle = categoryRow?.title ?? uiText("learning:region_0f2171");
   const categoryCode = categoryRow?.code ?? codeFromSlug(moduleQuery.data?.category) ?? "";
   const color = catColorForCode(categoryCode);
 
@@ -103,7 +110,7 @@ export default function LessonPage() {
       // gamification summary (completion awards XP backend-side) + the
       // quiz gate's module progress + today's usage. NOT categories.
       void queryClient.invalidateQueries({ queryKey: ["lessons", lessonId] });
-      void queryClient.invalidateQueries({ queryKey: queryKeys.content.module(moduleId) });
+      void queryClient.invalidateQueries({ queryKey: allLocales(queryKeys.content.module(moduleId)) });
       void queryClient.invalidateQueries({ queryKey: queryKeys.learning.progress });
       void queryClient.invalidateQueries({ queryKey: queryKeys.learning.moduleProgress(moduleId) });
       void queryClient.invalidateQueries({ queryKey: queryKeys.gamification.summary });
@@ -115,15 +122,15 @@ export default function LessonPage() {
       if (err instanceof ApiError && err.code === "DAILY_LESSON_LIMIT_REACHED") {
         pushToast({
           tone: "error",
-          title: "Daily lesson limit reached",
-          description: "Your limit resets tomorrow. Upgrade to Survivor for 10 lessons and quizzes per day.",
+          get title() { return uiText("learning:daily_lesson_limit_reached_f7a955"); },
+          get description() { return uiText("learning:your_limit_resets_tomorrow_upgrade_to_survivor_514a6d"); },
         });
         return;
       }
       pushToast({
         tone: "error",
-        title: "Couldn't save your completion",
-        description: "Please try again.",
+        get title() { return uiText("learning:couldn_t_save_your_completion_7c723c"); },
+        get description() { return uiText("learning:please_try_again_83a6fd"); },
       });
     },
   });
@@ -176,7 +183,7 @@ export default function LessonPage() {
 
   if (moduleQuery.isPending || (moduleQuery.data && lessonQuery.isPending)) {
     return (
-      <div role="status" aria-label="Loading lesson" className="space-y-6">
+      <div role="status" aria-label={uiText("learning:loading_lesson_d81134")} className="space-y-6">
         <div className="panel h-64 animate-pulse" aria-hidden="true" />
         <div className="panel h-96 animate-pulse" aria-hidden="true" />
       </div>
@@ -190,15 +197,13 @@ export default function LessonPage() {
   if (!lessonId) {
     return (
       <EmptyState
-        title="This lesson isn't available"
-        description="This module has no lesson content yet."
+        title={uiText("learning:this_lesson_isn_t_available_caeeb1")}
+        description={uiText("learning:this_module_has_no_lesson_content_yet_2a6554")}
         action={
           <Link
             to={`/modules/${moduleId}`}
             className="mt-6 inline-flex min-h-11 items-center rounded-lg bg-primary px-5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
-          >
-            Back to module
-          </Link>
+          >{uiText("learning:back_to_module_e2d3bf")}</Link>
         }
       />
     );
@@ -217,8 +222,9 @@ export default function LessonPage() {
       : 0;
 
   return (
-    <div>
-      <nav aria-label="Breadcrumb" className="mb-4 font-mono text-[11px] tracking-widest uppercase">
+    <div className={styles.lesson}>
+      <ContentLanguageNotice data={lesson} />
+      <nav aria-label={uiText("learning:breadcrumb_c766e6")} className="mb-4 font-mono text-[11px] tracking-widest uppercase">
         <Link to={`/modules/${mod.module_id}`} className="text-muted-foreground hover:text-foreground">
           ← {mod.title}
         </Link>
@@ -226,9 +232,9 @@ export default function LessonPage() {
 
       <div className="grid gap-8 xl:grid-cols-[200px_minmax(0,1fr)_240px]">
         {/* Section navigator (desktop) */}
-        <nav aria-label="Lesson sections" className="hidden xl:block">
+        <nav aria-label={uiText("learning:lesson_sections_d4357c")} className="hidden xl:block">
           <div className="sticky top-28">
-            <Eyebrow>Sections</Eyebrow>
+            <Eyebrow>{uiText("learning:sections_7ff5a6")}</Eyebrow>
             <ul className="mt-3 grid gap-1 border-l border-border">
               {learningObjectives.length > 0 && (
                 <li>
@@ -242,9 +248,7 @@ export default function LessonPage() {
                         : "border-transparent text-muted-foreground hover:text-foreground",
                     )}
                     style={activeSection === 0 ? { borderColor: color, color } : undefined}
-                  >
-                    Learning Objectives
-                  </a>
+                  >{uiText("learning:learning_objectives_1394be")}</a>
                 </li>
               )}
               {contentSections.map((section, i) => {
@@ -271,10 +275,34 @@ export default function LessonPage() {
           </div>
         </nav>
 
+        {/* Content */}
+        <article className="min-w-0 max-w-[68ch]">
+          <Eyebrow>{uiText("learning:field_manual_value_e158ce", { value0: uiValue(categoryTitle) })}</Eyebrow>
+          <h1 className="page-title mt-2 font-display text-4xl leading-none font-semibold tracking-wide uppercase sm:text-5xl">
+            {lesson.title}
+          </h1>
+          <div className="mt-3 flex flex-wrap gap-2">
+            <Chip color={color}>{formatDifficulty(mod.difficulty)}</Chip>
+            {lesson.estimated_minutes ? (
+              <Chip>
+                <Clock className="size-3" /> {lesson.estimated_minutes}{" "}{uiText("learning:min_b6c935")}</Chip>
+            ) : null}
+          </div>
+
+          {moduleImage(mod.module_id) ? (
+            <img
+              src={moduleImage(mod.module_id) ?? undefined}
+              alt=""
+              width={1200}
+              height={750}
+              className="mt-6 aspect-[16/9] w-full rounded-xl object-cover"
+            />
+          ) : null}
+
         {/* Mobile section rail */}
         <nav
-          aria-label="Lesson sections"
-          className="sticky top-28 z-[var(--z-chrome)] -mx-4 overflow-x-auto border-y border-border bg-background/95 px-4 py-2 backdrop-blur-md xl:hidden"
+          aria-label={uiText("learning:lesson_sections_d4357c")}
+          className={styles.mobileSections}
         >
           <ul className="flex gap-2">
             {learningObjectives.length > 0 && (
@@ -283,9 +311,7 @@ export default function LessonPage() {
                   href={`#${objectivesAnchor}`}
                   onClick={() => { setActiveSection(0); }}
                   className="inline-flex min-h-9 items-center whitespace-nowrap rounded-full border border-border px-3 text-xs font-medium text-muted-foreground hover:text-foreground"
-                >
-                  Learning Objectives
-                </a>
+                >{uiText("learning:learning_objectives_1394be")}</a>
               </li>
             )}
             {contentSections.map((section, i) => (
@@ -302,31 +328,6 @@ export default function LessonPage() {
           </ul>
         </nav>
 
-        {/* Content */}
-        <article className="min-w-0 max-w-[68ch]">
-          <Eyebrow>Field Manual · {categoryTitle}</Eyebrow>
-          <h1 className="page-title mt-2 font-display text-4xl leading-none font-semibold tracking-wide uppercase sm:text-5xl">
-            {lesson.title}
-          </h1>
-          <div className="mt-3 flex flex-wrap gap-2">
-            <Chip color={color}>{formatDifficulty(mod.difficulty)}</Chip>
-            {lesson.estimated_minutes ? (
-              <Chip>
-                <Clock className="size-3" /> {lesson.estimated_minutes} min
-              </Chip>
-            ) : null}
-          </div>
-
-          {categoryImage(categoryCode) ? (
-            <img
-              src={categoryImage(categoryCode) ?? undefined}
-              alt=""
-              width={1200}
-              height={750}
-              className="mt-6 aspect-[16/9] w-full rounded-xl object-cover"
-            />
-          ) : null}
-
           {/* Learning Objectives (informational only) */}
           {learningObjectives.length > 0 ? (
             <section
@@ -334,9 +335,7 @@ export default function LessonPage() {
               aria-labelledby="lo-heading"
               className="panel-2 mt-6 scroll-mt-36 p-5"
             >
-              <h2 id="lo-heading" className="eyebrow">
-                Learning objectives
-              </h2>
+              <h2 id="lo-heading" className="eyebrow">{uiText("learning:learning_objectives_554699")}</h2>
               <ul className="mt-3 grid gap-2 sm:grid-cols-2">
                 {learningObjectives.map((lo) => (
                   <li key={lo.lo_global_id} className="flex items-start gap-2 text-sm">
@@ -374,10 +373,8 @@ export default function LessonPage() {
           <section className="panel mt-12 p-6 text-center">
             {!completed ? (
               <>
-                <Eyebrow>Mission complete</Eyebrow>
-                <p className="mt-2 text-sm text-muted-foreground">
-                  Mark this field manual as read to record your progress.
-                </p>
+                <Eyebrow>{uiText("learning:put_your_knowledge_to_work_f23545")}</Eyebrow>
+                <p className="mt-2 text-sm text-muted-foreground">{uiText("learning:mark_this_field_manual_as_read_to_a1e41a")}</p>
                 <button
                   type="button"
                   disabled={completionMutation.isPending}
@@ -385,13 +382,13 @@ export default function LessonPage() {
                   onClick={() => { completionMutation.mutate(); }}
                   className="glow-ember mt-5 inline-flex min-h-12 items-center rounded-lg bg-primary px-6 text-sm font-semibold tracking-wide text-primary-foreground uppercase transition-colors hover:bg-primary/90 disabled:opacity-60"
                 >
-                  {completionMutation.isPending ? "Saving…" : "Complete lesson"}
+                  {completionMutation.isPending ? uiText("learning:saving_56a228") : uiText("learning:complete_lesson_71b3f8")}
                 </button>
                 {completionMutation.isError ? (
                   <p role="alert" className="mt-3 text-sm text-destructive">
                     {describeError(completionMutation.error).title}
                     {describeError(completionMutation.error).description
-                      ? ` ${describeError(completionMutation.error).description}`
+                      ? uiText("learning:value_bb624c", { value0: uiValue(describeError(completionMutation.error).description) })
                       : ""}
                   </p>
                 ) : null}
@@ -399,13 +396,9 @@ export default function LessonPage() {
             ) : (
               <div className="rise">
                 <p className="inline-flex items-center gap-2 text-lg font-semibold text-[color:var(--success)]">
-                  <Check className="size-5" /> Lesson complete
-                </p>
-                <p className="mt-2 text-sm text-muted-foreground">
-                  XP was added to your expedition —{" "}
-                  <Link to="/gamification" className="text-primary hover:underline">
-                    see your rewards
-                  </Link>
+                  <Check className="size-5" />{" "}{uiText("learning:lesson_complete_362b59")}</p>
+                <p className="mt-2 text-sm text-muted-foreground">{uiText("learning:xp_was_added_to_your_expedition_8ef6d1")}{" "}
+                  <Link to="/gamification" className="text-primary hover:underline">{uiText("learning:see_your_rewards_6aa72c")}</Link>
                   .
                 </p>
               </div>
@@ -419,10 +412,9 @@ export default function LessonPage() {
               {gate === "open" ? (
                 <Link
                   to={`/modules/${mod.module_id}/quiz`}
+                  state={{ startQuiz: true }}
                   className="glow-ember inline-flex min-h-12 items-center rounded-lg bg-primary px-6 text-sm font-semibold tracking-wide text-primary-foreground uppercase transition-colors hover:bg-primary/90"
-                >
-                  Take field test →
-                </Link>
+                >{uiText("learning:take_field_test_11b61e")}</Link>
               ) : (
                 <>
                   <button
@@ -431,12 +423,11 @@ export default function LessonPage() {
                     aria-disabled="true"
                     className="inline-flex min-h-12 cursor-not-allowed items-center gap-2 rounded-lg border border-border bg-surface-2 px-6 text-sm font-semibold tracking-wide text-muted-foreground uppercase opacity-60"
                   >
-                    <LockKeyhole className="size-4" aria-hidden="true" /> Take field test
-                  </button>
+                    <LockKeyhole className="size-4" aria-hidden="true" />{" "}{uiText("learning:take_field_test_1e927f")}</button>
                   <p className="mt-2 text-xs text-muted-foreground">
                     {gate === "checking"
-                      ? "Checking your progress…"
-                      : "Complete the lesson above to unlock the field test. Survivor and Operator members can test themselves any time."}
+                      ? uiText("learning:checking_your_progress_d99001")
+                      : uiText("learning:complete_the_lesson_above_to_unlock_the_45b26c")}
                   </p>
                 </>
               )}
@@ -448,9 +439,7 @@ export default function LessonPage() {
             <Link
               to={`/community?category=${communityTopicForCategory(mod.category)}`}
               className="text-xs font-semibold tracking-wide text-primary uppercase"
-            >
-              Discuss this lesson →
-            </Link>
+            >{uiText("learning:discuss_this_lesson_d3c612")}</Link>
           </div>
         </article>
 
@@ -458,39 +447,33 @@ export default function LessonPage() {
         <aside className="hidden xl:block">
           <div className="sticky top-28 grid gap-4">
             <div className="panel-2 p-4">
-              <Eyebrow>Reading progress</Eyebrow>
+              <Eyebrow>{uiText("learning:reading_progress_fafcbb")}</Eyebrow>
               <ProgressBar
                 className="mt-3"
                 value={completed ? 100 : readingPct}
                 color={color}
-                label="Reading progress"
+                label={uiText("learning:reading_progress_fafcbb")}
               />
               <p className="mt-2 font-mono text-[11px] text-muted-foreground">
                 {completed
-                  ? "100% · position saved"
-                  : `${readingPct}% · of ${contentSections.length} sections`}
+                  ? uiText("learning:100_position_saved_b06e35")
+                  : uiText("learning:value_of_value_sections_c39112", { value0: uiValue(readingPct), value1: uiValue(contentSections.length) })}
               </p>
             </div>
             {usageQuery.data ? (
               <div className="panel-2 p-4">
-                <Eyebrow>Today</Eyebrow>
-                <p className="mt-2 font-mono text-xs text-muted-foreground">
-                  Lessons {usageQuery.data.lesson_completions}/
-                  {usageQuery.data.limits.daily_lessons === null
+                <Eyebrow>{uiText("learning:today_24345a")}</Eyebrow>
+                <p className="mt-2 font-mono text-xs text-muted-foreground">{uiText("learning:lessons_value_value_19e6ab", { value0: uiValue(usageQuery.data.lesson_completions), value1: uiValue(usageQuery.data.limits.daily_lessons === null
                     ? "∞"
-                    : usageQuery.data.limits.daily_lessons}
-                </p>
-                <p className="font-mono text-xs text-muted-foreground">
-                  Field tests {usageQuery.data.quiz_attempts}/
-                  {usageQuery.data.limits.daily_quizzes === null
+                    : usageQuery.data.limits.daily_lessons) })}</p>
+                <p className="font-mono text-xs text-muted-foreground">{uiText("learning:field_tests_value_value_a74b1f", { value0: uiValue(usageQuery.data.quiz_attempts), value1: uiValue(usageQuery.data.limits.daily_quizzes === null
                     ? "∞"
-                    : usageQuery.data.limits.daily_quizzes}
-                </p>
+                    : usageQuery.data.limits.daily_quizzes) })}</p>
               </div>
             ) : null}
             {mod.resources.length > 0 ? (
               <div className="panel-2 p-4">
-                <Eyebrow>Resources</Eyebrow>
+                <Eyebrow>{uiText("learning:resources_87df60")}</Eyebrow>
                 <ul className="mt-3 grid gap-3">
                   {mod.resources.map((r) => (
                     <li key={r.resource_id} className="text-sm">

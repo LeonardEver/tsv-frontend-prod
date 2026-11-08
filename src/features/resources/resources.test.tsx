@@ -24,7 +24,7 @@ describe("ResourcePage", () => {
       expect(screen.getByRole("heading", { name: "Boiling Water Quick Reference" })).toBeInTheDocument();
     });
     // Type and format surface in the hero chips AND the meta tiles.
-    expect(screen.getAllByText("checklist").length).toBeGreaterThan(0);
+    expect(screen.getAllByText("Checklist").length).toBeGreaterThan(0);
     expect(screen.getAllByText("PDF").length).toBeGreaterThan(0);
     // Module context (breadcrumb + footer link), never a raw ID.
     const moduleLinks = screen.getAllByRole("link", {
@@ -74,7 +74,7 @@ describe("ResourcePage", () => {
     expect(source).toHaveAttribute("target", "_blank");
     expect(source).toHaveAttribute("rel", "noopener noreferrer");
     expect(screen.getByText("CC BY 4.0")).toBeInTheDocument();
-    expect(screen.getByText("allowed")).toBeInTheDocument();
+    expect(screen.getByText("Allowed")).toBeInTheDocument();
     expect(screen.queryByRole("link", { name: /download/i })).not.toBeInTheDocument();
   });
 

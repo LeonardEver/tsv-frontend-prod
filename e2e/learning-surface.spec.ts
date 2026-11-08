@@ -140,21 +140,24 @@ test.describe("learning surface", () => {
     mockLearningSurface(page);
 
     await page.goto("/dashboard");
-    await expect(page.getByRole("heading", { name: /welcome back/i })).toBeVisible();
+    const mobile = (page.viewportSize()?.width ?? 1280) < 768;
+    await expect(page.getByRole("heading", { name: mobile ? "Water" : /welcome back/i, exact: mobile })).toBeVisible();
 
     // Next mission: the first mission in the server's order that is not
     // completed, and the CTA goes straight into its lesson — Home → Lesson
     // with no module page in between. The hero eyebrow is a <p> in the new
     // shell (not a heading).
-    await expect(page.getByText("Your next mission").first()).toBeVisible();
-    const missionStart = page.getByRole("link", { name: /take lesson/i });
+    await expect(page.getByText("Your next mission").filter({ visible: true }).first()).toBeVisible();
+    const missionStart = page.getByRole("link", { name: /take lesson|start mission/i }).filter({ visible: true });
     await expect(missionStart).toBeVisible();
     await expect(missionStart).toHaveAttribute("href", "/modules/WAT-boiling/lesson");
     // The expedition timeline still links the mission to its module page —
     // browsing stays available, it is just no longer the way in.
-    await expect(
-      page.getByRole("link", { name: /boiling water for purification/i }),
-    ).toHaveAttribute("href", "/modules/WAT-boiling");
+    if (!mobile) {
+      await expect(
+        page.getByRole("link", { name: /boiling water for purification/i }),
+      ).toHaveAttribute("href", "/modules/WAT-boiling");
+    }
 
     // Browse: dashboard → categories → category → module.
     await page.goto("/categories");

@@ -1,0 +1,33 @@
+{
+  "method": "Built-in image generation; local JPEG compression and proportional resizing",
+  "assets": [
+    {
+      "name": "hero",
+      "path": "src/assets/progress-panorama.jpg",
+      "width": 1920,
+      "source": "C:\\Users\\leoar\\.codex\\generated_images\\01a1b8a9-f9a0-7ba3-99d1-a6e1013abb45\\exec-8fc4a951-5d52-45a1-a183-0984f1d7c7b7.png",
+      "prompt": "Use case: photorealistic-natural. Asset type: ultra-wide photographic header background for a dark survival training progress dashboard. Generate ONE cinematic landscape photograph, panorama aspect ratio 3:1, requested 1920 by 640. A rugged alpine mountain range above layers of misty evergreen forest, a small warm sunrise breaking over the mountains near the right third, cool deep teal forest and blue-grey mountains with subtle amber light. A lone backpacking hiker, fully visible from head to boots, stands on a rocky overlook at 77 percent across the composition, facing the distant mountain sunrise. CRITICAL FRAMING: keep the ENTIRE hiker within the middle vertical 45 percent of the image, between y=27% and y=72%, relatively small in the vast landscape, with generous sky above the head and rocks below the feet; the top and bottom 25 percent may be cropped by a shallow website header. Mountains must remain recognizable through the central horizontal band. Left 40 percent is dark, low contrast forest and atmospheric mountains, providing quiet space for white UI text. Natural detailed editorial outdoor photography, sophisticated dramatic light, realistic rugged backpack and clothing, no facial closeup. No text, lettering, logos, watermark, border, UI, collage, typography, icons or charts."
+    },
+    {
+      "name": "expedition",
+      "path": "src/assets/progress-expedition.jpg",
+      "width": 1440,
+      "source": "C:\\Users\\leoar\\.codex\\generated_images\\01a1b8a9-f9a0-7ba3-99d1-a6e1013abb45\\exec-99af9570-3d74-4319-864c-491f0561cc3d.png",
+      "prompt": "Use case: photorealistic-natural. Asset type: a low-profile panoramic background for a compact expedition milestone panel in a survival training dashboard. One edge-to-edge cinematic wilderness landscape photograph in a very wide 3:1 aspect ratio, requested 1536 by 512. Dark blue-teal mountainous wilderness at twilight, silhouette pine trees at the outer left and right edges, rocky mountain ridges forming a low silhouette ALONG THE BOTTOM 25 PERCENT ONLY, faint amber sunset glow on the lower horizon and a few tiny warm ember specks near the bottom left and right. The upper 70 percent is very dark quiet open atmosphere with subtle forest and mountain layers, low contrast, for a horizontal path of UI milestones. No campsite or tent, no person, no large flame or campfire, no equipment. Rich realistic outdoor photography with cinematic atmosphere, restrained warm amber accents and deep forest teal shadows. Keep all prominent scenery near the lower edge and side corners, wide generous negative space in the center. No text, labels, logos, watermark, UI elements, frames, collage or typography."
+    },
+    {
+      "name": "summit",
+      "path": "src/assets/progress-summit.jpg",
+      "width": 1200,
+      "source": "C:\\Users\\leoar\\.codex\\generated_images\\01a1b8a9-f9a0-7ba3-99d1-a6e1013abb45\\exec-6804d852-4dcd-4db9-a376-bbbbc0d5ed93.png",
+      "prompt": "Use case: photorealistic-natural. Asset type: scenic backdrop for a small wide level statistic tile in a survival training dashboard. ONE photographic panoramic image aspect ratio 3:1, requested 1536 by 512. A sharply recognizable snow-dusted alpine mountain summit confined to the RIGHTMOST THIRD of the image, fully visible with headroom, dark misty evergreen valley beneath. Left two thirds mostly quiet dark deep teal-black atmosphere with subtle mist, designed to hold an icon and white numbers. Moody editorial outdoor photography, realistic fine rock texture, subtle cold blue dawn light on the peak, restrained light, no warm orange sun. The summit is a visual accent on the right, not an enormous closeup that gets cut off. No people, text, numbers, lettering, logos, watermark, frame, UI or collage."
+    },
+    {
+      "name": "ember",
+      "path": "src/assets/progress-ember.jpg",
+      "width": 1200,
+      "source": "C:\\Users\\leoar\\.codex\\generated_images\\01a1b8a9-f9a0-7ba3-99d1-a6e1013abb45\\exec-3cd0ef39-b3a3-405d-a0cb-98c1bc70225c.png",
+      "prompt": "Use case: stylized-concept. Asset type: abstract scenic amber backdrop for small XP and streak statistic tiles in a premium survival training progress dashboard. ONE cinematic panoramic environmental texture in a 3:1 aspect ratio, requested 1536 by 512. Deep charcoal and black forest-teal background, subtle layers of flowing rugged mountain slopes and wisps of amber ember light concentrated in the RIGHTMOST THIRD and along the bottom-right edge, faint ember particles and thin natural glowing ridgelines. A restrained warm orange glow from the bottom-right. Left two thirds quiet almost-black low contrast atmosphere to hold white numbers. Premium dark outdoor expedition aesthetic. No distinct campfire, no pile of sticks, no giant flames, no tent, no people. No text, lettering, numbers, logos, watermark, UI, frames or collage."
+    }
+  ]
+}

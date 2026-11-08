@@ -1,0 +1,48 @@
+{{count}} attempt|{{count}} tentativa|{{count}} intento|{{count}} tentative|{{count}} Versuch|{{count}} tentativo
+{{count}} attempts|{{count}} tentativas|{{count}} intentos|{{count}} tentatives|{{count}} Versuche|{{count}} tentativi
+{{count}} question|{{count}} questão|{{count}} pregunta|{{count}} question|{{count}} Frage|{{count}} domanda
+{{count}} questions|{{count}} questões|{{count}} preguntas|{{count}} questions|{{count}} Fragen|{{count}} domande
+{{count}} mission|{{count}} missão|{{count}} misión|{{count}} mission|{{count}} Mission|{{count}} missione
+{{count}} missions|{{count}} missões|{{count}} misiones|{{count}} missions|{{count}} Missionen|{{count}} missioni
+{{count}} comment|{{count}} comentário|{{count}} comentario|{{count}} commentaire|{{count}} Kommentar|{{count}} commento
+{{count}} comments|{{count}} comentários|{{count}} comentarios|{{count}} commentaires|{{count}} Kommentare|{{count}} commenti
+Novice|Iniciante|Novato|Novice|Neuling|Novizio
+Prepared|Preparado|Preparado|Préparé|Vorbereitet|Preparato
+Practitioner|Praticante|Practicante|Pratiquant|Praktiker|Praticante
+Skilled|Habilidoso|Hábil|Compétent|Versiert|Abile
+Expert|Especialista|Experto|Expert|Experte|Esperto
+Master|Mestre|Maestro|Maître|Meister|Maestro
+Grandmaster|Grão-mestre|Gran maestro|Grand maître|Großmeister|Gran maestro
+Legend|Lenda|Leyenda|Légende|Legende|Leggenda
+Mythic|Mítico|Mítico|Mythique|Mythisch|Mitico
+Transcendent|Transcendente|Trascendente|Transcendant|Transzendent|Trascendente
+Please check this field.|Confira este campo.|Revisa este campo.|Vérifiez ce champ.|Bitte prüfe dieses Feld.|Controlla questo campo.
+This field is required.|Este campo é obrigatório.|Este campo es obligatorio.|Ce champ est obligatoire.|Dieses Feld ist erforderlich.|Questo campo è obbligatorio.
+Enter a valid email address.|Informe um e-mail válido.|Introduce un correo válido.|Saisissez une adresse e-mail valide.|Gib eine gültige E-Mail-Adresse ein.|Inserisci un indirizzo e-mail valido.
+Enter a valid date of birth.|Informe uma data de nascimento válida.|Introduce una fecha de nacimiento válida.|Saisissez une date de naissance valide.|Gib ein gültiges Geburtsdatum ein.|Inserisci una data di nascita valida.
+Date of birth cannot be in the future.|A data de nascimento não pode estar no futuro.|La fecha de nacimiento no puede ser futura.|La date de naissance ne peut pas être future.|Das Geburtsdatum darf nicht in der Zukunft liegen.|La data di nascita non può essere futura.
+You must be at least {{age}} years old to create an account.|Você precisa ter pelo menos {{age}} anos para criar uma conta.|Debes tener al menos {{age}} años para crear una cuenta.|Vous devez avoir au moins {{age}} ans pour créer un compte.|Du musst mindestens {{age}} Jahre alt sein, um ein Konto zu erstellen.|Devi avere almeno {{age}} anni per creare un account.
+Select a valid country or region.|Selecione um país ou região válido.|Selecciona un país o región válido.|Sélectionnez un pays ou une région valide.|Wähle ein gültiges Land oder eine gültige Region.|Seleziona un paese o una regione validi.
+Must be at most {{count}} characters.|Deve ter no máximo {{count}} caracteres.|Debe tener como máximo {{count}} caracteres.|Doit contenir au maximum {{count}} caractères.|Darf höchstens {{count}} Zeichen enthalten.|Deve contenere al massimo {{count}} caratteri.
+Must not contain control characters.|Não pode conter caracteres de controle.|No puede contener caracteres de control.|Ne doit pas contenir de caractères de contrôle.|Darf keine Steuerzeichen enthalten.|Non deve contenere caratteri di controllo.
+You must agree to the Terms of Service.|Você deve concordar com os Termos de Uso.|Debes aceptar los Términos de servicio.|Vous devez accepter les Conditions d'utilisation.|Du musst den Nutzungsbedingungen zustimmen.|Devi accettare i Termini di servizio.
+You must acknowledge the Privacy Policy.|Você deve declarar ciência da Política de Privacidade.|Debes reconocer la Política de privacidad.|Vous devez reconnaître avoir pris connaissance de la Politique de confidentialité.|Du musst die Kenntnisnahme der Datenschutzerklärung bestätigen.|Devi dichiarare di aver letto l'Informativa sulla privacy.
+Your password must meet all the requirements shown below.|Sua senha deve atender a todos os requisitos abaixo.|Tu contraseña debe cumplir todos los requisitos de abajo.|Votre mot de passe doit respecter tous les critères ci-dessous.|Dein Passwort muss alle unten aufgeführten Anforderungen erfüllen.|La password deve soddisfare tutti i requisiti indicati sotto.
+Passwords don't match.|As senhas não coincidem.|Las contraseñas no coinciden.|Les mots de passe ne correspondent pas.|Die Passwörter stimmen nicht überein.|Le password non corrispondono.
+Context|Contexto|Contexto|Contexte|Kontext|Contesto
+Practice|Praticar|Practicar|Pratiquer|Üben|Pratica
+Apply|Aplicar|Aplicar|Appliquer|Anwenden|Applica
+Uncharted region|Região inexplorada|Región inexplorada|Région inexplorée|Unbekannte Region|Regione inesplorata
+New region — content in development.|Nova região — conteúdo em desenvolvimento.|Nueva región: contenido en desarrollo.|Nouvelle région : contenu en préparation.|Neue Region. Inhalte in Entwicklung.|Nuova regione: contenuti in preparazione.
+{{questions}} · no time limit|{{questions}} · sem limite de tempo|{{questions}} · sin límite de tiempo|{{questions}} · sans limite de temps|{{questions}} · ohne Zeitlimit|{{questions}} · senza limiti di tempo
+/ month|/ mês|/ mes|/ mois|/ Monat|/ mese
+Quiz: {{score}} · {{attempts}}|Quiz: {{score}} · {{attempts}}|Cuestionario: {{score}} · {{attempts}}|Quiz : {{score}} · {{attempts}}|Quiz: {{score}} · {{attempts}}|Quiz: {{score}} · {{attempts}}
+{{title}} · Best quiz score: {{score}} · {{attempts}}|{{title}} · Melhor nota: {{score}} · {{attempts}}|{{title}} · Mejor nota: {{score}} · {{attempts}}|{{title}} · Meilleur score : {{score}} · {{attempts}}|{{title}} · Bestes Ergebnis: {{score}} · {{attempts}}|{{title}} · Miglior punteggio: {{score}} · {{attempts}}
+Heat, light, sterilisation.|Calor, luz e esterilização.|Calor, luz y esterilización.|Chaleur, lumière, stérilisation.|Wärme, Licht, Sterilisation.|Calore, luce, sterilizzazione.
+Store what you have.|Conserve o que você tem.|Conserva lo que tienes.|Conservez ce que vous avez.|Bewahre deine Vorräte.|Conserva ciò che hai.
+Grow a supply line.|Cultive seus suprimentos.|Cultiva tus provisiones.|Cultivez vos provisions.|Baue deine Vorräte an.|Coltiva le tue scorte.
+Read the ground.|Conheça o terreno.|Interpreta el terreno.|Lisez le terrain.|Lies das Gelände.|Leggi il terreno.
+Stabilise and evacuate.|Estabilize e evacue.|Estabiliza y evacúa.|Stabilisez et évacuez.|Stabilisieren und evakuieren.|Stabilizza ed evacua.
+Know where you stand.|Saiba onde você está.|Sabe dónde estás.|Sachez où vous êtes.|Wisse, wo du bist.|Sappi dove ti trovi.
+The base layer.|A base de tudo.|La base de todo.|Les bases essentielles.|Die Grundlage.|Le basi essenziali.
+Power off the grid.|Energia fora da rede.|Energía sin conexión a la red.|Énergie hors réseau.|Energie ohne Stromnetz.|Energia fuori rete.

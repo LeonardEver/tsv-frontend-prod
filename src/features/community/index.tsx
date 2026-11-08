@@ -9,6 +9,8 @@
  * Access is Survivor/Operator (server-enforced); Free users get the
  * upgrade gate.
  */
+import { tr as uiText, useLocale as useInterfaceLocale } from "@/i18n";
+import { communityCategoryTitle } from "@/i18n/community-category";
 import { useState } from "react";
 import { Link, useNavigate, useSearchParams } from "react-router";
 import { useInfiniteQuery, useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
@@ -35,14 +37,15 @@ import { fetchSubscription } from "@/features/plans/plans.api";
 import { communityPostModel } from "@/features/dashboard/adapters";
 
 const SORTS = [
-  { value: "top", label: "Top" },
-  { value: "latest", label: "Latest" },
-  { value: "discussed", label: "Most discussed" },
+  { value: "top", get label() { return uiText("community:top_cae043"); } },
+  { value: "latest", get label() { return uiText("community:latest_decd7c"); } },
+  { value: "discussed", get label() { return uiText("community:most_discussed_bc5c2b"); } },
 ] as const;
 
 type SortValue = (typeof SORTS)[number]["value"];
 
 export default function CommunityPage() {
+  useInterfaceLocale();
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
   const queryClient = useQueryClient();
@@ -97,7 +100,7 @@ export default function CommunityPage() {
     mutationFn: ({ postId, payload }: { postId: number; payload: { reason: string; details?: string } }) =>
       reportPost(postId, payload),
     onSuccess: () => {
-      pushToast({ tone: "success", title: "Report sent", description: "Thanks for keeping the field clean." });
+      pushToast({ tone: "success", get title() { return uiText("community:report_sent_a7615c"); }, get description() { return uiText("community:thanks_for_keeping_the_field_clean_ab64a2"); } });
     },
     onError: (err) => {
       const copy = describeError(err);
@@ -110,7 +113,7 @@ export default function CommunityPage() {
     onSuccess: () => {
       setDeleteTarget(null);
       invalidatePosts();
-      pushToast({ tone: "success", title: "Post deleted" });
+      pushToast({ tone: "success", get title() { return uiText("community:post_deleted_fb8dc2"); } });
     },
     onError: (err) => {
       const copy = describeError(err);
@@ -123,13 +126,13 @@ export default function CommunityPage() {
     return (
       <div>
         <PageHeader
-          eyebrow="Field network"
-          title="Community"
-          description="Learn from other people in the field."
+          eyebrow={uiText("community:field_network_3a6b73")}
+          title={uiText("community:community_bfd58e")}
+          description={uiText("community:learn_from_other_people_in_the_field_79ef06")}
         />
         <LockedState
-          title="Community is available with Survivor and Operator"
-          description="Ask questions, share field reports and compare gear with other members of the academy."
+          title={uiText("community:community_is_available_with_survivor_and_operator_e05706")}
+          description={uiText("community:ask_questions_share_field_reports_and_compare_91bda5")}
         />
       </div>
     );
@@ -145,7 +148,7 @@ export default function CommunityPage() {
   }
   if (!entitled) {
     return (
-      <div role="status" aria-label="Loading community" className="space-y-4">
+      <div role="status" aria-label={uiText("community:loading_community_e0888d")} className="space-y-4">
         <div className="panel h-12 animate-pulse" aria-hidden="true" />
         <div className="panel h-28 animate-pulse" aria-hidden="true" />
       </div>
@@ -170,22 +173,21 @@ export default function CommunityPage() {
   return (
     <div>
       <PageHeader
-        eyebrow="Field network"
-        title="Community"
-        description="Learn from other people in the field."
+        eyebrow={uiText("community:field_network_3a6b73")}
+        title={uiText("community:community_bfd58e")}
+        description={uiText("community:learn_from_other_people_in_the_field_79ef06")}
         aside={
           <Link
             to="/community/new"
             className="inline-flex min-h-11 items-center gap-2 rounded-lg bg-primary px-5 text-sm font-semibold tracking-wide text-primary-foreground uppercase transition-colors hover:bg-primary/90"
           >
-            <Plus className="size-4" /> New discussion
-          </Link>
+            <Plus className="size-4" />{" "}{uiText("community:new_discussion_d7f618")}</Link>
         }
       />
 
       <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_220px]">
         <div className="min-w-0">
-          <div className="mb-5 flex gap-2" role="tablist" aria-label="Sort discussions">
+          <div className="mb-5 flex gap-2" role="tablist" aria-label={uiText("community:sort_discussions_9d4e2e")}>
             {SORTS.map((t) => (
               <button
                 key={t.value}
@@ -208,7 +210,7 @@ export default function CommunityPage() {
             ))}
           </div>
 
-          <SectionHeader eyebrow="Featured" title="Discussions" />
+          <SectionHeader eyebrow={uiText("community:featured_ae31ad")} title={uiText("community:discussions_0474a6")} />
           {postsQuery.isPending && posts.length === 0 ? (
             <div className="grid gap-3" aria-hidden="true">
               <div className="panel h-28 animate-pulse" />
@@ -216,15 +218,13 @@ export default function CommunityPage() {
             </div>
           ) : posts.length === 0 ? (
             <EmptyState
-              title={category ? "No posts in this topic yet" : "No posts yet"}
-              description="Be the first to start a discussion."
+              title={category ? uiText("community:no_posts_in_this_topic_yet_797199") : uiText("community:no_posts_yet_c1d980")}
+              description={uiText("community:be_the_first_to_start_a_discussion_bbdaf9")}
               action={
                 <Link
                   to="/community/new"
                   className="mt-6 inline-flex min-h-11 items-center rounded-lg bg-primary px-5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
-                >
-                  New discussion
-                </Link>
+                >{uiText("community:new_discussion_d7f618")}</Link>
               }
             />
           ) : (
@@ -260,14 +260,14 @@ export default function CommunityPage() {
                 onClick={() => void postsQuery.fetchNextPage()}
                 className="inline-flex min-h-11 items-center rounded-lg border border-border px-5 text-xs font-semibold tracking-wide uppercase transition-colors hover:bg-accent disabled:opacity-60"
               >
-                {postsQuery.isFetchingNextPage ? "Loading…" : "Load more"}
+                {postsQuery.isFetchingNextPage ? uiText("community:loading_33ce41") : uiText("community:load_more_dfe60c")}
               </button>
             </div>
           ) : null}
         </div>
 
         <aside>
-          <p className="eyebrow mb-3">Categories</p>
+          <p className="eyebrow mb-3">{uiText("community:categories_6ccb60")}</p>
           <ul className="flex flex-wrap gap-2 lg:flex-col lg:items-start">
             <li>
               <button
@@ -276,7 +276,7 @@ export default function CommunityPage() {
                 className="min-h-9"
                 aria-pressed={category === ""}
               >
-                <Chip color={category === "" ? "var(--ember)" : undefined}>All topics</Chip>
+                <Chip color={category === "" ? "var(--ember)" : undefined}>{uiText("community:all_topics_e0631c")}</Chip>
               </button>
             </li>
             {(categoriesQuery.data?.categories ?? []).map((c) => (
@@ -287,7 +287,7 @@ export default function CommunityPage() {
                   className="min-h-9"
                   aria-pressed={category === c.code}
                 >
-                  <Chip color={category === c.code ? "var(--ember)" : undefined}>{c.name}</Chip>
+                  <Chip color={category === c.code ? "var(--ember)" : undefined}>{communityCategoryTitle(c.code, c.name)}</Chip>
                 </button>
               </li>
             ))}
@@ -307,9 +307,9 @@ export default function CommunityPage() {
       {/* Delete confirmation — destructive actions always confirm. */}
       {deleteTarget !== null ? (
         <ConfirmDelete
-          label="Delete"
-          title="Delete this post?"
-          description="Comments are deleted with it. This cannot be undone."
+          label={uiText("community:delete_f6fdbe")}
+          title={uiText("community:delete_this_post_81bc1f")}
+          description={uiText("community:comments_are_deleted_with_it_this_cannot_425a8a")}
           pending={deleteMutation.isPending}
           onConfirm={() => { deleteMutation.mutate(deleteTarget); }}
         />

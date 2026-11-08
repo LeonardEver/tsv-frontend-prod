@@ -3,6 +3,7 @@
  * Extends the design-system Input; never lowers the security bar —
  * toggling only changes the INPUT type, not what is submitted.
  */
+import { tr as uiText, useLocale as useInterfaceLocale } from "@/i18n";
 import { forwardRef, useState, useId, type InputHTMLAttributes } from "react";
 import { clsx } from "clsx";
 import { Eye, EyeOff } from "lucide-react";
@@ -15,6 +16,7 @@ export interface PasswordInputProps extends InputHTMLAttributes<HTMLInputElement
 
 export const PasswordInput = forwardRef<HTMLInputElement, PasswordInputProps>(
   function PasswordInput({ label, error, id, className, ...props }, ref) {
+  useInterfaceLocale();
     const autoId = useId();
     const inputId = id ?? autoId;
     const [visible, setVisible] = useState(false);
@@ -33,7 +35,7 @@ export const PasswordInput = forwardRef<HTMLInputElement, PasswordInputProps>(
           />
           <button
             type="button"
-            aria-label={visible ? "Hide password" : "Show password"}
+            aria-label={visible ? uiText("common:hide_password_e40123") : uiText("common:show_password_044b85")}
             aria-pressed={visible}
             onClick={() => { setVisible((v) => !v); }}
             className="absolute top-1/2 right-3 -translate-y-1/2 text-text-disabled transition-colors hover:text-text-secondary"

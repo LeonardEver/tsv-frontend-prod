@@ -1,0 +1,13 @@
+{
+  "method": "Built-in image generation tool; JPEG conversion and resizing for local web assets",
+  "assets": [
+    {
+      "path": "src/assets/learn-panorama.jpg",
+      "prompt": "Use case: photorealistic-natural. Asset type: scenic header photograph for the Explore Regions page of a premium survival academy web application. Create ONE very wide panoramic landscape photograph, 1920 by 640, edge-to-edge, no interface. A majestic rugged snow-dusted mountain range in the upper center-right, a winding pale river in a broad misty pine forest valley below, dark evergreen trees framing the scene, warm early morning sunlight breaking in from the far upper-right. Moody cool deep teal and forest-green shadows balanced with restrained amber sunrise on the mountain peaks, atmospheric fog layers, rich realistic natural texture, premium cinematic outdoor editorial photography. Keep the left third darker and low contrast for white headings; keep the mountains and warm sky visible mostly toward the right half. No people, tents, equipment, text, labels, lettering, logos, watermark, frames, collage, or UI mockup."
+    },
+    {
+      "path": "src/assets/learn-forest.jpg",
+      "prompt": "Use case: photorealistic-natural. Asset type: subtle full-page landscape background behind a grid of survival learning region cards. Create ONE natural photographic wilderness landscape, landscape format 1920 by 1280. A dark misty evergreen forest valley with mossy rocks and a quiet forest stream leading toward distant mountains. Deep blue-green and charcoal tones with faint natural amber highlights near the far upper-right horizon. Foreground foliage and textured mossy rocks concentrated along the lower-left edge and lower-right corners; keep the central two thirds especially dark, atmospheric, low-contrast and visually quiet for UI cards to be layered on top. Realistic cinematic outdoor editorial photography with atmospheric depth and fine natural textures, sophisticated and inviting rather than frightening. No people, tents, equipment, text, labels, lettering, logos, watermark, frames, collage, or UI mockup."
+    }
+  ]
+}

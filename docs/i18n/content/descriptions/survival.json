@@ -1,0 +1,44 @@
+{
+  "SUR-emergency-planning": [
+    "O plano de emergência familiar de uma página: pontos de encontro, contato fora da região, regras de decisão para evacuação, alternativas de comunicação e ensaios.",
+    "El plan de emergencias del hogar en una página: puntos de encuentro, contacto fuera de la zona, reglas para decidir la evacuación, alternativas de comunicación y simulacros.",
+    "Le plan d'urgence du foyer sur une page : points de rendez-vous, contact hors de la région, règles de décision d'évacuation, solutions de communication de secours et exercices.",
+    "Der Notfallplan für den Haushalt auf einer Seite: Treffpunkte, Kontakt außerhalb der Region, Evakuierungsregeln, Kommunikationsalternativen und Übungen.",
+    "Il piano di emergenza domestico in una pagina: punti di ritrovo, contatto fuori zona, regole decisionali per l'evacuazione, alternative di comunicazione ed esercitazioni."
+  ],
+  "SUR-preparedness": [
+    "Os três pilares da preparação familiar — plano, kit e conhecimento — com dimensionamento para 72 horas, montagem da mochila de emergência e rotinas de manutenção.",
+    "Los tres pilares de la preparación del hogar —plan, kit y conocimientos— con dimensionamiento para 72 horas, montaje de la mochila de emergencia y rutinas de mantenimiento.",
+    "Les trois piliers de la préparation du foyer — plan, kit, connaissances — avec dimensionnement pour 72 heures, préparation du sac d'évacuation et routines d'entretien.",
+    "Die drei Säulen der Haushaltsvorsorge — Plan, Ausrüstung und Wissen — mit Planung für 72 Stunden, Zusammenstellung des Notfallrucksacks und Wartungsroutinen.",
+    "I tre pilastri della preparazione domestica — piano, kit e conoscenze — con dimensionamento per 72 ore, preparazione dello zaino di emergenza e routine di manutenzione."
+  ],
+  "SUR-prioritization": [
+    "A hierarquia das necessidades de sobrevivência e a ordem dos esforços: primeiro as ameaças imediatas, depois exposição, água, sinalização e alimentos — e como a visão de túnel quebra essa sequência quando ela mais importa.",
+    "La jerarquía de necesidades de supervivencia y el orden de los esfuerzos: primero las amenazas inmediatas, después exposición, agua, señalización y alimentos; y cómo la visión de túnel rompe la secuencia cuando más importa.",
+    "La hiérarchie des besoins de survie et l'ordre des efforts : menaces immédiates, exposition, eau, signalisation et nourriture — et comment la vision en tunnel rompt cet ordre au moment crucial.",
+    "Die Hierarchie der Überlebensbedürfnisse und die Reihenfolge des Handelns: unmittelbare Gefahren zuerst, dann Witterungsschutz, Wasser, Signale und Nahrung — und wie Tunnelblick die Reihenfolge im entscheidenden Moment stört.",
+    "La gerarchia dei bisogni di sopravvivenza e l'ordine degli sforzi: prima le minacce immediate, poi esposizione, acqua, segnalazione e cibo; e come la visione a tunnel rompe la sequenza quando conta di più."
+  ],
+  "SUR-risk-assessment": [
+    "Avalie perigos antes de ocorrerem: probabilidade, gravidade e exposição; matrizes de risco para o lar; mitigação ou aceitação; e reavaliação conforme as condições mudam.",
+    "Evalúa peligros antes de que ocurran: probabilidad, gravedad y exposición; matrices de riesgo para el hogar; mitigación frente a aceptación y reevaluación cuando cambian las condiciones.",
+    "Évaluer les dangers avant leur apparition : probabilité, gravité et exposition ; matrices de risque du foyer ; atténuation ou acceptation ; réévaluation selon l'évolution des conditions.",
+    "Gefahren vor ihrem Eintreten bewerten: Wahrscheinlichkeit, Schwere und Exposition; Risikomatrizen für den Haushalt; Minderung oder Akzeptanz sowie Neubewertung bei veränderten Bedingungen.",
+    "Valutare i pericoli prima che si verifichino: probabilità, gravità ed esposizione; matrici di rischio domestico; mitigazione o accettazione e rivalutazione al cambiare delle condizioni."
+  ],
+  "SUR-situational-awareness": [
+    "Preste atenção de forma intencional: ciclos de observação, padrões e anomalias, hábitos de varredura, efeitos da distração e do estresse, e como transformar percepção em ação sem paranoia.",
+    "Presta atención de forma deliberada: ciclos de observación, patrones y anomalías, hábitos de exploración, efectos de distracción y estrés, y cómo convertir la conciencia en acción sin paranoia.",
+    "Être attentif volontairement : boucles d'observation, repères et anomalies, habitudes de balayage, effets de la distraction et du stress, et passage de la vigilance à l'action sans paranoïa.",
+    "Bewusst aufmerksam sein: Beobachtungsschleifen, Normalzustände und Abweichungen, systematisches Umschauen, Auswirkungen von Ablenkung und Stress sowie Wahrnehmung in Handeln ohne Paranoia umsetzen.",
+    "Prestare attenzione intenzionalmente: cicli di osservazione, riferimenti e anomalie, abitudini di scansione, effetti di distrazione e stress e passaggio dalla consapevolezza all'azione senza paranoia."
+  ],
+  "SUR-survival-psychology": [
+    "O lado mental das emergências: reações ao estresse, pânico e paralisia, decisões sob pressão, foco nas tarefas e rotinas práticas para manter a mente — e o grupo — funcionando.",
+    "El lado mental de las emergencias: respuestas al estrés, pánico y bloqueo, decisiones bajo presión, concentración en las tareas y rutinas prácticas para mantener la mente y el grupo funcionando.",
+    "L'aspect mental des urgences : réactions au stress, panique et sidération, décisions sous pression, concentration sur les tâches et routines pratiques pour maintenir l'esprit et le groupe en action.",
+    "Die mentale Seite von Notfällen: Stressreaktionen, Panik und Erstarren, Entscheidungen unter Druck, Aufgabenfokus und praktische Routinen, die den Geist und die Gruppe handlungsfähig halten.",
+    "Il lato mentale delle emergenze: reazioni allo stress, panico e blocco, decisioni sotto pressione, concentrazione sui compiti e routine pratiche per mantenere operativi la mente e il gruppo."
+  ]
+}

@@ -1,0 +1,14 @@
+import ns_admin from "./admin.json";
+import ns_authentication from "./authentication.json";
+import ns_common from "./common.json";
+import ns_community from "./community.json";
+import ns_dashboard from "./dashboard.json";
+import ns_errors from "./errors.json";
+import ns_learning from "./learning.json";
+import ns_navigation from "./navigation.json";
+import ns_progress from "./progress.json";
+import ns_public from "./public.json";
+import ns_rewards from "./rewards.json";
+import ns_settings from "./settings.json";
+import ns_subscriptions from "./subscriptions.json";
+export default { admin: ns_admin, authentication: ns_authentication, common: ns_common, community: ns_community, dashboard: ns_dashboard, errors: ns_errors, learning: ns_learning, navigation: ns_navigation, progress: ns_progress, public: ns_public, rewards: ns_rewards, settings: ns_settings, subscriptions: ns_subscriptions };

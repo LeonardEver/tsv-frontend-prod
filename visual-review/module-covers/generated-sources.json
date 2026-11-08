@@ -1,0 +1,322 @@
+﻿[
+  {
+    "id": "SUR-preparedness",
+    "path": "C:\\Users\\leoar\\.codex\\generated_images\\01a1b8a9-f9a0-7ba3-99d1-a6e1013abb45\\exec-b8e7f2ea-0ede-489b-a39b-f67ee641e94c.png"
+  },
+  {
+    "id": "SUR-situational-awareness",
+    "path": "C:\\Users\\leoar\\.codex\\generated_images\\01a1b8a9-f9a0-7ba3-99d1-a6e1013abb45\\exec-bc00226a-4b30-4725-ac22-e28cd6f6f3f8.png"
+  },
+  {
+    "id": "SUR-emergency-planning",
+    "path": "C:\\Users\\leoar\\.codex\\generated_images\\01a1b8a9-f9a0-7ba3-99d1-a6e1013abb45\\exec-e9a55d12-85fd-4e0f-8f10-a9367450b6be.png"
+  },
+  {
+    "id": "SUR-prioritization",
+    "path": "C:\\Users\\leoar\\.codex\\generated_images\\01a1b8a9-f9a0-7ba3-99d1-a6e1013abb45\\exec-1ec47755-eb4f-4cf6-9f5c-d02c48eb6a46.png"
+  },
+  {
+    "id": "SUR-survival-psychology",
+    "path": "C:\\Users\\leoar\\.codex\\generated_images\\01a1b8a9-f9a0-7ba3-99d1-a6e1013abb45\\exec-9d362e6d-7f70-4bb0-b4e5-6883f47f5f99.png"
+  },
+  {
+    "id": "WAT-boiling",
+    "path": "C:\\Users\\leoar\\.codex\\generated_images\\01a1b8a9-f9a0-7ba3-99d1-a6e1013abb45\\exec-6447de58-d4d2-4d9e-b119-96f6ad403faa.png"
+  },
+  {
+    "id": "SUR-risk-assessment",
+    "path": "C:\\Users\\leoar\\.codex\\generated_images\\01a1b8a9-f9a0-7ba3-99d1-a6e1013abb45\\exec-720f7403-6210-4553-96ec-5c0216d20ef9.png"
+  },
+  {
+    "id": "WAT-purification",
+    "path": "C:\\Users\\leoar\\.codex\\generated_images\\01a1b8a9-f9a0-7ba3-99d1-a6e1013abb45\\exec-7d9d0cee-83fa-48d5-9860-2101af288d2a.png"
+  },
+  {
+    "id": "WAT-filtration",
+    "path": "C:\\Users\\leoar\\.codex\\generated_images\\01a1b8a9-f9a0-7ba3-99d1-a6e1013abb45\\exec-c449c49f-cd28-4082-89c8-fcba339ecd11.png"
+  },
+  {
+    "id": "WAT-distillation",
+    "path": "C:\\Users\\leoar\\.codex\\generated_images\\01a1b8a9-f9a0-7ba3-99d1-a6e1013abb45\\exec-125ee33f-643d-44d5-b9b3-c8063c3f576b.png"
+  },
+  {
+    "id": "WAT-chemical-purification",
+    "path": "C:\\Users\\leoar\\.codex\\generated_images\\01a1b8a9-f9a0-7ba3-99d1-a6e1013abb45\\exec-2a9dac16-f446-428e-b0c4-af5e114ea448.png"
+  },
+  {
+    "id": "WAT-finding-water",
+    "path": "C:\\Users\\leoar\\.codex\\generated_images\\01a1b8a9-f9a0-7ba3-99d1-a6e1013abb45\\exec-e0d7dcb7-33ab-4682-bfd8-0e332ff97deb.png"
+  },
+  {
+    "id": "WAT-storage",
+    "path": "C:\\Users\\leoar\\.codex\\generated_images\\01a1b8a9-f9a0-7ba3-99d1-a6e1013abb45\\exec-9325b5b6-0cc9-4d1c-8705-5c93b4dce441.png"
+  },
+  {
+    "id": "WAT-sodis",
+    "path": "C:\\Users\\leoar\\.codex\\generated_images\\01a1b8a9-f9a0-7ba3-99d1-a6e1013abb45\\exec-fb020760-dc9f-415f-94d5-aa0cf08f9d1e.png"
+  },
+  {
+    "id": "WAT-rainwater-collection",
+    "path": "C:\\Users\\leoar\\.codex\\generated_images\\01a1b8a9-f9a0-7ba3-99d1-a6e1013abb45\\exec-4d34ba36-3523-4fbf-96c3-2a8839c3b5bb.png"
+  },
+  {
+    "id": "WAT-water-systems",
+    "path": "C:\\Users\\leoar\\.codex\\generated_images\\01a1b8a9-f9a0-7ba3-99d1-a6e1013abb45\\exec-3cff7aae-3b69-4ba6-ad41-223d4b9d52c0.png"
+  },
+  {
+    "id": "WAT-water-testing",
+    "path": "C:\\Users\\leoar\\.codex\\generated_images\\01a1b8a9-f9a0-7ba3-99d1-a6e1013abb45\\exec-988c6b8a-792d-408d-a547-8d2ef5132cb9.png"
+  },
+  {
+    "id": "FIR-fire-laying",
+    "path": "C:\\Users\\leoar\\.codex\\generated_images\\01a1b8a9-f9a0-7ba3-99d1-a6e1013abb45\\exec-10aa2ff5-b78b-42c4-a4f8-028c628b62fa.png"
+  },
+  {
+    "id": "FIR-starting",
+    "path": "C:\\Users\\leoar\\.codex\\generated_images\\01a1b8a9-f9a0-7ba3-99d1-a6e1013abb45\\exec-fa436b84-ca98-4f6b-9ca1-2e0ea4270cba.png"
+  },
+  {
+    "id": "FIR-fire-maintenance",
+    "path": "C:\\Users\\leoar\\.codex\\generated_images\\01a1b8a9-f9a0-7ba3-99d1-a6e1013abb45\\exec-db0a570b-8f1b-4d57-a7af-ffb7d5c963be.png"
+  },
+  {
+    "id": "FIR-safety",
+    "path": "C:\\Users\\leoar\\.codex\\generated_images\\01a1b8a9-f9a0-7ba3-99d1-a6e1013abb45\\exec-c5c89a06-e8c5-427b-8207-f90ac274b3ba.png"
+  },
+  {
+    "id": "FIR-fire-fuel",
+    "path": "C:\\Users\\leoar\\.codex\\generated_images\\01a1b8a9-f9a0-7ba3-99d1-a6e1013abb45\\exec-62e25943-1f3a-4c26-9aab-66b4536dd344.png"
+  },
+  {
+    "id": "FIR-fire-fundamentals",
+    "path": "C:\\Users\\leoar\\.codex\\generated_images\\01a1b8a9-f9a0-7ba3-99d1-a6e1013abb45\\exec-26b276b8-1ad6-4a4c-ab1b-19794cc4abcc.png"
+  },
+  {
+    "id": "FIR-emergency-cooking",
+    "path": "C:\\Users\\leoar\\.codex\\generated_images\\01a1b8a9-f9a0-7ba3-99d1-a6e1013abb45\\exec-8dacea78-14a0-43a2-bdd8-d53117bafc60.png"
+  },
+  {
+    "id": "SHE-tarp-shelters",
+    "path": "C:\\Users\\leoar\\.codex\\generated_images\\01a1b8a9-f9a0-7ba3-99d1-a6e1013abb45\\exec-863d65e7-2d68-436e-9d26-707b4a09ac8c.png"
+  },
+  {
+    "id": "SHE-insulation",
+    "path": "C:\\Users\\leoar\\.codex\\generated_images\\01a1b8a9-f9a0-7ba3-99d1-a6e1013abb45\\exec-0d053588-29c8-42ed-95b7-7732d1d9f8b8.png"
+  },
+  {
+    "id": "SHE-long-term-shelter",
+    "path": "C:\\Users\\leoar\\.codex\\generated_images\\01a1b8a9-f9a0-7ba3-99d1-a6e1013abb45\\exec-1baa70b9-e7e1-46d1-8807-9c4ceb1a5a3f.png"
+  },
+  {
+    "id": "SHE-site-selection",
+    "path": "C:\\Users\\leoar\\.codex\\generated_images\\01a1b8a9-f9a0-7ba3-99d1-a6e1013abb45\\exec-9ed76d0f-6da4-4ee3-a256-b8033aeb6936.png"
+  },
+  {
+    "id": "SHE-natural-shelter",
+    "path": "C:\\Users\\leoar\\.codex\\generated_images\\01a1b8a9-f9a0-7ba3-99d1-a6e1013abb45\\exec-6b2aa539-d2ed-4364-b4c4-2e0499bf0f0f.png"
+  },
+  {
+    "id": "SHE-tents",
+    "path": "C:\\Users\\leoar\\.codex\\generated_images\\01a1b8a9-f9a0-7ba3-99d1-a6e1013abb45\\exec-cadec331-e7fe-4485-b4ab-f96147f5dbef.png"
+  },
+  {
+    "id": "SHE-weather-protection",
+    "path": "C:\\Users\\leoar\\.codex\\generated_images\\01a1b8a9-f9a0-7ba3-99d1-a6e1013abb45\\exec-4a5b1f46-de78-4d2e-af9a-9b7838bebf71.png"
+  },
+  {
+    "id": "SHE-shelter-materials",
+    "path": "C:\\Users\\leoar\\.codex\\generated_images\\01a1b8a9-f9a0-7ba3-99d1-a6e1013abb45\\exec-7cf13a5e-731b-435d-afae-7d66ec643102.png"
+  },
+  {
+    "id": "FOD-food-storage",
+    "path": "C:\\Users\\leoar\\.codex\\generated_images\\01a1b8a9-f9a0-7ba3-99d1-a6e1013abb45\\exec-fedc83e5-850a-414d-b42c-557906c948b7.png"
+  },
+  {
+    "id": "FOD-canning",
+    "path": "C:\\Users\\leoar\\.codex\\generated_images\\01a1b8a9-f9a0-7ba3-99d1-a6e1013abb45\\exec-10acb0b9-02a8-4b3c-a8f9-1b3316d60e04.png"
+  },
+  {
+    "id": "FOD-long-term-storage",
+    "path": "C:\\Users\\leoar\\.codex\\generated_images\\01a1b8a9-f9a0-7ba3-99d1-a6e1013abb45\\exec-8bb44ede-55a2-468c-91b7-7e8dd5dc0a0b.png"
+  },
+  {
+    "id": "FOD-drying",
+    "path": "C:\\Users\\leoar\\.codex\\generated_images\\01a1b8a9-f9a0-7ba3-99d1-a6e1013abb45\\exec-d2588865-e01a-47a3-ac0f-389a8e44c816.png"
+  },
+  {
+    "id": "FOD-off-grid-cooking",
+    "path": "C:\\Users\\leoar\\.codex\\generated_images\\01a1b8a9-f9a0-7ba3-99d1-a6e1013abb45\\exec-0b017742-6be0-405f-ac8a-ca455dbeeee2.png"
+  },
+  {
+    "id": "FOD-nutrition",
+    "path": "C:\\Users\\leoar\\.codex\\generated_images\\01a1b8a9-f9a0-7ba3-99d1-a6e1013abb45\\exec-758a1551-a9dc-4514-b8cb-a984741778cc.png"
+  },
+  {
+    "id": "FOD-emergency-food",
+    "path": "C:\\Users\\leoar\\.codex\\generated_images\\01a1b8a9-f9a0-7ba3-99d1-a6e1013abb45\\exec-85ac6bae-eda5-4547-a502-fb5caec1be2e.png"
+  },
+  {
+    "id": "FOD-smoking",
+    "path": "C:\\Users\\leoar\\.codex\\generated_images\\01a1b8a9-f9a0-7ba3-99d1-a6e1013abb45\\exec-b38c2cd1-b644-4b86-bf05-990d53528ca6.png"
+  },
+  {
+    "id": "AGR-garden-planning",
+    "path": "C:\\Users\\leoar\\.codex\\generated_images\\01a1b8a9-f9a0-7ba3-99d1-a6e1013abb45\\exec-8b23621a-0080-4735-9f18-c912944af20c.png"
+  },
+  {
+    "id": "FOD-fermentation",
+    "path": "C:\\Users\\leoar\\.codex\\generated_images\\01a1b8a9-f9a0-7ba3-99d1-a6e1013abb45\\exec-5685dddc-a74e-46b9-99f4-bce18822f3f1.png"
+  },
+  {
+    "id": "FOD-food-safety",
+    "path": "C:\\Users\\leoar\\.codex\\generated_images\\01a1b8a9-f9a0-7ba3-99d1-a6e1013abb45\\exec-6c057faf-65f4-464a-a8f4-a6f04defa197.png"
+  },
+  {
+    "id": "AGR-soil-fundamentals",
+    "path": "C:\\Users\\leoar\\.codex\\generated_images\\01a1b8a9-f9a0-7ba3-99d1-a6e1013abb45\\exec-62d07ee0-17bc-4ee2-b3a9-0bc6f15c5105.png"
+  },
+  {
+    "id": "AGR-seed-saving",
+    "path": "C:\\Users\\leoar\\.codex\\generated_images\\01a1b8a9-f9a0-7ba3-99d1-a6e1013abb45\\exec-1b991c24-d56e-45ce-8e3f-fc513dce9c3f.png"
+  },
+  {
+    "id": "AGR-food-production",
+    "path": "C:\\Users\\leoar\\.codex\\generated_images\\01a1b8a9-f9a0-7ba3-99d1-a6e1013abb45\\exec-9a063c4e-d7e0-4115-a162-d02d465fb9df.png"
+  },
+  {
+    "id": "AGR-composting",
+    "path": "C:\\Users\\leoar\\.codex\\generated_images\\01a1b8a9-f9a0-7ba3-99d1-a6e1013abb45\\exec-f2a739be-7e62-4593-830c-674d7c18cf66.png"
+  },
+  {
+    "id": "AGR-crop-planning",
+    "path": "C:\\Users\\leoar\\.codex\\generated_images\\01a1b8a9-f9a0-7ba3-99d1-a6e1013abb45\\exec-466dbc5d-c580-4f0b-b239-a4550cbf14af.png"
+  },
+  {
+    "id": "AGR-greenhouses",
+    "path": "C:\\Users\\leoar\\.codex\\generated_images\\01a1b8a9-f9a0-7ba3-99d1-a6e1013abb45\\exec-7234a0a1-14a0-491d-a5df-f1112517ce38.png"
+  },
+  {
+    "id": "AGR-irrigation",
+    "path": "C:\\Users\\leoar\\.codex\\generated_images\\01a1b8a9-f9a0-7ba3-99d1-a6e1013abb45\\exec-1c89e7af-156b-4eb9-a3a3-06e52201342d.png"
+  },
+  {
+    "id": "MED-burns",
+    "path": "C:\\Users\\leoar\\.codex\\generated_images\\01a1b8a9-f9a0-7ba3-99d1-a6e1013abb45\\exec-2fc8911d-9e54-4e70-9ad2-5abbc5124aa2.png"
+  },
+  {
+    "id": "AGR-pest-management",
+    "path": "C:\\Users\\leoar\\.codex\\generated_images\\01a1b8a9-f9a0-7ba3-99d1-a6e1013abb45\\exec-11ce8db0-6535-4655-bebf-0756b5783f8c.png"
+  },
+  {
+    "id": "MED-fractures",
+    "path": "C:\\Users\\leoar\\.codex\\generated_images\\01a1b8a9-f9a0-7ba3-99d1-a6e1013abb45\\exec-8af10f74-5d62-4fee-b835-1e1c40e34c7f.png"
+  },
+  {
+    "id": "MED-heat-cold",
+    "path": "C:\\Users\\leoar\\.codex\\generated_images\\01a1b8a9-f9a0-7ba3-99d1-a6e1013abb45\\exec-5019f878-228d-4aad-825a-f27c4598db5a.png"
+  },
+  {
+    "id": "MED-bleeding-control",
+    "path": "C:\\Users\\leoar\\.codex\\generated_images\\01a1b8a9-f9a0-7ba3-99d1-a6e1013abb45\\exec-6240735c-fc50-4a67-9b05-5de4b1a8b6c3.png"
+  },
+  {
+    "id": "MED-wound-care",
+    "path": "C:\\Users\\leoar\\.codex\\generated_images\\01a1b8a9-f9a0-7ba3-99d1-a6e1013abb45\\exec-597baacf-2000-44ed-b4cd-323c370f213f.png"
+  },
+  {
+    "id": "MED-emergency-assessment",
+    "path": "C:\\Users\\leoar\\.codex\\generated_images\\01a1b8a9-f9a0-7ba3-99d1-a6e1013abb45\\exec-50db5ab2-fc9d-49b7-863a-7de2ef24db92.png"
+  },
+  {
+    "id": "FOR-dangerous-plants",
+    "path": "C:\\Users\\leoar\\.codex\\generated_images\\01a1b8a9-f9a0-7ba3-99d1-a6e1013abb45\\exec-c9cd6a0d-fd33-487c-8891-fcc0595020d4.png"
+  },
+  {
+    "id": "MED-emergency-kit",
+    "path": "C:\\Users\\leoar\\.codex\\generated_images\\01a1b8a9-f9a0-7ba3-99d1-a6e1013abb45\\exec-ac9f184e-3ba4-468b-b903-ba2664d4e6d7.png"
+  },
+  {
+    "id": "FOR-leaves",
+    "path": "C:\\Users\\leoar\\.codex\\generated_images\\01a1b8a9-f9a0-7ba3-99d1-a6e1013abb45\\exec-1b8f9945-a41a-4274-b254-bd321c047035.png"
+  },
+  {
+    "id": "FOR-plant-identification",
+    "path": "C:\\Users\\leoar\\.codex\\generated_images\\01a1b8a9-f9a0-7ba3-99d1-a6e1013abb45\\exec-4ab3cd89-8409-4813-8d21-2a7a6ae11dc1.png"
+  },
+  {
+    "id": "FOR-lookalikes",
+    "path": "C:\\Users\\leoar\\.codex\\generated_images\\01a1b8a9-f9a0-7ba3-99d1-a6e1013abb45\\exec-8202e747-5751-4f0a-90b0-0e4ebe5f54de.png"
+  },
+  {
+    "id": "FOR-edibility-safety",
+    "path": "C:\\Users\\leoar\\.codex\\generated_images\\01a1b8a9-f9a0-7ba3-99d1-a6e1013abb45\\exec-18fdce26-c0dd-4fa2-972a-6cb8436a583b.png"
+  },
+  {
+    "id": "FOR-fruits-berries",
+    "path": "C:\\Users\\leoar\\.codex\\generated_images\\01a1b8a9-f9a0-7ba3-99d1-a6e1013abb45\\exec-6fd83c56-8c6a-4d91-8d9b-d36c95bbd6ec.png"
+  },
+  {
+    "id": "FOR-roots-tubers",
+    "path": "C:\\Users\\leoar\\.codex\\generated_images\\01a1b8a9-f9a0-7ba3-99d1-a6e1013abb45\\exec-9d1a7e6e-ff3b-4bcb-937d-f3026724f309.png"
+  },
+  {
+    "id": "NAV-navigation-fundamentals",
+    "path": "C:\\Users\\leoar\\.codex\\generated_images\\01a1b8a9-f9a0-7ba3-99d1-a6e1013abb45\\exec-8546226e-f892-4f78-8ba9-97c4ed9accdc.png"
+  },
+  {
+    "id": "FOR-mushrooms",
+    "path": "C:\\Users\\leoar\\.codex\\generated_images\\01a1b8a9-f9a0-7ba3-99d1-a6e1013abb45\\exec-f37d5340-ece1-4cbc-82e4-d6a1c77c4b48.png"
+  },
+  {
+    "id": "FOR-foraging-practice",
+    "path": "C:\\Users\\leoar\\.codex\\generated_images\\01a1b8a9-f9a0-7ba3-99d1-a6e1013abb45\\exec-ad221268-318a-4448-bf01-05506840552f.png"
+  },
+  {
+    "id": "NAV-map-reading",
+    "path": "C:\\Users\\leoar\\.codex\\generated_images\\01a1b8a9-f9a0-7ba3-99d1-a6e1013abb45\\exec-a8e5cc22-85ed-4b43-aecf-4292535a52f0.png"
+  },
+  {
+    "id": "FOR-ethical-foraging",
+    "path": "C:\\Users\\leoar\\.codex\\generated_images\\01a1b8a9-f9a0-7ba3-99d1-a6e1013abb45\\exec-95b00095-9ddd-4c2f-9195-4e95602fcf26.png"
+  },
+  {
+    "id": "NAV-compass",
+    "path": "C:\\Users\\leoar\\.codex\\generated_images\\01a1b8a9-f9a0-7ba3-99d1-a6e1013abb45\\exec-4f37ec5d-440c-4fa2-9263-bb34338bf34c.png"
+  },
+  {
+    "id": "NAV-route-planning",
+    "path": "C:\\Users\\leoar\\.codex\\generated_images\\01a1b8a9-f9a0-7ba3-99d1-a6e1013abb45\\exec-e07ab504-85dc-42a9-b578-3b97ced4cd8d.png"
+  },
+  {
+    "id": "NAV-terrain-association",
+    "path": "C:\\Users\\leoar\\.codex\\generated_images\\01a1b8a9-f9a0-7ba3-99d1-a6e1013abb45\\exec-4c2f531e-7ee3-4f88-baf8-f4d927a36b66.png"
+  },
+  {
+    "id": "NAV-gps-offline",
+    "path": "C:\\Users\\leoar\\.codex\\generated_images\\01a1b8a9-f9a0-7ba3-99d1-a6e1013abb45\\exec-73d8e4f2-4779-4ed0-b20a-8f3928aa2b05.png"
+  },
+  {
+    "id": "NAV-coordinate-systems",
+    "path": "C:\\Users\\leoar\\.codex\\generated_images\\01a1b8a9-f9a0-7ba3-99d1-a6e1013abb45\\exec-48c41c48-ed8e-481a-98ee-7c4d873bf882.png"
+  },
+  {
+    "id": "NAV-night-navigation",
+    "path": "C:\\Users\\leoar\\.codex\\generated_images\\01a1b8a9-f9a0-7ba3-99d1-a6e1013abb45\\exec-6f77f708-ee5d-4af6-b447-7d8f2f4d1202.png"
+  },
+  {
+    "id": "NAV-navigation-errors",
+    "path": "C:\\Users\\leoar\\.codex\\generated_images\\01a1b8a9-f9a0-7ba3-99d1-a6e1013abb45\\exec-d478d8b7-afff-4703-a450-c8a882a9b376.png"
+  },
+  {
+    "id": "NAV-weather-navigation",
+    "path": "C:\\Users\\leoar\\.codex\\generated_images\\01a1b8a9-f9a0-7ba3-99d1-a6e1013abb45\\exec-b5991a5e-aa1f-4f52-827c-683f3c6eb42f.png"
+  },
+  {
+    "id": "NAV-emergency-location",
+    "path": "C:\\Users\\leoar\\.codex\\generated_images\\01a1b8a9-f9a0-7ba3-99d1-a6e1013abb45\\exec-7476947f-c048-4cb6-acd3-32176da3b621.png"
+  },
+  {
+    "id": "NAV-water-navigation",
+    "path": "C:\\Users\\leoar\\.codex\\generated_images\\01a1b8a9-f9a0-7ba3-99d1-a6e1013abb45\\exec-349d617d-8ed9-446a-ae3b-f1ee63f15c7a.png"
+  }
+]

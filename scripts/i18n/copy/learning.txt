@@ -1,0 +1,237 @@
+Experience|Experiência|Experiencia|Expérience|Erfahrung|Esperienza
+Water region|Região de Água|Región de Agua|Région Eau|Region Wasser|Regione Acqua
+Fire region|Região de Fogo|Región de Fuego|Région Feu|Region Feuer|Regione Fuoco
+Survival Fundamentals region|Região de Fundamentos de Sobrevivência|Región de Fundamentos de Supervivencia|Région des fondamentaux de la survie|Region Überlebensgrundlagen|Regione Fondamenti di sopravvivenza
+Shelter region|Região de Abrigo|Región de Refugio|Région Abri|Region Schutz|Regione Riparo
+Food region|Região de Alimentos|Región de Alimentos|Région Alimentation|Region Nahrung|Regione Cibo
+Agriculture region|Região de Agricultura|Región de Agricultura|Région Agriculture|Region Landwirtschaft|Regione Agricoltura
+Medical & First Aid region|Região de Saúde e Primeiros Socorros|Región de Medicina y Primeros Auxilios|Région Médecine et premiers secours|Region Medizin und Erste Hilfe|Regione Medicina e primo soccorso
+Foraging & Plants region|Região de Coleta e Plantas|Región de Recolección y Plantas|Région Cueillette et plantes|Region Sammeln und Pflanzen|Regione Raccolta e piante
+Navigation region|Região de Navegação|Región de Orientación|Région Orientation|Region Orientierung|Regione Orientamento
+Energy region|Região de Energia|Región de Energía|Région Énergie|Region Energie|Regione Energia
+Engineering region|Região de Engenharia|Región de Ingeniería|Région Ingénierie|Region Technik|Regione Ingegneria
+Military region|Região Militar|Región Militar|Région Militaire|Region Militär|Regione Militare
+Maps region|Região de Mapas|Región de Mapas|Région Cartes|Region Karten|Regione Mappe
+Uncharted region|Região inexplorada|Región inexplorada|Région inexplorée|Unbekannte Region|Regione inesplorata
+Explore regions overview|Visão geral das regiões|Resumen de las regiones|Vue d'ensemble des régions|Regionenübersicht|Panoramica delle regioni
+Choose a region and begin your expedition. Each region holds a set of missions, field manuals and field tests.|Escolha uma região e comece sua expedição. Cada região reúne missões, manuais e testes práticos.|Elige una región y comienza tu expedición. Cada región reúne misiones, manuales y pruebas de campo.|Choisissez une région et commencez votre expédition. Chaque région regroupe des missions, des manuels et des épreuves pratiques.|Wähle eine Region und beginne deine Expedition. Jede Region enthält Missionen, Feldhandbücher und Praxistests.|Scegli una regione e inizia la tua spedizione. Ogni regione comprende missioni, manuali e prove sul campo.
+Academy overview|Visão geral da academia|Resumen de la academia|Vue d'ensemble de l'académie|Akademieübersicht|Panoramica dell'accademia
+Open to your plan|Disponíveis no seu plano|Disponibles en tu plan|Accessibles avec votre offre|In deinem Abo verfügbar|Disponibili con il tuo piano
+Missions|Missões|Misiones|Missions|Missionen|Missioni
+Across all regions|Em todas as regiões|En todas las regiones|Dans toutes les régions|In allen Regionen|In tutte le regioni
+{{value0}}% of the academy|{{value0}}% da academia|{{value0}}% de la academia|{{value0}} % de l'académie|{{value0}} % der Akademie|{{value0}}% dell'accademia
+Start Here|Comece aqui|Empieza aquí|Commencez ici|Hier beginnen|Inizia qui
+Short missions that pay off immediately in the field.|Missões curtas com aplicação imediata em campo.|Misiones cortas de aplicación inmediata sobre el terreno.|Des missions courtes, immédiatement utiles sur le terrain.|Kurze Missionen, die sich direkt in der Praxis auszahlen.|Missioni brevi con applicazione immediata sul campo.
+Breadcrumb|Caminho de navegação|Ruta de navegación|Fil d'Ariane|Brotkrümelnavigation|Percorso di navigazione
+Region|Região|Región|Région|Region|Regione
+{{value0}} sections|{{value0}} seções|{{value0}} secciones|{{value0}} sections|{{value0}} Abschnitte|{{value0}} sezioni
+sections|seções|secciones|sections|Abschnitte|sezioni
+Region progress|Progresso da região|Progreso de la región|Progression de la région|Regionsfortschritt|Progressi della regione
+{{value0}} of {{value1}} missions|{{value0}} de {{value1}} missões|{{value0}} de {{value1}} misiones|{{value0}} missions sur {{value1}}|{{value0}} von {{value1}} Missionen|{{value0}} missioni su {{value1}}
+No missions yet|Ainda não há missões|Aún no hay misiones|Aucune mission pour le moment|Noch keine Missionen|Nessuna missione per ora
+This region is being built. Field manuals will appear here as soon as they are published.|Esta região está sendo preparada. Os manuais aparecerão aqui assim que forem publicados.|Esta región se está preparando. Los manuales aparecerán aquí en cuanto se publiquen.|Cette région est en préparation. Les manuels apparaîtront ici dès leur publication.|Diese Region wird aufgebaut. Feldhandbücher erscheinen hier, sobald sie veröffentlicht sind.|Questa regione è in preparazione. I manuali appariranno qui appena pubblicati.
+Region missions|Missões da região|Misiones de la región|Missions de la région|Missionen der Region|Missioni della regione
+Training|Treinamento|Entrenamiento|Entraînement|Training|Allenamento
+Your missions|Suas missões|Tus misiones|Vos missions|Deine Missionen|Le tue missioni
+Build your skills, one mission at a time.|Desenvolva suas habilidades, uma missão de cada vez.|Desarrolla tus habilidades, misión a misión.|Développez vos compétences, mission après mission.|Baue deine Fähigkeiten mit jeder Mission weiter aus.|Sviluppa le tue competenze, una missione alla volta.
+Loading mission|Carregando missão|Cargando misión|Chargement de la mission|Mission wird geladen|Caricamento della missione
+{{value0}} · Mission|{{value0}} · Missão|{{value0}} · Misión|{{value0}} · Mission|{{value0}} · Mission|{{value0}} · Missione
+· Mission|· Missão|· Misión|· Mission|· Mission|· Missione
+Mission objective|Objetivo da missão|Objetivo de la misión|Objectif de la mission|Missionsziel|Obiettivo della missione
+Work through the field manual, then prove the skill with a field test. Both count toward your region progress and XP.|Estude o manual e depois demonstre sua habilidade em um teste prático. Ambos contam para o progresso da região e para seu XP.|Estudia el manual y demuestra tus habilidades en una prueba de campo. Ambos cuentan para tu progreso regional y XP.|Étudiez le manuel, puis mettez vos compétences à l'épreuve. Les deux contribuent à votre progression régionale et à vos XP.|Arbeite das Feldhandbuch durch und beweise dein Können in einem Praxistest. Beides zählt für deinen Regionsfortschritt und deine XP.|Studia il manuale, poi dimostra le tue capacità con una prova sul campo. Entrambi contribuiscono ai progressi della regione e agli XP.
+Field Manual|Manual de campo|Manual de campo|Manuel de terrain|Feldhandbuch|Manuale da campo
+Learn the skill.|Aprenda a habilidade.|Aprende la habilidad.|Apprenez la compétence.|Lerne die Fähigkeit.|Impara l'abilità.
+{{value0}} objectives|{{value0}} objetivos|{{value0}} objetivos|{{value0}} objectifs|{{value0}} Lernziele|{{value0}} obiettivi
+objectives|objetivos|objetivos|objectifs|Lernziele|obiettivi
+Review field manual →|Revisar manual de campo →|Repasar manual de campo →|Revoir le manuel →|Feldhandbuch wiederholen →|Ripassa il manuale →
+Start field manual →|Abrir manual de campo →|Abrir manual de campo →|Commencer le manuel →|Feldhandbuch beginnen →|Inizia il manuale →
+Field Test|Teste prático|Prueba de campo|Épreuve pratique|Praxistest|Prova sul campo
+Test yourself.|Teste seus conhecimentos.|Ponte a prueba.|Testez vos connaissances.|Teste dein Wissen.|Mettiti alla prova.
+{{value0}} questions|{{value0}} questões|{{value0}} preguntas|{{value0}} questions|{{value0}} Fragen|{{value0}} domande
+questions|questões|preguntas|questions|Fragen|domande
+Best score: {{value0}}|Melhor nota: {{value0}}|Mejor nota: {{value0}}|Meilleur score : {{value0}}|Bestes Ergebnis: {{value0}}|Miglior punteggio: {{value0}}
+Best score:|Melhor nota:|Mejor nota:|Meilleur score :|Bestes Ergebnis:|Miglior punteggio:
+{{value0}}%|{{value0}}%|{{value0}}%|{{value0}} %|{{value0}} %|{{value0}}%
+Take field test again →|Refazer teste prático →|Repetir prueba de campo →|Repasser l'épreuve →|Praxistest wiederholen →|Ripeti la prova sul campo →
+Take field test →|Fazer teste prático →|Hacer prueba de campo →|Passer l'épreuve →|Praxistest machen →|Svolgi la prova sul campo →
+Objectives|Objetivos|Objetivos|Objectifs|Lernziele|Obiettivi
+What You'll Learn|O que você vai aprender|Qué aprenderás|Ce que vous apprendrez|Was du lernen wirst|Cosa imparerai
+Artifacts|Arquivos|Archivos|Fichiers|Dateien|File
+Field Resources|Recursos de campo|Recursos de campo|Ressources de terrain|Feldressourcen|Risorse da campo
+FILE|ARQUIVO|ARCHIVO|FICHIER|DATEI|FILE
+Continue|Continuar|Continuar|Continuer|Fortfahren|Continua
+Related Missions|Missões relacionadas|Misiones relacionadas|Missions associées|Verwandte Missionen|Missioni correlate
+Daily lesson limit reached|Limite diário de aulas atingido|Límite diario de lecciones alcanzado|Limite quotidienne de leçons atteinte|Tägliches Lektionslimit erreicht|Limite giornaliero di lezioni raggiunto
+Your limit resets tomorrow. Upgrade to Survivor for 10 lessons and quizzes per day.|Seu limite é renovado amanhã. Assine o Survivor para ter 10 aulas e quizzes por dia.|Tu límite se renueva mañana. Pásate a Survivor para tener 10 lecciones y cuestionarios al día.|Votre limite est réinitialisée demain. Passez à Survivor pour 10 leçons et quiz par jour.|Dein Limit wird morgen zurückgesetzt. Wechsle zu Survivor für 10 Lektionen und Quiz pro Tag.|Il limite si azzera domani. Passa a Survivor per 10 lezioni e quiz al giorno.
+Couldn't save your completion|Não foi possível salvar sua conclusão|No se pudo guardar la finalización|Impossible d'enregistrer la fin de la leçon|Dein Abschluss konnte nicht gespeichert werden|Impossibile salvare il completamento
+Loading lesson|Carregando aula|Cargando lección|Chargement de la leçon|Lektion wird geladen|Caricamento della lezione
+This lesson isn't available|Esta aula não está disponível|Esta lección no está disponible|Cette leçon n'est pas disponible|Diese Lektion ist nicht verfügbar|Questa lezione non è disponibile
+This module has no lesson content yet.|Este módulo ainda não tem conteúdo de aula.|Este módulo aún no tiene contenido de lección.|Ce module ne contient pas encore de leçon.|Dieses Modul hat noch keinen Lektionsinhalt.|Questo modulo non contiene ancora una lezione.
+Back to module|Voltar ao módulo|Volver al módulo|Retour au module|Zurück zum Modul|Torna al modulo
+Lesson sections|Seções da aula|Secciones de la lección|Sections de la leçon|Lektionsabschnitte|Sezioni della lezione
+Sections|Seções|Secciones|Sections|Abschnitte|Sezioni
+Learning Objectives|Objetivos de aprendizado|Objetivos de aprendizaje|Objectifs d'apprentissage|Lernziele|Obiettivi di apprendimento
+Field Manual · {{value0}}|Manual de campo · {{value0}}|Manual de campo · {{value0}}|Manuel de terrain · {{value0}}|Feldhandbuch · {{value0}}|Manuale da campo · {{value0}}
+Field Manual ·|Manual de campo ·|Manual de campo ·|Manuel de terrain ·|Feldhandbuch ·|Manuale da campo ·
+Learning objectives|Objetivos de aprendizado|Objetivos de aprendizaje|Objectifs d'apprentissage|Lernziele|Obiettivi di apprendimento
+Put your knowledge to work|Coloque seu conhecimento em prática|Pon tus conocimientos en práctica|Mettez vos connaissances en pratique|Setze dein Wissen ein|Metti in pratica le tue conoscenze
+Mark this field manual as read to record your progress.|Marque este manual como lido para registrar seu progresso.|Marca este manual como leído para registrar tu progreso.|Marquez ce manuel comme lu pour enregistrer votre progression.|Markiere dieses Feldhandbuch als gelesen, um deinen Fortschritt zu speichern.|Segna questo manuale come letto per registrare i tuoi progressi.
+Complete lesson|Concluir aula|Completar lección|Terminer la leçon|Lektion abschließen|Completa lezione
+{{value0}}|{{value0}}|{{value0}}|{{value0}}|{{value0}}|{{value0}}
+Lesson complete|Aula concluída|Lección completada|Leçon terminée|Lektion abgeschlossen|Lezione completata
+XP was added to your expedition —|XP adicionado à sua expedição —|Se han añadido XP a tu expedición —|Des XP ont été ajoutés à votre expédition —|Deiner Expedition wurden XP hinzugefügt —|Sono stati aggiunti XP alla tua spedizione —
+see your rewards|veja suas recompensas|ver tus recompensas|voir vos récompenses|sieh dir deine Belohnungen an|vedi le tue ricompense
+Take field test|Fazer teste prático|Hacer prueba de campo|Passer l'épreuve|Praxistest machen|Svolgi la prova sul campo
+Checking your progress…|Verificando seu progresso…|Comprobando tu progreso…|Vérification de votre progression…|Dein Fortschritt wird geprüft…|Verifica dei tuoi progressi…
+Complete the lesson above to unlock the field test. Survivor and Operator members can test themselves any time.|Conclua a aula acima para liberar o teste prático. Membros Survivor e Operator podem se testar a qualquer momento.|Completa la lección para desbloquear la prueba de campo. Los miembros Survivor y Operator pueden evaluarse en cualquier momento.|Terminez la leçon ci-dessus pour débloquer l'épreuve. Les membres Survivor et Operator peuvent se tester à tout moment.|Schließe die obige Lektion ab, um den Praxistest freizuschalten. Survivor- und Operator-Mitglieder können sich jederzeit testen.|Completa la lezione qui sopra per sbloccare la prova. I membri Survivor e Operator possono mettersi alla prova in qualsiasi momento.
+Discuss this lesson →|Discutir esta aula →|Comentar esta lección →|Discuter de cette leçon →|Diese Lektion diskutieren →|Discuti questa lezione →
+Reading progress|Progresso de leitura|Progreso de lectura|Progression de lecture|Lesefortschritt|Progressi di lettura
+100% · position saved|100% · posição salva|100% · posición guardada|100 % · position enregistrée|100 % · Position gespeichert|100% · posizione salvata
+{{value0}}% · of {{value1}} sections|{{value0}}% · de {{value1}} seções|{{value0}}% · de {{value1}} secciones|{{value0}} % · sur {{value1}} sections|{{value0}} % · von {{value1}} Abschnitten|{{value0}}% · su {{value1}} sezioni
+Lessons {{value0}}/{{value1}}|Aulas {{value0}}/{{value1}}|Lecciones {{value0}}/{{value1}}|Leçons {{value0}}/{{value1}}|Lektionen {{value0}}/{{value1}}|Lezioni {{value0}}/{{value1}}
+Lessons|Aulas|Lecciones|Leçons|Lektionen|Lezioni
+Field tests {{value0}}/{{value1}}|Testes práticos {{value0}}/{{value1}}|Pruebas de campo {{value0}}/{{value1}}|Épreuves {{value0}}/{{value1}}|Praxistests {{value0}}/{{value1}}|Prove sul campo {{value0}}/{{value1}}
+Field tests|Testes práticos|Pruebas de campo|Épreuves pratiques|Praxistests|Prove sul campo
+Resources|Recursos|Recursos|Ressources|Ressourcen|Risorse
+This question type isn't supported yet ({{value0}}). Please return to the module.|Este tipo de questão ainda não é compatível ({{value0}}). Volte ao módulo.|Este tipo de pregunta aún no es compatible ({{value0}}). Vuelve al módulo.|Ce type de question n'est pas encore pris en charge ({{value0}}). Revenez au module.|Dieser Fragetyp wird noch nicht unterstützt ({{value0}}). Bitte kehre zum Modul zurück.|Questo tipo di domanda non è ancora supportato ({{value0}}). Torna al modulo.
+This question type isn't supported yet (|Este tipo de questão ainda não é compatível (|Este tipo de pregunta aún no es compatible (|Ce type de question n'est pas encore pris en charge (|Dieser Fragetyp wird noch nicht unterstützt (|Questo tipo di domanda non è ancora supportato (
+). Please return to the module.|). Volte ao módulo.|). Vuelve al módulo.|). Revenez au module.|). Bitte kehre zum Modul zurück.|). Torna al modulo.
+Question actions|Ações da questão|Acciones de la pregunta|Actions de la question|Frageaktionen|Azioni della domanda
+Previous|Anterior|Anterior|Précédent|Zurück|Precedente
+Next|Próximo|Siguiente|Suivant|Weiter|Avanti
+Submitting…|Enviando…|Enviando…|Envoi…|Wird abgegeben…|Invio…
+Submit field test|Enviar teste prático|Enviar prueba de campo|Envoyer l'épreuve|Praxistest abgeben|Invia prova sul campo
+Answer options|Opções de resposta|Opciones de respuesta|Choix de réponse|Antwortmöglichkeiten|Opzioni di risposta
+Choose the best answer.|Escolha a melhor resposta.|Elige la mejor respuesta.|Choisissez la meilleure réponse.|Wähle die beste Antwort.|Scegli la risposta migliore.
+Question {{value0}}|Questão {{value0}}|Pregunta {{value0}}|Question {{value0}}|Frage {{value0}}|Domanda {{value0}}
+Saved automatically · Results after submission|Salvo automaticamente · Resultados após o envio|Guardado automáticamente · Resultados tras el envío|Enregistré automatiquement · Résultats après l'envoi|Automatisch gespeichert · Ergebnisse nach der Abgabe|Salvato automaticamente · Risultati dopo l'invio
+Question navigator|Navegação entre questões|Navegador de preguntas|Navigation des questions|Fragennavigation|Navigazione delle domande
+Question {{value0}}{{value1}}|Questão {{value0}}{{value1}}|Pregunta {{value0}}{{value1}}|Question {{value0}}{{value1}}|Frage {{value0}}{{value1}}|Domanda {{value0}}{{value1}}
+, answered|, respondida|, respondida|, répondue|, beantwortet|, risposta
+, unanswered|, não respondida|, sin responder|, sans réponse|, unbeantwortet|, senza risposta
+answered|respondidas|respondidas|répondues|beantwortet|risposte
+— {{value0}} unanswered|— {{value0}} não respondidas|— {{value0}} sin responder|— {{value0}} sans réponse|— {{value0}} unbeantwortet|— {{value0}} senza risposta
+unanswered|não respondidas|sin responder|sans réponse|unbeantwortet|senza risposta
+Unanswered questions are submitted as skipped. You can still go back and answer them.|Questões não respondidas são enviadas como puladas. Você ainda pode voltar e respondê-las.|Las preguntas sin respuesta se envían como omitidas. Aún puedes volver y responderlas.|Les questions sans réponse sont envoyées comme ignorées. Vous pouvez encore revenir y répondre.|Unbeantwortete Fragen werden als übersprungen abgegeben. Du kannst noch zurückgehen und sie beantworten.|Le domande senza risposta vengono inviate come saltate. Puoi ancora tornare indietro e rispondere.
+Retry submission|Tentar enviar novamente|Reintentar envío|Réessayer l'envoi|Abgabe erneut versuchen|Riprova invio
+Field test complete|Teste prático concluído|Prueba de campo completada|Épreuve terminée|Praxistest abgeschlossen|Prova sul campo completata
+{{value0}}/{{value1}} correct|{{value0}}/{{value1}} corretas|{{value0}}/{{value1}} correctas|{{value0}}/{{value1}} correctes|{{value0}}/{{value1}} richtig|{{value0}}/{{value1}} corrette
+correct|corretas|correctas|correctes|richtig|corrette
+Result|Resultado|Resultado|Résultat|Ergebnis|Risultato
+Passed|Aprovado|Aprobado|Réussi|Bestanden|Superato
+Not passed|Não aprovado|No aprobado|Non réussi|Nicht bestanden|Non superato
+Review answers|Revisar respostas|Revisar respuestas|Revoir les réponses|Antworten durchgehen|Rivedi risposte
+Continue expedition →|Continuar expedição →|Continuar expedición →|Continuer l'expédition →|Expedition fortsetzen →|Continua la spedizione →
+Discuss this field test|Discutir este teste prático|Comentar esta prueba de campo|Discuter de cette épreuve|Diesen Praxistest diskutieren|Discuti questa prova sul campo
+New achievement|Nova conquista|Nuevo logro|Nouveau succès|Neuer Erfolg|Nuovo traguardo
+New achievements|Novas conquistas|Nuevos logros|Nouveaux succès|Neue Erfolge|Nuovi traguardi
+Review|Revisar|Revisar|Revoir|Ansehen|Rivedi
+Field Test Answers|Respostas do teste prático|Respuestas de la prueba de campo|Réponses de l'épreuve|Praxistest-Antworten|Risposte della prova sul campo
+Question|Questão|Pregunta|Question|Frage|Domanda
+Correct|Correta|Correcta|Correct|Richtig|Corretta
+Incorrect|Incorreta|Incorrecta|Incorrect|Falsch|Errata
+Your answer:|Sua resposta:|Tu respuesta:|Votre réponse :|Deine Antwort:|La tua risposta:
+· Correct answer:|· Resposta correta:|· Respuesta correcta:|· Bonne réponse :|· Richtige Antwort:|· Risposta corretta:
+Learning Objective Performance|Desempenho por objetivo de aprendizado|Rendimiento por objetivo de aprendizaje|Résultats par objectif d'apprentissage|Leistung nach Lernziel|Risultati per obiettivo di apprendimento
+See the skills you've mastered and where to focus next.|Veja as habilidades que você dominou e no que focar a seguir.|Descubre las habilidades que dominas y en qué centrarte después.|Découvrez les compétences acquises et les points à travailler ensuite.|Sieh, welche Fähigkeiten du beherrschst und worauf du dich als Nächstes konzentrieren solltest.|Scopri le abilità che hai acquisito e su cosa concentrarti dopo.
+Retry Quiz|Refazer quiz|Repetir cuestionario|Repasser le quiz|Quiz wiederholen|Ripeti quiz
+Back to mission|Voltar à missão|Volver a la misión|Retour à la mission|Zurück zur Mission|Torna alla missione
+Expedition path|Trilha da expedição|Ruta de la expedición|Parcours de l'expédition|Expeditionspfad|Percorso della spedizione
+Back to Module|Voltar ao módulo|Volver al módulo|Retour au module|Zurück zum Modul|Torna al modulo
+Review the Lesson|Revisar a aula|Repasar la lección|Revoir la leçon|Lektion wiederholen|Ripassa la lezione
+Loading quiz|Carregando quiz|Cargando cuestionario|Chargement du quiz|Quiz wird geladen|Caricamento del quiz
+This quiz isn't available|Este quiz não está disponível|Este cuestionario no está disponible|Ce quiz n'est pas disponible|Dieses Quiz ist nicht verfügbar|Questo quiz non è disponibile
+This module has no quiz content yet.|Este módulo ainda não tem quiz.|Este módulo aún no tiene cuestionario.|Ce module ne contient pas encore de quiz.|Dieses Modul enthält noch kein Quiz.|Questo modulo non contiene ancora un quiz.
+Preparing your questions…|Preparando suas questões…|Preparando tus preguntas…|Préparation de vos questions…|Deine Fragen werden vorbereitet…|Preparazione delle tue domande…
+Preparing your field test…|Preparando seu teste prático…|Preparando tu prueba de campo…|Préparation de votre épreuve…|Dein Praxistest wird vorbereitet…|Preparazione della prova sul campo…
+Continue previous attempt?|Continuar tentativa anterior?|¿Continuar el intento anterior?|Reprendre la tentative précédente ?|Vorherigen Versuch fortsetzen?|Continuare il tentativo precedente?
+You have saved answers from a previous session. Continue where you left off, or start a new attempt.|Você tem respostas salvas de uma sessão anterior. Continue de onde parou ou inicie uma nova tentativa.|Tienes respuestas guardadas de una sesión anterior. Continúa donde lo dejaste o inicia un nuevo intento.|Vous avez des réponses enregistrées d'une session précédente. Reprenez où vous en étiez ou commencez une nouvelle tentative.|Du hast gespeicherte Antworten aus einer vorherigen Sitzung. Mache dort weiter oder starte einen neuen Versuch.|Hai risposte salvate da una sessione precedente. Riprendi da dove eri rimasto o inizia un nuovo tentativo.
+Start Over|Recomeçar|Empezar de nuevo|Recommencer|Neu beginnen|Ricomincia
+Back to lesson|Voltar à aula|Volver a la lección|Retour à la leçon|Zurück zur Lektion|Torna alla lezione
+FIELD TEST|TESTE PRÁTICO|PRUEBA DE CAMPO|ÉPREUVE PRATIQUE|PRAXISTEST|PROVA SUL CAMPO
+Exit field test|Sair do teste prático|Salir de la prueba de campo|Quitter l'épreuve|Praxistest verlassen|Esci dalla prova sul campo
+Field test progress|Progresso do teste prático|Progreso de la prueba|Progression de l'épreuve|Praxistest-Fortschritt|Progressi della prova sul campo
+Question {{value0}} of {{value1}}|Questão {{value0}} de {{value1}}|Pregunta {{value0}} de {{value1}}|Question {{value0}} sur {{value1}}|Frage {{value0}} von {{value1}}|Domanda {{value0}} di {{value1}}
+{{value0}} answered|{{value0}} respondidas|{{value0}} respondidas|{{value0}} réponses|{{value0}} beantwortet|{{value0}} risposte
+← Back to module|← Voltar ao módulo|← Volver al módulo|← Retour au module|← Zurück zum Modul|← Torna al modulo
+{{value0}} question{{value1}} · no time limit|{{value0}} questão{{value1}} · sem limite de tempo|{{value0}} pregunta{{value1}} · sin límite de tiempo|{{value0}} question{{value1}} · sans limite de temps|{{value0}} Frage{{value1}} · ohne Zeitlimit|{{value0}} domanda{{value1}} · senza limiti di tempo
+question|questão|pregunta|question|Frage|domanda
+· no time limit|· sem limite de tempo|· sin límite de tiempo|· sans limite de temps|· ohne Zeitlimit|· senza limiti di tempo
+Previous attempts|Tentativas anteriores|Intentos anteriores|Tentatives précédentes|Vorherige Versuche|Tentativi precedenti
+Best score|Melhor nota|Mejor nota|Meilleur score|Bestes Ergebnis|Miglior punteggio
+Failed|Não aprovado|No aprobado|Non réussi|Nicht bestanden|Non superato
+Test yourself now — a fresh attempt starts when you begin.|Teste seus conhecimentos agora — uma nova tentativa é criada quando você começa.|Ponte a prueba: se crea un nuevo intento al empezar.|Testez-vous : une nouvelle tentative commence lorsque vous démarrez.|Teste dich jetzt. Ein neuer Versuch beginnt, sobald du startest.|Mettiti alla prova: un nuovo tentativo inizia quando cominci.
+Field test unlocked — test yourself with the quiz to earn XP.|Teste prático liberado — faça o quiz para ganhar XP.|Prueba de campo desbloqueada: haz el cuestionario para ganar XP.|Épreuve débloquée : passez le quiz pour gagner des XP.|Praxistest freigeschaltet. Teste dich im Quiz und verdiene XP.|Prova sul campo sbloccata: svolgi il quiz per guadagnare XP.
+Starting…|Iniciando…|Iniciando…|Démarrage…|Wird gestartet…|Avvio…
+Start Field Test →|Iniciar teste prático →|Iniciar prueba de campo →|Commencer l'épreuve →|Praxistest starten →|Inizia prova sul campo →
+Field test · {{value0}}|Teste prático · {{value0}}|Prueba de campo · {{value0}}|Épreuve pratique · {{value0}}|Praxistest · {{value0}}|Prova sul campo · {{value0}}
+Field test ·|Teste prático ·|Prueba de campo ·|Épreuve pratique ·|Praxistest ·|Prova sul campo ·
+Complete the lesson to unlock this field test|Conclua a aula para liberar este teste prático|Completa la lección para desbloquear esta prueba|Terminez la leçon pour débloquer cette épreuve|Schließe die Lektion ab, um diesen Praxistest freizuschalten|Completa la lezione per sbloccare questa prova
+On the Free plan, lessons come first — finish this module's lesson and the quiz opens. Survivor and Operator members can test themselves any time.|No plano Free, a aula vem primeiro — conclua a aula deste módulo para liberar o quiz. Membros Survivor e Operator podem se testar a qualquer momento.|En el plan Free, primero va la lección: completa la de este módulo para abrir el cuestionario. Los miembros Survivor y Operator pueden evaluarse en cualquier momento.|Avec l'offre Free, la leçon passe d'abord : terminez celle de ce module pour ouvrir le quiz. Les membres Survivor et Operator peuvent se tester à tout moment.|Im Free-Abo kommt die Lektion zuerst. Schließe sie ab, um das Quiz zu öffnen. Survivor- und Operator-Mitglieder können sich jederzeit testen.|Con il piano Free, la lezione viene prima: completa quella del modulo per aprire il quiz. I membri Survivor e Operator possono mettersi alla prova in qualsiasi momento.
+Go to the lesson|Ir para a aula|Ir a la lección|Aller à la leçon|Zur Lektion|Vai alla lezione
+See plans|Ver planos|Ver planes|Voir les offres|Abos ansehen|Vedi piani
+Result unavailable|Resultado indisponível|Resultado no disponible|Résultat indisponible|Ergebnis nicht verfügbar|Risultato non disponibile
+This result link isn't valid.|Este link de resultado não é válido.|Este enlace de resultado no es válido.|Ce lien de résultat n'est pas valide.|Dieser Ergebnislink ist ungültig.|Questo link del risultato non è valido.
+Loading result|Carregando resultado|Cargando resultado|Chargement du résultat|Ergebnis wird geladen|Caricamento del risultato
+This resource doesn't exist|Este recurso não existe|Este recurso no existe|Cette ressource n'existe pas|Diese Ressource existiert nicht|Questa risorsa non esiste
+Check the link and try again.|Confira o link e tente novamente.|Comprueba el enlace e inténtalo de nuevo.|Vérifiez le lien et réessayez.|Prüfe den Link und versuche es erneut.|Controlla il link e riprova.
+All categories|Todas as categorias|Todas las categorías|Toutes les catégories|Alle Kategorien|Tutte le categorie
+Loading resource|Carregando recurso|Cargando recurso|Chargement de la ressource|Ressource wird geladen|Caricamento della risorsa
+This resource isn't available|Este recurso não está disponível|Este recurso no está disponible|Cette ressource n'est pas disponible|Diese Ressource ist nicht verfügbar|Questa risorsa non è disponibile
+It may have been removed or is not published yet.|Ele pode ter sido removido ou ainda não foi publicado.|Puede haberse eliminado o aún no estar publicado.|Elle a peut-être été supprimée ou n'est pas encore publiée.|Sie wurde möglicherweise entfernt oder noch nicht veröffentlicht.|Potrebbe essere stata rimossa o non essere ancora pubblicata.
+Field resource|Recurso de campo|Recurso de campo|Ressource de terrain|Feldressource|Risorsa da campo
+View at the source|Ver na fonte|Ver en la fuente|Consulter la source|Quelle ansehen|Visualizza alla fonte
+This resource lives outside the Survival Vault — the source link is not available.|Este recurso está fora do Survival Vault — o link da fonte não está disponível.|Este recurso está fuera de Survival Vault: el enlace de origen no está disponible.|Cette ressource est externe au Survival Vault : le lien source n'est pas disponible.|Diese Ressource liegt außerhalb des Survival Vault. Der Quelllink ist nicht verfügbar.|Questa risorsa è esterna a Survival Vault: il link alla fonte non è disponibile.
+Open artifact|Abrir arquivo|Abrir archivo|Ouvrir le fichier|Datei öffnen|Apri file
+This field resource hasn't been generated yet.|Este recurso de campo ainda não foi gerado.|Este recurso de campo aún no se ha generado.|Cette ressource de terrain n'a pas encore été générée.|Diese Feldressource wurde noch nicht erstellt.|Questa risorsa da campo non è ancora stata generata.
+Downloads are served through your authenticated session — never shared outside your account.|Os downloads são disponibilizados pela sua sessão autenticada — nunca compartilhados fora da sua conta.|Las descargas se realizan mediante tu sesión autenticada y no se comparten fuera de tu cuenta.|Les téléchargements passent par votre session authentifiée et ne sont jamais partagés hors de votre compte.|Downloads erfolgen über deine authentifizierte Sitzung und werden nie außerhalb deines Kontos geteilt.|I download avvengono tramite la tua sessione autenticata e non vengono condivisi al di fuori del tuo account.
+You can always view this resource here. Offline downloads are included in Survivor and Operator.|Você sempre pode visualizar este recurso aqui. Downloads offline estão incluídos nos planos Survivor e Operator.|Siempre puedes ver este recurso aquí. Las descargas sin conexión están incluidas en Survivor y Operator.|Vous pouvez toujours consulter cette ressource ici. Les téléchargements hors ligne sont inclus dans Survivor et Operator.|Du kannst diese Ressource hier jederzeit ansehen. Offline-Downloads sind in Survivor und Operator enthalten.|Puoi sempre visualizzare questa risorsa qui. I download offline sono inclusi in Survivor e Operator.
+License|Licença|Licencia|Licence|Lizenz|Licenza
+Redistribution|Redistribuição|Redistribución|Redistribution|Weiterverteilung|Ridistribuzione
+Type|Tipo|Tipo|Type|Typ|Tipo
+Format|Formato|Formato|Format|Format|Formato
+Availability|Disponibilidade|Disponibilidad|Disponibilité|Verfügbarkeit|Disponibilità
+Mission roadmap|Trilha de missões|Ruta de misiones|Parcours de missions|Missionsplan|Percorso delle missioni
+You are here|Você está aqui|Estás aquí|Vous êtes ici|Du bist hier|Sei qui
+Simplified home|Início simplificado|Inicio simplificado|Accueil simplifié|Vereinfachte Startseite|Home semplificata
+Simplified navigation|Navegação simplificada|Navegación simplificada|Navigation simplifiée|Vereinfachte Navigation|Navigazione semplificata
+Path|Trilha|Ruta|Parcours|Pfad|Percorso
+Manuals|Manuais|Manuales|Manuels|Handbücher|Manuali
+Loading expedition|Carregando expedição|Cargando expedición|Chargement de l'expédition|Expedition wird geladen|Caricamento della spedizione
+Your path is being prepared|Sua trilha está sendo preparada|Tu ruta se está preparando|Votre parcours est en préparation|Dein Pfad wird vorbereitet|Il tuo percorso è in preparazione
+Published missions will appear here.|As missões publicadas aparecerão aqui.|Las misiones publicadas aparecerán aquí.|Les missions publiées apparaîtront ici.|Veröffentlichte Missionen erscheinen hier.|Le missioni pubblicate appariranno qui.
+Current region|Região atual|Región actual|Région actuelle|Aktuelle Region|Regione attuale
+Region complete|Região concluída|Región completada|Région terminée|Region abgeschlossen|Regione completata
+Every published mission in this region is complete.|Todas as missões publicadas nesta região foram concluídas.|Has completado todas las misiones publicadas en esta región.|Toutes les missions publiées dans cette région sont terminées.|Alle veröffentlichten Missionen dieser Region sind abgeschlossen.|Tutte le missioni pubblicate in questa regione sono completate.
+Review progress|Ver progresso|Ver progreso|Consulter la progression|Fortschritt ansehen|Vedi progressi
+Mission unavailable|Missão indisponível|Misión no disponible|Mission indisponible|Mission nicht verfügbar|Missione non disponibile
+Return to path|Voltar à trilha|Volver a la ruta|Retour au parcours|Zurück zum Pfad|Torna al percorso
+Guided mission|Missão guiada|Misión guiada|Mission guidée|Geführte Mission|Missione guidata
+Mission stages|Etapas da missão|Etapas de la misión|Étapes de la mission|Missionsphasen|Fasi della missione
+Back|Voltar|Volver|Retour|Zurück|Indietro
+Mission debrief|Resumo da missão|Resumen de la misión|Bilan de mission|Missionsnachbesprechung|Riepilogo della missione
+Mission complete|Missão concluída|Misión completada|Mission terminée|Mission abgeschlossen|Missione completata
+Ready to complete|Pronto para concluir|Listo para completar|Prêt à terminer|Bereit zum Abschließen|Pronto per completare
+Save this lesson, then test what you learned in the field.|Salve esta aula e depois teste o que aprendeu na prática.|Guarda esta lección y pon a prueba lo aprendido sobre el terreno.|Enregistrez cette leçon, puis testez vos acquis sur le terrain.|Speichere diese Lektion und teste dann das Gelernte in der Praxis.|Salva questa lezione, poi metti alla prova ciò che hai imparato sul campo.
+Complete mission|Concluir missão|Completar misión|Terminer la mission|Mission abschließen|Completa missione
+Field test unlocks after completion|O teste prático é liberado após a conclusão|La prueba se desbloquea al completar|L'épreuve se débloque après la fin de la mission|Praxistest wird nach Abschluss freigeschaltet|La prova si sblocca dopo il completamento
+Open field manual|Abrir manual de campo|Abrir manual de campo|Ouvrir le manuel|Feldhandbuch öffnen|Apri manuale da campo
+Back to expedition|Voltar à expedição|Volver a la expedición|Retour à l'expédition|Zurück zur Expedition|Torna alla spedizione
+Loading field test|Carregando teste prático|Cargando prueba de campo|Chargement de l'épreuve|Praxistest wird geladen|Caricamento della prova sul campo
+Finish the lesson and complete this mission to open its field test.|Termine a aula e conclua esta missão para liberar seu teste prático.|Termina la lección y completa esta misión para abrir su prueba de campo.|Terminez la leçon et la mission pour ouvrir son épreuve pratique.|Beende die Lektion und schließe diese Mission ab, um den Praxistest zu öffnen.|Termina la lezione e completa questa missione per aprire la prova sul campo.
+Return to mission|Voltar à missão|Volver a la misión|Retour à la mission|Zurück zur Mission|Torna alla missione
+Field test unavailable|Teste prático indisponível|Prueba de campo no disponible|Épreuve indisponible|Praxistest nicht verfügbar|Prova sul campo non disponibile
+{{value0}} questions · {{value1}}|{{value0}} questões · {{value1}}|{{value0}} preguntas · {{value1}}|{{value0}} questions · {{value1}}|{{value0}} Fragen · {{value1}}|{{value0}} domande · {{value1}}
+questions ·|questões ·|preguntas ·|questions ·|Fragen ·|domande ·
+Ready when you are|Pronto quando você estiver|Cuando quieras|Quand vous êtes prêt|Bereit, wenn du es bist|Quando vuoi
+Test your field knowledge|Teste seus conhecimentos de campo|Pon a prueba tus conocimientos de campo|Testez vos connaissances de terrain|Teste dein Praxiswissen|Metti alla prova le tue conoscenze sul campo
+Answers are checked only after you submit the complete test.|As respostas só são corrigidas após o envio do teste completo.|Las respuestas se corrigen después de enviar la prueba completa.|Les réponses sont corrigées uniquement après l'envoi de l'épreuve complète.|Antworten werden erst nach Abgabe des gesamten Tests geprüft.|Le risposte vengono corrette solo dopo l'invio dell'intera prova.
+Start field test|Iniciar teste prático|Iniciar prueba de campo|Commencer l'épreuve|Praxistest starten|Inizia prova sul campo
+Continue your field test?|Continuar seu teste prático?|¿Continuar tu prueba de campo?|Reprendre votre épreuve ?|Deinen Praxistest fortsetzen?|Continuare la prova sul campo?
+Your previous answers are saved.|Suas respostas anteriores estão salvas.|Tus respuestas anteriores están guardadas.|Vos réponses précédentes sont enregistrées.|Deine bisherigen Antworten sind gespeichert.|Le tue risposte precedenti sono salvate.
+Start over|Recomeçar|Empezar de nuevo|Recommencer|Neu beginnen|Ricomincia
+Question {{value0}} / {{value1}}|Questão {{value0}} / {{value1}}|Pregunta {{value0}} / {{value1}}|Question {{value0}} / {{value1}}|Frage {{value0}} / {{value1}}|Domanda {{value0}} / {{value1}}
+This question type is not supported in this view.|Este tipo de questão não é compatível com esta visualização.|Este tipo de pregunta no es compatible con esta vista.|Ce type de question n'est pas pris en charge dans cette vue.|Dieser Fragetyp wird in dieser Ansicht nicht unterstützt.|Questo tipo di domanda non è supportato in questa vista.
+Submit test|Enviar teste|Enviar prueba|Envoyer l'épreuve|Test abgeben|Invia prova
+We couldn't submit your answers. They are still saved.|Não foi possível enviar suas respostas. Elas continuam salvas.|No se pudieron enviar tus respuestas. Siguen guardadas.|Impossible d'envoyer vos réponses. Elles restent enregistrées.|Deine Antworten konnten nicht abgegeben werden. Sie sind weiterhin gespeichert.|Impossibile inviare le risposte. Sono ancora salvate.
+No questions are available for this test.|Não há questões disponíveis para este teste.|No hay preguntas disponibles para esta prueba.|Aucune question n'est disponible pour cette épreuve.|Für diesen Test sind keine Fragen verfügbar.|Non sono disponibili domande per questa prova.

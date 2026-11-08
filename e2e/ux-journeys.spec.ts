@@ -293,8 +293,8 @@ function mockUxBackend(page: Page, mode: Mode): void {
               difficulty: "intermediate",
               estimated_duration: 25,
               description: "Filtering methods and their limits.",
-              completed: true,
-              progress_pct: 100,
+              completed: mode !== "new",
+              progress_pct: mode === "new" ? 0 : 100,
             },
           ],
           pagination: { next_cursor: null, has_more: false, page_size: 2 },
@@ -477,20 +477,25 @@ test.describe("UX journeys", () => {
     // Nothing is fabricated: the recommendation comes from the module
     // inventory's own order and completed flags, and the first mission of
     // the curriculum is the first unfinished one.
-    await expect(page.getByText("Your next mission")).toBeVisible();
+    await expect(page.getByText(/^your next mission$/i).filter({ visible: true })).toBeVisible();
     await expect(
-      page.getByRole("heading", { name: "Boiling Water for Purification", exact: true }),
+      page.getByRole("heading", { name: /^(1\. )?Boiling Water for Purification$/ }),
     ).toBeVisible();
 
     // Honest new-user state: the expedition is empty with a discovery CTA,
     // and the region cards show the whole curriculum as not started.
-    await expect(page.getByText("Your expedition starts here")).toBeVisible();
-    await expect(page.getByRole("link", { name: /explore regions/i })).toBeVisible();
-    await expect(page.getByText("0 complete").first()).toBeVisible();
+    if ((page.viewportSize()?.width ?? 0) >= 768) {
+      await expect(page.getByText("Your expedition starts here")).toBeVisible();
+      await expect(page.getByRole("link", { name: /explore regions/i })).toBeVisible();
+      await expect(page.getByText("0 complete").first()).toBeVisible();
+    } else {
+      await expect(page.getByRole("progressbar", { name: /region missions completed/i })).toBeVisible();
+      await expect(page.getByRole("region", { name: /your mission path/i }).getByText("0%", { exact: true })).toBeVisible();
+    }
 
     // Home → Lesson in one click. Browsing stays available (the discovery
     // CTA above), but it is no longer the way into the first mission.
-    const takeLesson = page.getByRole("link", { name: /take lesson/i });
+    const takeLesson = page.getByRole("link", { name: /take lesson|start mission/i });
     await expect(takeLesson).toHaveAttribute("href", "/modules/WAT-boiling/lesson");
     await takeLesson.click();
     await expect(page.getByText(/field manual ·/i)).toBeVisible();
@@ -507,15 +512,15 @@ test.describe("UX journeys", () => {
 
     // The dominant card derives its CTA from authoritative flags
     // (lesson not completed → lesson), and links STRAIGHT into the lesson.
-    await expect(page.getByText("Your next mission")).toBeVisible();
-    await expect(page.getByRole("heading", { name: "Boiling Water for Purification", exact: true })).toBeVisible();
-    const takeLesson = page.getByRole("link", { name: /take lesson/i });
+    await expect(page.getByText(/^your next mission$/i).filter({ visible: true })).toBeVisible();
+    await expect(page.getByRole("heading", { name: /^(1\. )?Boiling Water for Purification$/ })).toBeVisible();
+    const takeLesson = page.getByRole("link", { name: /take lesson|start mission/i });
     await expect(takeLesson).toHaveAttribute("href", "/modules/WAT-boiling/lesson");
     // The expedition trail still links the same mission to its module page —
     // browse stays one click away without being in the recommended path.
     await expect(page.getByRole("link", { name: /boiling water for purification/i })).toHaveAttribute(
       "href",
-      "/modules/WAT-boiling",
+      (page.viewportSize()?.width ?? 0) < 768 ? "/modules/WAT-boiling/lesson" : "/modules/WAT-boiling",
     );
 
     await takeLesson.click();
@@ -546,7 +551,7 @@ test.describe("UX journeys", () => {
 
     // Back to the product: progress reflects the authoritative update.
     await page.goto("/progress");
-    await expect(page.getByText("11%")).toBeVisible();
+    await expect(page.getByText("11%", { exact: true })).toBeVisible();
     await expect(page.getByText("Score 67%")).toBeVisible();
   });
 
@@ -557,14 +562,14 @@ test.describe("UX journeys", () => {
     await page.goto("/dashboard");
 
     // Next mission is immediately visible — no scrolling required.
-    const takeLesson = page.getByRole("link", { name: /take lesson/i });
+    const takeLesson = page.getByRole("link", { name: /start mission/i });
     await expect(takeLesson).toBeVisible();
     await expect(takeLesson).toBeInViewport();
 
-    // The trail and rewards remain reachable below.
-    await expect(page.getByRole("heading", { name: /your expedition/i })).toBeVisible();
-    await expect(page.getByRole("heading", { name: /xp & achievements/i })).toBeVisible();
-    await expect(page.getByText("2 day streak")).toBeVisible();
+    // The mobile trail exposes the current region and every mission.
+    await expect(page.getByRole("region", { name: /your mission path/i })).toBeVisible();
+    await expect(page.getByRole("link", { name: /explore all 2 missions/i })).toBeVisible();
+    await expect(page.getByRole("region", { name: /your mission path/i }).getByText("2 day streak")).toBeVisible();
   });
 
   test("UX-06b — 320px viewport: the Base Camp dashboard never overflows horizontally", async ({ page }, testInfo) => {
@@ -574,7 +579,7 @@ test.describe("UX journeys", () => {
 
     await page.goto("/dashboard");
     await expect(page.getByRole("heading", { name: /welcome back, test/i })).toBeVisible();
-    await expect(page.getByRole("link", { name: /take lesson/i })).toBeVisible();
+    await expect(page.getByRole("link", { name: /start mission/i })).toBeVisible();
 
     const overflows = await page.evaluate(
       () => document.documentElement.scrollWidth > document.documentElement.clientWidth + 1,

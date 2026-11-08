@@ -6,31 +6,33 @@
  * sanitized return path.
  * RedirectIfAuthed: keeps /login away from signed-in users.
  */
+import { tr as uiText, useLocale as useInterfaceLocale } from "@/i18n";
 import type { ReactNode } from "react";
 import { Navigate, useLocation } from "react-router";
 import { useAuth } from "./auth-context";
 import { safeRedirectPath } from "@/lib/validate/redirect";
 
 function AuthLoadingScreen() {
+  useInterfaceLocale();
   return (
-    <div className="flex min-h-dvh items-center justify-center" role="status" aria-label="Loading">
-      <div className="text-text-secondary">Loading…</div>
+    <div className="flex min-h-dvh items-center justify-center" role="status" aria-label={uiText("authentication:loading_8f26c6")}>
+      <div className="text-text-secondary">{uiText("authentication:loading_33ce41")}</div>
     </div>
   );
 }
 
 function AuthErrorScreen({ onRetry }: { onRetry: () => void }) {
+  useInterfaceLocale();
   return (
     <div className="flex min-h-dvh flex-col items-center justify-center gap-4 p-4">
-      <p className="text-text-primary">We couldn't reach the server to verify your session.</p>
-      <button type="button" onClick={onRetry} className="rounded-md bg-accent-ember px-4 py-2 text-accent-on">
-        Try again
-      </button>
+      <p className="text-text-primary">{uiText("authentication:we_couldn_t_reach_the_server_to_4ad27a")}</p>
+      <button type="button" onClick={onRetry} className="rounded-md bg-accent-ember px-4 py-2 text-accent-on">{uiText("authentication:try_again_042c86")}</button>
     </div>
   );
 }
 
 export function RequireAuth({ children }: { children: ReactNode }) {
+  useInterfaceLocale();
   const { status, refresh } = useAuth();
   const location = useLocation();
 
@@ -44,6 +46,7 @@ export function RequireAuth({ children }: { children: ReactNode }) {
 }
 
 export function RedirectIfAuthed({ children }: { children: ReactNode }) {
+  useInterfaceLocale();
   const { status } = useAuth();
 
   if (status === "authenticated") {

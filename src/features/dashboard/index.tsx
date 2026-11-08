@@ -1,3 +1,4 @@
+import { rankTitle } from "@/features/gamification/rewards-presenter";
 /**
  * Dashboard — Base Camp (Phase 23). The Lovable reference
  * `src/routes/index.tsx` is the visual source of truth: PageHeader with
@@ -19,15 +20,17 @@
  * - gamification values are never computed client-side.
  * - daily limits come from /usage; the UI is never the authority.
  */
+import { tr as uiText, useLocale as useInterfaceLocale, uiValue } from "@/i18n";
 import { Link } from "react-router";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { Flame, Lock, Trophy } from "lucide-react";
+import { BookOpen, Check, Crosshair, Flame, Layers3, Lock, Mountain, Trophy, type LucideIcon } from "lucide-react";
 import { useAuth } from "@/features/auth/auth-context";
 import { useCurrentUserId } from "@/features/auth/use-user-id";
 import { queryKeys } from "@/lib/api/keys";
 import { ApiError } from "@/lib/api/errors";
 import { formatDifficulty, formatXp } from "@/lib/format/format";
-import { catColorForCode, categoryImage, codeFromSlug } from "@/lib/category-visuals";
+import { catColorForCode, codeFromSlug } from "@/lib/category-visuals";
+import { moduleImage } from "@/lib/module-visuals";
 import {
   CategoryCard,
   CommunityPostCard,
@@ -46,6 +49,10 @@ import type { MissionCardModel } from "@/components/sa/types";
 import { PageHeader } from "@/components/layout/AppShell";
 import { ErrorState } from "@/components/shared/ErrorState";
 import { fetchGamificationSummary, fetchProgress } from "./dashboard.api";
+import { MobileExpedition } from "./MobileExpedition";
+import welcomeArt from "@/assets/base-camp-welcome.jpg";
+import campArt from "@/assets/base-camp-expedition.jpg";
+import styles from "./dashboard.module.css";
 import { fetchCategories } from "@/features/categories/categories.api";
 import { fetchAllModules } from "@/features/modules/modules.api";
 import { fetchModule } from "@/features/modules/modules.api";
@@ -66,33 +73,40 @@ function LimitTile({
   used,
   total,
   barColor,
+  icon: Icon,
 }: {
   label: string;
   used: number | null;
   total: number | null;
   barColor?: string | undefined;
+  icon: LucideIcon;
 }) {
+  useInterfaceLocale();
   return (
-    <div className="panel-2 p-4">
+    <div className={styles.limitTile}>
+      <Icon className={styles.tileGlyph} aria-hidden="true" />
+      <div className={styles.tileBody}>
       <Eyebrow>{label}</Eyebrow>
       {total === null ? (
         <>
-          <p className="mt-1.5 font-display text-3xl leading-none">Unlimited</p>
-          <p className="mt-1 text-xs text-muted-foreground">No daily limit on this plan.</p>
+          <p className={`font-display leading-none ${styles.usageValue}`}>{uiText("dashboard:unlimited_b8bef3")}</p>
+          <p className="mt-1 text-xs text-muted-foreground">{uiText("dashboard:no_daily_limit_on_this_plan_23c812")}</p>
         </>
       ) : (
         <>
-          <p className="mt-1.5 font-display text-3xl leading-none">
+          <p className={`font-display leading-none ${styles.usageValue}`}>
             {used ?? 0} <span className="text-muted-foreground">/ {total}</span>
           </p>
           <ProgressBar
-            className="mt-3"
+            className={styles.dailyProgress}
             value={total > 0 ? ((used ?? 0) / total) * 100 : 0}
             color={barColor}
-            label={`${label} used today`}
+            label={uiText("dashboard:value_used_today_728cbc", { value0: uiValue(label) })}
           />
         </>
       )}
+      {total !== null && total > 0 && (used ?? 0) >= total ? <span className={styles.limitCheck} aria-label={uiText("dashboard:daily_allowance_used_7219f2")}><Check className="size-3.5" /></span> : null}
+      </div>
     </div>
   );
 }
@@ -100,17 +114,16 @@ function LimitTile({
 /** The curriculum is complete — the honest end state, with the record as
  * the next place to go. No next mission is invented to fill the slot. */
 function CurriculumCompleteHero() {
+  useInterfaceLocale();
   return (
     <EmptyState
-      title="Every mission complete"
-      description="You have worked through the whole curriculum. Your full record — scores, streaks and achievements — is on your expedition page."
+      title={uiText("dashboard:every_mission_complete_519fc4")}
+      description={uiText("dashboard:you_have_worked_through_the_whole_curriculum_4a815f")}
       action={
         <Link
           to="/progress"
           className="inline-flex min-h-11 items-center rounded-lg bg-primary px-5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
-        >
-          Review your record →
-        </Link>
+        >{uiText("dashboard:review_your_record_a295ee")}</Link>
       }
     />
   );
@@ -123,11 +136,12 @@ function DiscoveryHero({
 }: {
   firstCategory: ReturnType<typeof categoryCardModel> | undefined;
 }) {
+  useInterfaceLocale();
   if (!firstCategory) {
     return (
       <EmptyState
-        title="Nothing here yet"
-        description="Content is on its way — check back soon."
+        title={uiText("dashboard:nothing_here_yet_e89225")}
+        description={uiText("dashboard:content_is_on_its_way_check_back_9ece20")}
       />
     );
   }
@@ -149,30 +163,25 @@ function DiscoveryHero({
       <div className="absolute inset-0 bg-linear-to-r from-background via-background/90 to-background/30" />
       <div className="relative grid gap-6 p-6 sm:p-10 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end">
         <div className="min-w-0 max-w-xl">
-          <Eyebrow>First mission</Eyebrow>
-          <h2 className="mt-2 font-display text-4xl leading-[1.05] font-semibold tracking-wide uppercase sm:text-5xl">
-            {firstCategory.name} awaits
-          </h2>
-          <p className="mt-3 text-base text-muted-foreground">
-            Begin your expedition with your first mission.
-          </p>
+          <Eyebrow>{uiText("dashboard:first_mission_6416fd")}</Eyebrow>
+          <h2 className="mt-2 font-display text-4xl leading-[1.05] font-semibold tracking-wide uppercase sm:text-5xl">{uiText("dashboard:value_awaits_9e2f64", { value0: uiValue(firstCategory.name) })}</h2>
+          <p className="mt-3 text-base text-muted-foreground">{uiText("dashboard:begin_your_expedition_with_your_first_mission_1d8d1e")}</p>
           <div className="mt-4 flex flex-wrap gap-2">
             <Chip color={color}>{firstCategory.name}</Chip>
-            <Chip>{firstCategory.missions} missions</Chip>
+            <Chip>{uiText("dashboard:value_missions_d4bb5e", { value0: uiValue(firstCategory.missions) })}</Chip>
           </div>
         </div>
         <Link
           to={`/categories/${firstCategory.slug}`}
           className="glow-ember inline-flex min-h-12 items-center justify-center rounded-lg bg-primary px-6 text-sm font-semibold tracking-wide text-primary-foreground uppercase transition-colors hover:bg-primary/90"
-        >
-          Explore {firstCategory.name} →
-        </Link>
+        >{uiText("dashboard:explore_value_6d566c", { value0: uiValue(firstCategory.name) })}</Link>
       </div>
     </article>
   );
 }
 
 export default function DashboardPage() {
+  useInterfaceLocale();
   const { user } = useAuth();
   const userId = useCurrentUserId();
 
@@ -287,7 +296,7 @@ export default function DashboardPage() {
         : recommendedRow.progress_pct > 0
           ? "in-progress"
           : "available",
-      image: categoryImage(code),
+      image: moduleImage(detail.module_id),
       to: action.to,
       ctaLabel: action.ctaLabel,
     };
@@ -324,10 +333,10 @@ export default function DashboardPage() {
   const firstName = user?.display_name?.split(" ")[0];
   const statusParts: string[] = [];
   if (progressQuery.data) {
-    statusParts.push(`${progressQuery.data.modules_completed} missions complete`);
+    statusParts.push(uiText("common:completedMissions", { count: progressQuery.data.modules_completed }));
   }
   if (gamificationQuery.data) {
-    statusParts.push(`Level ${gamificationQuery.data.level}`, gamificationQuery.data.level_title);
+    statusParts.push(uiText("settings:level_value_c5bf02", { value0: gamificationQuery.data.level }), rankTitle(gamificationQuery.data.level, gamificationQuery.data.level_title));
   }
 
   const summary = gamificationQuery.data;
@@ -335,43 +344,52 @@ export default function DashboardPage() {
   const achievements = achievementsQuery.data;
 
   return (
-    <div className="flex flex-col">
+    <>
+    {recommendedRow && modulesQuery.data && categoriesQuery.data && !recommendedGone ? (
+      <MobileExpedition modules={modulesQuery.data.modules} categories={categoriesQuery.data.categories} current={recommendedRow} action={nextMission} streak={summary?.current_streak} usage={usage} />
+    ) : null}
+    <div className={`${styles.home} ${recommendedRow && modulesQuery.data && categoriesQuery.data && !recommendedGone ? "hidden flex-col md:flex" : "flex flex-col"}`}>
+      <section className={styles.welcome} aria-label={uiText("dashboard:base_camp_overview_100bea")}>
+      <img src={welcomeArt} alt="" width={1920} height={640} fetchPriority="high" className={styles.welcomeArt} />
+      <div className={styles.greeting}>
       <PageHeader
-        eyebrow="Base Camp"
-        title={firstName ? `Welcome back, ${firstName}` : "Welcome"}
+        eyebrow={uiText("dashboard:base_camp_8e2aa8")}
+        title={firstName ? uiText("dashboard:welcome_back_value_7566d9", { value0: uiValue(firstName) }) : uiText("dashboard:welcome_ca4f9d")}
         description={statusParts.length > 0 ? statusParts.join(" · ") : undefined}
         aside={
           summary ? (
-            <div>
-              <p className="font-display text-2xl font-semibold">{formatXp(summary.total_xp)} XP</p>
+            <div className={styles.welcomeStats}>
+              <p className="font-display text-2xl font-semibold">{uiText("dashboard:value_xp_621cd3", { value0: uiValue(formatXp(summary.total_xp)) })}</p>
               <p className="font-mono text-[11px] text-muted-foreground">
                 {summary.xp_to_next_level === null
-                  ? "Max level reached"
-                  : `${summary.xp_to_next_level} XP to Level ${summary.level + 1}`}
+                  ? uiText("dashboard:max_level_reached_c28dc6")
+                  : uiText("dashboard:value_xp_to_level_value_1d7549", { value0: uiValue(summary.xp_to_next_level), value1: uiValue(summary.level + 1) })}
               </p>
               <p className="mt-1 inline-flex items-center gap-1.5 font-mono text-[11px] text-primary">
-                <Flame className="size-3.5" /> {summary.current_streak} day streak
-              </p>
+                <Flame className="size-3.5" /> {summary.current_streak}{" "}{uiText("dashboard:day_streak_ca360c")}</p>
             </div>
           ) : null
         }
       />
+      </div>
 
       {/* Daily limits — on mobile the next mission dominates, so the
           limits render below the hero (order restored from sm up). */}
-      <section className="mb-10 grid gap-4 sm:grid-cols-3 sm:order-none" aria-label="Daily limits">
+      <section className={styles.dailyLimits} aria-label={uiText("dashboard:daily_limits_c1f489")}>
         {usage ? (
           <>
             <LimitTile
-              label="Today · Lessons"
+              label={uiText("dashboard:today_lessons_76d6a9")}
+              icon={BookOpen}
               used={usage.lesson_completions}
               total={usage.limits.daily_lessons}
             />
             <LimitTile
-              label="Today · Field tests"
+              label={uiText("dashboard:today_field_tests_757feb")}
+              icon={Crosshair}
               used={usage.quiz_attempts}
               total={usage.limits.daily_quizzes}
-              barColor="var(--cat-water)"
+              barColor="var(--primary)"
             />
           </>
         ) : (
@@ -380,31 +398,31 @@ export default function DashboardPage() {
             <div className="panel-2 h-24 animate-pulse" aria-hidden="true" />
           </>
         )}
-        <div className="panel-2 flex items-center justify-between gap-3 p-4">
+        <div className={styles.planTile}>
+          <Layers3 className={styles.tileGlyph} aria-hidden="true" />
           <div className="min-w-0">
-            <Eyebrow>Current plan</Eyebrow>
+            <Eyebrow>{uiText("dashboard:current_plan_ec5cfb")}</Eyebrow>
             <p className="mt-1.5 font-display text-2xl leading-none tracking-wide uppercase">
               {usage?.plan_name ?? "…"}
             </p>
             <p className="mt-1 text-xs text-muted-foreground">
               {usage
                 ? usage.limits.daily_lessons === null
-                  ? "Unlimited lessons and field tests per day."
-                  : `${usage.limits.daily_lessons} lessons and ${usage.limits.daily_quizzes} field tests per day.`
+                  ? uiText("dashboard:unlimited_lessons_and_field_tests_per_day_8a1e5d")
+                  : uiText("dashboard:value_lessons_and_value_field_tests_per_543f67", { value0: uiValue(usage.limits.daily_lessons), value1: uiValue(usage.limits.daily_quizzes) })
                 : " "}
             </p>
           </div>
           <Link
             to="/plans"
             className="shrink-0 rounded-lg border border-border px-3 py-2 text-xs font-semibold tracking-wide uppercase transition-colors hover:bg-accent"
-          >
-            Compare
-          </Link>
+          >{uiText("dashboard:compare_8d105c")}</Link>
         </div>
+      </section>
       </section>
 
       {/* Next mission — the dominant action (first on mobile) */}
-      <section className="order-first mb-12 sm:order-none">
+      <section className={styles.nextMission} aria-label={uiText("dashboard:next_mission_f2974d")}>
         {progressQuery.isError ? (
           <ErrorState error={progressQuery.error} onRetry={() => void progressQuery.refetch()} />
         ) : heroPending ? (
@@ -422,31 +440,32 @@ export default function DashboardPage() {
         ) : !nextMission ? (
           <CurriculumCompleteHero />
         ) : (
-          <MissionHero mission={nextMission} ctaLabel={nextMission.ctaLabel} />
+          <MissionHero mission={nextMission} ctaLabel={nextMission.ctaLabel} className={styles.missionHero} />
         )}
       </section>
 
       {/* Expedition path */}
-      <section className="mb-12">
+      <section className={styles.expedition} aria-label={uiText("dashboard:your_expedition_dbe444")}>
+        <img src={campArt} alt="" width={1920} height={640} loading="lazy" className={styles.campArt} />
+        <div className={styles.expeditionHeading}>
+        <Mountain aria-hidden="true" />
         <SectionHeader
-          eyebrow="Progression"
-          title="Your Expedition"
-          description="The route you're currently walking."
+          title={uiText("dashboard:your_expedition_0fe6b2")}
+          description={uiText("dashboard:the_route_you_re_currently_walking_7f0ffe")}
           action={
             <Link
               to="/progress"
               className="text-xs font-semibold tracking-wide text-primary uppercase"
-            >
-              Full record →
-            </Link>
+            >{uiText("dashboard:full_record_f58bcd")}</Link>
           }
         />
+        </div>
         {timeline.length > 0 ? (
-          <ol className="panel relative grid gap-0 p-2 sm:p-4">
+          <ol className={styles.timeline}>
             {timeline.map((m, i) => {
               const color = catColorForCode(m.categoryCode);
               return (
-                <li key={m.moduleId} className="relative grid grid-cols-[auto_minmax(0,1fr)] gap-4 p-3">
+                <li key={m.moduleId} className={`relative grid grid-cols-[auto_minmax(0,1fr)] gap-4 p-3 ${styles.trailRow}`}>
                   <div className="flex flex-col items-center">
                     <span
                       className="grid size-9 shrink-0 place-items-center rounded-full border font-mono text-xs"
@@ -481,12 +500,14 @@ export default function DashboardPage() {
                         {m.status.replace("-", " ")}
                       </Chip>
                     </div>
+                    <div className={styles.trailProgress}>
                     <ProgressBar
-                      className="mt-2 max-w-md"
                       value={m.progress}
                       color={color}
-                      label={`${m.title} progress`}
+                      label={uiText("dashboard:value_progress_8196fd", { value0: uiValue(m.title) })}
                     />
+                    {m.status === "complete" ? <span className={styles.completedMark} aria-hidden="true"><Check className="size-3.5" /></span> : null}
+                    </div>
                   </div>
                 </li>
               );
@@ -494,15 +515,13 @@ export default function DashboardPage() {
           </ol>
         ) : (
           <EmptyState
-            title="Your expedition starts here"
-            description="Complete a lesson or field test and your route will appear here."
+            title={uiText("dashboard:your_expedition_starts_here_947e88")}
+            description={uiText("dashboard:complete_a_lesson_or_field_test_and_fcdca1")}
             action={
               <Link
                 to="/categories"
                 className="inline-flex min-h-11 items-center rounded-lg bg-primary px-5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
-              >
-                Explore regions →
-              </Link>
+              >{uiText("dashboard:explore_regions_93f848")}</Link>
             }
           />
         )}
@@ -511,13 +530,11 @@ export default function DashboardPage() {
       {/* Regions */}
       <section className="mb-12">
         <SectionHeader
-          eyebrow="Learn"
-          title="Explore Regions"
-          description="Choose a region and begin your expedition."
+          eyebrow={uiText("dashboard:learn_b04837")}
+          title={uiText("dashboard:explore_regions_9be4e2")}
+          description={uiText("dashboard:choose_a_region_and_begin_your_expedition_19d6d3")}
           action={
-            <Link to="/categories" className="text-xs font-semibold tracking-wide text-primary uppercase">
-              View all →
-            </Link>
+            <Link to="/categories" className="text-xs font-semibold tracking-wide text-primary uppercase">{uiText("dashboard:view_all_fe48df")}</Link>
           }
         />
         {categoriesQuery.data?.categories.length ? (
@@ -539,7 +556,7 @@ export default function DashboardPage() {
       {/* Continue training — only when the backend says modules are in progress */}
       {continueTraining.length > 0 && (
         <section className="mb-12">
-          <SectionHeader eyebrow="Recommended" title="Continue Training" />
+          <SectionHeader eyebrow={uiText("dashboard:recommended_9ef937")} title={uiText("dashboard:continue_training_7af7f1")} />
           <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
             {continueTraining.map((m) => (
               <MissionCard key={m.moduleId} mission={m} compact />
@@ -551,16 +568,16 @@ export default function DashboardPage() {
       {/* Rewards + community */}
       <section className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
         <div>
-          <SectionHeader eyebrow="Rewards" title="XP & Achievements" />
+          <SectionHeader eyebrow={uiText("dashboard:rewards_2f4f4b")} title={uiText("dashboard:xp_achievements_5fefc2")} />
           {summary ? (
             <>
               <div className="grid gap-4 sm:grid-cols-3">
-                <Stat label="Level" value={summary.level} hint={summary.level_title} />
-                <Stat label="XP" value={formatXp(summary.total_xp)} hint="Total XP" color="var(--ember)" />
+                <Stat label={uiText("dashboard:level_7c7f5d")} value={summary.level} hint={rankTitle(summary.level, summary.level_title)} />
+                <Stat label={uiText("dashboard:xp_53af63")} value={formatXp(summary.total_xp)} hint={uiText("dashboard:total_xp_de22fa")} color="var(--ember)" />
                 <Stat
-                  label="Streak"
+                  label={uiText("dashboard:streak_ac4792")}
                   value={`${summary.current_streak}d`}
-                  hint={`Personal best: ${summary.longest_streak}d`}
+                  hint={uiText("dashboard:personal_best_valued_be4da7", { value0: uiValue(summary.longest_streak) })}
                 />
               </div>
               <Link
@@ -570,10 +587,10 @@ export default function DashboardPage() {
                 <Trophy className="size-5 text-primary" />
                 <span className="text-sm">
                   {achievements
-                    ? `${achievements.earned.length} of ${achievements.earned.length + achievements.unearned.length} achievements earned`
-                    : `${summary.achievements_earned} achievements earned`}
+                    ? uiText("dashboard:value_of_value_achievements_earned_d853c2", { value0: uiValue(achievements.earned.length), value1: uiValue(achievements.earned.length + achievements.unearned.length) })
+                    : uiText("dashboard:value_achievements_earned_237cf2", { value0: uiValue(summary.achievements_earned) })}
                 </span>
-                <span className="ml-auto text-xs text-primary uppercase">Open →</span>
+                <span className="ml-auto text-xs text-primary uppercase">{uiText("dashboard:open_6f4789")}</span>
               </Link>
             </>
           ) : (
@@ -585,7 +602,7 @@ export default function DashboardPage() {
           )}
         </div>
         <div>
-          <SectionHeader eyebrow="Community" title="Latest From The Field" />
+          <SectionHeader eyebrow={uiText("dashboard:community_bfd58e")} title={uiText("dashboard:latest_from_the_field_28bbdd")} />
           {entitledCommunity ? (
             postsQuery.data?.posts.length ? (
               <>
@@ -601,9 +618,7 @@ export default function DashboardPage() {
                 <Link
                   to="/community"
                   className="mt-3 inline-flex items-center gap-2 text-xs font-semibold tracking-wide text-primary uppercase"
-                >
-                  Open community →
-                </Link>
+                >{uiText("dashboard:open_community_3acafd")}</Link>
               </>
             ) : postsQuery.isPending ? (
               <div className="grid gap-3" aria-hidden="true">
@@ -612,8 +627,8 @@ export default function DashboardPage() {
               </div>
             ) : (
               <EmptyState
-                title="No discussions yet"
-                description="Be the first to share a field question."
+                title={uiText("dashboard:no_discussions_yet_803034")}
+                description={uiText("dashboard:be_the_first_to_share_a_field_d5f0df")}
               />
             )
           ) : (
@@ -622,12 +637,13 @@ export default function DashboardPage() {
               className="panel-2 flex items-center gap-3 p-4 transition-colors hover:border-primary/40"
             >
               <Lock className="size-5 text-muted-foreground" />
-              <span className="text-sm">Community access requires a paid plan</span>
-              <span className="ml-auto text-xs text-primary uppercase">Explore plans →</span>
+              <span className="text-sm">{uiText("dashboard:community_access_requires_a_paid_plan_4c1c5e")}</span>
+              <span className="ml-auto text-xs text-primary uppercase">{uiText("dashboard:explore_plans_836ed2")}</span>
             </Link>
           )}
         </div>
       </section>
     </div>
+    </>
   );
 }

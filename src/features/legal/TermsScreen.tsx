@@ -6,6 +6,7 @@
  * changes, bump TERMS_VERSION in src/lib/legal.ts AND the backend's
  * TERMS_VERSION together.
  */
+import { tr as uiText, useLocale as useInterfaceLocale, uiValue } from "@/i18n";
 import { Link } from "react-router";
 import { ThemeToggle } from "@/components/layout/ThemeToggle";
 import { TERMS_VERSION, LEGAL_EFFECTIVE_DATE } from "@/lib/legal";
@@ -25,14 +26,28 @@ const SECTION_TITLES = [
   "12. Governing law",
 ] as const;
 
+const LEGAL_HEADINGS: Record<string, () => string> = {
+  "1. The service": () => uiText("public:copy_5b9dd13447a6"),
+  "2. Accounts": () => uiText("public:copy_389c59f845cb"),
+  "3. Content and learning materials": () => uiText("public:copy_92f41f21a10d"),
+  "4. Acceptable use": () => uiText("public:copy_d702c60fe4d5"),
+  "5. Subscriptions and payments": () => uiText("public:copy_ac81a6204e3c"),
+  "6. Intellectual property": () => uiText("public:copy_6b64ac8feb92"),
+  "7. Disclaimers": () => uiText("public:copy_a771ed4bb92f"),
+  "8. Limitation of liability": () => uiText("public:copy_4c44ccc0baf9"),
+  "9. Changes to the service": () => uiText("public:copy_6ca85f3c083a"),
+  "10. Changes to these terms": () => uiText("public:copy_04c84b0e07c0"),
+  "11. Termination": () => uiText("public:copy_b0d740521734"),
+  "12. Governing law": () => uiText("public:copy_170a2ace2b0a"),
+};
+
 export function TermsScreen() {
+  useInterfaceLocale();
   return (
     <div className="min-h-screen bg-bg-surface">
       <header className="border-b border-border-default">
         <div className="mx-auto flex max-w-3xl items-center justify-between px-6 py-4">
-          <Link to="/login" className="text-sm text-accent-ember underline underline-offset-2">
-            ← Back to sign in
-          </Link>
+          <Link to="/login" className="text-sm text-accent-ember underline underline-offset-2">{uiText("public:back_to_sign_in_ee1c57")}</Link>
           <ThemeToggle />
         </div>
       </header>
@@ -41,32 +56,21 @@ export function TermsScreen() {
         <p className="font-mono text-[11px] tracking-[0.3em] text-accent-ember uppercase">
           Survival Academy
         </p>
-        <h1 className="mt-3 font-display text-3xl font-semibold tracking-wide uppercase">
-          Terms of Service
-        </h1>
-        <p className="mt-3 text-sm text-text-secondary">
-          Version {TERMS_VERSION} · Effective {LEGAL_EFFECTIVE_DATE}
-        </p>
+        <h1 className="mt-3 font-display text-3xl font-semibold tracking-wide uppercase">{uiText("public:terms_of_service_0c8a9a")}</h1>
+        <p className="mt-3 text-sm text-text-secondary">{uiText("public:version_value_effective_value_ae1f8c", { value0: uiValue(TERMS_VERSION), value1: uiValue(LEGAL_EFFECTIVE_DATE) })}</p>
 
-        <p className="mt-8 text-sm leading-relaxed text-text-secondary">
-          These Terms of Service govern your use of Survival Academy and The
-          Survival Vault (the “Service”), operated by the Survival Academy
-          team (“we”, “us”). By creating an account or using the Service you
-          agree to these terms.
-        </p>
+        <p className="mt-8 text-sm leading-relaxed text-text-secondary">{uiText("public:these_terms_of_service_govern_your_use_a6c5fb")}</p>
 
         {SECTION_TITLES.map((title) => (
           <section key={title} className="mt-10">
             <h2 className="font-display text-lg font-semibold tracking-wide uppercase">
-              {title}
+              {LEGAL_HEADINGS[title]?.() ?? title}
             </h2>
             <LegalSectionBody title={title} />
           </section>
         ))}
 
-        <p className="mt-12 border-t border-border-default pt-6 text-xs leading-relaxed text-text-disabled">
-          Questions about these terms? Contact us at legal@thesurvivalvault.com.
-        </p>
+        <p className="mt-12 border-t border-border-default pt-6 text-xs leading-relaxed text-text-disabled">{uiText("public:questions_about_these_terms_contact_us_at_b7f758")}</p>
       </main>
     </div>
   );
@@ -74,31 +78,32 @@ export function TermsScreen() {
 
 /** Section body copy — kept in a map so the document reads as one unit. */
 function LegalSectionBody({ title }: { title: string }) {
+  useInterfaceLocale();
   const body: Record<string, string> = {
     "1. The service":
-      "The Service is an educational platform offering survival, preparedness and self-reliance learning content, including lessons, quizzes, downloadable resources and community features. The Service is provided for general educational purposes only. It does not constitute professional, medical, legal, or safety advice, and it does not replace proper training or professional judgment in real emergencies.",
+      uiText("public:copy_3053d6cdb318"),
     "2. Accounts":
-      "You must be at least 16 years old to create an account. You must provide accurate registration information and keep it current. You are responsible for safeguarding your login credentials and for all activity on your account. Notify us immediately of any unauthorized use. One account per person; you may create an account using email/password or a supported third-party sign-in such as Google.",
+      uiText("public:copy_d5a03aaead4a"),
     "3. Content and learning materials":
-      "Learning content is provided as-is for educational purposes. We may update, add or remove content at any time. Resource downloads may be subject to your plan. User-generated community content is the responsibility of its author and does not represent our views.",
+      uiText("public:copy_8cc3993eefbf"),
     "4. Acceptable use":
-      "You agree not to: misuse the Service, attempt to gain unauthorized access, interfere with the Service's operation, scrape or bulk-download content, resell or redistribute content outside the Service, upload unlawful or harmful community content, or use the Service to violate any law. We may suspend or terminate accounts that violate these rules.",
+      uiText("public:copy_470737df9628"),
     "5. Subscriptions and payments":
-      "Paid plans are billed through our payment provider. Subscription fees are charged in advance for each billing period. You may cancel at any time; access continues until the end of the current period. Price and plan changes are announced before they take effect. All payments are non-refundable except where required by law.",
+      uiText("public:copy_ffc1006ab254"),
     "6. Intellectual property":
-      "All learning content, design, and software in the Service are owned by us or our licensors and are protected by intellectual property laws. Your account grants you a personal, non-transferable, revocable license to access the Service for your own learning. You retain ownership of your community posts, and you grant us a license to host and display them within the Service.",
+      uiText("public:copy_8f02393e148d"),
     "7. Disclaimers":
-      "THE SERVICE IS PROVIDED “AS IS” WITHOUT WARRANTIES OF ANY KIND, EXPRESS OR IMPLIED. SURVIVAL AND EMERGENCY SITUATIONS ARE INHERENTLY DANGEROUS; SKILLS SHOWN IN LEARNING CONTENT MAY NOT BE SUFFICIENT IN ALL CIRCUMSTANCES. YOU USE THE CONTENT AT YOUR OWN RISK.",
+      uiText("public:copy_ce35195d5c44"),
     "8. Limitation of liability":
-      "TO THE MAXIMUM EXTENT PERMITTED BY LAW, WE ARE NOT LIABLE FOR INDIRECT, INCIDENTAL, SPECIAL OR CONSEQUENTIAL DAMAGES, INCLUDING PERSONAL INJURY OR PROPERTY DAMAGE ARISING FROM USE OF THE SERVICE. OUR TOTAL LIABILITY IS LIMITED TO THE AMOUNT YOU PAID US IN THE 12 MONTHS PRECEDING THE CLAIM.",
+      uiText("public:copy_958781fcee59"),
     "9. Changes to the service":
-      "We may modify, suspend or discontinue any part of the Service at any time. We will make reasonable efforts to notify you of material changes that affect your access.",
+      uiText("public:copy_533715a45227"),
     "10. Changes to these terms":
-      "We may update these Terms from time to time. Material changes are announced before they take effect, and continued use of the Service after the effective date constitutes acceptance of the updated terms. Your account records the version you accepted.",
+      uiText("public:copy_7a26b63168ef"),
     "11. Termination":
-      "You may delete your account at any time from your profile. We may suspend or terminate accounts that violate these terms, without refund where the violation is material. Sections that by their nature should survive termination will survive.",
+      uiText("public:copy_aa8d46321787"),
     "12. Governing law":
-      "These terms are governed by the laws of the jurisdiction where the operator is established, without regard to conflict-of-law principles, except where consumer-protection law of your country of residence applies mandatorily.",
+      uiText("public:copy_e04424509d91"),
   };
   return (
     <p className="mt-3 text-sm leading-relaxed text-text-secondary">{body[title]}</p>

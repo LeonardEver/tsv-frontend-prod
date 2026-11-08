@@ -6,73 +6,73 @@
  * document changes, bump PRIVACY_VERSION in src/lib/legal.ts AND the
  * backend's PRIVACY_VERSION together.
  */
+import { tr as uiText, useLocale as useInterfaceLocale, uiValue } from "@/i18n";
 import { Link } from "react-router";
 import { ThemeToggle } from "@/components/layout/ThemeToggle";
 import { PRIVACY_VERSION, LEGAL_EFFECTIVE_DATE } from "@/lib/legal";
 
 const SECTIONS: Array<{ title: string; body: string }> = [
   {
-    title: "1. Who we are",
-    body: "Survival Academy operates The Survival Vault, an educational platform for survival, preparedness and self-reliance skills. This policy explains what personal data we collect, why we collect it, and your rights. Questions: privacy@thesurvivalvault.com.",
+    get title() { return uiText("public:1_who_we_are_2e8946"); },
+    get body() { return uiText("public:copy_000321174918"); },
   },
   {
-    title: "2. Data we collect",
-    body: "Account data you provide at registration: first name, last name, email address, date of birth, country/region, and a password (stored only as a secure one-way hash). If you sign in with Google, we receive your Google account email address, name and profile data through the OAuth flow. Usage data: learning progress, quiz attempts, achievements, plan and subscription state. Technical data: IP address, browser type, device information and security logs, kept for security and abuse prevention.",
+    get title() { return uiText("public:2_data_we_collect_618ac1"); },
+    get body() { return uiText("public:copy_312899726b27"); },
   },
   {
-    title: "3. Legal acceptance and marketing consent",
-    body: "When you create an account you accept our Terms of Service and acknowledge this Privacy Policy. We record which version you accepted and when. Marketing communications are strictly optional and are only sent when you explicitly opt in; you can withdraw consent at any time and it never affects your access to the Service.",
+    get title() { return uiText("public:3_legal_acceptance_and_marketing_consent_f52008"); },
+    get body() { return uiText("public:copy_6309c798a91d"); },
   },
   {
-    title: "4. How we use your data",
-    body: "We use your data to: provide and personalize the Service (progress, achievements, plans), secure the Service (session management, rate limiting, abuse prevention), process payments through our payment provider, send transactional emails (email verification, password reset) and, only with your consent, send marketing updates. We do not sell personal data.",
+    get title() { return uiText("public:4_how_we_use_your_data_9bd972"); },
+    get body() { return uiText("public:copy_4c5585227be7"); },
   },
   {
-    title: "5. Legal bases",
-    body: "Where GDPR applies we process your data on these bases: performance of the contract (providing the Service), legitimate interests (security, fraud prevention, service improvement), consent (marketing communications), and legal obligations (accounting and regulatory requirements).",
+    get title() { return uiText("public:5_legal_bases_ec09b0"); },
+    get body() { return uiText("public:copy_4da12b1dd3d4"); },
   },
   {
-    title: "6. Data sharing",
-    body: "We share data only with processors who operate the Service: hosting and database providers, the email provider (Resend) for transactional messages, the payment provider (Stripe) for billing, and Google for sign-in. Processors act on our instructions under data-processing terms. We disclose data to authorities only when legally required.",
+    get title() { return uiText("public:6_data_sharing_dcd687"); },
+    get body() { return uiText("public:copy_21b990a776ae"); },
   },
   {
-    title: "7. Data retention",
-    body: "Account data is kept while your account is active. When you delete your account, your data is deleted within a reasonable period except where retention is required by law (e.g. payment records). Security logs are retained for a limited period and then deleted.",
+    get title() { return uiText("public:7_data_retention_00ccd4"); },
+    get body() { return uiText("public:copy_020845104b22"); },
   },
   {
-    title: "8. International transfers",
-    body: "The Service is hosted internationally. Where your data is transferred outside your region, we rely on applicable safeguards such as standard contractual clauses and adequacy decisions.",
+    get title() { return uiText("public:8_international_transfers_169597"); },
+    get body() { return uiText("public:copy_d53ca3a18283"); },
   },
   {
-    title: "9. Security",
-    body: "Passwords are stored as one-way cryptographic hashes — we never store plaintext passwords. Sessions are server-side and invalidated on password reset or account deletion. Access to production infrastructure is restricted and logged.",
+    get title() { return uiText("public:9_security_8d2f3f"); },
+    get body() { return uiText("public:copy_1c028062b6f3"); },
   },
   {
-    title: "10. Your rights",
-    body: "Depending on your jurisdiction, you may have the right to access, correct, delete, export or restrict processing of your personal data, and to object to or withdraw consent for processing. You can manage most data directly in your profile, including deleting your account. To exercise other rights, contact privacy@thesurvivalvault.com.",
+    get title() { return uiText("public:10_your_rights_bbbcde"); },
+    get body() { return uiText("public:copy_17e3f06175a3"); },
   },
   {
-    title: "11. Children",
-    body: "The Service is not directed at children. You must be at least 16 years old to create an account. If you believe a child has provided us personal data, contact us and we will delete it.",
+    get title() { return uiText("public:11_children_60e790"); },
+    get body() { return uiText("public:copy_6baadfd61f77"); },
   },
   {
-    title: "12. Cookies and similar technologies",
-    body: "The Service uses a single essential session cookie (HttpOnly, SameSite) to keep you signed in — it is required for the Service to function. We do not use third-party advertising trackers. If we introduce analytics or preferences cookies, we will update this policy.",
+    get title() { return uiText("public:12_cookies_and_similar_technologies_c771e9"); },
+    get body() { return uiText("public:copy_aba1d88b0c43"); },
   },
   {
-    title: "13. Changes to this policy",
-    body: "We may update this policy from time to time. Material changes are announced before they take effect. Your account records which version you acknowledged.",
+    get title() { return uiText("public:13_changes_to_this_policy_06de82"); },
+    get body() { return uiText("public:copy_4ca40e6535d7"); },
   },
 ];
 
 export function PrivacyScreen() {
+  useInterfaceLocale();
   return (
     <div className="min-h-screen bg-bg-surface">
       <header className="border-b border-border-default">
         <div className="mx-auto flex max-w-3xl items-center justify-between px-6 py-4">
-          <Link to="/login" className="text-sm text-accent-ember underline underline-offset-2">
-            ← Back to sign in
-          </Link>
+          <Link to="/login" className="text-sm text-accent-ember underline underline-offset-2">{uiText("public:back_to_sign_in_ee1c57")}</Link>
           <ThemeToggle />
         </div>
       </header>
@@ -81,18 +81,10 @@ export function PrivacyScreen() {
         <p className="font-mono text-[11px] tracking-[0.3em] text-accent-ember uppercase">
           Survival Academy
         </p>
-        <h1 className="mt-3 font-display text-3xl font-semibold tracking-wide uppercase">
-          Privacy Policy
-        </h1>
-        <p className="mt-3 text-sm text-text-secondary">
-          Version {PRIVACY_VERSION} · Effective {LEGAL_EFFECTIVE_DATE}
-        </p>
+        <h1 className="mt-3 font-display text-3xl font-semibold tracking-wide uppercase">{uiText("public:privacy_policy_9db108")}</h1>
+        <p className="mt-3 text-sm text-text-secondary">{uiText("public:version_value_effective_value_ae1f8c", { value0: uiValue(PRIVACY_VERSION), value1: uiValue(LEGAL_EFFECTIVE_DATE) })}</p>
 
-        <p className="mt-8 text-sm leading-relaxed text-text-secondary">
-          This policy explains how Survival Academy and The Survival Vault
-          collect, use and protect your personal data, and the choices you
-          have.
-        </p>
+        <p className="mt-8 text-sm leading-relaxed text-text-secondary">{uiText("public:this_policy_explains_how_survival_academy_and_fa4d4b")}</p>
 
         {SECTIONS.map((section) => (
           <section key={section.title} className="mt-10">
@@ -105,9 +97,7 @@ export function PrivacyScreen() {
           </section>
         ))}
 
-        <p className="mt-12 border-t border-border-default pt-6 text-xs leading-relaxed text-text-disabled">
-          Questions about this policy or your data? Contact privacy@thesurvivalvault.com.
-        </p>
+        <p className="mt-12 border-t border-border-default pt-6 text-xs leading-relaxed text-text-disabled">{uiText("public:questions_about_this_policy_or_your_data_e6ff1a")}</p>
       </main>
     </div>
   );

@@ -3,6 +3,7 @@
  * attempt result for /modules/:moduleId/quiz/result/:attemptId. The
  * server payload is the only source of score/XP/explanations.
  */
+import { tr as uiText, useLocale as useInterfaceLocale } from "@/i18n";
 import { Link, useNavigate, useParams } from "react-router";
 import { useQuery } from "@tanstack/react-query";
 import { queryKeys } from "@/lib/api/keys";
@@ -13,6 +14,7 @@ import { fetchAttemptResult } from "./quiz.api";
 import { QuizResultView } from "./QuizResultView";
 
 export default function QuizResultPage() {
+  useInterfaceLocale();
   const { moduleId, attemptId } = useParams();
   const attempt = Number(attemptId);
   const navigate = useNavigate();
@@ -40,15 +42,13 @@ export default function QuizResultPage() {
   if (typeof moduleId !== "string" || !Number.isInteger(attempt) || attempt <= 0) {
     return (
       <EmptyState
-        title="Result unavailable"
-        description="This result link isn't valid."
+        title={uiText("learning:result_unavailable_961ca2")}
+        description={uiText("learning:this_result_link_isn_t_valid_d219ce")}
         action={
           <Link
             to="/categories"
             className="mt-6 inline-flex min-h-11 items-center rounded-lg bg-primary px-5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
-          >
-            Explore regions →
-          </Link>
+          >{uiText("learning:explore_regions_93f848")}</Link>
         }
       />
     );
@@ -56,7 +56,7 @@ export default function QuizResultPage() {
 
   if (moduleQuery.isPending || resultQuery.isPending) {
     return (
-      <div role="status" aria-label="Loading result" className="space-y-6">
+      <div role="status" aria-label={uiText("learning:loading_result_9b5f36")} className="space-y-6">
         <div className="panel h-80 animate-pulse" aria-hidden="true" />
       </div>
     );

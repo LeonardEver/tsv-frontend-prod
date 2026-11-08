@@ -18,6 +18,7 @@
  *  - Downgrading to Free cancels at period end — the paid plan is
  *    kept until the period actually ends (§16).
  */
+import { tr as uiText, useLocale as useInterfaceLocale, uiValue } from "@/i18n";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
@@ -79,19 +80,20 @@ function planFeatures(plan: PlansResponse["plans"][number]) {
           : `${e.daily_quizzes} ${e.daily_quizzes === 1 ? "field test" : "field tests"} per day`,
       included: true,
     },
-    { label: "Field test before lesson", included: e.quiz_before_lesson },
-    { label: "View field resources", included: true },
-    { label: "Download field resources", included: e.resource_download },
-    { label: "Community access", included: e.community },
+    { get label() { return uiText("subscriptions:field_test_before_lesson_f25ded"); }, included: e.quiz_before_lesson },
+    { get label() { return uiText("subscriptions:view_field_resources_09c551"); }, included: true },
+    { get label() { return uiText("subscriptions:download_field_resources_2b048b"); }, included: e.resource_download },
+    { get label() { return uiText("subscriptions:community_access_b8fca8"); }, included: e.community },
   ];
 }
 
 function Cell({ value }: { value: string | boolean }) {
+  useInterfaceLocale();
   if (typeof value === "string") return <span className="font-mono text-sm">{value}</span>;
   return value ? (
-    <Check className="mx-auto size-4 text-[color:var(--success)]" aria-label="Included" />
+    <Check className="mx-auto size-4 text-[color:var(--success)]" aria-label={uiText("subscriptions:included_3e2c57")} />
   ) : (
-    <Minus className="mx-auto size-4 text-muted-foreground" aria-label="Not included" />
+    <Minus className="mx-auto size-4 text-muted-foreground" aria-label={uiText("subscriptions:not_included_bfca33")} />
   );
 }
 
@@ -109,6 +111,7 @@ type CheckoutPhase =
   | { kind: "failed"; plan: PlanCode; message: string };
 
 export default function PlansPage() {
+  useInterfaceLocale();
   const userId = useCurrentUserId();
   const queryClient = useQueryClient();
   const pushToast = useUiStore((s) => s.pushToast);
@@ -152,8 +155,8 @@ export default function PlansPage() {
       invalidatePlanState();
       pushToast({
         tone: "success",
-        title: "Subscription active",
-        description: "Your plan changed. Welcome aboard.",
+        get title() { return uiText("subscriptions:subscription_active_ef30f6"); },
+        get description() { return uiText("subscriptions:your_plan_changed_welcome_aboard_0413d5"); },
       });
     } else {
       // §18/§19: webhook synchronization pending — never claim a plan.
@@ -175,8 +178,8 @@ export default function PlansPage() {
         invalidatePlanState();
         pushToast({
           tone: "success",
-          title: "Payment received",
-          description: "Your subscription is active.",
+          get title() { return uiText("subscriptions:payment_received_2608cc"); },
+          get description() { return uiText("subscriptions:your_subscription_is_active_b29d06"); },
         });
       } else {
         setPhase({ kind: "syncing", plan: "survivor", timedOut: true });
@@ -192,10 +195,11 @@ export default function PlansPage() {
         // In-place upgrade — the server already changed the plan.
         setPhase({ kind: "synced", plan: result.subscription.plan_code });
         invalidatePlanState();
+        const updatedPlanName = result.subscription.plan_name;
         pushToast({
           tone: "success",
-          title: `You're now on ${result.subscription.plan_name}`,
-          description: "The price difference is prorated by Stripe.",
+          get title() { return uiText("subscriptions:you_re_now_on_value_f2dc74", { value0: uiValue(updatedPlanName) }); },
+          get description() { return uiText("subscriptions:the_price_difference_is_prorated_by_stripe_7e0433"); },
         });
         return;
       }
@@ -210,7 +214,7 @@ export default function PlansPage() {
       setPhase({
         kind: "failed",
         plan: requestedPlan,
-        message: "The payment provider returned an unexpected response. Please try again.",
+        get message() { return uiText("subscriptions:the_payment_provider_returned_an_unexpected_response_ffb118"); },
       });
     },
     onError: (err, requestedPlan) => {
@@ -218,7 +222,7 @@ export default function PlansPage() {
       setPhase({
         kind: "failed",
         plan: requestedPlan,
-        message: `${copy.title}${copy.description ? ` ${copy.description}` : ""}`,
+        get message() { return uiText("subscriptions:valuevalue_6bbfd3", { value0: uiValue(copy.title), value1: uiValue(copy.description ? ` ${copy.description}` : "") }); },
       });
     },
     onSettled: () => { setSwitchingPlan(null); },
@@ -231,10 +235,10 @@ export default function PlansPage() {
       invalidatePlanState();
       pushToast({
         tone: "success",
-        title: "Cancellation scheduled",
+        get title() { return uiText("subscriptions:cancellation_scheduled_70cd2e"); },
         description: subscription.ends_at
-          ? `${subscription.plan_name} stays active until ${formatDate(subscription.ends_at)}.`
-          : "Your plan will end at the period end.",
+          ? uiText("subscriptions:planActiveUntil", { plan: subscription.plan_name, date: formatDate(subscription.ends_at) })
+          : uiText("subscriptions:planWillEnd"),
       });
     },
     onError: (err) => {
@@ -287,7 +291,7 @@ export default function PlansPage() {
 
   if (plansQuery.isPending) {
     return (
-      <div role="status" aria-label="Loading plans" className="space-y-6">
+      <div role="status" aria-label={uiText("subscriptions:loading_plans_852261")} className="space-y-6">
         <div className="panel h-16 animate-pulse" aria-hidden="true" />
         <div className="grid gap-4 lg:grid-cols-3">
           <div className="panel h-96 animate-pulse" aria-hidden="true" />
@@ -312,9 +316,9 @@ export default function PlansPage() {
   return (
     <div>
       <PageHeader
-        eyebrow="Subscription"
-        title="Choose Your Plan"
-        description="Every plan opens the whole academy. Plans change how much you can train per day and what you can take into the field."
+        eyebrow={uiText("subscriptions:subscription_8fde48")}
+        title={uiText("subscriptions:choose_your_plan_c197d6")}
+        description={uiText("subscriptions:every_plan_opens_the_whole_academy_plans_c7c2eb")}
       />
 
       {subscription ? <div className="mb-10"><BillingCard subscription={subscription} /></div> : null}
@@ -333,7 +337,7 @@ export default function PlansPage() {
         <div className="panel-2 mb-6 flex items-center gap-3 p-4">
           <Loader2 aria-hidden="true" className="size-5 animate-spin text-primary" />
           <p role="status" className="text-sm text-muted-foreground">
-            {phase.kind === "opening" ? "Preparing secure checkout…" : "Processing payment…"}
+            {phase.kind === "opening" ? uiText("subscriptions:preparing_secure_checkout_8272b4") : uiText("subscriptions:processing_payment_da92bc")}
           </p>
         </div>
       ) : null}
@@ -344,23 +348,21 @@ export default function PlansPage() {
             <Loader2 aria-hidden="true" className="size-5 animate-spin text-primary" />
             <p role="status" className="text-sm">
               {phase.timedOut
-                ? "We're still confirming your payment with the bank."
-                : "Payment received — confirming your subscription…"}
+                ? uiText("subscriptions:we_re_still_confirming_your_payment_with_82d5d6")
+                : uiText("subscriptions:payment_received_confirming_your_subscription_68d61c")}
             </p>
           </div>
           <p className="text-xs text-muted-foreground">
             {phase.timedOut
-              ? "Your plan activates automatically the moment the payment clears. This can take a moment."
-              : "Your plan activates as soon as Stripe confirms the payment."}
+              ? uiText("subscriptions:your_plan_activates_automatically_the_moment_the_804f32")
+              : uiText("subscriptions:your_plan_activates_as_soon_as_stripe_b67109")}
           </p>
           {phase.timedOut ? (
             <button
               type="button"
               onClick={() => { void runSync(phase.plan); }}
               className="inline-flex min-h-10 items-center rounded-lg border border-border px-4 text-xs font-semibold tracking-wide uppercase transition-colors hover:bg-accent"
-            >
-              Check status
-            </button>
+            >{uiText("subscriptions:check_status_07adf9")}</button>
           ) : null}
         </div>
       ) : null}
@@ -368,17 +370,14 @@ export default function PlansPage() {
       {phase.kind === "synced" ? (
         <div className="panel-2 mb-6 flex items-center gap-2 border-success/40 p-4 text-sm text-[color:var(--success)]">
           <Check aria-hidden="true" className="size-4" />
-          <p role="status">
-            {plans.plans.find((p) => p.code === phase.plan)?.name ?? "Your"} plan is active —
-            paid features are available right now.
-          </p>
+          <p role="status">{uiText("subscriptions:value_plan_is_active_paid_features_are_b01203", { value0: uiValue(plans.plans.find((p) => p.code === phase.plan)?.name ?? "Your") })}</p>
         </div>
       ) : null}
 
       {phase.kind === "failed" ? (
         <div className="panel-2 mb-6 space-y-1 border-destructive/40 p-4" role="alert">
-          <p className="text-sm font-semibold text-destructive">Payment failed</p>
-          <p className="text-sm text-muted-foreground">{phase.message} No charge was made.</p>
+          <p className="text-sm font-semibold text-destructive">{uiText("subscriptions:payment_failed_b1e8e7")}</p>
+          <p className="text-sm text-muted-foreground">{uiText("subscriptions:value_no_charge_was_made_9266b5", { value0: uiValue(phase.message) })}</p>
         </div>
       ) : null}
 
@@ -397,7 +396,7 @@ export default function PlansPage() {
                 <h2 className="font-display text-2xl font-semibold tracking-wide uppercase">
                   {plan.name}
                 </h2>
-                {current && <Chip color="var(--success)">Current plan</Chip>}
+                {current && <Chip color="var(--success)">{uiText("subscriptions:current_plan_ec5cfb")}</Chip>}
               </div>
               <p className="mt-1 text-sm text-muted-foreground">{PLAN_TAGLINES[plan.code]}</p>
               <p className="mt-5 font-display text-4xl font-semibold">
@@ -421,9 +420,7 @@ export default function PlansPage() {
                   disabled
                   className="mt-7 inline-flex min-h-12 cursor-default items-center justify-center gap-2 rounded-lg border border-border px-5 text-sm font-semibold tracking-wide text-muted-foreground uppercase"
                 >
-                  <ShieldCheck aria-hidden="true" className="size-4" />
-                  Current plan
-                </button>
+                  <ShieldCheck aria-hidden="true" className="size-4" />{uiText("subscriptions:current_plan_ec5cfb")}</button>
               ) : (
                 <button
                   type="button"
@@ -432,12 +429,12 @@ export default function PlansPage() {
                   className="mt-7 inline-flex min-h-12 items-center justify-center rounded-lg bg-primary px-5 text-sm font-semibold tracking-wide text-primary-foreground uppercase transition-colors hover:bg-primary/90 disabled:opacity-60"
                 >
                   {switching
-                    ? "Working…"
+                    ? uiText("subscriptions:working_13b7bf")
                     : plan.code === "free"
-                      ? "Downgrade to Free"
+                      ? uiText("subscriptions:downgrade_to_free_9b6b6b")
                       : plan.code === "operator" && paidSubscription
-                        ? "Upgrade to Operator"
-                        : `Choose ${plan.name}`}
+                        ? uiText("subscriptions:upgrade_to_operator_577877")
+                        : uiText("subscriptions:choose_value_59a8b3", { value0: uiValue(plan.name) })}
                 </button>
               )}
             </article>
@@ -446,13 +443,13 @@ export default function PlansPage() {
       </section>
 
       <section className="mb-6">
-        <SectionHeader eyebrow="Detail" title="Feature Comparison" />
+        <SectionHeader eyebrow={uiText("subscriptions:detail_7c9a7c")} title={uiText("subscriptions:feature_comparison_d7ca52")} />
         <div className="panel overflow-x-auto">
           <table className="w-full min-w-[560px] text-left">
-            <caption className="sr-only">Plan feature comparison</caption>
+            <caption className="sr-only">{uiText("subscriptions:plan_feature_comparison_115e92")}</caption>
             <thead>
               <tr className="border-b border-border">
-                <th scope="col" className="eyebrow p-4">Feature</th>
+                <th scope="col" className="eyebrow p-4">{uiText("subscriptions:feature_ad565d")}</th>
                 {plans.plans.map((p) => (
                   <th key={p.code} scope="col" className="eyebrow p-4 text-center">
                     {p.name}
@@ -479,9 +476,7 @@ export default function PlansPage() {
             </tbody>
           </table>
         </div>
-        <p className="mt-4 font-mono text-[11px] text-muted-foreground">
-          Cancel anytime. No long-term contract.
-        </p>
+        <p className="mt-4 font-mono text-[11px] text-muted-foreground">{uiText("subscriptions:cancel_anytime_no_long_term_contract_2b1caf")}</p>
       </section>
 
       {/* Downgrade = cancel at period end (§16). The user keeps the
@@ -489,11 +484,11 @@ export default function PlansPage() {
       <Dialog
         open={cancelDialogOpen}
         onOpenChange={setCancelDialogOpen}
-        title="Downgrade to the Free plan?"
+        title={uiText("subscriptions:downgrade_to_the_free_plan_672563")}
         description={
           subscription?.ends_at
-            ? `Your ${subscription.plan_name} plan stays active until ${formatDate(subscription.ends_at)}. After that you'll be on the Free plan — one lesson and one quiz per day, and no PDF downloads. You can upgrade again any time.`
-            : "Your paid plan stays active until the current period ends. After that you'll be on the Free plan."
+            ? uiText("subscriptions:your_value_plan_stays_active_until_value_0f5116", { value0: uiValue(subscription.plan_name), value1: uiValue(formatDate(subscription.ends_at)) })
+            : uiText("subscriptions:your_paid_plan_stays_active_until_the_5318c5")
         }
       >
         <div className="flex justify-end gap-3 pt-2">
@@ -501,16 +496,12 @@ export default function PlansPage() {
             variant="secondary"
             disabled={cancelMutation.isPending}
             onClick={() => { setCancelDialogOpen(false); }}
-          >
-            Keep my plan
-          </Button>
+          >{uiText("subscriptions:keep_my_plan_b160c2")}</Button>
           <Button
             variant="danger"
             loading={cancelMutation.isPending}
             onClick={() => { cancelMutation.mutate(); }}
-          >
-            Cancel subscription
-          </Button>
+          >{uiText("subscriptions:cancel_subscription_6d7f05")}</Button>
         </div>
       </Dialog>
 
@@ -530,8 +521,8 @@ export default function PlansPage() {
 
       <p className="text-xs text-muted-foreground">
         {billingEnabled
-          ? "Payments are processed by Stripe."
-          : "Billing is not configured in this environment — no payment is processed on this page."}
+          ? uiText("subscriptions:payments_are_processed_by_stripe_e10e6e")
+          : uiText("subscriptions:billing_is_not_configured_in_this_environment_937dc1")}
       </p>
     </div>
   );

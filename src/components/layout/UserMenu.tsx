@@ -3,6 +3,7 @@
  * as the trigger, opening the production dropdown with identity, profile
  * link, and sign out.
  */
+import { tr as uiText, useLocale as useInterfaceLocale } from "@/i18n";
 import { useNavigate } from "react-router";
 import { LogOut, UserRound } from "lucide-react";
 import { useAuth } from "@/features/auth/auth-context";
@@ -10,6 +11,7 @@ import { Avatar } from "@/components/sa/primitives";
 import { DropdownMenu, DropdownMenuItem, DropdownMenuSeparator } from "@/components/ui/DropdownMenu";
 
 export function UserMenu() {
+  useInterfaceLocale();
   const { user, logout } = useAuth();
   const navigate = useNavigate();
 
@@ -21,7 +23,8 @@ export function UserMenu() {
       trigger={
         <button
           type="button"
-          aria-label="Account menu"
+          data-shell-account
+          aria-label={uiText("navigation:account_menu_60f5a3")}
           className="flex items-center gap-2 rounded-lg p-1"
         >
           <Avatar name={fullName} size={32} />
@@ -37,15 +40,13 @@ export function UserMenu() {
       </div>
       <DropdownMenuSeparator />
       <DropdownMenuItem onSelect={() => void navigate("/profile")}>
-        <UserRound aria-hidden="true" className="size-4" /> Profile
-      </DropdownMenuItem>
+        <UserRound aria-hidden="true" className="size-4" />{" "}{uiText("navigation:profile_ff4fc0")}</DropdownMenuItem>
       <DropdownMenuItem
         onSelect={() => {
           void logout().then(() => navigate("/login", { replace: true }));
         }}
       >
-        <LogOut aria-hidden="true" className="size-4" /> Sign out
-      </DropdownMenuItem>
+        <LogOut aria-hidden="true" className="size-4" />{" "}{uiText("navigation:sign_out_dc1649")}</DropdownMenuItem>
     </DropdownMenu>
   );
 }

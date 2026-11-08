@@ -1,0 +1,135 @@
+Field network|Rede de campo|Red de campo|Réseau de terrain|Praxisnetzwerk|Rete sul campo
+Discuss lessons, share field stories and ask questions with other Survival Academy members.|Discuta aulas, compartilhe experiências e tire dúvidas com outros membros da Survival Academy.|Comenta lecciones, comparte experiencias y pregunta a otros miembros de Survival Academy.|Discutez des leçons, partagez vos expériences et posez vos questions aux membres de Survival Academy.|Diskutiere Lektionen, teile Praxiserfahrungen und stelle anderen Mitgliedern von Survival Academy Fragen.|Discuti le lezioni, condividi esperienze e fai domande agli altri membri di Survival Academy.
+Community is available with Survivor and Operator|Comunidade disponível nos planos Survivor e Operator|Comunidad disponible con Survivor y Operator|Communauté disponible avec Survivor et Operator|Community in Survivor und Operator verfügbar|Community disponibile con Survivor e Operator
+Join the discussion on water, fire, shelter, food and more — with the members who train every day.|Converse sobre água, fogo, abrigo, alimentos e muito mais com quem treina todos os dias.|Habla de agua, fuego, refugio, alimentos y más con quienes entrenan cada día.|Discutez d'eau, de feu, d'abri, d'alimentation et plus encore avec des membres qui s'entraînent chaque jour.|Diskutiere über Wasser, Feuer, Schutz, Nahrung und mehr mit Mitgliedern, die täglich trainieren.|Parla di acqua, fuoco, riparo, cibo e altro con i membri che si allenano ogni giorno.
+Spam|Spam|Spam|Spam|Spam|Spam
+Harassment|Assédio|Acoso|Harcèlement|Belästigung|Molestie
+Misinformation|Desinformação|Desinformación|Désinformation|Fehlinformationen|Disinformazione
+Safety concern|Risco de segurança|Riesgo de seguridad|Risque pour la sécurité|Sicherheitsbedenken|Rischio per la sicurezza
+Other|Outro|Otro|Autre|Sonstiges|Altro
+This post isn't available|Esta publicação não está disponível|Esta publicación no está disponible|Cette publication n'est pas disponible|Dieser Beitrag ist nicht verfügbar|Questo post non è disponibile
+It may have been removed.|Ela pode ter sido removida.|Puede haberse eliminado.|Elle a peut-être été supprimée.|Er wurde möglicherweise entfernt.|Potrebbe essere stato rimosso.
+Back to community|Voltar à comunidade|Volver a la comunidad|Retour à la communauté|Zurück zur Community|Torna alla community
+← Community|← Comunidade|← Comunidad|← Communauté|← Community|← Community
+· edited|· editado|· editado|· modifié|· bearbeitet|· modificato
+Vote on this post|Votar nesta publicação|Votar esta publicación|Voter pour cette publication|Diesen Beitrag bewerten|Vota questo post
+Delete this post?|Excluir esta publicação?|¿Eliminar esta publicación?|Supprimer cette publication ?|Diesen Beitrag löschen?|Eliminare questo post?
+Comments are deleted with it. This cannot be undone.|Os comentários também serão excluídos. Esta ação não pode ser desfeita.|También se eliminarán sus comentarios. No se puede deshacer.|Les commentaires seront également supprimés. Cette action est irréversible.|Kommentare werden ebenfalls gelöscht. Dies kann nicht rückgängig gemacht werden.|Verranno eliminati anche i commenti. L'operazione non può essere annullata.
+{{value0}} comments|{{value0}} comentários|{{value0}} comentarios|{{value0}} commentaires|{{value0}} Kommentare|{{value0}} commenti
+No comments yet — start the discussion.|Ainda não há comentários — comece a conversa.|Aún no hay comentarios: inicia la conversación.|Aucun commentaire : lancez la discussion.|Noch keine Kommentare. Starte die Diskussion.|Nessun commento: inizia la discussione.
+Load more comments|Carregar mais comentários|Cargar más comentarios|Charger plus de commentaires|Weitere Kommentare laden|Carica altri commenti
+Add a comment|Adicionar comentário|Añadir comentario|Ajouter un commentaire|Kommentar hinzufügen|Aggiungi un commento
+Share what you know — or ask a follow-up.|Compartilhe o que sabe ou faça outra pergunta.|Comparte lo que sabes o haz otra pregunta.|Partagez vos connaissances ou posez une question complémentaire.|Teile dein Wissen oder stelle eine Anschlussfrage.|Condividi ciò che sai o fai un'altra domanda.
+Posting…|Publicando…|Publicando…|Publication…|Wird veröffentlicht…|Pubblicazione…
+Post comment|Publicar comentário|Publicar comentario|Publier le commentaire|Kommentar veröffentlichen|Pubblica commento
+Save|Salvar|Guardar|Enregistrer|Speichern|Salva
+Cancel|Cancelar|Cancelar|Annuler|Abbrechen|Annulla
+Vote on this comment|Votar neste comentário|Votar este comentario|Voter pour ce commentaire|Diesen Kommentar bewerten|Vota questo commento
+Delete this comment?|Excluir este comentário?|¿Eliminar este comentario?|Supprimer ce commentaire ?|Diesen Kommentar löschen?|Eliminare questo commento?
+This cannot be undone.|Esta ação não pode ser desfeita.|No se puede deshacer.|Cette action est irréversible.|Dies kann nicht rückgängig gemacht werden.|L'operazione non può essere annullata.
+Edit post|Editar publicação|Editar publicación|Modifier la publication|Beitrag bearbeiten|Modifica post
+Plain text only — formatting is stripped.|Somente texto simples — a formatação será removida.|Solo texto sin formato: se elimina el formato.|Texte brut uniquement : la mise en forme est supprimée.|Nur Klartext. Formatierungen werden entfernt.|Solo testo semplice: la formattazione viene rimossa.
+Post title|Título da publicação|Título de la publicación|Titre de la publication|Beitragstitel|Titolo del post
+Post body|Conteúdo da publicação|Contenido de la publicación|Contenu de la publication|Beitragsinhalt|Contenuto del post
+Report this content|Denunciar este conteúdo|Denunciar este contenido|Signaler ce contenu|Diesen Inhalt melden|Segnala questo contenuto
+Reports go to the moderation queue — your name is not shown to the author.|As denúncias vão para a moderação — seu nome não é mostrado ao autor.|Las denuncias se envían a moderación: el autor no verá tu nombre.|Les signalements sont envoyés à la modération : votre nom n'est pas communiqué à l'auteur.|Meldungen gehen an die Moderation. Dein Name wird dem Autor nicht angezeigt.|Le segnalazioni vengono inviate alla moderazione: il tuo nome non viene mostrato all'autore.
+Reason|Motivo|Motivo|Motif|Grund|Motivo
+Details (optional)|Detalhes (opcional)|Detalles (opcional)|Détails (facultatif)|Details (optional)|Dettagli (facoltativo)
+What's wrong? (optional)|Qual é o problema? (opcional)|¿Cuál es el problema? (opcional)|Quel est le problème ? (facultatif)|Was ist das Problem? (optional)|Qual è il problema? (facoltativo)
+Send report|Enviar denúncia|Enviar denuncia|Envoyer le signalement|Meldung senden|Invia segnalazione
+Loading post|Carregando publicação|Cargando publicación|Chargement de la publication|Beitrag wird geladen|Caricamento del post
+Top|Em destaque|Destacados|Populaires|Top|Popolari
+Latest|Recentes|Recientes|Récentes|Neueste|Recenti
+Most discussed|Mais discutidas|Más comentadas|Les plus commentées|Meistdiskutiert|Più discussi
+Report sent|Denúncia enviada|Denuncia enviada|Signalement envoyé|Meldung gesendet|Segnalazione inviata
+Thanks for keeping the field clean.|Obrigado por ajudar a manter a comunidade segura.|Gracias por ayudar a mantener segura la comunidad.|Merci de contribuer à la sécurité de la communauté.|Danke, dass du die Community sicher hältst.|Grazie per contribuire alla sicurezza della community.
+Post deleted|Publicação excluída|Publicación eliminada|Publication supprimée|Beitrag gelöscht|Post eliminato
+Learn from other people in the field.|Aprenda com outras pessoas em campo.|Aprende de otras personas sobre el terreno.|Apprenez auprès d'autres personnes sur le terrain.|Lerne von anderen aus der Praxis.|Impara da altre persone sul campo.
+Ask questions, share field reports and compare gear with other members of the academy.|Tire dúvidas, compartilhe relatos de campo e compare equipamentos com outros membros da academia.|Pregunta, comparte experiencias y compara equipo con otros miembros de la academia.|Posez des questions, partagez vos expériences et comparez votre matériel avec les membres de l'académie.|Stelle Fragen, teile Erfahrungsberichte und vergleiche Ausrüstung mit anderen Akademiemitgliedern.|Fai domande, condividi esperienze e confronta l'attrezzatura con gli altri membri dell'accademia.
+Loading community|Carregando comunidade|Cargando comunidad|Chargement de la communauté|Community wird geladen|Caricamento della community
+New discussion|Nova discussão|Nuevo debate|Nouvelle discussion|Neue Diskussion|Nuova discussione
+Sort discussions|Ordenar discussões|Ordenar debates|Trier les discussions|Diskussionen sortieren|Ordina discussioni
+Featured|Destaque|Destacado|À la une|Hervorgehoben|In evidenza
+Discussions|Discussões|Debates|Discussions|Diskussionen|Discussioni
+No posts in this topic yet|Ainda não há publicações neste tópico|Aún no hay publicaciones en este tema|Aucune publication dans ce sujet pour le moment|Noch keine Beiträge zu diesem Thema|Nessun post in questo argomento per ora
+No posts yet|Ainda não há publicações|Aún no hay publicaciones|Aucune publication pour le moment|Noch keine Beiträge|Nessun post per ora
+Be the first to start a discussion.|Seja o primeiro a iniciar uma discussão.|Sé el primero en iniciar un debate.|Soyez le premier à lancer une discussion.|Starte die erste Diskussion.|Inizia la prima discussione.
+Load more|Carregar mais|Cargar más|Charger plus|Mehr laden|Carica altro
+Categories|Categorias|Categorías|Catégories|Kategorien|Categorie
+All topics|Todos os tópicos|Todos los temas|Tous les sujets|Alle Themen|Tutti gli argomenti
+New Discussion|Nova discussão|Nuevo debate|Nouvelle discussion|Neue Diskussion|Nuova discussione
+Share a question, field report or technique with other members.|Compartilhe uma dúvida, relato de campo ou técnica com outros membros.|Comparte una pregunta, experiencia o técnica con otros miembros.|Partagez une question, une expérience de terrain ou une technique avec les autres membres.|Teile eine Frage, einen Erfahrungsbericht oder eine Technik mit anderen Mitgliedern.|Condividi una domanda, un'esperienza sul campo o una tecnica con gli altri membri.
+Category|Categoria|Categoría|Catégorie|Kategorie|Categoria
+Choose a category…|Escolha uma categoria…|Elige una categoría…|Choisissez une catégorie…|Kategorie auswählen…|Scegli una categoria…
+Title|Título|Título|Titre|Titel|Titolo
+A clear question or field note|Uma pergunta clara ou anotação de campo|Una pregunta clara o nota de campo|Une question claire ou une note de terrain|Eine klare Frage oder Feldnotiz|Una domanda chiara o una nota sul campo
+Body|Conteúdo|Contenido|Contenu|Inhalt|Contenuto
+Share the details — what happened, what worked, what would you ask?|Compartilhe os detalhes — o que aconteceu, o que funcionou, qual é sua dúvida?|Comparte los detalles: ¿qué pasó, qué funcionó, qué quieres preguntar?|Partagez les détails : que s'est-il passé, qu'est-ce qui a fonctionné, que souhaitez-vous demander ?|Teile die Details: Was ist passiert, was hat funktioniert, was möchtest du fragen?|Condividi i dettagli: cosa è successo, cosa ha funzionato, cosa vorresti chiedere?
+Plain text only — links and formatting are stripped to keep the community safe.|Somente texto simples — links e formatação são removidos para manter a comunidade segura.|Solo texto sin formato: se eliminan enlaces y formato para proteger la comunidad.|Texte brut uniquement : liens et mise en forme sont supprimés pour protéger la communauté.|Nur Klartext. Links und Formatierungen werden zur Sicherheit der Community entfernt.|Solo testo semplice: link e formattazione vengono rimossi per proteggere la community.
+Publishing…|Publicando…|Publicando…|Publication…|Wird veröffentlicht…|Pubblicazione…
+Publish|Publicar|Publicar|Publier|Veröffentlichen|Pubblica
+Cancellation pending|Cancelamento pendente|Cancelación pendiente|Résiliation en attente|Kündigung ausstehend|Annullamento in sospeso
+Active|Ativo|Activo|Actif|Aktiv|Attivo
+Trial|Período de teste|Prueba|Essai|Testphase|Prova
+Payment past due|Pagamento atrasado|Pago vencido|Paiement en retard|Zahlung überfällig|Pagamento scaduto
+Payment incomplete|Pagamento incompleto|Pago incompleto|Paiement incomplet|Zahlung unvollständig|Pagamento incompleto
+Unpaid|Não pago|Sin pagar|Impayé|Unbezahlt|Non pagato
+Canceled|Cancelado|Cancelado|Résilié|Gekündigt|Annullato
+{{value0}} /month|{{value0}} /mês|{{value0}} /mes|{{value0}} /mois|{{value0}} /Monat|{{value0}} /mese
+— {{value0}}|— {{value0}}|— {{value0}}|— {{value0}}|— {{value0}}|— {{value0}}
+Cancel subscription|Cancelar assinatura|Cancelar suscripción|Résilier l'abonnement|Abonnement kündigen|Annulla abbonamento
+Keep my subscription|Manter minha assinatura|Mantener mi suscripción|Conserver mon abonnement|Mein Abonnement behalten|Mantieni il mio abbonamento
+Manage billing|Gerenciar cobrança|Gestionar facturación|Gérer la facturation|Abrechnung verwalten|Gestisci fatturazione
+Today's learning|Aprendizado de hoje|Aprendizaje de hoy|Apprentissage du jour|Heutiges Lernen|Apprendimento di oggi
+Quizzes|Quizzes|Cuestionarios|Quiz|Quiz|Quiz
+Your limit resets tomorrow.|Seu limite é renovado amanhã.|Tu límite se renueva mañana.|Votre limite est réinitialisée demain.|Dein Limit wird morgen zurückgesetzt.|Il limite si azzera domani.
+Upgrade to Survivor for 10 lessons and quizzes per day.|Assine o Survivor para ter 10 aulas e quizzes por dia.|Pásate a Survivor para tener 10 lecciones y cuestionarios al día.|Passez à Survivor pour 10 leçons et quiz par jour.|Wechsle zu Survivor für 10 Lektionen und Quiz pro Tag.|Passa a Survivor per 10 lezioni e quiz al giorno.
+Daily quiz limit reached|Limite diário de quizzes atingido|Límite diario de cuestionarios alcanzado|Limite quotidienne de quiz atteinte|Tägliches Quizlimit erreicht|Limite giornaliero di quiz raggiunto
+Subscribe|Assinar|Suscribirse|S'abonner|Abonnieren|Abbonati
+Secure payment processed by Stripe. You won't leave the Academy.|Pagamento seguro processado pelo Stripe, sem sair da Academy.|Pago seguro procesado por Stripe, sin salir de Academy.|Paiement sécurisé traité par Stripe, sans quitter Academy.|Sichere Zahlung über Stripe, ohne Academy zu verlassen.|Pagamento sicuro tramite Stripe, senza uscire da Academy.
+Field test before lesson|Teste prático antes da aula|Prueba de campo antes de la lección|Épreuve avant la leçon|Praxistest vor der Lektion|Prova sul campo prima della lezione
+View field resources|Visualizar recursos de campo|Ver recursos de campo|Consulter les ressources de terrain|Feldressourcen ansehen|Visualizza risorse da campo
+Download field resources|Baixar recursos de campo|Descargar recursos de campo|Télécharger les ressources de terrain|Feldressourcen herunterladen|Scarica risorse da campo
+Community access|Acesso à comunidade|Acceso a la comunidad|Accès à la communauté|Community-Zugang|Accesso alla community
+Included|Incluído|Incluido|Inclus|Enthalten|Incluso
+Not included|Não incluído|No incluido|Non inclus|Nicht enthalten|Non incluso
+Subscription active|Assinatura ativa|Suscripción activa|Abonnement actif|Abonnement aktiv|Abbonamento attivo
+Your plan changed. Welcome aboard.|Seu plano mudou. Bem-vindo a bordo.|Tu plan ha cambiado. Bienvenido a bordo.|Votre offre a changé. Bienvenue à bord.|Dein Abo wurde geändert. Willkommen an Bord.|Il tuo piano è cambiato. Benvenuto a bordo.
+Payment received|Pagamento recebido|Pago recibido|Paiement reçu|Zahlung erhalten|Pagamento ricevuto
+Your subscription is active.|Sua assinatura está ativa.|Tu suscripción está activa.|Votre abonnement est actif.|Dein Abonnement ist aktiv.|Il tuo abbonamento è attivo.
+You're now on {{value0}}|Agora você está no {{value0}}|Ahora tienes {{value0}}|Vous bénéficiez désormais de {{value0}}|Du nutzt jetzt {{value0}}|Ora hai {{value0}}
+The price difference is prorated by Stripe.|A diferença de preço é calculada proporcionalmente pelo Stripe.|Stripe prorratea la diferencia de precio.|La différence de prix est calculée au prorata par Stripe.|Die Preisdifferenz wird von Stripe anteilig berechnet.|La differenza di prezzo viene calcolata proporzionalmente da Stripe.
+The payment provider returned an unexpected response. Please try again.|O provedor de pagamento retornou uma resposta inesperada. Tente novamente.|El proveedor de pagos devolvió una respuesta inesperada. Inténtalo de nuevo.|Le prestataire de paiement a renvoyé une réponse inattendue. Réessayez.|Der Zahlungsanbieter hat unerwartet geantwortet. Bitte versuche es erneut.|Il fornitore di pagamento ha restituito una risposta inattesa. Riprova.
+{{value0}}{{value1}}|{{value0}}{{value1}}|{{value0}}{{value1}}|{{value0}}{{value1}}|{{value0}}{{value1}}|{{value0}}{{value1}}
+Cancellation scheduled|Cancelamento agendado|Cancelación programada|Résiliation programmée|Kündigung vorgemerkt|Annullamento programmato
+Loading plans|Carregando planos|Cargando planes|Chargement des offres|Abos werden geladen|Caricamento dei piani
+Choose Your Plan|Escolha seu plano|Elige tu plan|Choisissez votre offre|Wähle dein Abo|Scegli il tuo piano
+Every plan opens the whole academy. Plans change how much you can train per day and what you can take into the field.|Todos os planos dão acesso à academia inteira. O plano define quanto você pode treinar por dia e o que pode levar para campo.|Todos los planes abren la academia completa. Cambian cuánto puedes entrenar al día y qué puedes llevar al campo.|Toutes les offres donnent accès à l'ensemble de l'académie. Elles déterminent votre volume quotidien d'entraînement et ce que vous pouvez emporter sur le terrain.|Jedes Abo öffnet die gesamte Akademie. Die Abos bestimmen, wie viel du täglich trainieren und was du mit ins Gelände nehmen kannst.|Ogni piano apre l'intera accademia. I piani determinano quanto puoi allenarti al giorno e cosa puoi portare sul campo.
+Preparing secure checkout…|Preparando pagamento seguro…|Preparando pago seguro…|Préparation du paiement sécurisé…|Sichere Zahlung wird vorbereitet…|Preparazione del pagamento sicuro…
+Processing payment…|Processando pagamento…|Procesando pago…|Traitement du paiement…|Zahlung wird verarbeitet…|Elaborazione del pagamento…
+We're still confirming your payment with the bank.|Ainda estamos confirmando seu pagamento com o banco.|Aún estamos confirmando tu pago con el banco.|Nous confirmons encore votre paiement auprès de la banque.|Wir bestätigen deine Zahlung noch mit der Bank.|Stiamo ancora confermando il pagamento con la banca.
+Payment received — confirming your subscription…|Pagamento recebido — confirmando assinatura…|Pago recibido: confirmando tu suscripción…|Paiement reçu : confirmation de l'abonnement…|Zahlung erhalten. Abonnement wird bestätigt…|Pagamento ricevuto: conferma dell'abbonamento…
+Your plan activates automatically the moment the payment clears. This can take a moment.|Seu plano é ativado automaticamente assim que o pagamento for compensado. Isso pode levar alguns instantes.|Tu plan se activa automáticamente al confirmarse el pago. Puede tardar un momento.|Votre offre s'active automatiquement dès que le paiement est validé. Cela peut prendre un instant.|Dein Abo wird automatisch aktiviert, sobald die Zahlung eingegangen ist. Das kann einen Moment dauern.|Il piano si attiva automaticamente quando il pagamento viene confermato. Potrebbe richiedere qualche istante.
+Your plan activates as soon as Stripe confirms the payment.|Seu plano é ativado assim que o Stripe confirmar o pagamento.|Tu plan se activa en cuanto Stripe confirma el pago.|Votre offre s'active dès que Stripe confirme le paiement.|Dein Abo wird aktiviert, sobald Stripe die Zahlung bestätigt.|Il piano si attiva non appena Stripe conferma il pagamento.
+Check status|Verificar status|Comprobar estado|Vérifier le statut|Status prüfen|Verifica stato
+{{value0}} plan is active — paid features are available right now.|O plano {{value0}} está ativo — os recursos pagos já estão disponíveis.|El plan {{value0}} está activo: las funciones de pago ya están disponibles.|L'offre {{value0}} est active : les fonctionnalités payantes sont disponibles.|Das Abo {{value0}} ist aktiv. Kostenpflichtige Funktionen sind jetzt verfügbar.|Il piano {{value0}} è attivo: le funzionalità a pagamento sono disponibili.
+Your|Seu|Tu|Votre|Dein|Il tuo
+plan is active — paid features are available right now.|plano está ativo — os recursos pagos já estão disponíveis.|plan está activo: las funciones de pago ya están disponibles.|offre est active : les fonctionnalités payantes sont disponibles.|Abo ist aktiv. Kostenpflichtige Funktionen sind jetzt verfügbar.|piano è attivo: le funzionalità a pagamento sono disponibili.
+Payment failed|Pagamento falhou|Pago fallido|Échec du paiement|Zahlung fehlgeschlagen|Pagamento non riuscito
+{{value0}} No charge was made.|{{value0}} Nenhuma cobrança foi realizada.|{{value0}} No se ha realizado ningún cargo.|{{value0}} Aucun montant n'a été débité.|{{value0}} Es wurde nichts abgebucht.|{{value0}} Non è stato effettuato alcun addebito.
+No charge was made.|Nenhuma cobrança foi realizada.|No se ha realizado ningún cargo.|Aucun montant n'a été débité.|Es wurde nichts abgebucht.|Non è stato effettuato alcun addebito.
+Working…|Processando…|Procesando…|Traitement…|Wird bearbeitet…|Elaborazione…
+Downgrade to Free|Mudar para Free|Cambiar a Free|Passer à Free|Zu Free wechseln|Passa a Free
+Upgrade to Operator|Mudar para Operator|Cambiar a Operator|Passer à Operator|Zu Operator wechseln|Passa a Operator
+Choose {{value0}}|Escolher {{value0}}|Elegir {{value0}}|Choisir {{value0}}|{{value0}} wählen|Scegli {{value0}}
+Detail|Detalhes|Detalles|Détails|Details|Dettagli
+Feature Comparison|Comparação de recursos|Comparación de funciones|Comparaison des fonctionnalités|Funktionsvergleich|Confronto delle funzionalità
+Plan feature comparison|Comparação de recursos dos planos|Comparación de funciones de los planes|Comparaison des fonctionnalités des offres|Abo-Funktionsvergleich|Confronto delle funzionalità dei piani
+Feature|Recurso|Función|Fonctionnalité|Funktion|Funzionalità
+Cancel anytime. No long-term contract.|Cancele quando quiser. Sem contrato de longo prazo.|Cancela cuando quieras. Sin contrato a largo plazo.|Résiliez à tout moment. Sans engagement à long terme.|Jederzeit kündbar. Kein langfristiger Vertrag.|Annulla quando vuoi. Nessun contratto a lungo termine.
+Downgrade to the Free plan?|Mudar para o plano Free?|¿Cambiar al plan Free?|Passer à l'offre Free ?|Zum Free-Abo wechseln?|Passare al piano Free?
+Your {{value0}} plan stays active until {{value1}}. After that you'll be on the Free plan — one lesson and one quiz per day, and no PDF downloads. You can upgrade again any time.|Seu plano {{value0}} fica ativo até {{value1}}. Depois, você passa ao plano Free — uma aula e um quiz por dia, sem downloads de PDF. Você pode melhorar seu plano novamente a qualquer momento.|Tu plan {{value0}} sigue activo hasta {{value1}}. Después tendrás Free: una lección y un cuestionario al día, sin descargas de PDF. Puedes volver a mejorar tu plan cuando quieras.|Votre offre {{value0}} reste active jusqu'au {{value1}}. Vous passerez ensuite à Free : une leçon et un quiz par jour, sans téléchargement de PDF. Vous pourrez changer d'offre à tout moment.|Dein Abo {{value0}} bleibt bis {{value1}} aktiv. Danach nutzt du Free: eine Lektion und ein Quiz pro Tag, ohne PDF-Downloads. Du kannst dein Abo jederzeit wieder erweitern.|Il piano {{value0}} resta attivo fino al {{value1}}. Poi passerai a Free: una lezione e un quiz al giorno, senza download di PDF. Potrai passare di nuovo a un piano superiore quando vuoi.
+Your paid plan stays active until the current period ends. After that you'll be on the Free plan.|Seu plano pago fica ativo até o fim do período atual. Depois, você passa ao plano Free.|Tu plan de pago sigue activo hasta terminar el período actual. Después tendrás Free.|Votre offre payante reste active jusqu'à la fin de la période en cours. Vous passerez ensuite à Free.|Dein kostenpflichtiges Abo bleibt bis zum Ende des aktuellen Zeitraums aktiv. Danach nutzt du Free.|Il piano a pagamento resta attivo fino alla fine del periodo corrente. Poi passerai a Free.
+Keep my plan|Manter meu plano|Mantener mi plan|Conserver mon offre|Mein Abo behalten|Mantieni il mio piano
+Payments are processed by Stripe.|Os pagamentos são processados pelo Stripe.|Los pagos se procesan con Stripe.|Les paiements sont traités par Stripe.|Zahlungen werden über Stripe abgewickelt.|I pagamenti vengono elaborati da Stripe.
+Billing is not configured in this environment — no payment is processed on this page.|A cobrança não está configurada neste ambiente — nenhum pagamento é processado nesta página.|La facturación no está configurada en este entorno: no se procesa ningún pago en esta página.|La facturation n'est pas configurée dans cet environnement : aucun paiement n'est traité sur cette page.|Die Abrechnung ist in dieser Umgebung nicht eingerichtet. Auf dieser Seite werden keine Zahlungen verarbeitet.|La fatturazione non è configurata in questo ambiente: nessun pagamento viene elaborato in questa pagina.

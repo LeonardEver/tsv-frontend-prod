@@ -503,6 +503,7 @@ function slugFor(route: string): string {
  * maps the page-title invariant to the plain h1 for these two.
  */
 const HANDROLLED_H1_ROUTES: ReadonlySet<string> = new Set([
+  "/gamification",
   "/modules/WAT-boiling/quiz",
   "/community/posts/1",
 ]);
@@ -510,6 +511,8 @@ const HANDROLLED_H1_ROUTES: ReadonlySet<string> = new Set([
 test.describe("Phase 24 visual QA", () => {
   for (const route of ROUTES) {
     test(`desktop: ${route} renders without overflow or console errors`, async ({ page }) => {
+      // Stripe is external to this mocked visual check. Avoid network telemetry noise.
+      await page.route("https://m.stripe.com/**", route => route.fulfill({ status: 200, body: "{}" }));
       mockApi(page);
       const errors: string[] = [];
       page.on("console", (msg) => {

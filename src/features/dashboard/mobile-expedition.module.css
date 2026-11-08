@@ -1,0 +1,40 @@
+.expedition { position: relative; isolation: isolate; min-height: calc(100dvh - 9rem); margin: -1.5rem -1rem -3rem; overflow: clip; }
+.landscape { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; object-position: center bottom; opacity: .85; }
+.expedition::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, var(--background) 0%, color-mix(in oklab, var(--background) 95%, transparent) 20%, color-mix(in oklab, var(--background) 78%, transparent) 58%, color-mix(in oklab, var(--background) 25%, transparent) 84%, var(--background) 100%); }
+.content { padding: 1.5rem 1.4rem 2rem; max-width: 38rem; margin: auto; }
+.trailLabel { display: flex; align-items: center; justify-content: space-between; gap: .5rem; margin-bottom: 1.5rem; color: var(--muted-foreground); font: 500 .6rem/1.4 var(--font-mono); letter-spacing: .12em; }
+.trailLabel span { display: flex; align-items: center; gap: .4rem; }
+.trailLabel .streak { color: var(--primary); font-family: var(--font-sans); font-size: .8rem; font-weight: 600; letter-spacing: 0; }
+.heading { display: flex; align-items: flex-start; gap: .9rem; }
+.regionIcon { display: grid; place-items: center; flex: none; width: 2.8rem; height: 2.8rem; border: 1.5px solid var(--muted-foreground); border-radius: 50%; }
+.heading h1 { font: 600 1.35rem/1.25 var(--font-display); text-transform: uppercase; letter-spacing: .035em; }
+.heading p { margin-top: .5rem; max-width: 30ch; color: var(--muted-foreground); font-size: .95rem; line-height: 1.5; }
+.progress { height: .45rem; margin-top: 1.5rem; background: var(--surface-3); border-radius: 2rem; overflow: hidden; }
+.progress span { display: block; height: 100%; background: var(--success); border-radius: inherit; }
+.progressCopy { display: flex; justify-content: space-between; margin-top: .65rem; color: var(--muted-foreground); font-size: .85rem; }
+.progressCopy strong { font-weight: 500; }
+.path { margin-top: 1.5rem; padding: 0; list-style: none; }
+.stop { position: relative; display: grid; grid-template-columns: 2.8rem minmax(0,1fr); column-gap: .9rem; min-height: 6.7rem; padding: 1rem .5rem; }
+.connector { position: absolute; width: 4px; left: 1.82rem; top: 3rem; bottom: -1.25rem; background: color-mix(in oklab, var(--muted-foreground) 35%, transparent); }
+.stop:last-child .connector { display: none; }
+.completed .connector { background: var(--success); }
+.current .connector { background: linear-gradient(var(--primary), color-mix(in oklab, var(--muted-foreground) 35%, transparent)); }
+.marker { position: relative; display: grid; place-items: center; width: 2.8rem; height: 2.8rem; border: 2px solid color-mix(in oklab, var(--muted-foreground) 60%, transparent); background: var(--background); border-radius: 50%; color: var(--muted-foreground); box-shadow: 0 0 0 4px color-mix(in oklab, var(--background) 70%, transparent); }
+.completed .marker { border-color: var(--background); background: var(--success); color: var(--background); outline: 2px solid var(--success); }
+.current { margin: .25rem -.4rem .5rem; padding: 1.2rem .9rem; border: 1px solid color-mix(in oklab, var(--primary) 50%, transparent); border-radius: 1rem; background: linear-gradient(120deg, color-mix(in oklab, var(--primary) 10%, var(--background)), color-mix(in oklab, var(--background) 80%, transparent)); }
+.current .connector { left: 2.22rem; }
+.current .marker { color: var(--background); background: var(--primary); border-color: var(--background); outline: 2px solid var(--primary); box-shadow: 0 0 22px -5px var(--primary); }
+.stopContent { min-width: 0; padding-top: .2rem; }
+.stopContent h2 { font: 500 1.05rem/1.35 var(--font-display); }
+.stopContent p { margin-top: .35rem; color: var(--muted-foreground); font-size: .9rem; line-height: 1.45; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.currentLabel { display: block; margin-bottom: .45rem; color: var(--primary); font: 600 .58rem/1.2 var(--font-mono); letter-spacing: .12em; }
+.continue { display: flex; justify-content: center; align-items: center; gap: .5rem; min-height: 2.8rem; margin-top: 1rem; padding: .6rem .5rem; border-radius: .6rem; background: var(--primary); color: var(--primary-foreground); box-shadow: 0 3px 0 color-mix(in oklab, var(--primary) 65%, black); font: 600 .9rem/1.2 var(--font-display); text-transform: uppercase; letter-spacing: .045em; }
+.continue:active { transform: translateY(2px); box-shadow: none; }
+.done { display: flex; align-items: center; gap: .3rem; margin-top: .4rem; font-size: .7rem; color: var(--success); }
+.motto { margin-top: 2rem; color: var(--muted-foreground); text-align: center; font: 500 .55rem/1.4 var(--font-mono); letter-spacing: .18em; }
+.allMissions { display: flex; align-items: center; justify-content: center; gap: .5rem; min-height: 2.75rem; margin-top: 1rem; font-size: .85rem; color: var(--muted-foreground); }
+.daily { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .75rem; margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--border); color: var(--muted-foreground); font-size: .75rem; }
+.daily a { display: flex; align-items: center; gap: .3rem; color: var(--primary); }
+:global([data-theme="light"]) .landscape { opacity: .18; }
+@media (min-width: 40rem) { .expedition { margin-inline: -1.5rem; } }
+@media (min-width: 48rem) { .expedition { display: none; } }

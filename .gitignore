@@ -28,6 +28,9 @@ Thumbs.db
 *.log
 *.tsbuildinfo
 
+# Local implementation staging and source backups
+tmp/
+
 # Claude
 .claude/
 

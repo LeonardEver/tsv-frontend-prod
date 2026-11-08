@@ -5,8 +5,10 @@
 import type { CategoryDetailResponse, CategoryListResponse } from "@/lib/api/types";
 import type { CategoryCardModel, MissionCardModel } from "@/components/sa/types";
 import { categoryDescription, categoryImage, categoryTagline } from "@/lib/category-visuals";
+import { moduleImage } from "@/lib/module-visuals";
 import { formatDifficulty } from "@/lib/format/format";
 import { getCategoryIdentity } from "./category-identity";
+import { subcategoryTitle } from "@/i18n/subcategories";
 
 type CategoryRow = CategoryListResponse["categories"][number];
 type ModuleRow = CategoryDetailResponse["subcategories"][number]["modules"][number];
@@ -29,8 +31,7 @@ export function categoryCardModel(row: CategoryRow): CategoryCardModel {
 
 /** Display label for a subcategory slug ("fire-starting" → "Fire-starting"). */
 export function subcategoryLabel(slug: string): string {
-  const words = slug.replaceAll("-", " ");
-  return words.charAt(0).toUpperCase() + words.slice(1);
+  return subcategoryTitle(slug);
 }
 
 /** /categories/{slug} module row → MissionCardModel. Detail rows carry
@@ -51,7 +52,7 @@ export function missionCardModelFromDetailRow(
     minutes: row.estimated_duration ?? 0,
     progress,
     status: row.completed ? "complete" : progress > 0 ? "in-progress" : "available",
-    image: categoryImage(categoryCode),
+    image: moduleImage(row.module_id),
     to: `/modules/${row.module_id}`,
   };
 }

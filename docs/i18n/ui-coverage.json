@@ -1,0 +1,404 @@
+{
+  "en": {
+    "admin": {
+      "translated": 490,
+      "source": 490,
+      "missing": []
+    },
+    "authentication": {
+      "translated": 80,
+      "source": 80,
+      "missing": []
+    },
+    "common": {
+      "translated": 123,
+      "source": 123,
+      "missing": []
+    },
+    "community": {
+      "translated": 89,
+      "source": 89,
+      "missing": []
+    },
+    "dashboard": {
+      "translated": 82,
+      "source": 82,
+      "missing": []
+    },
+    "errors": {
+      "translated": 55,
+      "source": 55,
+      "missing": []
+    },
+    "learning": {
+      "translated": 374,
+      "source": 374,
+      "missing": []
+    },
+    "navigation": {
+      "translated": 44,
+      "source": 44,
+      "missing": []
+    },
+    "progress": {
+      "translated": 79,
+      "source": 79,
+      "missing": []
+    },
+    "public": {
+      "translated": 176,
+      "source": 176,
+      "missing": []
+    },
+    "rewards": {
+      "translated": 47,
+      "source": 47,
+      "missing": []
+    },
+    "settings": {
+      "translated": 78,
+      "source": 78,
+      "missing": []
+    },
+    "subscriptions": {
+      "translated": 85,
+      "source": 85,
+      "missing": []
+    }
+  },
+  "pt-BR": {
+    "admin": {
+      "translated": 490,
+      "source": 490,
+      "missing": []
+    },
+    "authentication": {
+      "translated": 80,
+      "source": 80,
+      "missing": []
+    },
+    "common": {
+      "translated": 123,
+      "source": 123,
+      "missing": []
+    },
+    "community": {
+      "translated": 89,
+      "source": 89,
+      "missing": []
+    },
+    "dashboard": {
+      "translated": 82,
+      "source": 82,
+      "missing": []
+    },
+    "errors": {
+      "translated": 55,
+      "source": 55,
+      "missing": []
+    },
+    "learning": {
+      "translated": 374,
+      "source": 374,
+      "missing": []
+    },
+    "navigation": {
+      "translated": 44,
+      "source": 44,
+      "missing": []
+    },
+    "progress": {
+      "translated": 79,
+      "source": 79,
+      "missing": []
+    },
+    "public": {
+      "translated": 176,
+      "source": 176,
+      "missing": []
+    },
+    "rewards": {
+      "translated": 47,
+      "source": 47,
+      "missing": []
+    },
+    "settings": {
+      "translated": 78,
+      "source": 78,
+      "missing": []
+    },
+    "subscriptions": {
+      "translated": 85,
+      "source": 85,
+      "missing": []
+    }
+  },
+  "es": {
+    "admin": {
+      "translated": 490,
+      "source": 490,
+      "missing": []
+    },
+    "authentication": {
+      "translated": 80,
+      "source": 80,
+      "missing": []
+    },
+    "common": {
+      "translated": 123,
+      "source": 123,
+      "missing": []
+    },
+    "community": {
+      "translated": 89,
+      "source": 89,
+      "missing": []
+    },
+    "dashboard": {
+      "translated": 82,
+      "source": 82,
+      "missing": []
+    },
+    "errors": {
+      "translated": 55,
+      "source": 55,
+      "missing": []
+    },
+    "learning": {
+      "translated": 374,
+      "source": 374,
+      "missing": []
+    },
+    "navigation": {
+      "translated": 44,
+      "source": 44,
+      "missing": []
+    },
+    "progress": {
+      "translated": 79,
+      "source": 79,
+      "missing": []
+    },
+    "public": {
+      "translated": 176,
+      "source": 176,
+      "missing": []
+    },
+    "rewards": {
+      "translated": 47,
+      "source": 47,
+      "missing": []
+    },
+    "settings": {
+      "translated": 78,
+      "source": 78,
+      "missing": []
+    },
+    "subscriptions": {
+      "translated": 85,
+      "source": 85,
+      "missing": []
+    }
+  },
+  "fr": {
+    "admin": {
+      "translated": 490,
+      "source": 490,
+      "missing": []
+    },
+    "authentication": {
+      "translated": 80,
+      "source": 80,
+      "missing": []
+    },
+    "common": {
+      "translated": 123,
+      "source": 123,
+      "missing": []
+    },
+    "community": {
+      "translated": 89,
+      "source": 89,
+      "missing": []
+    },
+    "dashboard": {
+      "translated": 82,
+      "source": 82,
+      "missing": []
+    },
+    "errors": {
+      "translated": 55,
+      "source": 55,
+      "missing": []
+    },
+    "learning": {
+      "translated": 374,
+      "source": 374,
+      "missing": []
+    },
+    "navigation": {
+      "translated": 44,
+      "source": 44,
+      "missing": []
+    },
+    "progress": {
+      "translated": 79,
+      "source": 79,
+      "missing": []
+    },
+    "public": {
+      "translated": 176,
+      "source": 176,
+      "missing": []
+    },
+    "rewards": {
+      "translated": 47,
+      "source": 47,
+      "missing": []
+    },
+    "settings": {
+      "translated": 78,
+      "source": 78,
+      "missing": []
+    },
+    "subscriptions": {
+      "translated": 85,
+      "source": 85,
+      "missing": []
+    }
+  },
+  "de": {
+    "admin": {
+      "translated": 490,
+      "source": 490,
+      "missing": []
+    },
+    "authentication": {
+      "translated": 80,
+      "source": 80,
+      "missing": []
+    },
+    "common": {
+      "translated": 123,
+      "source": 123,
+      "missing": []
+    },
+    "community": {
+      "translated": 89,
+      "source": 89,
+      "missing": []
+    },
+    "dashboard": {
+      "translated": 82,
+      "source": 82,
+      "missing": []
+    },
+    "errors": {
+      "translated": 55,
+      "source": 55,
+      "missing": []
+    },
+    "learning": {
+      "translated": 374,
+      "source": 374,
+      "missing": []
+    },
+    "navigation": {
+      "translated": 44,
+      "source": 44,
+      "missing": []
+    },
+    "progress": {
+      "translated": 79,
+      "source": 79,
+      "missing": []
+    },
+    "public": {
+      "translated": 176,
+      "source": 176,
+      "missing": []
+    },
+    "rewards": {
+      "translated": 47,
+      "source": 47,
+      "missing": []
+    },
+    "settings": {
+      "translated": 78,
+      "source": 78,
+      "missing": []
+    },
+    "subscriptions": {
+      "translated": 85,
+      "source": 85,
+      "missing": []
+    }
+  },
+  "it": {
+    "admin": {
+      "translated": 490,
+      "source": 490,
+      "missing": []
+    },
+    "authentication": {
+      "translated": 80,
+      "source": 80,
+      "missing": []
+    },
+    "common": {
+      "translated": 123,
+      "source": 123,
+      "missing": []
+    },
+    "community": {
+      "translated": 89,
+      "source": 89,
+      "missing": []
+    },
+    "dashboard": {
+      "translated": 82,
+      "source": 82,
+      "missing": []
+    },
+    "errors": {
+      "translated": 55,
+      "source": 55,
+      "missing": []
+    },
+    "learning": {
+      "translated": 374,
+      "source": 374,
+      "missing": []
+    },
+    "navigation": {
+      "translated": 44,
+      "source": 44,
+      "missing": []
+    },
+    "progress": {
+      "translated": 79,
+      "source": 79,
+      "missing": []
+    },
+    "public": {
+      "translated": 176,
+      "source": 176,
+      "missing": []
+    },
+    "rewards": {
+      "translated": 47,
+      "source": 47,
+      "missing": []
+    },
+    "settings": {
+      "translated": 78,
+      "source": 78,
+      "missing": []
+    },
+    "subscriptions": {
+      "translated": 85,
+      "source": 85,
+      "missing": []
+    }
+  }
+}

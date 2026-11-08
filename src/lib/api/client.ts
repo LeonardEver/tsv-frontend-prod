@@ -15,6 +15,8 @@
  * NO business logic lives here — just transport + error normalization.
  */
 import { API_BASE } from "../config/env";
+import { getLocale } from "@/i18n";
+import type { Locale } from "@/i18n/config";
 import {
   ApiError,
   NetworkError,
@@ -69,8 +71,9 @@ function parseRetryAfter(header: string | null): number | undefined {
   return Number.isFinite(sec) && sec >= 0 ? sec : undefined;
 }
 
-async function doFetch(path: string, options: RequestOptions, timeoutMs: number): Promise<RawResponse> {
+async function doFetch(path: string, options: RequestOptions, timeoutMs: number, locale: Locale): Promise<RawResponse> {
   const headers = new Headers();
+  headers.set("Accept-Language", locale);
   if (options.body !== undefined) headers.set("Content-Type", "application/json");
   if (options.idempotencyKey) headers.set("Idempotency-Key", options.idempotencyKey);
 
@@ -127,6 +130,7 @@ async function doFetch(path: string, options: RequestOptions, timeoutMs: number)
  * Perform one request with retry policy applied for idempotent GETs only.
  */
 export async function request<T>(path: string, options: RequestOptions = {}): Promise<T> {
+  const locale = getLocale();
   const method = options.method ?? "GET";
   const isRead = method === "GET";
   const timeoutMs = options.timeoutMs ?? (isRead ? READ_TIMEOUT_MS : MUTATION_TIMEOUT_MS);
@@ -137,7 +141,7 @@ export async function request<T>(path: string, options: RequestOptions = {}): Pr
   for (let attempt = 0; attempt < attempts; attempt++) {
     let raw: RawResponse;
     try {
-      raw = await doFetch(path, options, timeoutMs);
+      raw = await doFetch(path, options, timeoutMs, locale);
     } catch (err) {
       lastError = err instanceof Error ? normalizeThrow(err) : new NetworkError("Request failed");
       if (attempt < attempts - 1 && isRetryable(lastError)) {

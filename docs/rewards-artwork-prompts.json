@@ -1,0 +1,40 @@
+{
+  "method": "Built-in image generation; proportionally resized local JPEG landscapes and transparent PNG medals",
+  "assets": [
+    {
+      "name": "camp",
+      "path": "src/assets/rewards-camp.jpg",
+      "width": 1920,
+      "source": "C:\\Users\\leoar\\.codex\\generated_images\\01a1b8a9-f9a0-7ba3-99d1-a6e1013abb45\\exec-f75de262-1e35-4228-9df9-e1c1311516d2.png",
+      "prompt": "Use case: photorealistic-natural. Asset type: wide cinematic hero background for the Rewards page of Survival Academy, a premium dark teal and amber survival learning dashboard. Generate ONE ultra-wide 3:1 landscape photograph, 1920 by 640 requested. Vast snow-dusted rugged mountains at sunset, layered dark evergreen forests, a warm orange-lit small canvas tent on a rocky overlook at the RIGHTMOST QUARTER, a brass camping lantern and weathered outdoor backpack near the tent. No people. Moody teal-black shadows, dramatic warm amber sunset and tent light, realistic editorial outdoor photography. The left half and central lower band must be especially dark and visually quiet for a large level badge and white title to be placed by the website. CRITICAL CROP-SAFE COMPOSITION: tent, lantern and backpack relatively small, entirely within the middle vertical 40 percent of the image, y=30% to y=70%, on the right; ample sky above and dark rocks below. Mountain peaks along the central horizontal band so a shallow panoramic web header can crop sky and foreground without cutting important subjects. No words, text, lettering, logos, watermark, badges, UI, numbers or frames."
+    },
+    {
+      "name": "gold",
+      "path": "src/assets/rewards-badge-gold.png",
+      "width": 384,
+      "source": "C:\\Users\\leoar\\.codex\\generated_images\\01a1b8a9-f9a0-7ba3-99d1-a6e1013abb45\\exec-247a2e57-7e90-4f44-b819-ba8a80249dc0.png",
+      "prompt": "Use case: product-mockup. Asset type: transparent background 3D achievement medal frame for a survival learning application. One centered symmetrical HEXAGONAL SHIELD badge with an elegant metallic bronze and gold beveled double rim, dark charcoal slightly textured blank metal inset face, and gold laurel branches embracing the outside lower left and right edges. Front view, no perspective tilt. Premium realistic 3D game achievement craftsmanship, brushed gold edges, subtle engraved fine lines and amber rim highlights, dark face for a white or gold live icon or number to be overlaid by the website. Shield points downward slightly at the bottom, with six sides; badge silhouette like a sturdy expedition insignia, not a round medal. Keep the central 60 percent completely EMPTY and visually quiet, no symbol, no mountain, no icon, no number, no text. Badge fills 80 percent of a square canvas with generous transparent padding on every edge, fully visible laurels, no cropping, no background plate. Soft realistic depth and highlights. Real transparent background, alpha cutout. No text, lettering, logos, watermark, ribbons, UI, sparkle stars or additional objects."
+    },
+    {
+      "name": "silver",
+      "path": "src/assets/rewards-badge-silver.png",
+      "width": 384,
+      "source": "C:\\Users\\leoar\\.codex\\generated_images\\01a1b8a9-f9a0-7ba3-99d1-a6e1013abb45\\exec-40cd27f0-6ce4-4d40-b2ed-a2bb33747234.png",
+      "prompt": "Use case: product-mockup. Asset type: transparent background 3D locked achievement medal frame for a survival learning application. One centered symmetrical HEXAGONAL SHIELD badge with a realistic cool brushed silver and weathered gunmetal beveled double rim, dark charcoal slightly textured blank metal inset face, and silver laurel branches embracing the outside lower left and right edges. Front view, no perspective tilt. Premium realistic 3D game achievement craftsmanship with subtle engraved fine lines, restrained silver highlights and a dark face for a live silver icon to be overlaid by the website. Shield points downward slightly at bottom, with six sides; sturdy expedition insignia, not a round medal. Keep the central 60 percent completely EMPTY and visually quiet, no symbol, no mountain, no icon, no number, no text. Badge fills 80 percent of a square canvas with generous transparent padding on every edge, fully visible laurels, no cropping, no background plate. Soft realistic depth and highlights. Real transparent background, alpha cutout. No text, lettering, logos, watermark, ribbons, UI, sparkle stars or additional objects."
+    },
+    {
+      "name": "stream",
+      "path": "src/assets/rewards-stream.jpg",
+      "width": 1200,
+      "source": "C:\\Users\\leoar\\.codex\\generated_images\\01a1b8a9-f9a0-7ba3-99d1-a6e1013abb45\\exec-82e8dc6a-0ac5-4887-9aa5-74fe5f3c3301.png",
+      "prompt": "Use case: photorealistic-natural. Asset type: photographic backdrop for Water-themed achievement cards on a dark survival learning Rewards dashboard. One very wide 3:1 cinematic photograph, 1536 by 512 requested. A clear rocky forest stream flowing through a misty evergreen woodland, mossy stones and small rapids concentrated on the RIGHTMOST THIRD, deep dark teal and muted blue natural light, realistic editorial wilderness photography. Left two thirds especially dark and low contrast, quiet evergreen shadows providing room for a medal icon and title. Stream highlights restrained and delicate, never bright white dominating the image. Natural lush forest atmosphere and depth. No people, equipment, text, words, numbers, logos, watermark, UI, frames or collage."
+    },
+    {
+      "name": "earned",
+      "path": "src/assets/rewards-earned.jpg",
+      "width": 1200,
+      "source": "C:\\Users\\leoar\\.codex\\generated_images\\01a1b8a9-f9a0-7ba3-99d1-a6e1013abb45\\exec-0815394c-21cf-49b0-a9f7-51b9bf06f9fb.png",
+      "prompt": "Use case: photorealistic-natural. Asset type: cinematic backdrop for an unlocked achievement card on a premium survival learning Rewards dashboard. One very wide 3:1 photograph, 1536 by 512 requested. A rugged pine forest valley at amber sunset with a rocky trail leading toward distant mountains and a few tiny glowing ember particles drifting along the lower edge. Warm gold and orange sunset light concentrated in the RIGHTMOST THIRD behind silhouettes of evergreen trees. Deep charcoal and teal-black shadows across the left two thirds, especially dark and low contrast for a large golden medal and white title. Inviting sense of accomplishment, rich natural texture, realistic cinematic outdoor editorial photography, restrained glow. No tents, equipment, people, giant fire, text, lettering, numbers, logos, watermark, UI, badges, frames or collage."
+    }
+  ]
+}

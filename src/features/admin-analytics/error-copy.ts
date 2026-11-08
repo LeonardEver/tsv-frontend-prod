@@ -1,15 +1,14 @@
 /**
  * Admin-analytics wording for the shared error surface.
  *
- * `ErrorState` renders copy from `lib/api/error-map`, which is the public
- * SaaS voice and stays English. This module supplies a translated
- * alternative for the admin console only, passed to `ErrorState` as its
- * optional `explain` prop — no public route is touched.
+ * `ErrorState` renders localized copy from `lib/api/error-map`. This module
+ * supplies analytics-specific terminology through its optional `explain`
+ * prop and shares the application's language preference.
  *
  * The public map's catalogue is login, billing and entitlement copy that
  * cannot occur on an admin read; the codes an analytics request can
  * actually return are the ones handled here. Anything else falls through
- * to the public map, which is English rather than misleading.
+ * to the localized shared map.
  */
 import { ApiError, NetworkError, TimeoutError } from "@/lib/api/errors";
 import { describeError, type ErrorCopy } from "@/lib/api/error-map";

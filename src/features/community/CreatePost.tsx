@@ -4,6 +4,8 @@
  * sanitizes on write; errors (rate limit, invalid input) surface inline
  * via the stable error codes.
  */
+import { tr as uiText, useLocale as useInterfaceLocale } from "@/i18n";
+import { communityCategoryTitle } from "@/i18n/community-category";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { useMutation, useQuery } from "@tanstack/react-query";
@@ -21,6 +23,7 @@ const TITLE_MAX = 120;
 const BODY_MAX = 8000;
 
 export default function CreatePostPage() {
+  useInterfaceLocale();
   const navigate = useNavigate();
   const [categoryCode, setCategoryCode] = useState("");
   const [title, setTitle] = useState("");
@@ -58,7 +61,7 @@ export default function CreatePostPage() {
   }
   if (!entitled) {
     return (
-      <div role="status" aria-label="Loading community" className="space-y-4">
+      <div role="status" aria-label={uiText("community:loading_community_e0888d")} className="space-y-4">
         <div className="panel h-12 animate-pulse" aria-hidden="true" />
         <div className="panel h-64 animate-pulse" aria-hidden="true" />
       </div>
@@ -82,16 +85,14 @@ export default function CreatePostPage() {
 
   return (
     <div className="mx-auto max-w-3xl">
-      <nav aria-label="Breadcrumb" className="mb-4 font-mono text-[11px] tracking-widest uppercase">
-        <Link to="/community" className="text-muted-foreground hover:text-foreground">
-          ← Community
-        </Link>
+      <nav aria-label={uiText("community:breadcrumb_c766e6")} className="mb-4 font-mono text-[11px] tracking-widest uppercase">
+        <Link to="/community" className="text-muted-foreground hover:text-foreground">{uiText("community:community_1cf6a3")}</Link>
       </nav>
 
       <PageHeader
-        eyebrow="Community"
-        title="New Discussion"
-        description="Share a question, field report or technique with other members."
+        eyebrow={uiText("community:community_bfd58e")}
+        title={uiText("community:new_discussion_9ae347")}
+        description={uiText("community:share_a_question_field_report_or_technique_4b56f6")}
       />
 
       <form
@@ -108,7 +109,7 @@ export default function CreatePostPage() {
       >
         <div className="panel space-y-4 p-5 sm:p-6">
           <div className="space-y-1.5">
-            <Label htmlFor="cp-topic">Category</Label>
+            <Label htmlFor="cp-topic">{uiText("community:category_a3c686")}</Label>
             <select
               id="cp-topic"
               required
@@ -116,12 +117,10 @@ export default function CreatePostPage() {
               value={categoryCode}
               onChange={(e) => { setCategoryCode(e.target.value); }}
             >
-              <option value="" disabled>
-                Choose a category…
-              </option>
+              <option value="" disabled>{uiText("community:choose_a_category_0f6f94")}</option>
               {categories.map((c) => (
                 <option key={c.code} value={c.code}>
-                  {c.name}
+                  {communityCategoryTitle(c.code, c.name)}
                 </option>
               ))}
             </select>
@@ -129,7 +128,7 @@ export default function CreatePostPage() {
 
           <div className="space-y-1.5">
             <div className="flex items-baseline justify-between gap-3">
-              <Label htmlFor="cp-title">Title</Label>
+              <Label htmlFor="cp-title">{uiText("community:title_768e0c")}</Label>
               <span className="font-mono text-xs text-muted-foreground">
                 {title.length}/{TITLE_MAX}
               </span>
@@ -140,13 +139,13 @@ export default function CreatePostPage() {
               value={title}
               maxLength={TITLE_MAX}
               onChange={(e) => { setTitle(e.target.value); }}
-              placeholder="A clear question or field note"
+              placeholder={uiText("community:a_clear_question_or_field_note_8e4f8c")}
             />
           </div>
 
           <div className="space-y-1.5">
             <div className="flex items-baseline justify-between gap-3">
-              <Label htmlFor="cp-body">Body</Label>
+              <Label htmlFor="cp-body">{uiText("community:body_718a7e")}</Label>
               <span className="font-mono text-xs text-muted-foreground">
                 {body.length}/{BODY_MAX}
               </span>
@@ -158,13 +157,10 @@ export default function CreatePostPage() {
               maxLength={BODY_MAX}
               onChange={(e) => { setBody(e.target.value); }}
               rows={8}
-              placeholder="Share the details — what happened, what worked, what would you ask?"
+              placeholder={uiText("community:share_the_details_what_happened_what_worked_d690d3")}
               className="w-full rounded-lg border border-border bg-surface-2 px-3 py-2 text-sm outline-none placeholder:text-muted-foreground focus:border-primary/50"
             />
-            <p className="text-xs text-muted-foreground">
-              Plain text only — links and formatting are stripped to keep
-              the community safe.
-            </p>
+            <p className="text-xs text-muted-foreground">{uiText("community:plain_text_only_links_and_formatting_are_9018cc")}</p>
           </div>
         </div>
 
@@ -180,14 +176,12 @@ export default function CreatePostPage() {
             disabled={!canSubmit}
             className="glow-ember inline-flex min-h-12 items-center rounded-lg bg-primary px-6 text-sm font-semibold tracking-wide text-primary-foreground uppercase transition-colors hover:bg-primary/90 disabled:opacity-60"
           >
-            {createMutation.isPending ? "Publishing…" : "Publish"}
+            {createMutation.isPending ? uiText("community:publishing_74f811") : uiText("community:publish_565640")}
           </button>
           <Link
             to="/community"
             className="inline-flex min-h-12 items-center rounded-lg border border-border px-5 text-sm font-semibold tracking-wide uppercase transition-colors hover:bg-accent"
-          >
-            Cancel
-          </Link>
+          >{uiText("community:cancel_77dfd2")}</Link>
         </div>
       </form>
     </div>

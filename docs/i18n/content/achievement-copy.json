@@ -1,0 +1,30 @@
+{
+  "first_water_module": {
+    "title": ["💧 Primeiro módulo de água", "💧 Primer módulo de agua", "💧 Premier module Eau", "💧 Erstes Wassermodul", "💧 Primo modulo Acqua"],
+    "description": ["Conclua seu primeiro módulo da categoria Água", "Completa tu primer módulo de la categoría Agua", "Terminez votre premier module de la catégorie Eau", "Schließe dein erstes Modul der Kategorie Wasser ab", "Completa il primo modulo della categoria Acqua"]
+  },
+  "fire_starter": {
+    "title": ["🔥 Acendedor de fogo", "🔥 Iniciador del fuego", "🔥 Allumeur de feu", "🔥 Feuerstarter", "🔥 Accendifuoco"],
+    "description": ["Conclua seu primeiro módulo da categoria Fogo", "Completa tu primer módulo de la categoría Fuego", "Terminez votre premier module de la catégorie Feu", "Schließe dein erstes Modul der Kategorie Feuer ab", "Completa il primo modulo della categoria Fuoco"]
+  },
+  "water_master": {
+    "title": ["🌊 Mestre da água", "🌊 Maestro del agua", "🌊 Maître de l'eau", "🌊 Wassermeister", "🌊 Maestro dell'acqua"],
+    "description": ["Conclua todos os 7 módulos de Água", "Completa los 7 módulos de Agua", "Terminez les 7 modules Eau", "Schließe alle 7 Wassermodule ab", "Completa tutti i 7 moduli Acqua"]
+  },
+  "week_warrior": {
+    "title": ["📅 Guerreiro da semana", "📅 Guerrero de la semana", "📅 Guerrier de la semaine", "📅 Wochenkrieger", "📅 Guerriero della settimana"],
+    "description": ["Mantenha uma sequência de aprendizado de 7 dias", "Mantén una racha de aprendizaje de 7 días", "Maintenez une série d'apprentissage de 7 jours", "Lerne an 7 Tagen in Folge", "Mantieni una serie di apprendimento di 7 giorni"]
+  },
+  "first_quiz_passed": {
+    "title": ["✅ Primeiro quiz aprovado", "✅ Primer cuestionario aprobado", "✅ Premier quiz réussi", "✅ Erstes Quiz bestanden", "✅ Primo quiz superato"],
+    "description": ["Seja aprovado no seu primeiro quiz", "Aprueba tu primer cuestionario", "Réussissez votre premier quiz", "Bestehe dein erstes Quiz", "Supera il tuo primo quiz"]
+  },
+  "quiz_master": {
+    "title": ["🧠 Mestre dos quizzes", "🧠 Maestro de los cuestionarios", "🧠 Maître des quiz", "🧠 Quizmeister", "🧠 Maestro dei quiz"],
+    "description": ["Seja aprovado em 10 quizzes", "Aprueba 10 cuestionarios", "Réussissez 10 quiz", "Bestehe 10 Quiz", "Supera 10 quiz"]
+  },
+  "lesson_scholar": {
+    "title": ["📖 Estudioso das aulas", "📖 Estudioso de las lecciones", "📖 Érudit des leçons", "📖 Lektionsgelehrter", "📖 Studioso delle lezioni"],
+    "description": ["Conclua 5 aulas", "Completa 5 lecciones", "Terminez 5 leçons", "Schließe 5 Lektionen ab", "Completa 5 lezioni"]
+  }
+}

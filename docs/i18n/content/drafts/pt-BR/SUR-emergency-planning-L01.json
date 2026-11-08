@@ -1,0 +1,65 @@
+{
+  "entity_type": "lesson",
+  "entity_id": "SUR-emergency-planning-L01",
+  "title": "Planejamento de emergência familiar",
+  "objectives_heading": "Objetivos de aprendizado",
+  "objectives_intro": "Ao final desta aula, você será capaz de:",
+  "objectives": [
+    "Escrever um plano de emergência doméstico de uma página com todos os seis componentes essenciais",
+    "Definir dois pontos de encontro adequados para um determinado domicílio",
+    "Explicar a sequência de alternativas de comunicação e o papel do contato fora da região",
+    "Registrar regras de decisão de evacuação para eventos desencadeadores comuns",
+    "Programar e realizar ensaios do plano doméstico e a revisão anual",
+    "Analisar um plano doméstico com falhas e corrigir seus pontos fracos"
+  ],
+  "sections": [
+    {
+      "heading": "Conceitos principais",
+      "content": "Antes de começar, estas são as ideias centrais:\n\n- **O plano precisa caber em uma página.** Se precisar de um sumário, ninguém o usará em uma emergência.\n- **Dois pontos de encontro.** Um em casa e outro fora do bairro — porque alguns desastres acontecem onde você mora e outros quando você está longe.\n- **O contato fora da região é a central de comunicação.** As linhas locais ficam congestionadas; chamadas de longa distância muitas vezes conseguem conexão. Uma pessoa fora da região transmite as informações de todos.\n- **Decida sair antes de ser obrigado a isso.** Regras de evacuação por escrito evitam as duas falhas clássicas: sair tarde demais e esperar uma ordem que nunca chega.\n- **Planos se deterioram como os suprimentos.** A data da revisão anual faz parte do plano.\n\n---"
+    },
+    {
+      "heading": "Introdução",
+      "content": "_Tempo estimado: 2 minutos_\n\nA ordem de evacuação chega às 3 da manhã. As crianças estão em duas escolas diferentes. Os telefones indicam \"rede ocupada\". Para onde todos vão? Para quem ligar? O que levar?\n\nTodas essas perguntas podem ser respondidas hoje, por escrito, em uma página — para que, na emergência, os moradores executem o plano em vez de discutir. Esta aula constrói essa página, componente por componente, e depois consolida o plano com ensaios.\n\n---"
+    },
+    {
+      "heading": "Seção 1: Os seis componentes",
+      "content": "_Tempo estimado: 3 minutos_\n\nUm plano completo de uma página contém exatamente seis componentes:\n\n1. **Pontos de encontro** — em casa + externo (Seção 2)\n2. **Contato fora da região** — a central de comunicação (Seção 3)\n3. **Regras de evacuação** — eventos desencadeadores e rota por escrito (Seção 4)\n4. **Alternativas de comunicação** — a sequência ordenada (Seção 3)\n5. **Particularidades dos moradores** — medicamentos, animais de estimação, escolas e desligamento dos serviços da casa\n6. **Data de revisão** — uma data fixa por ano (Seção 5)\n\n### Ponto principal\n\n&gt; **Se não está escrito, não está compartilhado, não pode ser revisado e não é um plano.** Um acordo verbal é uma conversa.\n\n---"
+    },
+    {
+      "heading": "Seção 2: Os dois pontos de encontro",
+      "content": "_Tempo estimado: 3 minutos_\n\n**Ponto de encontro 1 — em casa.** Um local específico e fácil de lembrar: a caixa de correio, a entrada da casa, a varanda de um vizinho. É usado quando os moradores se separam durante um evento que não exige evacuar o bairro — um incêndio doméstico, uma emergência médica — e todos ainda conseguem chegar à região da casa.\n\n**Ponto de encontro 2 — fora do bairro.** Um local identificado fora da provável área de evacuação: a casa de um parente, uma escola, uma biblioteca, um ponto de referência. É usado quando o próprio bairro é a área de perigo — incêndio florestal, inundação ou ordem de evacuação.\n\nRegras de escolha:\n\n- Acessível a pé ou de bicicleta se as estradas estiverem bloqueadas\n- Não estar na direção para a qual sopra o vento vindo de uma área industrial, em uma zona de inundação nem na interface entre vegetação e área urbana (veja [[FIR-safety-K01]] sobre o comportamento dos incêndios florestais)\n- Conhecido por todos os moradores, incluindo crianças — registrado nos cartões de cada um\n\n### Cenário\n\nO ponto de encontro externo de uma família é o grande carvalho no fim da rua. As ameaças realistas da região são a inundação do rio e uma fábrica de produtos químicos a 2 km, na direção de onde sopra o vento.\n\n**O que você faria?** Identifique os problemas e escolha um ponto melhor.\n\n**Orientação:** O carvalho fica fora da casa, mas ainda dentro do bairro — é um segundo ponto próximo de casa, não um ponto externo. As duas ameaças realistas (água da inundação e nuvem química) tornariam o fim da rua inacessível ou inseguro. O ponto externo deve ficar fora da zona de inundação e do lado de onde o vento sopra em relação à fábrica — um prédio específico e identificado (escola, casa de parente), em vez de uma árvore.\n\n---"
+    },
+    {
+      "heading": "Seção 3: A sequência de alternativas de comunicação",
+      "content": "_Tempo estimado: 3 minutos_\n\nOs telefones falham de maneiras previsíveis — por isso, o plano antecipa essas falhas:\n\n1. **Ligue** para os moradores da casa.\n2. **Envie uma mensagem de texto.** Mensagens frequentemente passam quando chamadas não conseguem conexão — exigem menos da rede.\n3. **Contato fora da região.** Uma chamada de longa distância para um parente ou amigo fora da região afetada. Essa pessoa se torna a central de comunicação: todos informam sua situação a ela, e ela transmite as condições e localizações de cada um.\n4. **Bilhete escrito** nos pontos de encontro: para onde você foi e quando saiu.\n\n### Ponto principal\n\n&gt; **Cada morador leva um cartão impresso** — pontos de encontro, telefone do contato fora da região e endereços da escola e do trabalho. Telefones descarregam e a memória falha sob estresse; o papel não.\n\n---"
+    },
+    {
+      "heading": "Seção 4: Regras de decisão de evacuação",
+      "content": "_Tempo estimado: 3 minutos_\n\n| Evento desencadeador | Regra |\n|---------|------|\n| Ordem de evacuação | Saia quando a ordem chegar — não espere confirmação |\n| Ameaça visível (incêndio, inundação) | Saia se puder fazer isso com segurança — não espere uma ordem que talvez nunca chegue |\n| Vazamento químico / orientação para permanecer abrigado no local | Fique dentro, vede portas e janelas e siga as instruções oficiais — o contrário de evacuar |\n| Apenas falta de energia | Permaneça abrigado no local |\n\n### Ponto principal\n\n&gt; **Na maioria dos desastres, o pior resultado não é sair cedo — é sair tarde.** Escrever as regras antecipadamente evita que alguém precise negociá-las naquele momento.\n\n---"
+    },
+    {
+      "heading": "Seção 5: Ensaio e revisão",
+      "content": "_Tempo estimado: 3 minutos_\n\n**Ensaie duas vezes por ano.** Percorra a rota até os dois pontos de encontro com as crianças. Cronometre. Confirme que o contato fora da região ainda atende naquele número.\n\n**Revise na mesma data todos os anos.** Uma data fixa — um aniversário, uma data comemorativa ou 1 de janeiro. Atualize endereços, escolas, medicamentos, contatos e instruções para desligar os serviços da casa.\n\n### Ponto principal\n\n&gt; **Um plano guardado na gaveta é uma lembrança.** Um plano ensaiado e revisado está vivo.\n\n---"
+    },
+    {
+      "heading": "Aplicação prática",
+      "content": "_Tempo estimado: 2 minutos_\n\n### Analise este plano\n\nO plano escrito de uma família diz: \"Se houver uma emergência, ligue para a mãe. Ela buscará as crianças na escola. Vamos nos encontrar no shopping.\" Não há cartões, ponto de encontro externo nem regras de evacuação, e nunca houve uma revisão.\n\n1. Cite três falhas concretas.\n2. Reescreva o plano em uma página (componentes, pontos de encontro, regras e data de revisão).\n\n**Orientação:** Falhas: a mãe é todo o plano (não há alternativa se o telefone dela falhar — além disso, ela está na região, não fora dela); o shopping não é um ponto em casa nem externo e pode precisar ser evacuado; sem cartões, as crianças não conseguem agir de forma independente; sem data de revisão, o plano se deteriora. A nova versão segue os seis componentes acima.\n\n### Lista de campo\n\n- [ ] Uma página, afixada onde todos a vejam\n- [ ] Dois pontos de encontro — em casa + externo, verificados quanto aos perigos\n- [ ] Contato fora da região impresso em cada cartão\n- [ ] Regras de evacuação para as ameaças realistas dos moradores\n- [ ] Ordem das alternativas de comunicação (ligação → mensagem → contato → bilhete)\n- [ ] Particularidades dos moradores: medicamentos, animais, escolas e desligamentos\n- [ ] Data fixa de revisão anual + ensaios duas vezes por ano\n\n---"
+    },
+    {
+      "heading": "Verificação de conhecimentos",
+      "content": "1. Quais são os seis componentes de um plano de uma página?\n2. Por que o ponto de encontro externo precisa ficar fora do bairro — e quais dois perigos devem ser verificados?\n3. Por que um contato fora da região funciona quando chamadas locais falham?\n4. Qual é a regra escrita quando chega uma ordem de evacuação?\n5. Quando permanecer abrigado no local é melhor do que evacuar?\n\n*(Confira suas respostas nas seções acima e depois teste seus conhecimentos no quiz associado.)*\n\n---"
+    },
+    {
+      "heading": "Recapitulação",
+      "content": "- Uma página, seis componentes: pontos de encontro, contato, regras, alternativas, particularidades e data de revisão.\n- Dois pontos de encontro: em casa + fora do bairro, verificados quanto aos perigos.\n- Sequência de comunicação: ligação → mensagem → contato fora da região → bilhete; cartões impressos para todos.\n- Regras de evacuação escritas encerram a discussão no meio da noite; sair tarde é a falha clássica.\n- Ensaie duas vezes por ano; revise em uma data fixa; um plano na gaveta é uma lembrança.\n\n---"
+    },
+    {
+      "heading": "Próximos passos",
+      "content": "- Prepare os suprimentos que sustentam o plano: [[SUR-preparedness-L01]]\n- Conheça as regras de incêndio florestal que seu plano de evacuação usará: [[02 - Lessons/Fire Safety|Segurança com fogo]]\n- Faça o quiz associado: [[Household Emergency Planning Quiz|Quiz de planejamento de emergência familiar]]\n\n---"
+    },
+    {
+      "heading": "Referências",
+      "content": "1. FEMA / Ready.gov. *Make a Plan*. https://www.ready.gov/plan\n2. American Red Cross. *Family Disaster Plan*. https://www.redcross.org/get-help/how-to-prepare-for-emergencies/make-a-plan.html\n3. Ready.gov. *Plan Ahead for Disasters*. https://www.ready.gov/plan-ahead"
+    }
+  ]
+}

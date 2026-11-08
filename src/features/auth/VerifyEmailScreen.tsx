@@ -11,6 +11,7 @@
  * Also hosts the "resend verification" form. The backend answers
  * resends generically (anti-enumeration) — the UI copy reflects that.
  */
+import { tr as uiText, useLocale as useInterfaceLocale } from "@/i18n";
 import { useEffect, useRef, useState } from "react";
 import { Link, useSearchParams } from "react-router";
 import { Button } from "@/components/ui/Button";
@@ -30,6 +31,7 @@ type VerifyStatus =
   | "error";
 
 export function VerifyEmailScreen() {
+  useInterfaceLocale();
   const [params] = useSearchParams();
   const token = params.get("token");
   const emailParam = params.get("email");
@@ -68,48 +70,32 @@ export function VerifyEmailScreen() {
 
   return (
     <AuthShell
-      title="Verify your email"
-      subtitle="One more step before base camp opens."
+      title={uiText("authentication:verify_your_email_84fdc7")}
+      subtitle={uiText("authentication:one_more_step_before_base_camp_opens_3a7359")}
     >
       <div className="flex flex-col gap-4">
         {status === "success" ? (
-          <Alert tone="success" title="Your email address is verified.">
-            Your account is ready — sign in to continue.
-          </Alert>
+          <Alert tone="success" title={uiText("authentication:your_email_address_is_verified_b90c84")}>{uiText("authentication:your_account_is_ready_sign_in_to_a0314c")}</Alert>
         ) : null}
         {status === "expired" ? (
-          <Alert tone="warning" title="This verification link has expired.">
-            Request a new one below.
-          </Alert>
+          <Alert tone="warning" title={uiText("authentication:this_verification_link_has_expired_ad5b83")}>{uiText("authentication:request_a_new_one_below_f858f6")}</Alert>
         ) : null}
         {status === "used" ? (
-          <Alert tone="info" title="This verification link was already used.">
-            If your email is verified, sign in to continue — otherwise request
-            a new link below.
-          </Alert>
+          <Alert tone="info" title={uiText("authentication:this_verification_link_was_already_used_ddea16")}>{uiText("authentication:if_your_email_is_verified_sign_in_d8c38a")}</Alert>
         ) : null}
         {status === "invalid" ? (
-          <Alert tone="warning" title="This verification link is invalid.">
-            Request a new one below.
-          </Alert>
+          <Alert tone="warning" title={uiText("authentication:this_verification_link_is_invalid_3de944")}>{uiText("authentication:request_a_new_one_below_f858f6")}</Alert>
         ) : null}
         {status === "error" ? (
-          <Alert tone="danger" title="Something went wrong.">
-            Please try again.
-          </Alert>
+          <Alert tone="danger" title={uiText("authentication:something_went_wrong_bee54c")}>{uiText("authentication:please_try_again_83a6fd")}</Alert>
         ) : null}
         {status === "verifying" ? (
-          <p className="text-sm text-text-secondary">
-            Verifying your email address…
-          </p>
+          <p className="text-sm text-text-secondary">{uiText("authentication:verifying_your_email_address_ddee19")}</p>
         ) : null}
 
         {sent && status === "idle" ? (
-          <Alert tone="info" title="Check your inbox.">
-            We sent a verification email to{" "}
-            <strong>{email || "your email address"}</strong>. Open the link to
-            activate your account. It expires in 24 hours.
-          </Alert>
+          <Alert tone="info" title={uiText("authentication:check_your_inbox_48f7d4")}>{uiText("authentication:we_sent_a_verification_email_to_e294fe")}{" "}
+            <strong>{email || uiText("authentication:your_email_address_13b99c")}</strong>{uiText("authentication:open_the_link_to_activate_your_account_9397eb")}</Alert>
         ) : null}
 
         <div className="mt-2 flex flex-col gap-4">
@@ -123,7 +109,7 @@ export function VerifyEmailScreen() {
               className="flex flex-col gap-3"
             >
               <div className="flex flex-col gap-1">
-                <Label htmlFor="verify-email-address">Email address</Label>
+                <Label htmlFor="verify-email-address">{uiText("authentication:email_address_c94d31")}</Label>
                 <Input
                   id="verify-email-address"
                   type="email"
@@ -135,21 +121,16 @@ export function VerifyEmailScreen() {
               </div>
 
               {resendState === "sent" ? (
-                <Alert tone="success" title="Check your inbox.">
-                  If a verification is pending for this email address, a new
-                  email has been sent.
-                </Alert>
+                <Alert tone="success" title={uiText("authentication:check_your_inbox_48f7d4")}>{uiText("authentication:if_a_verification_is_pending_for_this_655450")}</Alert>
               ) : null}
               {resendError ? <Alert tone="danger" title={resendError} /> : null}
 
-              <Button type="submit" loading={resendState === "submitting"}>
-                Resend verification email
-              </Button>
+              <Button type="submit" loading={resendState === "submitting"}>{uiText("authentication:resend_verification_email_0ca4ac")}</Button>
             </form>
           ) : null}
 
           <Button variant="secondary" asChild>
-            <Link to="/login">Back to sign in</Link>
+            <Link to="/login">{uiText("authentication:back_to_sign_in_4da821")}</Link>
           </Button>
         </div>
       </div>

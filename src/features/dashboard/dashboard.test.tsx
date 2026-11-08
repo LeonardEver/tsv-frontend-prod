@@ -313,11 +313,11 @@ describe("Dashboard — Base Camp", () => {
   it("renders authoritative progress and gamification summaries", async () => {
     renderDashboard();
     await waitFor(() => {
-      expect(screen.getByText(/1 missions complete/i)).toBeInTheDocument();
+      expect(screen.getByText(/1 mission complete/i)).toBeInTheDocument();
     });
     expect(screen.getByText(/level 1 · novice/i)).toBeInTheDocument();
     expect(screen.getByText("125 XP")).toBeInTheDocument();
-    expect(screen.getByText(/2 day streak/i)).toBeInTheDocument();
+    expect(screen.getAllByText(/2 day streak/i).length).toBeGreaterThan(0);
     expect(screen.getByText(/1 of 3 achievements earned/i)).toBeInTheDocument();
   });
 
@@ -370,7 +370,7 @@ describe("Dashboard — Base Camp", () => {
     await waitFor(() => {
       expect(screen.getByText("125 XP")).toBeInTheDocument();
     });
-    expect(screen.getByText(/2 day streak/i)).toBeInTheDocument();
+    expect(screen.getAllByText(/2 day streak/i).length).toBeGreaterThan(0);
   });
 
   it("keeps the next-mission CTA reachable by keyboard in document order", async () => {
@@ -412,8 +412,8 @@ describe("Dashboard — Base Camp", () => {
     );
     // One shared QueryClient across BOTH surfaces — the canonical query
     // key means a single network request, and both surfaces show the
-    // same authoritative value: the dashboard's page-header XP readout
-    // and the gamification page's XP badge both render "125 XP".
+    // same authoritative value in their Total XP stats, regardless of
+    // whether the visual treatment places the unit beside the number.
     const queryClient = createTestQueryClient();
     renderWithProviders(
       <QueryClientProvider client={queryClient}>
@@ -427,8 +427,11 @@ describe("Dashboard — Base Camp", () => {
         </AuthProvider>
       </QueryClientProvider>,
     );
-    await waitFor(() => { expect(screen.getAllByText("125 XP").length).toBeGreaterThanOrEqual(2); });
-    await waitFor(() => { expect(screen.getAllByText("125").length).toBeGreaterThanOrEqual(1); });
+    await waitFor(() => {
+      const labels = screen.getAllByText("Total XP");
+      expect(labels).toHaveLength(2);
+      for (const label of labels) expect(label.parentElement).toHaveTextContent("125");
+    });
     expect(gamificationCalls).toBe(1);
   });
 });

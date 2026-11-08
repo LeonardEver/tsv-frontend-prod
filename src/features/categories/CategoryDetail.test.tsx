@@ -1,5 +1,5 @@
 /**
- * Category detail: subcategories with module cards, empty state,
+ * Category detail: a shared module grid with subcategory labels, empty state,
  * existence-hiding 404.
  */
 import { describe, expect, it } from "vitest";
@@ -10,14 +10,14 @@ import { renderAtRoute } from "@/test/render";
 import CategoryDetailPage from "./CategoryDetail";
 
 describe("CategoryDetailPage", () => {
-  it("renders modules grouped by subcategory", async () => {
+  it("renders modules in one grid while preserving their subcategory labels", async () => {
     renderAtRoute(<CategoryDetailPage />, "/categories/water", "/categories/:categorySlug");
     await waitFor(() =>
       { expect(screen.getByRole("heading", { name: "Water" })).toBeInTheDocument(); },
     );
-    // Exact name: the mission card title "Boiling Water for Purification"
-    // also matches /purification/i; only the section header is exact.
-    expect(screen.getByRole("heading", { name: "Purification" })).toBeInTheDocument();
+    expect(screen.getByRole("region", { name: "Region missions" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Your missions" })).toBeInTheDocument();
+    expect(within(screen.getByRole("link", { name: /boiling water for purification/i })).getByText("Purification")).toBeInTheDocument();
     expect(screen.getByRole("link", { name: /boiling water for purification/i })).toHaveAttribute(
       "href",
       "/modules/WAT-boiling",

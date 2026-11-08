@@ -1,0 +1,416 @@
+{
+  "source_sha256": "dbca7b3767b753fbd40ee1a5c14596121bbdb50f5a86f65552cb340601095eaf",
+  "canonical": {
+    "locale": "en",
+    "domains": {
+      "achievement": 7,
+      "category": 9,
+      "explanation": 781,
+      "knowledge": 80,
+      "lesson_title": 80,
+      "lesson": 80,
+      "module_description": 80,
+      "module": 80,
+      "quiz_title": 80,
+      "quiz": 80,
+      "resource": 81
+    }
+  },
+  "locales": {
+    "pt-BR": {
+      "achievement": {
+        "total": 7,
+        "authored": 7,
+        "draft": 0,
+        "reviewed": 0,
+        "missing": 0
+      },
+      "category": {
+        "total": 9,
+        "authored": 9,
+        "draft": 0,
+        "reviewed": 0,
+        "missing": 0
+      },
+      "explanation": {
+        "total": 781,
+        "authored": 0,
+        "draft": 9,
+        "reviewed": 0,
+        "missing": 772
+      },
+      "knowledge": {
+        "total": 80,
+        "authored": 80,
+        "draft": 0,
+        "reviewed": 0,
+        "missing": 0
+      },
+      "lesson_title": {
+        "total": 80,
+        "authored": 80,
+        "draft": 0,
+        "reviewed": 0,
+        "missing": 0
+      },
+      "lesson": {
+        "total": 80,
+        "authored": 0,
+        "draft": 1,
+        "reviewed": 0,
+        "missing": 79
+      },
+      "module_description": {
+        "total": 80,
+        "authored": 80,
+        "draft": 0,
+        "reviewed": 0,
+        "missing": 0
+      },
+      "module": {
+        "total": 80,
+        "authored": 80,
+        "draft": 0,
+        "reviewed": 0,
+        "missing": 0
+      },
+      "quiz_title": {
+        "total": 80,
+        "authored": 80,
+        "draft": 0,
+        "reviewed": 0,
+        "missing": 0
+      },
+      "quiz": {
+        "total": 80,
+        "authored": 0,
+        "draft": 1,
+        "reviewed": 0,
+        "missing": 79
+      },
+      "resource": {
+        "total": 81,
+        "authored": 81,
+        "draft": 0,
+        "reviewed": 0,
+        "missing": 0
+      }
+    },
+    "es": {
+      "achievement": {
+        "total": 7,
+        "authored": 7,
+        "draft": 0,
+        "reviewed": 0,
+        "missing": 0
+      },
+      "category": {
+        "total": 9,
+        "authored": 9,
+        "draft": 0,
+        "reviewed": 0,
+        "missing": 0
+      },
+      "explanation": {
+        "total": 781,
+        "authored": 0,
+        "draft": 9,
+        "reviewed": 0,
+        "missing": 772
+      },
+      "knowledge": {
+        "total": 80,
+        "authored": 80,
+        "draft": 0,
+        "reviewed": 0,
+        "missing": 0
+      },
+      "lesson_title": {
+        "total": 80,
+        "authored": 80,
+        "draft": 0,
+        "reviewed": 0,
+        "missing": 0
+      },
+      "lesson": {
+        "total": 80,
+        "authored": 0,
+        "draft": 1,
+        "reviewed": 0,
+        "missing": 79
+      },
+      "module_description": {
+        "total": 80,
+        "authored": 80,
+        "draft": 0,
+        "reviewed": 0,
+        "missing": 0
+      },
+      "module": {
+        "total": 80,
+        "authored": 80,
+        "draft": 0,
+        "reviewed": 0,
+        "missing": 0
+      },
+      "quiz_title": {
+        "total": 80,
+        "authored": 80,
+        "draft": 0,
+        "reviewed": 0,
+        "missing": 0
+      },
+      "quiz": {
+        "total": 80,
+        "authored": 0,
+        "draft": 1,
+        "reviewed": 0,
+        "missing": 79
+      },
+      "resource": {
+        "total": 81,
+        "authored": 81,
+        "draft": 0,
+        "reviewed": 0,
+        "missing": 0
+      }
+    },
+    "fr": {
+      "achievement": {
+        "total": 7,
+        "authored": 7,
+        "draft": 0,
+        "reviewed": 0,
+        "missing": 0
+      },
+      "category": {
+        "total": 9,
+        "authored": 9,
+        "draft": 0,
+        "reviewed": 0,
+        "missing": 0
+      },
+      "explanation": {
+        "total": 781,
+        "authored": 0,
+        "draft": 9,
+        "reviewed": 0,
+        "missing": 772
+      },
+      "knowledge": {
+        "total": 80,
+        "authored": 80,
+        "draft": 0,
+        "reviewed": 0,
+        "missing": 0
+      },
+      "lesson_title": {
+        "total": 80,
+        "authored": 80,
+        "draft": 0,
+        "reviewed": 0,
+        "missing": 0
+      },
+      "lesson": {
+        "total": 80,
+        "authored": 0,
+        "draft": 1,
+        "reviewed": 0,
+        "missing": 79
+      },
+      "module_description": {
+        "total": 80,
+        "authored": 80,
+        "draft": 0,
+        "reviewed": 0,
+        "missing": 0
+      },
+      "module": {
+        "total": 80,
+        "authored": 80,
+        "draft": 0,
+        "reviewed": 0,
+        "missing": 0
+      },
+      "quiz_title": {
+        "total": 80,
+        "authored": 80,
+        "draft": 0,
+        "reviewed": 0,
+        "missing": 0
+      },
+      "quiz": {
+        "total": 80,
+        "authored": 0,
+        "draft": 1,
+        "reviewed": 0,
+        "missing": 79
+      },
+      "resource": {
+        "total": 81,
+        "authored": 81,
+        "draft": 0,
+        "reviewed": 0,
+        "missing": 0
+      }
+    },
+    "de": {
+      "achievement": {
+        "total": 7,
+        "authored": 7,
+        "draft": 0,
+        "reviewed": 0,
+        "missing": 0
+      },
+      "category": {
+        "total": 9,
+        "authored": 9,
+        "draft": 0,
+        "reviewed": 0,
+        "missing": 0
+      },
+      "explanation": {
+        "total": 781,
+        "authored": 0,
+        "draft": 9,
+        "reviewed": 0,
+        "missing": 772
+      },
+      "knowledge": {
+        "total": 80,
+        "authored": 80,
+        "draft": 0,
+        "reviewed": 0,
+        "missing": 0
+      },
+      "lesson_title": {
+        "total": 80,
+        "authored": 80,
+        "draft": 0,
+        "reviewed": 0,
+        "missing": 0
+      },
+      "lesson": {
+        "total": 80,
+        "authored": 0,
+        "draft": 1,
+        "reviewed": 0,
+        "missing": 79
+      },
+      "module_description": {
+        "total": 80,
+        "authored": 80,
+        "draft": 0,
+        "reviewed": 0,
+        "missing": 0
+      },
+      "module": {
+        "total": 80,
+        "authored": 80,
+        "draft": 0,
+        "reviewed": 0,
+        "missing": 0
+      },
+      "quiz_title": {
+        "total": 80,
+        "authored": 80,
+        "draft": 0,
+        "reviewed": 0,
+        "missing": 0
+      },
+      "quiz": {
+        "total": 80,
+        "authored": 0,
+        "draft": 1,
+        "reviewed": 0,
+        "missing": 79
+      },
+      "resource": {
+        "total": 81,
+        "authored": 81,
+        "draft": 0,
+        "reviewed": 0,
+        "missing": 0
+      }
+    },
+    "it": {
+      "achievement": {
+        "total": 7,
+        "authored": 7,
+        "draft": 0,
+        "reviewed": 0,
+        "missing": 0
+      },
+      "category": {
+        "total": 9,
+        "authored": 9,
+        "draft": 0,
+        "reviewed": 0,
+        "missing": 0
+      },
+      "explanation": {
+        "total": 781,
+        "authored": 0,
+        "draft": 9,
+        "reviewed": 0,
+        "missing": 772
+      },
+      "knowledge": {
+        "total": 80,
+        "authored": 80,
+        "draft": 0,
+        "reviewed": 0,
+        "missing": 0
+      },
+      "lesson_title": {
+        "total": 80,
+        "authored": 80,
+        "draft": 0,
+        "reviewed": 0,
+        "missing": 0
+      },
+      "lesson": {
+        "total": 80,
+        "authored": 0,
+        "draft": 1,
+        "reviewed": 0,
+        "missing": 79
+      },
+      "module_description": {
+        "total": 80,
+        "authored": 80,
+        "draft": 0,
+        "reviewed": 0,
+        "missing": 0
+      },
+      "module": {
+        "total": 80,
+        "authored": 80,
+        "draft": 0,
+        "reviewed": 0,
+        "missing": 0
+      },
+      "quiz_title": {
+        "total": 80,
+        "authored": 80,
+        "draft": 0,
+        "reviewed": 0,
+        "missing": 0
+      },
+      "quiz": {
+        "total": 80,
+        "authored": 0,
+        "draft": 1,
+        "reviewed": 0,
+        "missing": 79
+      },
+      "resource": {
+        "total": 81,
+        "authored": 81,
+        "draft": 0,
+        "reviewed": 0,
+        "missing": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,17 @@
+import { readFile, writeFile } from "node:fs/promises";
+const file = "src/features/admin-analytics/admin-analytics.test.tsx";
+let text = await readFile(file, "utf8");
+text = text.replace('import { render, screen, waitFor, within }', 'import { act, render, screen, waitFor, within }');
+text = text.replace('import { __resetAdminLanguage }', 'import { changeLocale, getLocale } from "@/i18n";\nimport { __resetAdminLanguage }');
+text = text.replace('beforeEach(() => {\r\n  __resetAdminLanguage();', 'beforeEach(async () => {\r\n  await __resetAdminLanguage();').replace('beforeEach(() => {\n  __resetAdminLanguage();', 'beforeEach(async () => {\n  await __resetAdminLanguage();');
+text = text.replace(/ {2}\/\*\* The header's language switch[^]*?\n {2}}/, '  /** Account-level preference changes all surfaces; analytics has no duplicate selector. */\n  async function switchLanguage() { await act(() => changeLocale("pt-BR", { explicit: true })); }');
+text = text.replaceAll('await userEvent.click(within(languageSwitch()).getByRole("button", { name: "PT" }));', 'await switchLanguage();');
+text = text.replace(/ {4}const toggle = languageSwitch\(\);[^]*?"false",\r?\n {4}\);/, '    expect(screen.queryByRole("group", { name: /language|idioma/i })).toBeNull();\n    expect(getLocale()).toBe("en");');
+text = text.replace(/ {4}expect\(within\(languageSwitch\(\)\).getByRole\("button", \{ name: "PT" \}\)\).toHaveAttribute\([^]*?"true",\r?\n {4}\);/, '    expect(getLocale()).toBe("pt-BR");\n    expect(document.documentElement.lang).toBe("pt-BR");');
+await writeFile(file, text);
+const unit = "src/features/admin-analytics/i18n.test.ts";
+let content = await readFile(unit, "utf8");
+content = content.replace('afterEach(() => {', 'afterEach(async () => {').replace('  __resetAdminLanguage();', '  await __resetAdminLanguage();');
+content = content.replace('it("keeps the choice in the device\'s storage", () => {', 'it("keeps the choice in the shared app preference", async () => {');
+content = content.replaceAll('    setAdminLanguage(', '    await setAdminLanguage(').replaceAll('getItem("admin-analytics-lang")', 'getItem("survival-academy-language")').replace('.toBe("pt");\n    // Not', '.toBe("pt-BR");\n    // Not').replace('.toBe("pt");\r\n    // Not', '.toBe("pt-BR");\r\n    // Not');
+await writeFile(unit, content);

@@ -15,7 +15,7 @@
  * Rule options: none.
  */
 const ALLOWED_KEY_PREFIX = "quiz-draft:";
-const ALLOWED_EXACT_KEYS = new Set(["theme-pref"]);
+const ALLOWED_EXACT_KEYS = new Set(["theme-pref", "survival-academy-experience", "survival-academy-language", "admin-analytics-lang"]);
 
 export default {
   meta: {

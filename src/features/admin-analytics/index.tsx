@@ -15,18 +15,17 @@
  * section is its own route so only the endpoints that section needs are
  * ever requested.
  *
- * This is the app's only locale-aware surface. The language switch sits in
- * the page header and every string below it comes from `dictionary.ts`;
- * `LangSync` keeps the document's `lang` attribute honest.
+ * Analytics shares the application's account language and document lang.
+ * Its typed dictionary adapter resolves into the global locale catalogs;
+ * API diagnostic notes retain their original backend wording.
  */
-import { Suspense, useEffect } from "react";
+import { Suspense } from "react";
 import { NavLink, Outlet, useLocation } from "react-router";
 import { PageHeader } from "@/components/layout/AppShell";
 import { cn, EmptyState } from "@/components/sa/primitives";
 import { AnalyticsFilterBar } from "./AnalyticsFilterBar";
 import { isSeriesPath } from "./filters";
 import { useTr } from "./i18n";
-import { LanguageToggle } from "./LanguageToggle";
 import { useAdminAccess } from "./use-admin-access";
 
 /** One per section route; the tab id doubles as its dictionary key. */
@@ -58,16 +57,6 @@ const TABS: ReadonlyArray<{ to: string; id: TabId; end?: boolean }> = [
   { to: "/admin/analytics/billing", id: "billing" },
   { to: "/admin/analytics/geography", id: "geography" },
 ];
-
-/** The whole console is rendered in the selected language, so the
- * document says so. Scoped to this subtree: nothing else translates. */
-function LangSync() {
-  const { language } = useTr();
-  useEffect(() => {
-    document.documentElement.lang = language;
-  }, [language]);
-  return null;
-}
 
 function AdminAnalyticsNav() {
   const { pathname, search } = useLocation();
@@ -107,16 +96,10 @@ export default function AdminAnalyticsLayout() {
 
   return (
     <div>
-      <LangSync />
       <PageHeader
         eyebrow={t("nav.eyebrow")}
         title={t("nav.title")}
         description={t("nav.description")}
-        aside={
-          <div className="flex justify-end sm:pb-1">
-            <LanguageToggle />
-          </div>
-        }
       />
 
       {access.status === "checking" ? (

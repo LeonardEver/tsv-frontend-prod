@@ -1,0 +1,79 @@
+{
+  "WAT-boiling": [
+    "O método único mais confiável de purificação. Aprenda o procedimento correto de fervura, como a altitude afeta o tempo, quais recipientes são seguros e como economizar combustível.",
+    "El método único de purificación más fiable. Aprende el procedimiento correcto de hervido, cómo influye la altitud en el tiempo, qué recipientes son seguros y cómo ahorrar combustible.",
+    "La méthode unique de purification la plus fiable. Apprenez la procédure d'ébullition correcte, l'effet de l'altitude sur la durée, les récipients sûrs et les économies de combustible.",
+    "Die zuverlässigste einzelne Reinigungsmethode. Lerne das richtige Abkochverfahren, den Einfluss der Höhe auf die Kochzeit, sichere Behälter und sparsamen Brennstoffverbrauch.",
+    "Il metodo singolo di purificazione più affidabile. Impara la procedura corretta di bollitura, l'effetto dell'altitudine sui tempi, i contenitori sicuri e il risparmio di combustibile."
+  ],
+  "WAT-chemical-purification": [
+    "Trate água com cloro ou iodo quando não puder ferver ou filtrar. Aprenda dosagens corretas, tempos de contato, limites de segurança do iodo e o problema do Cryptosporidium.",
+    "Trata el agua con cloro o yodo cuando no puedas hervirla o filtrarla. Aprende las dosis correctas, tiempos de contacto, límites de seguridad del yodo y el problema de Cryptosporidium.",
+    "Traitez l'eau au chlore ou à l'iode lorsque vous ne pouvez ni la faire bouillir ni la filtrer. Découvrez les dosages, temps de contact, limites de sécurité de l'iode et le problème du Cryptosporidium.",
+    "Wasser mit Chlor oder Jod behandeln, wenn Abkochen oder Filtern nicht möglich ist. Lerne richtige Dosierungen, Kontaktzeiten, Sicherheitsgrenzen für Jod und das Cryptosporidium-Problem.",
+    "Tratta l'acqua con cloro o iodio quando non puoi bollirla o filtrarla. Impara dosaggi corretti, tempi di contatto, limiti di sicurezza dello iodio e il problema del Cryptosporidium."
+  ],
+  "WAT-distillation": [
+    "O método mais completo de purificação — remove sal, metais pesados e substâncias químicas que a fervura e a filtragem não removem. Construa um destilador solar e entenda quando a destilação é realmente necessária.",
+    "El método de purificación más completo: elimina sal, metales pesados y sustancias químicas que el hervido y la filtración no eliminan. Construye un destilador solar y comprende cuándo es necesaria la destilación.",
+    "La méthode de purification la plus complète : elle retire le sel, les métaux lourds et les produits chimiques que l'ébullition et la filtration ne retirent pas. Construisez un distillateur solaire et comprenez quand la distillation est nécessaire.",
+    "Die gründlichste Reinigungsmethode: entfernt Salz, Schwermetalle und Chemikalien, die Abkochen und Filtern nicht beseitigen. Baue einen Solardestillator und verstehe, wann Destillation wirklich nötig ist.",
+    "Il metodo di purificazione più completo: rimuove sale, metalli pesanti e sostanze chimiche che bollitura e filtrazione non eliminano. Costruisci un distillatore solare e comprendi quando la distillazione è necessaria."
+  ],
+  "WAT-filtration": [
+    "Como filtros físicos removem patógenos da água. Entenda tamanhos de poros, tipos de filtros, a lacuna contra vírus, manutenção adequada e por que o congelamento destrói filtros de fibra oca.",
+    "Cómo los filtros físicos eliminan patógenos del agua. Comprende tamaños de poro, tipos de filtro, limitaciones frente a virus, mantenimiento correcto y por qué la congelación destruye los filtros de fibra hueca.",
+    "Comment les filtres physiques retirent les agents pathogènes de l'eau. Comprenez la taille des pores, les types de filtres, leurs limites face aux virus, l'entretien et les dégâts du gel sur les fibres creuses.",
+    "Wie physische Filter Krankheitserreger aus Wasser entfernen. Verstehe Porengrößen, Filtertypen, die Viruslücke, richtige Wartung und warum Frost Hohlfaserfilter zerstört.",
+    "Come i filtri fisici rimuovono i patogeni dall'acqua. Comprendi dimensioni dei pori, tipi di filtro, limiti contro i virus, manutenzione corretta e perché il gelo distrugge i filtri a fibra cava."
+  ],
+  "WAT-finding-water": [
+    "Localização de água em campo: leitura da paisagem, locais de acúmulo, fontes sazonais, indicadores de animais e insetos e decisões sobre fontes naturais, água parada e o que precisa de tratamento.",
+    "Localización de agua sobre el terreno: lectura del paisaje, lugares de acumulación, fuentes estacionales, indicios de animales e insectos y decisiones sobre fuentes naturales, agua estancada y qué debe tratarse.",
+    "Trouver de l'eau sur le terrain : lecture du paysage, zones d'accumulation, sources saisonnières, indices animaux et insectes, et décisions concernant sources naturelles, eaux stagnantes et traitement nécessaire.",
+    "Wasser im Gelände finden: Landschaft lesen, Sammelstellen, saisonale Quellen, Tier- und Insektenhinweise sowie Entscheidungen über natürliche Quellen, stehendes Wasser und nötige Aufbereitung.",
+    "Trovare acqua sul campo: lettura del paesaggio, punti di accumulo, fonti stagionali, indizi di animali e insetti e decisioni su fonti naturali, acqua stagnante e necessità di trattamento."
+  ],
+  "WAT-purification": [
+    "Uma visão geral dos principais métodos de purificação da água — fervura, filtragem, tratamento químico, SODIS e destilação. Aprenda como cada método funciona, quando usá-lo e o que não consegue remover.",
+    "Una visión general de los principales métodos de purificación del agua: hervido, filtración, tratamiento químico, SODIS y destilación. Aprende cómo funciona cada uno, cuándo usarlo y qué no puede eliminar.",
+    "Vue d'ensemble des principales méthodes de purification : ébullition, filtration, traitement chimique, SODIS et distillation. Découvrez leur fonctionnement, leurs usages et ce qu'elles ne peuvent pas retirer.",
+    "Überblick über die wichtigsten Wasserreinigungsmethoden: Abkochen, Filtern, chemische Behandlung, SODIS und Destillation. Lerne ihre Funktionsweise, Einsatzbereiche und Grenzen.",
+    "Panoramica dei principali metodi di purificazione dell'acqua: bollitura, filtrazione, trattamento chimico, SODIS e distillazione. Scopri come funzionano, quando usarli e cosa non possono rimuovere."
+  ],
+  "WAT-rainwater-collection": [
+    "Captação de chuva de telhados: fundamentos da coleta, barris e cisternas, desvio da primeira água, telas, higiene do armazenamento e limites da água coletada para beber ou irrigar.",
+    "Recogida de lluvia de tejados: principios de captación, barriles y cisternas, desvío del primer lavado, filtros de malla, higiene del almacenamiento y límites para beber frente a regar.",
+    "Collecte de pluie sur les toitures : captage, barils et citernes, dérivation des premières eaux, grilles, hygiène du stockage et limites pour l'eau de boisson et l'irrigation.",
+    "Regen von Dächern sammeln: Auffanggrundlagen, Fässer und Zisternen, Erstspülumleitung, Siebe, Lagerhygiene und Grenzen für Trinkwasser gegenüber Bewässerung.",
+    "Raccolta della pioggia dai tetti: principi di captazione, barili e cisterne, deviazione del primo lavaggio, reti filtranti, igiene dello stoccaggio e limiti per bere rispetto all'irrigazione."
+  ],
+  "WAT-sodis": [
+    "Purifique água usando apenas luz solar e uma garrafa de plástico PET. Um método sem custo e sem combustível promovido pela OMS. Aprenda quando funciona e quando usar outra alternativa.",
+    "Purifica agua solo con luz solar y una botella de plástico PET. Un método sin coste ni combustible promovido por la OMS. Aprende cuándo funciona y cuándo usar otra alternativa.",
+    "Purifiez l'eau avec seulement le soleil et une bouteille en PET. Une méthode sans coût ni combustible promue par l'OMS. Découvrez quand elle fonctionne et quand choisir autre chose.",
+    "Wasser nur mit Sonnenlicht und einer PET-Flasche reinigen. Eine von der WHO empfohlene Methode ohne Kosten und Brennstoff. Lerne, wann sie funktioniert und wann eine Alternative nötig ist.",
+    "Purifica l'acqua usando solo luce solare e una bottiglia di plastica PET. Un metodo senza costi né combustibile promosso dall'OMS. Scopri quando funziona e quando usare un'alternativa."
+  ],
+  "WAT-storage": [
+    "Armazene água de emergência que permaneça segura por meses ou anos. Aprenda quanto guardar, quais recipientes são próprios para alimentos, como higienizá-los e enchê-los e quando renovar a água.",
+    "Almacena agua de emergencia que siga siendo segura durante meses o años. Aprende cuánto guardar, qué recipientes son aptos para alimentos, cómo desinfectarlos y llenarlos y cuándo renovar el agua.",
+    "Stockez de l'eau d'urgence qui reste sûre pendant des mois ou des années. Apprenez les quantités, les récipients alimentaires adaptés, leur désinfection et remplissage, et le renouvellement.",
+    "Notfallwasser lagern, das monatelang oder jahrelang sicher bleibt. Lerne die benötigten Mengen, lebensmittelechte Behälter, deren Reinigung und Befüllung sowie den Austauschzeitpunkt.",
+    "Conserva acqua di emergenza che resti sicura per mesi o anni. Impara le quantità, i contenitori per alimenti adatti, come igienizzarli e riempirli e quando sostituire l'acqua."
+  ],
+  "WAT-water-systems": [
+    "Sistemas de água em pequena escala para preparação: armazenamento e distribuição por gravidade, bombas, noções de encanamento, proteção contra refluxo e contaminação e o que falha quando falta energia.",
+    "Sistemas de agua a pequeña escala para la preparación: almacenamiento y distribución por gravedad, bombas, fontanería básica, protección contra reflujo y contaminación y fallos durante los cortes de energía.",
+    "Petits systèmes d'eau pour la préparation : stockage et distribution gravitaires, pompes, plomberie de base, protection contre les retours d'eau et la contamination, et pannes lors d'une coupure électrique.",
+    "Kleine Wassersysteme für die Vorsorge: Schwerkraftspeicherung und -verteilung, Pumpen, Installationsgrundlagen, Schutz vor Rückfluss und Verunreinigung sowie Ausfälle bei Stromunterbrechung.",
+    "Piccoli sistemi idrici per la preparazione: accumulo e distribuzione a gravità, pompe, basi degli impianti, protezione da riflusso e contaminazione e guasti in caso di blackout."
+  ],
+  "WAT-water-testing": [
+    "Avalie se a água é segura: aparência da contaminação, sinais de sabor e odor, o que as observações em campo podem ou não indicar, quando análises laboratoriais importam e como os testes orientam o tratamento.",
+    "Evalúa si el agua es segura: señales de contaminación, sabor y olor, lo que las observaciones de campo pueden o no indicar, cuándo importan los análisis de laboratorio y cómo orientan el tratamiento.",
+    "Évaluer la sécurité de l'eau : aspect de la contamination, goût et odeur, possibilités et limites des observations de terrain, utilité des analyses de laboratoire et rôle des tests dans le choix du traitement.",
+    "Wassersicherheit beurteilen: sichtbare Verunreinigung, Geschmacks- und Geruchshinweise, Möglichkeiten und Grenzen der Feldbeobachtung, Bedeutung von Labortests und ihre Rolle bei der Aufbereitungsentscheidung.",
+    "Valutare se l'acqua è sicura: segnali di contaminazione, gusto e odore, possibilità e limiti delle osservazioni sul campo, utilità dei test di laboratorio e ruolo delle analisi nella scelta del trattamento."
+  ]
+}

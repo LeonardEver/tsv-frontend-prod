@@ -8,6 +8,7 @@
  * first toast is not tucked under a notch. Desktop keeps the original
  * bottom-right placement.
  */
+import { tr as uiText, useLocale as useInterfaceLocale } from "@/i18n";
 import { useEffect } from "react";
 import { X } from "lucide-react";
 import { useUiStore, type Toast } from "@/stores/ui-store";
@@ -20,6 +21,7 @@ const toneClasses: Record<Toast["tone"], string> = {
 };
 
 function ToastItem({ toast }: { toast: Toast }) {
+  useInterfaceLocale();
   const dismiss = useUiStore((s) => s.dismissToast);
 
   useEffect(() => {
@@ -43,7 +45,7 @@ function ToastItem({ toast }: { toast: Toast }) {
       </div>
       <button
         type="button"
-        aria-label="Dismiss notification"
+        aria-label={uiText("navigation:dismiss_notification_dc83cd")}
         onClick={() => { dismiss(toast.id); }}
         className="rounded p-1 text-muted-foreground hover:text-foreground"
       >
@@ -54,6 +56,7 @@ function ToastItem({ toast }: { toast: Toast }) {
 }
 
 export function ToastHost() {
+  useInterfaceLocale();
   const toasts = useUiStore((s) => s.toasts);
   if (toasts.length === 0) return null;
 

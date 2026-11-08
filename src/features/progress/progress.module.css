@@ -1,0 +1,165 @@
+.page {
+  --progress-gutter: 1rem;
+  --progress-contours: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='720' height='260' viewBox='0 0 720 260'%3E%3Cg fill='none' stroke='%23ba975c' stroke-width='.7'%3E%3Cpath d='M-40 240C100 90 160 320 330 160S520 280 760 80M-40 210C100 60 160 290 330 130S520 250 760 50M-40 180C100 30 160 260 330 100S520 220 760 20M-40 150C100 0 160 230 330 70S520 190 760-10M-40 120C100-30 160 200 330 40S520 160 760-40M-40 90C100-60 160 170 330 10S520 130 760-70'/%3E%3C/g%3E%3C/svg%3E");
+  position: relative;
+  isolation: isolate;
+  min-height: calc(100dvh - var(--app-header-height, 4.5rem));
+  margin: -1.5rem calc(-1 * var(--progress-gutter)) -3.5rem;
+  padding: 0 var(--progress-gutter) 3.5rem;
+}
+.page::before { content: ""; position: absolute; inset: 0; z-index: -2; pointer-events: none; background: linear-gradient(180deg, var(--background), color-mix(in oklab, var(--background) 94%, transparent)), url("../../assets/learn-forest.jpg") center bottom / cover; }
+.hero { position: relative; margin-inline: calc(-1 * var(--progress-gutter)); padding: 0 var(--progress-gutter) 1.2rem; }
+.heroBanner { position: relative; isolation: isolate; margin-inline: calc(-1 * var(--progress-gutter)); padding: 1.25rem var(--progress-gutter) 1rem; }
+.panorama { position: absolute; inset: 0 0 0 auto; z-index: -3; width: min(100%, 1050px); height: 100%; object-fit: cover; object-position: center 58%; pointer-events: none; mask-image: linear-gradient(90deg, transparent, black 22%); }
+.heroBanner::before, .heroBanner::after { content: ""; position: absolute; inset: 0; z-index: -2; pointer-events: none; }
+.heroBanner::before { background: linear-gradient(90deg, color-mix(in oklab, var(--background) 65%, transparent), transparent 65%), linear-gradient(0deg, var(--background), transparent 40%); }
+.heroBanner::after { z-index: -1; background: var(--progress-contours) left top / 720px 260px; opacity: .055; }
+.heading > header { display: block; min-height: 124px; margin-bottom: 0; padding-right: 9rem; }
+.heading h1 { font-size: clamp(1.9rem, 2.3vw, 2.3rem); font-style: italic; line-height: 1.1; }
+.heading > header p:last-child { max-width: 26rem; padding-left: .9rem; border-left: 2px solid var(--primary); color: var(--foreground); font-size: .85rem; line-height: 1.45; }
+.completionRing { position: absolute; top: 1.25rem; right: var(--progress-gutter); width: 124px; height: 124px; }
+.completionRing > div { background: color-mix(in oklab, var(--background) 32%, transparent); border-radius: 50%; }
+.stats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+.statTile { position: relative; isolation: isolate; display: flex; align-items: center; gap: 1.2rem; min-width: 0; min-height: 84px; overflow: hidden; padding: .75rem 1.25rem; border: 1px solid color-mix(in oklab, var(--cat-navigation) 25%, var(--border)); border-radius: .7rem; background: color-mix(in oklab, var(--surface) 94%, transparent); box-shadow: inset 0 1px 0 rgb(255 255 255 / .09); }
+.statTile::before { content: ""; position: absolute; inset: 0 0 0 auto; width: min(100%, 17rem); z-index: -1; pointer-events: none; background: url("../../assets/progress-summit.jpg") right center / cover no-repeat; mask-image: linear-gradient(90deg, transparent, black 55%); opacity: .7; }
+.statTile:nth-child(2), .statTile:nth-child(3) { border-color: color-mix(in oklab, var(--primary) 32%, var(--border)); }
+.statTile:nth-child(2)::before, .statTile:nth-child(3)::before { background-image: url("../../assets/progress-ember.jpg"); opacity: .65; }
+.statTile:nth-child(3)::before { background-position: right bottom; }
+.statTile:nth-child(4)::before { background-image: url("../../assets/learn-forest.jpg"); opacity: .4; }
+.statTile > div { min-width: 0; border: none; padding: 0; background: transparent; box-shadow: none; }
+.statTile > div > p:first-child { font-size: .58rem; line-height: 1.3; letter-spacing: .14em; }
+.statTile > div > p:nth-child(2) { margin-top: .3rem; font-size: 1.75rem; line-height: 1; }
+.statTile > div > p:last-child { font-size: .72rem; line-height: 1.2; }
+.statIcon { width: 2rem; height: 2rem; flex-shrink: 0; color: var(--warning); stroke-width: 1.5; filter: drop-shadow(0 0 8px color-mix(in oklab, var(--warning) 40%, transparent)); }
+.statTile:last-child .statIcon { color: var(--cat-fundamentals); }
+.mainGrid { display: grid; grid-template-columns: minmax(0, 1fr); align-items: start; gap: 1.2rem; }
+.panel { position: relative; isolation: isolate; min-width: 0; overflow: hidden; padding: 1rem; border: 1px solid color-mix(in oklab, var(--cat-navigation) 18%, var(--border)); border-radius: .75rem; background: linear-gradient(115deg, color-mix(in oklab, var(--surface) 95%, transparent), color-mix(in oklab, var(--surface) 83%, transparent)); box-shadow: inset 0 1px 0 rgb(255 255 255 / .07); }
+.panel::before, .panel::after { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; }
+.panel::after { background: var(--progress-contours) center / cover; opacity: .07; }
+.regions, .expedition { border-color: color-mix(in oklab, var(--warning) 28%, var(--border)); }
+.regions::before { background: linear-gradient(45deg, color-mix(in oklab, var(--primary) 8%, transparent), transparent 35%); }
+.activity::before { background: linear-gradient(0deg, transparent, var(--surface)), url("../../assets/learn-forest.jpg") right bottom / auto 100% no-repeat; opacity: .18; }
+.expedition { min-height: 194px; }
+.expedition::before { background: linear-gradient(180deg, color-mix(in oklab, var(--surface) 45%, transparent), transparent 70%), url("../../assets/progress-expedition.jpg") center bottom / cover no-repeat; opacity: .8; }
+.performance { min-height: 194px; }
+.performance::after { opacity: .12; }
+.panelHeading { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .5rem .75rem; min-height: 1.5rem; margin-bottom: .75rem; }
+.panelHeading > div:first-child { display: flex; align-items: center; gap: .75rem; min-width: 0; }
+.panelHeading svg { width: 1.45rem; height: 1.45rem; flex-shrink: 0; color: var(--warning); stroke-width: 1.7; filter: drop-shadow(0 0 8px color-mix(in oklab, var(--warning) 35%, transparent)); }
+.panelHeading h2 { font-size: 1.15rem; font-weight: 600; line-height: 1.2; text-transform: uppercase; letter-spacing: .035em; }
+.panelMeta { color: var(--muted-foreground); font-size: .65rem; }
+.textAction, .streakMessage { display: inline-flex; align-items: center; gap: .4rem; min-height: 1.5rem; color: var(--warning); font-size: .7rem; font-weight: 600; }
+.textAction:hover, .streakMessage:hover { color: var(--primary); }
+.textAction svg, .streakMessage svg { width: .85rem; height: .85rem; filter: none; }
+.regionList { display: grid; gap: .1rem; }
+.regionRow { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: .65rem; min-height: 30px; padding: .2rem .6rem; border: 1px solid transparent; border-radius: .45rem; transition: background .15s; }
+.regionRow:hover, .startedRegion { background: color-mix(in oklab, var(--surface-3) 45%, transparent); border-color: color-mix(in oklab, var(--cat-fundamentals) 20%, transparent); }
+.regionName { display: flex; align-items: center; gap: .65rem; min-width: 0; font-size: .8rem; line-height: 1.3; font-weight: 600; }
+.regionName > span:last-child { min-width: 0; }
+.regionDot { width: .45rem; height: .45rem; flex-shrink: 0; border-radius: 50%; }
+.regionRow > [role="progressbar"] { grid-column: 1 / -1; grid-row: 2; height: .35rem; }
+.regionCount { white-space: nowrap; font-family: var(--font-mono); color: var(--muted-foreground); font-size: .65rem; line-height: 1.2; }
+.activityList { position: relative; display: grid; gap: .15rem; padding-left: 1rem; }
+.activityList::before { content: ""; position: absolute; left: .2rem; top: 1.3rem; bottom: 1.3rem; width: 1px; background: linear-gradient(var(--primary), var(--warning), transparent); opacity: .65; }
+.activityItem { position: relative; display: grid; grid-template-columns: 2rem minmax(0, 1fr) auto; align-items: center; gap: .6rem; min-height: 44px; padding: .35rem .65rem; border: 1px solid color-mix(in oklab, var(--border) 70%, transparent); border-radius: .55rem; background: color-mix(in oklab, var(--surface) 45%, transparent); }
+.activityItem::before { content: ""; position: absolute; left: -1rem; top: calc(50% - .2rem); width: .4rem; height: .4rem; border-radius: 50%; background: var(--warning); box-shadow: 0 0 8px var(--primary); }
+.activityIcon { display: grid; place-items: center; width: 2rem; height: 2rem; color: var(--warning); border-radius: .6rem; background: color-mix(in oklab, var(--warning) 10%, transparent); }
+.activityIcon svg { width: 1.25rem; height: 1.25rem; }
+.activityComplete { color: var(--success); background: color-mix(in oklab, var(--success) 12%, transparent); }
+.activityContent { display: grid; justify-items: start; gap: .2rem; min-width: 0; }
+.activityContent > p { font-size: .75rem; font-weight: 600; line-height: 1.3; overflow-wrap: anywhere; }
+.activityContent > span:last-child { color: var(--muted-foreground); font-family: var(--font-mono); font-size: .6rem; line-height: 1.25; }
+.activityContent > span:first-child { font-size: .52rem; line-height: 1.15; letter-spacing: .07em; }
+.activityItem time { font-size: .65rem; color: var(--muted-foreground); white-space: nowrap; }
+.milestones { position: relative; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: .5rem; padding: 1.1rem .25rem .55rem; }
+.milestones::before { content: ""; position: absolute; inset: 2.5rem 10% auto; border-top: 2px dashed color-mix(in oklab, var(--muted-foreground) 35%, transparent); z-index: -1; }
+.milestone { display: flex; align-items: center; flex-direction: column; gap: .6rem; text-align: center; }
+.milestoneIcon { display: grid; place-items: center; width: 2.8rem; height: 2.8rem; flex-shrink: 0; border: 1px solid var(--border); border-radius: 50%; background: var(--surface-3); color: var(--muted-foreground); }
+.milestoneIcon svg { width: 1.25rem; height: 1.25rem; }
+.milestoneDone .milestoneIcon { color: var(--success); border-color: color-mix(in oklab, var(--success) 65%, transparent); background: color-mix(in oklab, var(--success) 13%, var(--surface)); }
+.milestoneCurrent .milestoneIcon, .milestone:first-child .milestoneIcon { color: var(--warning); border: 2px solid var(--warning); background: var(--surface); box-shadow: 0 0 22px -7px var(--primary), inset 0 0 14px -7px var(--primary); }
+.milestoneLabel { max-width: 5.5rem; font-size: .72rem; line-height: 1.35; color: var(--muted-foreground); }
+.milestoneDone .milestoneLabel, .milestoneCurrent .milestoneLabel { color: var(--foreground); }
+.lessonGrid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); align-items: start; gap: .6rem; }
+.lessonCard { position: relative; isolation: isolate; display: flex; flex-direction: column; gap: .45rem; min-width: 0; min-height: 122px; padding: .75rem .7rem; overflow: hidden; border: 1px solid color-mix(in oklab, var(--warning) 24%, var(--border)); border-radius: .65rem; background: linear-gradient(155deg, color-mix(in oklab, var(--surface-3) 76%, transparent), var(--surface)); box-shadow: inset 0 1px 0 rgb(255 255 255 / .08); }
+.lessonCard::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; background: var(--progress-contours) center / auto 100%; opacity: .2; }
+.lessonCard:focus-within { outline: 2px solid var(--primary); outline-offset: 3px; }
+.lessonCard:hover { border-color: var(--warning); }
+.lessonLabel { font-family: var(--font-display); font-size: .85rem; line-height: 1.2; font-weight: 600; }
+.lessonTitle { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: .6rem; line-height: 1.3; color: var(--muted-foreground); }
+.lessonCard strong { margin-top: auto; font-family: var(--font-display); font-size: 1.45rem; line-height: 1; font-weight: 600; }
+.lessonCard > [role="progressbar"] { height: .35rem; }
+.lessonReview { position: absolute; inset: 0; border-radius: inherit; }
+.unavailable { margin-top: .75rem; color: var(--muted-foreground); font-size: .8rem; }
+.unavailable button { min-height: 2.75rem; padding-inline: .5rem; text-decoration: underline; color: var(--primary); }
+.inventory { margin-top: 1.25rem; padding: .75rem 1rem; border: 1px solid var(--border); border-radius: .75rem; background: color-mix(in oklab, var(--surface) 75%, transparent); }
+.inventory > summary { display: flex; align-items: center; flex-wrap: wrap; gap: .75rem; min-height: 2.75rem; cursor: pointer; list-style: none; }
+.inventory > summary::-webkit-details-marker { display: none; }
+.inventory > summary > svg:first-child { color: var(--warning); }
+.inventory h2 { font-size: 1.1rem; font-weight: 600; text-transform: uppercase; }
+.inventory > summary > span { color: var(--muted-foreground); font-size: .75rem; }
+.inventoryChevron { margin-left: auto; transition: transform .2s; }
+.inventory[open] .inventoryChevron { transform: rotate(180deg); }
+.moduleGrid { display: grid; grid-template-columns: minmax(0, 1fr); gap: .75rem; padding-top: 1rem; }
+.moduleGrid li { min-width: 0; }
+:global([data-theme="light"]) .panorama { opacity: .7; }
+:global([data-theme="light"]) .statTile::before { opacity: .2; }
+:global([data-theme="light"]) .panel { background: color-mix(in oklab, var(--surface) 94%, transparent); }
+:global([data-theme="light"]) .panel::after { opacity: .12; }
+:global([data-theme="light"]) .activity::before { opacity: .07; }
+:global([data-theme="light"]) .expedition::before { opacity: .2; }
+@media (min-width: 40rem) {
+  .page { --progress-gutter: 1.5rem; }
+  .regionRow { grid-template-columns: 175px minmax(0, 1fr) 90px; }
+  .regionRow > [role="progressbar"] { grid-column: auto; grid-row: auto; }
+  .regionCount { text-align: right; }
+  .activityContent { grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: .2rem .7rem; }
+  .activityContent > p { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .activityContent > span:last-child { grid-column: 2; }
+  .moduleGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (min-width: 64rem) {
+  .page { --progress-gutter: 2rem; }
+  .stats { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .statTile { gap: 1rem; padding: .75rem 1rem; }
+}
+@media (min-width: 80rem) {
+  .mainGrid { grid-template-columns: repeat(24, minmax(0, 1fr)); gap: 1.2rem; }
+  .regions { grid-column: span 13; min-height: 354px; }
+  .activity { grid-column: span 11; min-height: 354px; }
+  .expedition, .performance { grid-column: span 12; }
+  .regionRow { grid-template-columns: minmax(150px, .85fr) minmax(0, 1.4fr) 80px; }
+}
+@media (max-width: 39.999rem) {
+  .heroBanner { padding-top: 1.5rem; padding-bottom: 1.3rem; }
+  .panorama { width: 100%; height: 100%; object-position: 72% center; mask-image: none; opacity: .5; }
+  .heading > header { min-height: 0; padding-right: 5.25rem; margin-bottom: 0; }
+  .completionRing { top: 2rem; width: 72px; height: 72px; }
+  .completionRing > div { transform: scale(.580645); transform-origin: top left; }
+  .heading h1 { font-size: 1.75rem; }
+  .heading > header p:last-child { padding-left: .65rem; font-size: .8rem; }
+  .stats { gap: .6rem; }
+  .statTile { align-items: start; gap: .5rem; padding: .8rem .65rem; }
+  .statIcon { width: 1.2rem; height: 1.2rem; margin-top: .2rem; }
+  .statTile > div > p:first-child { font-size: .5rem; letter-spacing: .07em; }
+  .statTile > div > p:nth-child(2) { font-size: 1.6rem; }
+  .statTile > div > p:last-child { font-size: .65rem; line-height: 1.4; }
+  .panel { padding: .9rem .75rem; }
+  .panelHeading { gap: .5rem; }
+  .panelHeading h2 { font-size: 1.1rem; }
+  .panelHeading > div:first-child { gap: .5rem; }
+  .panelMeta { padding-left: 2rem; font-size: .65rem; }
+  .regionRow { min-height: 2.75rem; padding-block: .5rem; }
+  .activityItem { grid-template-columns: 1.75rem minmax(0, 1fr); gap: .5rem; padding: .65rem .5rem; }
+  .activityIcon { width: 1.75rem; height: 1.75rem; }
+  .activityItem time { grid-column: 2; margin-top: -.2rem; }
+  .milestones { grid-template-columns: minmax(0, 1fr); gap: 1rem; padding: .25rem 0 .5rem; }
+  .milestones::before { inset: 1rem auto 1.5rem 1.4rem; border-top: none; border-left: 2px dashed color-mix(in oklab, var(--muted-foreground) 35%, transparent); }
+  .milestone { flex-direction: row; text-align: left; gap: 1rem; }
+  .milestoneLabel { max-width: none; font-size: .85rem; }
+  .lessonGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .lessonCard { min-height: 135px; }
+  .lessonTitle { white-space: normal; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
+  .inventory > summary > span { display: none; }
+}
+@media (prefers-reduced-motion: reduce) { .regionRow, .inventoryChevron { transition: none; } }

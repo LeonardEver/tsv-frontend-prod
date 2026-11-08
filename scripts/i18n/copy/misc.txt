@@ -1,0 +1,10 @@
+Survival Academy — Train for the real world|Survival Academy — Prepare-se para o mundo real|Survival Academy — Entrena para el mundo real|Survival Academy — Préparez-vous au monde réel|Survival Academy — Trainiere für die reale Welt|Survival Academy — Preparati per il mondo reale
+Survival Academy turns essential preparedness skills into a clear, motivating field curriculum.|A Survival Academy transforma habilidades essenciais de preparação em um programa de campo claro e motivador.|Survival Academy convierte habilidades esenciales de preparación en un programa de campo claro y motivador.|Survival Academy transforme les compétences essentielles de préparation en un parcours de terrain clair et motivant.|Survival Academy macht aus wichtigen Vorsorgefähigkeiten einen klaren, motivierenden Praxislehrplan.|Survival Academy trasforma le competenze essenziali di preparazione in un programma sul campo chiaro e motivante.
+{{plan}} stays active until {{date}}.|O plano {{plan}} fica ativo até {{date}}.|El plan {{plan}} sigue activo hasta {{date}}.|L'offre {{plan}} reste active jusqu'au {{date}}.|Dein Abo {{plan}} bleibt bis {{date}} aktiv.|Il piano {{plan}} resta attivo fino al {{date}}.
+Your plan will end at the period end.|Seu plano será encerrado no fim do período.|Tu plan finalizará al terminar el período.|Votre offre prendra fin à la fin de la période.|Dein Abo endet zum Periodenende.|Il piano terminerà alla fine del periodo.
+General|Geral|General|Général|Allgemein|Generale
+Medical|Saúde|Medicina|Médecine|Medizin|Medicina
+Gear|Equipamentos|Equipo|Équipement|Ausrüstung|Attrezzatura
+Off-grid|Fora da rede|Sin conexión a la red|Hors réseau|Netzunabhängig|Fuori rete
+Survival Stories|Histórias de sobrevivência|Historias de supervivencia|Récits de survie|Überlebensgeschichten|Storie di sopravvivenza
+Questions|Perguntas|Preguntas|Questions|Fragen|Domande

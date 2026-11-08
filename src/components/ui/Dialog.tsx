@@ -14,6 +14,7 @@
  * Safe-area padding keeps the close control clear of a notch and the
  * footer clear of the home indicator.
  */
+import { tr as uiText, useLocale as useInterfaceLocale } from "@/i18n";
 import type { ReactNode } from "react";
 import * as RadixDialog from "@radix-ui/react-dialog";
 import { X } from "lucide-react";
@@ -28,6 +29,7 @@ export interface DialogProps {
 }
 
 export function Dialog({ open, onOpenChange, title, description, children }: DialogProps) {
+  useInterfaceLocale();
   return (
     <RadixDialog.Root open={open} onOpenChange={onOpenChange}>
       <RadixDialog.Portal>
@@ -51,7 +53,7 @@ export function Dialog({ open, onOpenChange, title, description, children }: Dia
           ) : null}
           <div className="mt-4">{children}</div>
           <RadixDialog.Close
-            aria-label="Close dialog"
+            aria-label={uiText("common:close_dialog_7b2902")}
             className="absolute top-4 right-4 grid size-9 place-items-center rounded-md text-muted-foreground hover:bg-accent hover:text-foreground"
           >
             <X aria-hidden="true" className="size-4" />

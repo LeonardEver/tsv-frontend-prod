@@ -26,8 +26,8 @@ function placeholders(template: string): string[] {
   return [...template.matchAll(PLACEHOLDER)].map((match) => match[1] ?? "").sort();
 }
 
-afterEach(() => {
-  __resetAdminLanguage();
+afterEach(async () => {
+  await __resetAdminLanguage();
   window.localStorage.clear();
 });
 
@@ -98,11 +98,11 @@ describe("admin analytics language store", () => {
     expect(trFor(DEFAULT_ADMIN_LANGUAGE).t("nav.title")).toBe("Product analytics");
   });
 
-  it("keeps the choice in the device's storage", () => {
-    setAdminLanguage("pt");
-    expect(window.localStorage.getItem("admin-analytics-lang")).toBe("pt");
+  it("keeps the choice in the shared app preference", async () => {
+    await setAdminLanguage("pt");
+    expect(window.localStorage.getItem("survival-academy-language")).toBe("pt-BR");
     // Not the user's data and not a backend concern: the key is local only.
-    setAdminLanguage("en");
-    expect(window.localStorage.getItem("admin-analytics-lang")).toBe("en");
+    await setAdminLanguage("en");
+    expect(window.localStorage.getItem("survival-academy-language")).toBe("en");
   });
 });

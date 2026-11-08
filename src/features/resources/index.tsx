@@ -17,13 +17,16 @@
  *   external  → attribution state only; the source link is followed
  *               by the user at the source, never auto-downloaded.
  */
+import { tr as uiText, useLocale as useInterfaceLocale } from "@/i18n";
+import { ContentLanguageNotice } from "@/i18n/ContentLanguageNotice";
 import { useParams, Link } from "react-router";
 import { useQuery } from "@tanstack/react-query";
 import { ArrowRight, Download, ExternalLink, Eye, Lock } from "lucide-react";
 import { queryKeys } from "@/lib/api/keys";
 import { API_BASE } from "@/lib/config/env";
 import { ApiError } from "@/lib/api/errors";
-import { catColorForCode, categoryImage } from "@/lib/category-visuals";
+import { catColorForCode } from "@/lib/category-visuals";
+import { moduleImage } from "@/lib/module-visuals";
 import { Chip, EmptyState, Eyebrow } from "@/components/sa/primitives";
 import { ErrorState } from "@/components/shared/ErrorState";
 import { analytics } from "@/lib/analytics/events";
@@ -34,12 +37,14 @@ import { fetchCategories } from "@/features/categories/categories.api";
 import { fetchModule } from "@/features/modules/modules.api";
 import { getResourceTypeIcon } from "./resource-identity";
 import { fetchResource } from "./resources.api";
+import { formatResourceType, formatRedistribution } from "@/lib/format/format";
 
 function isHttpUrl(url: string | null | undefined): url is string {
   return typeof url === "string" && /^https?:\/\//i.test(url);
 }
 
 export default function ResourcePage() {
+  useInterfaceLocale();
   const { resourceId } = useParams();
   const valid = typeof resourceId === "string" && isValidCanonicalId(resourceId);
 
@@ -62,8 +67,8 @@ export default function ResourcePage() {
   const canDownload =
     subscriptionQuery.data?.entitlements.resource_download === true;
 
-  // Module context for the hero artwork (resource rows carry no
-  // category — the module's category resolves the config-driven image).
+  // Module context supplies category accents; artwork follows the
+  // resource's own module, consistently with its lesson and cards.
   const moduleQuery = useQuery({
     queryKey:
       query.data?.module_id
@@ -84,15 +89,13 @@ export default function ResourcePage() {
   if (!valid) {
     return (
       <EmptyState
-        title="This resource doesn't exist"
-        description="Check the link and try again."
+        title={uiText("learning:this_resource_doesn_t_exist_62700d")}
+        description={uiText("learning:check_the_link_and_try_again_c7a03c")}
         action={
           <Link
             to="/categories"
             className="mt-6 inline-flex min-h-11 items-center rounded-lg border border-border px-5 text-sm font-semibold uppercase transition-colors hover:bg-accent"
-          >
-            All categories
-          </Link>
+          >{uiText("learning:all_categories_060be0")}</Link>
         }
       />
     );
@@ -100,7 +103,7 @@ export default function ResourcePage() {
 
   if (query.isPending) {
     return (
-      <div role="status" aria-label="Loading resource" className="space-y-6">
+      <div role="status" aria-label={uiText("learning:loading_resource_e5af2a")} className="space-y-6">
         <div className="panel h-72 animate-pulse" aria-hidden="true" />
         <div className="grid gap-4 sm:grid-cols-3">
           <div className="panel-2 h-20 animate-pulse" aria-hidden="true" />
@@ -117,15 +120,13 @@ export default function ResourcePage() {
     if (query.error instanceof ApiError && query.error.status === 404) {
       return (
         <EmptyState
-          title="This resource isn't available"
-          description="It may have been removed or is not published yet."
+          title={uiText("learning:this_resource_isn_t_available_4656d6")}
+          description={uiText("learning:it_may_have_been_removed_or_is_049d8b")}
           action={
             <Link
               to="/categories"
               className="mt-6 inline-flex min-h-11 items-center rounded-lg border border-border px-5 text-sm font-semibold uppercase transition-colors hover:bg-accent"
-            >
-              All categories
-            </Link>
+            >{uiText("learning:all_categories_060be0")}</Link>
           }
         />
       );
@@ -142,24 +143,26 @@ export default function ResourcePage() {
     (c) => c.slug === moduleCategory,
   );
   const color = catColorForCode(categoryRow?.code ?? moduleCategory);
-  const image = categoryImage(categoryRow?.code ?? moduleCategory);
+  const image = moduleImage(resource.module_id);
   const categoryTitle = categoryRow?.title;
+  const moduleTitle = moduleQuery.data?.title ?? resource.module_title;
 
   const availabilityLabel =
     resource.resource_origin === "external"
-      ? "External source"
+      ? uiText("learning:resourceExternal")
       : resource.artifact_available
-        ? "Ready"
-        : "Not yet generated";
+        ? uiText("learning:resourceReady")
+        : uiText("learning:resourceNotGenerated");
 
   return (
     <div className="mx-auto max-w-4xl">
-      <nav aria-label="Breadcrumb" className="mb-4 font-mono text-[11px] tracking-widest uppercase">
+      <ContentLanguageNotice data={resource} />
+      <nav aria-label={uiText("learning:breadcrumb_c766e6")} className="mb-4 font-mono text-[11px] tracking-widest uppercase">
         <Link
           to={resource.module_id ? `/modules/${resource.module_id}` : "/categories"}
           className="text-muted-foreground hover:text-foreground"
         >
-          ← {resource.module_title}
+          ← {moduleTitle}
         </Link>
       </nav>
 
@@ -177,12 +180,12 @@ export default function ResourcePage() {
         )}
         <div className="absolute inset-0 bg-linear-to-t from-background via-background/88 to-background/40" />
         <div className="relative max-w-2xl p-6 pt-28 sm:p-10 sm:pt-40">
-          <Eyebrow>Field resource</Eyebrow>
+          <Eyebrow>{uiText("learning:field_resource_8e9e11")}</Eyebrow>
           <h1 className="page-title mt-2 font-display text-3xl leading-tight font-semibold tracking-wide uppercase sm:text-4xl">
             {resource.title}
           </h1>
           <div className="mt-3 flex flex-wrap gap-2">
-            <Chip color={color}>{resource.resource_type}</Chip>
+            <Chip color={color}>{formatResourceType(resource.resource_type)}</Chip>
             {resource.file_format ? <Chip>{resource.file_format}</Chip> : null}
             {categoryTitle ? <Chip color={color}>{categoryTitle}</Chip> : null}
           </div>
@@ -196,12 +199,9 @@ export default function ResourcePage() {
                   rel="noopener noreferrer"
                   className="glow-ember inline-flex min-h-12 items-center gap-2 rounded-lg bg-primary px-5 text-sm font-semibold tracking-wide text-primary-foreground uppercase transition-colors hover:bg-primary/90"
                 >
-                  <ExternalLink className="size-4" /> View at the source
-                </a>
+                  <ExternalLink className="size-4" />{" "}{uiText("learning:view_at_the_source_8b04e0")}</a>
               ) : (
-                <p className="mt-6 text-sm text-muted-foreground">
-                  This resource lives outside the Survival Vault — the source link is not available.
-                </p>
+                <p className="mt-6 text-sm text-muted-foreground">{uiText("learning:this_resource_lives_outside_the_survival_vault_f58026")}</p>
               )}
             </div>
           ) : resource.artifact_available ? (
@@ -218,8 +218,7 @@ export default function ResourcePage() {
                 }}
                 className="glow-ember inline-flex min-h-12 items-center gap-2 rounded-lg bg-primary px-5 text-sm font-semibold tracking-wide text-primary-foreground uppercase transition-colors hover:bg-primary/90"
               >
-                <Eye className="size-4" /> Open artifact
-              </a>
+                <Eye className="size-4" />{" "}{uiText("learning:open_artifact_0b927a")}</a>
               {canDownload ? (
                 <a
                   href={`${downloadBase}?disposition=attachment`}
@@ -231,28 +230,24 @@ export default function ResourcePage() {
                   }}
                   className="inline-flex min-h-12 items-center gap-2 rounded-lg border border-border px-5 text-sm font-semibold tracking-wide uppercase transition-colors hover:bg-accent"
                 >
-                  <Download className="size-4" /> Download
-                </a>
+                  <Download className="size-4" />{" "}{uiText("learning:download_a479c9")}</a>
               ) : (
                 <Link
                   to="/plans"
                   className="inline-flex min-h-12 items-center gap-2 rounded-lg border border-dashed border-border px-5 text-sm tracking-wide text-muted-foreground uppercase"
                 >
-                  <Lock className="size-4" /> Download with Survivor
-                </Link>
+                  <Lock className="size-4" />{" "}{uiText("learning:download_with_survivor_c3ca4e")}</Link>
               )}
             </div>
           ) : (
-            <p className="mt-6 text-sm text-muted-foreground">
-              This field resource hasn't been generated yet.
-            </p>
+            <p className="mt-6 text-sm text-muted-foreground">{uiText("learning:this_field_resource_hasn_t_been_generated_b5140f")}</p>
           )}
 
           {resource.resource_origin === "generated" && resource.artifact_available ? (
             <p className="mt-4 max-w-md font-mono text-[11px] leading-relaxed text-muted-foreground">
               {canDownload
-                ? "Downloads are served through your authenticated session — never shared outside your account."
-                : "You can always view this resource here. Offline downloads are included in Survivor and Operator."}
+                ? uiText("learning:downloads_are_served_through_your_authenticated_session_c460e2")
+                : uiText("learning:you_can_always_view_this_resource_here_447b83")}
             </p>
           ) : null}
 
@@ -260,14 +255,14 @@ export default function ResourcePage() {
             <dl className="mt-4 grid max-w-md gap-1 text-xs text-muted-foreground sm:grid-cols-2">
               {resource.license ? (
                 <div>
-                  <dt className="font-mono tracking-widest text-foreground uppercase">License</dt>
+                  <dt className="font-mono tracking-widest text-foreground uppercase">{uiText("learning:license_322960")}</dt>
                   <dd className="mt-0.5">{resource.license}</dd>
                 </div>
               ) : null}
               {resource.redistribution ? (
                 <div>
-                  <dt className="font-mono tracking-widest text-foreground uppercase">Redistribution</dt>
-                  <dd className="mt-0.5">{resource.redistribution}</dd>
+                  <dt className="font-mono tracking-widest text-foreground uppercase">{uiText("learning:redistribution_c5d1f4")}</dt>
+                  <dd className="mt-0.5">{formatRedistribution(resource.redistribution)}</dd>
                 </div>
               ) : null}
             </dl>
@@ -277,18 +272,18 @@ export default function ResourcePage() {
 
       <section className="mt-8 grid gap-4 sm:grid-cols-3">
         <div className="panel-2 p-4">
-          <Eyebrow>Type</Eyebrow>
+          <Eyebrow>{uiText("learning:type_3deb74")}</Eyebrow>
           <p className="mt-1.5 flex items-center gap-2 text-sm">
             <TypeIcon className="size-4 shrink-0" style={{ color }} aria-hidden="true" />
-            {resource.resource_type}
+            {formatResourceType(resource.resource_type)}
           </p>
         </div>
         <div className="panel-2 p-4">
-          <Eyebrow>Format</Eyebrow>
+          <Eyebrow>{uiText("learning:format_041a5d")}</Eyebrow>
           <p className="mt-1.5 text-sm">{resource.file_format ?? "—"}</p>
         </div>
         <div className="panel-2 p-4">
-          <Eyebrow>Availability</Eyebrow>
+          <Eyebrow>{uiText("learning:availability_681b5b")}</Eyebrow>
           <p className="mt-1.5 text-sm">{availabilityLabel}</p>
         </div>
       </section>
@@ -299,7 +294,7 @@ export default function ResourcePage() {
             to={`/modules/${resource.module_id}`}
             className="inline-flex items-center gap-2 text-xs font-semibold tracking-wide text-primary uppercase"
           >
-            {resource.module_title} <ArrowRight className="size-3.5" />
+            {moduleTitle} <ArrowRight className="size-3.5" />
           </Link>
         </div>
       ) : null}

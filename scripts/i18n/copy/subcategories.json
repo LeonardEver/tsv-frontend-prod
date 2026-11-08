@@ -1,0 +1,513 @@
+{
+  "learning:subcategory_advanced_navigation": [
+    "Navegação avançada",
+    "Orientación avanzada",
+    "Orientation avancée",
+    "Fortgeschrittene Orientierung",
+    "Orientamento avanzato"
+  ],
+  "learning:subcategory_boiling": [
+    "Fervura",
+    "Ebullición",
+    "Ébullition",
+    "Abkochen",
+    "Bollitura"
+  ],
+  "learning:subcategory_burns": [
+    "Queimaduras",
+    "Quemaduras",
+    "Brûlures",
+    "Verbrennungen",
+    "Ustioni"
+  ],
+  "learning:subcategory_canning": [
+    "Conservas",
+    "Enlatado",
+    "Mise en conserve",
+    "Einkochen",
+    "Conserve"
+  ],
+  "learning:subcategory_chemical_purification": [
+    "Purificação química",
+    "Purificación química",
+    "Purification chimique",
+    "Chemische Aufbereitung",
+    "Purificazione chimica"
+  ],
+  "learning:subcategory_compass_navigation": [
+    "Navegação com bússola",
+    "Orientación con brújula",
+    "Orientation à la boussole",
+    "Kompassorientierung",
+    "Orientamento con bussola"
+  ],
+  "learning:subcategory_composting": [
+    "Compostagem",
+    "Compostaje",
+    "Compostage",
+    "Kompostierung",
+    "Compostaggio"
+  ],
+  "learning:subcategory_cooking": [
+    "Culinária",
+    "Cocina",
+    "Cuisine",
+    "Kochen",
+    "Cucina"
+  ],
+  "learning:subcategory_coordinates": [
+    "Coordenadas",
+    "Coordenadas",
+    "Coordonnées",
+    "Koordinaten",
+    "Coordinate"
+  ],
+  "learning:subcategory_crop_planning": [
+    "Planejamento de cultivos",
+    "Planificación de cultivos",
+    "Planification des cultures",
+    "Anbauplanung",
+    "Pianificazione delle colture"
+  ],
+  "learning:subcategory_crops": [
+    "Cultivos",
+    "Cultivos",
+    "Cultures",
+    "Nutzpflanzen",
+    "Colture"
+  ],
+  "learning:subcategory_digital_navigation": [
+    "Navegação digital",
+    "Orientación digital",
+    "Orientation numérique",
+    "Digitale Orientierung",
+    "Orientamento digitale"
+  ],
+  "learning:subcategory_edible_plants": [
+    "Plantas comestíveis",
+    "Plantas comestibles",
+    "Plantes comestibles",
+    "Essbare Pflanzen",
+    "Piante commestibili"
+  ],
+  "learning:subcategory_emergency_cooking": [
+    "Cozinha de emergência",
+    "Cocina de emergencia",
+    "Cuisine d'urgence",
+    "Notfallkochen",
+    "Cucina d'emergenza"
+  ],
+  "learning:subcategory_emergency_food": [
+    "Alimentação de emergência",
+    "Alimentación de emergencia",
+    "Alimentation d'urgence",
+    "Notfallnahrung",
+    "Alimentazione d'emergenza"
+  ],
+  "learning:subcategory_emergency_navigation": [
+    "Navegação de emergência",
+    "Orientación de emergencia",
+    "Orientation d'urgence",
+    "Notfallorientierung",
+    "Orientamento d'emergenza"
+  ],
+  "learning:subcategory_emergency_planning": [
+    "Planejamento de emergência",
+    "Planificación de emergencias",
+    "Planification d'urgence",
+    "Notfallplanung",
+    "Pianificazione delle emergenze"
+  ],
+  "learning:subcategory_emergency_response": [
+    "Resposta a emergências",
+    "Respuesta a emergencias",
+    "Intervention d'urgence",
+    "Notfalleinsatz",
+    "Risposta alle emergenze"
+  ],
+  "learning:subcategory_emergency_shelter": [
+    "Abrigo de emergência",
+    "Refugio de emergencia",
+    "Abri d'urgence",
+    "Notunterkunft",
+    "Riparo d'emergenza"
+  ],
+  "learning:subcategory_environmental_navigation": [
+    "Navegação em condições ambientais",
+    "Orientación ambiental",
+    "Orientation selon l'environnement",
+    "Umweltbedingungen bei der Orientierung",
+    "Orientamento ambientale"
+  ],
+  "learning:subcategory_fermentation": [
+    "Fermentação",
+    "Fermentación",
+    "Fermentation",
+    "Fermentation",
+    "Fermentazione"
+  ],
+  "learning:subcategory_filtration": [
+    "Filtragem",
+    "Filtración",
+    "Filtration",
+    "Filtration",
+    "Filtrazione"
+  ],
+  "learning:subcategory_finding_water": [
+    "Busca de água",
+    "Buscar agua",
+    "Trouver de l'eau",
+    "Wasser finden",
+    "Trovare acqua"
+  ],
+  "learning:subcategory_fire_fundamentals": [
+    "Fundamentos do fogo",
+    "Fundamentos del fuego",
+    "Fondamentaux du feu",
+    "Feuergrundlagen",
+    "Fondamenti del fuoco"
+  ],
+  "learning:subcategory_fire_laying": [
+    "Montagem da fogueira",
+    "Preparación de la hoguera",
+    "Disposition du feu",
+    "Feueraufbau",
+    "Preparazione del fuoco"
+  ],
+  "learning:subcategory_fire_maintenance": [
+    "Manutenção do fogo",
+    "Mantenimiento del fuego",
+    "Entretien du feu",
+    "Feuerpflege",
+    "Mantenimento del fuoco"
+  ],
+  "learning:subcategory_fire_safety": [
+    "Segurança com fogo",
+    "Seguridad con el fuego",
+    "Sécurité incendie",
+    "Brandschutz",
+    "Sicurezza antincendio"
+  ],
+  "learning:subcategory_fire_starting": [
+    "Acendimento do fogo",
+    "Encendido del fuego",
+    "Allumage du feu",
+    "Feuer entzünden",
+    "Accensione del fuoco"
+  ],
+  "learning:subcategory_first_aid": [
+    "Primeiros socorros",
+    "Primeros auxilios",
+    "Premiers secours",
+    "Erste Hilfe",
+    "Primo soccorso"
+  ],
+  "learning:subcategory_food_preservation": [
+    "Conservação de alimentos",
+    "Conservación de alimentos",
+    "Conservation des aliments",
+    "Lebensmittel haltbar machen",
+    "Conservazione degli alimenti"
+  ],
+  "learning:subcategory_food_safety": [
+    "Segurança dos alimentos",
+    "Seguridad alimentaria",
+    "Sécurité alimentaire",
+    "Lebensmittelsicherheit",
+    "Sicurezza alimentare"
+  ],
+  "learning:subcategory_food_storage": [
+    "Armazenamento de alimentos",
+    "Almacenamiento de alimentos",
+    "Stockage alimentaire",
+    "Lebensmittellagerung",
+    "Stoccaggio alimentare"
+  ],
+  "learning:subcategory_fractures": [
+    "Fraturas",
+    "Fracturas",
+    "Fractures",
+    "Knochenbrüche",
+    "Fratture"
+  ],
+  "learning:subcategory_fuel": [
+    "Combustível",
+    "Combustible",
+    "Combustible",
+    "Brennstoff",
+    "Combustibile"
+  ],
+  "learning:subcategory_gardening": [
+    "Horticultura",
+    "Horticultura",
+    "Jardinage",
+    "Gartenbau",
+    "Orticoltura"
+  ],
+  "learning:subcategory_greenhouses": [
+    "Estufas",
+    "Invernaderos",
+    "Serres",
+    "Gewächshäuser",
+    "Serre"
+  ],
+  "learning:subcategory_hypothermia_hyperthermia": [
+    "Hipotermia e hipertermia",
+    "Hipotermia e hipertermia",
+    "Hypothermie et hyperthermie",
+    "Unterkühlung und Überwärmung",
+    "Ipotermia e ipertermia"
+  ],
+  "learning:subcategory_insulation": [
+    "Isolamento térmico",
+    "Aislamiento térmico",
+    "Isolation",
+    "Wärmedämmung",
+    "Isolamento"
+  ],
+  "learning:subcategory_irrigation": [
+    "Irrigação",
+    "Riego",
+    "Irrigation",
+    "Bewässerung",
+    "Irrigazione"
+  ],
+  "learning:subcategory_long_term_shelter": [
+    "Abrigo de longo prazo",
+    "Refugio a largo plazo",
+    "Abri de longue durée",
+    "Langzeitunterkunft",
+    "Riparo a lungo termine"
+  ],
+  "learning:subcategory_map_reading": [
+    "Leitura de mapas",
+    "Lectura de mapas",
+    "Lecture de carte",
+    "Kartenlesen",
+    "Lettura delle mappe"
+  ],
+  "learning:subcategory_mushrooms": [
+    "Cogumelos",
+    "Setas",
+    "Champignons",
+    "Pilze",
+    "Funghi"
+  ],
+  "learning:subcategory_natural_shelter": [
+    "Abrigo natural",
+    "Refugio natural",
+    "Abri naturel",
+    "Natürlicher Schutz",
+    "Riparo naturale"
+  ],
+  "learning:subcategory_navigation_basics": [
+    "Fundamentos de navegação",
+    "Fundamentos de orientación",
+    "Bases de l'orientation",
+    "Orientierungsgrundlagen",
+    "Basi dell'orientamento"
+  ],
+  "learning:subcategory_navigation_safety": [
+    "Segurança na navegação",
+    "Seguridad en la orientación",
+    "Sécurité en orientation",
+    "Sichere Orientierung",
+    "Sicurezza nell'orientamento"
+  ],
+  "learning:subcategory_nutrition": [
+    "Nutrição",
+    "Nutrición",
+    "Nutrition",
+    "Ernährung",
+    "Nutrizione"
+  ],
+  "learning:subcategory_pest_management": [
+    "Manejo de pragas",
+    "Control de plagas",
+    "Gestion des ravageurs",
+    "Schädlingsmanagement",
+    "Gestione dei parassiti"
+  ],
+  "learning:subcategory_plant_identification": [
+    "Identificação de plantas",
+    "Identificación de plantas",
+    "Identification des plantes",
+    "Pflanzenbestimmung",
+    "Identificazione delle piante"
+  ],
+  "learning:subcategory_plant_processing": [
+    "Processamento de plantas",
+    "Procesamiento de plantas",
+    "Préparation des plantes",
+    "Pflanzenverarbeitung",
+    "Lavorazione delle piante"
+  ],
+  "learning:subcategory_preparedness": [
+    "Preparação",
+    "Preparación",
+    "Préparation",
+    "Vorsorge",
+    "Preparazione"
+  ],
+  "learning:subcategory_prioritization": [
+    "Priorização",
+    "Priorización",
+    "Hiérarchisation des priorités",
+    "Prioritäten setzen",
+    "Definizione delle priorità"
+  ],
+  "learning:subcategory_purification": [
+    "Purificação",
+    "Purificación",
+    "Purification",
+    "Aufbereitung",
+    "Purificazione"
+  ],
+  "learning:subcategory_rainwater_collection": [
+    "Coleta de chuva",
+    "Recogida de lluvia",
+    "Collecte d'eau de pluie",
+    "Regenwassersammlung",
+    "Raccolta dell'acqua piovana"
+  ],
+  "learning:subcategory_responsible_foraging": [
+    "Coleta responsável",
+    "Recolección responsable",
+    "Cueillette responsable",
+    "Verantwortungsvolles Sammeln",
+    "Raccolta responsabile"
+  ],
+  "learning:subcategory_risk_assessment": [
+    "Avaliação de riscos",
+    "Evaluación de riesgos",
+    "Évaluation des risques",
+    "Risikobewertung",
+    "Valutazione dei rischi"
+  ],
+  "learning:subcategory_route_planning": [
+    "Planejamento de rotas",
+    "Planificación de rutas",
+    "Planification d'itinéraires",
+    "Routenplanung",
+    "Pianificazione degli itinerari"
+  ],
+  "learning:subcategory_seed_saving": [
+    "Conservação de sementes",
+    "Conservación de semillas",
+    "Conservation des semences",
+    "Saatgutgewinnung",
+    "Conservazione dei semi"
+  ],
+  "learning:subcategory_shelter_materials": [
+    "Materiais de abrigo",
+    "Materiales de refugio",
+    "Matériaux d'abri",
+    "Unterkunftsmaterialien",
+    "Materiali per ripari"
+  ],
+  "learning:subcategory_site_selection": [
+    "Escolha do local",
+    "Elección del lugar",
+    "Choix du site",
+    "Standortwahl",
+    "Scelta del luogo"
+  ],
+  "learning:subcategory_situational_awareness": [
+    "Consciência situacional",
+    "Conciencia situacional",
+    "Conscience de la situation",
+    "Situationsbewusstsein",
+    "Consapevolezza situazionale"
+  ],
+  "learning:subcategory_smoking": [
+    "Defumação",
+    "Ahumado",
+    "Fumage",
+    "Räuchern",
+    "Affumicatura"
+  ],
+  "learning:subcategory_soil": [
+    "Solo",
+    "Suelo",
+    "Sol",
+    "Boden",
+    "Suolo"
+  ],
+  "learning:subcategory_storage": [
+    "Armazenamento",
+    "Almacenamiento",
+    "Stockage",
+    "Lagerung",
+    "Stoccaggio"
+  ],
+  "learning:subcategory_survival_psychology": [
+    "Psicologia da sobrevivência",
+    "Psicología de supervivencia",
+    "Psychologie de survie",
+    "Überlebenspsychologie",
+    "Psicologia della sopravvivenza"
+  ],
+  "learning:subcategory_tents": [
+    "Barracas",
+    "Tiendas de campaña",
+    "Tentes",
+    "Zelte",
+    "Tende"
+  ],
+  "learning:subcategory_terrain_navigation": [
+    "Navegação pelo terreno",
+    "Orientación por el terreno",
+    "Orientation par le terrain",
+    "Geländeorientierung",
+    "Orientamento sul terreno"
+  ],
+  "learning:subcategory_toxic_plants": [
+    "Plantas tóxicas",
+    "Plantas tóxicas",
+    "Plantes toxiques",
+    "Giftpflanzen",
+    "Piante tossiche"
+  ],
+  "learning:subcategory_trauma": [
+    "Trauma",
+    "Traumatismos",
+    "Traumatismes",
+    "Trauma",
+    "Traumi"
+  ],
+  "learning:subcategory_water_navigation": [
+    "Navegação e cursos d'água",
+    "Orientación y cursos de agua",
+    "Orientation et cours d'eau",
+    "Orientierung an Gewässern",
+    "Orientamento e corsi d'acqua"
+  ],
+  "learning:subcategory_water_systems": [
+    "Sistemas de água",
+    "Sistemas de agua",
+    "Systèmes d'eau",
+    "Wassersysteme",
+    "Sistemi idrici"
+  ],
+  "learning:subcategory_water_testing": [
+    "Teste da água",
+    "Análisis del agua",
+    "Analyse de l'eau",
+    "Wasserprüfung",
+    "Analisi dell'acqua"
+  ],
+  "learning:subcategory_weather_protection": [
+    "Proteção contra o clima",
+    "Protección meteorológica",
+    "Protection météo",
+    "Wetterschutz",
+    "Protezione dal meteo"
+  ],
+  "learning:subcategory_wound_care": [
+    "Cuidados com feridas",
+    "Cuidado de heridas",
+    "Soins des plaies",
+    "Wundversorgung",
+    "Cura delle ferite"
+  ]
+}

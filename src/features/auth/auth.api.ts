@@ -29,6 +29,7 @@ export function logoutSession(): Promise<{ ok: boolean }> {
 // ── Email/password credentials ─────────────────────────────────────────────
 
 export interface RegisterInput {
+  preferred_language?: string;
   first_name: string;
   last_name: string;
   email: string;

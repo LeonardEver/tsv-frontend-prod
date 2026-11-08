@@ -11,11 +11,14 @@
  * - Submission resilience: duplicate activation blocked by the
  *   submitting state; retries reuse the same logical submission.
  */
-import { memo } from "react";
+import { tr as uiText, useLocale as useInterfaceLocale, uiValue } from "@/i18n";
+import { memo, useEffect, useRef } from "react";
+import { ArrowRight, Check, CloudCheck } from "lucide-react";
 import type { ClientError } from "@/lib/api/errors";
 import type { QuizResponse } from "@/lib/api/types";
 import { describeError } from "@/lib/api/error-map";
 import { cn } from "@/components/sa/primitives";
+import styles from "./quiz.module.css";
 
 type QuizQuestion = QuizResponse["questions"][number];
 
@@ -37,8 +40,6 @@ export interface QuestionCardProps {
   onSubmit: () => void;
   submissionError: ClientError | null;
   onRetrySubmission: () => void;
-  /** Category accent (CSS color) — defaults to ember. */
-  color?: string;
 }
 
 export const QuestionCard = memo(function QuestionCard({
@@ -58,15 +59,21 @@ export const QuestionCard = memo(function QuestionCard({
   onSubmit,
   submissionError,
   onRetrySubmission,
-  color = "var(--ember)",
 }: QuestionCardProps) {
+  useInterfaceLocale();
+  const headingRef = useRef<HTMLHeadingElement>(null);
+  const previousQuestion = useRef(question.question_id);
+  useEffect(() => {
+    if (previousQuestion.current !== question.question_id) {
+      previousQuestion.current = question.question_id;
+      headingRef.current?.focus({ preventScroll: true });
+      if (window.scrollY > 0) window.scrollTo({ top: 0, behavior: "instant" });
+    }
+  }, [question.question_id]);
   if (question.question_type !== "multiple_choice") {
     return (
       <div className="panel p-6">
-        <p role="alert" className="text-destructive">
-          This question type isn't supported yet ({question.question_type}). Please
-          return to the module.
-        </p>
+        <p role="alert" className="text-destructive">{uiText("learning:this_question_type_isn_t_supported_yet_e36793", { value0: uiValue(question.question_type) })}</p>
       </div>
     );
   }
@@ -75,78 +82,66 @@ export const QuestionCard = memo(function QuestionCard({
   const unanswered = total - answeredCount;
 
   return (
-    <div className="mx-auto max-w-3xl pb-24 lg:pb-0">
+    <div className={styles.card}>
       {/* Sticky navigation (mobile) */}
-      <nav className="fixed inset-x-0 bottom-14 z-[var(--z-chrome)] border-t border-border bg-background/95 p-3 backdrop-blur-md lg:static lg:mt-6 lg:border-0 lg:bg-transparent lg:p-0">
-        <div className="mx-auto flex max-w-3xl items-center gap-3">
+      <nav aria-label={uiText("learning:question_actions_807113")} className={styles.footer}>
+        <div className={styles.footerInner}>
           <button
             type="button"
             onClick={onPrevious}
             disabled={!canGoPrevious || submitting}
-            className="min-h-12 flex-1 rounded-lg border border-border px-4 text-sm font-semibold tracking-wide uppercase transition-colors hover:bg-accent disabled:opacity-40"
-          >
-            Previous
-          </button>
+            className={styles.previous}
+          >{uiText("learning:previous_50f942")}</button>
           {canGoNext ? (
             <button
               type="button"
               onClick={onNext}
               disabled={submitting}
-              className="min-h-12 flex-1 rounded-lg bg-primary px-4 text-sm font-semibold tracking-wide text-primary-foreground uppercase transition-colors hover:bg-primary/90 disabled:opacity-60"
-            >
-              Next
+              className={styles.next}
+            >{uiText("learning:next_bc9819")}{" "}<ArrowRight size={18} aria-hidden="true" />
             </button>
           ) : (
             <button
               type="button"
               onClick={onSubmit}
               disabled={submitting}
-              className="glow-ember flex min-h-12 flex-1 items-center justify-center rounded-lg bg-primary px-4 text-sm font-semibold tracking-wide text-primary-foreground uppercase transition-colors hover:bg-primary/90 disabled:opacity-60"
+              className={styles.next}
             >
-              {submitting ? "Submitting…" : "Submit field test"}
+              {submitting ? uiText("learning:submitting_25bdf9") : uiText("learning:submit_field_test_5a777a")}
             </button>
           )}
         </div>
       </nav>
 
-      <section className="panel p-6 sm:p-8">
+      <section>
         <fieldset>
-          <legend className="sr-only">Answer options</legend>
-          <h2 className="text-xl leading-snug font-medium">{question.question_text}</h2>
-          <div className="mt-6 grid gap-3" role="radiogroup" aria-label={`Question ${index + 1}`}>
-            {question.options.map((option, i) => {
+          <legend className="sr-only">{uiText("learning:answer_options_c9ef76")}</legend>
+          <h2 ref={headingRef} tabIndex={-1} className={styles.question}>{question.question_text}</h2>
+          <p className={styles.instructions}>{uiText("learning:choose_the_best_answer_40f900")}</p>
+          <div className={styles.options} role="radiogroup" aria-label={uiText("learning:question_value_959992", { value0: uiValue(index + 1) })}>
+            {question.options.map((option) => {
               const checked = selected === option.label;
               return (
                 <label
                   key={option.label}
-                  className="flex min-h-14 cursor-pointer items-center gap-4 rounded-xl border px-4 py-3 transition-colors"
-                  style={{
-                    borderColor: checked ? color : "var(--border)",
-                    background: checked
-                      ? `color-mix(in oklab, ${color} 12%, transparent)`
-                      : "var(--surface-2)",
-                    boxShadow: checked ? `0 0 26px -10px ${color}` : undefined,
-                  }}
+                  className={styles.option}
                 >
                   <input
                     type="radio"
                     name={`question-${question.question_id}`}
                     value={option.label}
                     checked={checked}
+                    disabled={submitting}
                     onChange={() => { onSelect(question.question_id, option.label); }}
                     className="sr-only"
                   />
                   <span
                     aria-hidden="true"
-                    className="grid size-8 shrink-0 place-items-center rounded-md border font-mono text-xs"
-                    style={{
-                      borderColor: checked ? color : "var(--border)",
-                      color: checked ? color : "var(--muted-foreground)",
-                    }}
+                    className={styles.choice}
                   >
-                    {String.fromCharCode(65 + i)}
+                    <Check />
                   </span>
-                  <span className="text-[15px]">{option.text}</span>
+                  <span className={styles.optionText}>{option.text}</span>
                 </label>
               );
             })}
@@ -154,23 +149,10 @@ export const QuestionCard = memo(function QuestionCard({
         </fieldset>
       </section>
 
-      <div className="panel-2 mt-4 grid grid-cols-2 gap-3 p-4 text-center sm:grid-cols-3">
-        <div>
-          <p className="eyebrow">Answered</p>
-          <p className="font-display text-xl">{answeredCount}</p>
-        </div>
-        <div>
-          <p className="eyebrow">Unanswered</p>
-          <p className="font-display text-xl">{unanswered}</p>
-        </div>
-        <div className="col-span-2 sm:col-span-1">
-          <p className="eyebrow">Draft</p>
-          <p className="font-mono text-xs text-muted-foreground">Saved automatically</p>
-        </div>
-      </div>
+      <p className={styles.saved}><CloudCheck size={14} />{" "}{uiText("learning:saved_automatically_results_after_submission_c178e0")}</p>
 
       {/* Question map (✓ answered / — unanswered, neutral colors) */}
-      <nav aria-label="Question navigator" className="mt-4">
+      <nav aria-label={uiText("learning:question_navigator_59264b")} className="mt-4">
         <ul className="flex flex-wrap gap-2">
           {Array.from({ length: total }, (_, i) => {
             const answered = answeredQuestionIds.has(questionIds[i] ?? "");
@@ -179,7 +161,7 @@ export const QuestionCard = memo(function QuestionCard({
                 <button
                   type="button"
                   disabled={submitting}
-                  aria-label={`Question ${i + 1}${answered ? ", answered" : ", unanswered"}`}
+                  aria-label={uiText("learning:question_valuevalue_cc94d6", { value0: uiValue(i + 1), value1: uiValue(answered ? uiText("learning:answered_3cabd3") : uiText("learning:unanswered_80b9fb")) })}
                   aria-current={i === index ? "step" : undefined}
                   onClick={() => { onGoTo(i); }}
                   className={cn(
@@ -206,16 +188,12 @@ export const QuestionCard = memo(function QuestionCard({
       {!canGoNext ? (
         <div className="panel-2 mt-4 p-4 text-sm" role="status">
           <p>
-            {answeredCount} of {total} answered
-            {unanswered > 0 ? (
-              <span className="text-warning"> — {unanswered} unanswered</span>
+            {answeredCount}{" "}{uiText("learning:of_de04fa")}{" "}{total}{" "}{uiText("learning:answered_76e806")}{unanswered > 0 ? (
+              <span className="text-warning">{uiText("learning:value_unanswered_2601f8", { value0: uiValue(unanswered) })}</span>
             ) : null}
           </p>
           {unanswered > 0 ? (
-            <p className="mt-1 text-muted-foreground">
-              Unanswered questions are submitted as skipped. You can still go
-              back and answer them.
-            </p>
+            <p className="mt-1 text-muted-foreground">{uiText("learning:unanswered_questions_are_submitted_as_skipped_you_3fb73a")}</p>
           ) : null}
         </div>
       ) : null}
@@ -239,9 +217,7 @@ export const QuestionCard = memo(function QuestionCard({
             onClick={onRetrySubmission}
             disabled={submitting}
             className="inline-flex min-h-11 items-center rounded-lg border border-border px-4 text-sm font-semibold tracking-wide uppercase transition-colors hover:bg-accent disabled:opacity-60"
-          >
-            Retry submission
-          </button>
+          >{uiText("learning:retry_submission_4b4845")}</button>
         </div>
       ) : null}
 

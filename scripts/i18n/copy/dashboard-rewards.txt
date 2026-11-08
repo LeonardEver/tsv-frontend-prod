@@ -1,0 +1,107 @@
+Your mission path|Sua trilha de missões|Tu ruta de misiones|Votre parcours de missions|Dein Missionspfad|Il tuo percorso di missioni
+YOUR EXPEDITION|SUA EXPEDIÇÃO|TU EXPEDICIÓN|VOTRE EXPÉDITION|DEINE EXPEDITION|LA TUA SPEDIZIONE
+day streak|dias de sequência|días de racha|jours consécutifs|Tage in Folge|giorni consecutivi
+Your next adventure|Sua próxima aventura|Tu próxima aventura|Votre prochaine aventure|Dein nächstes Abenteuer|La tua prossima avventura
+Region missions completed|Missões da região concluídas|Misiones de la región completadas|Missions de la région terminées|Abgeschlossene Missionen der Region|Missioni della regione completate
+{{value0}} of {{value1}} missions complete|{{value0}} de {{value1}} missões concluídas|{{value0}} de {{value1}} misiones completadas|{{value0}} missions sur {{value1}} terminées|{{value0}} von {{value1}} Missionen abgeschlossen|{{value0}} missioni su {{value1}} completate
+of|de|de|sur|von|di
+missions complete|missões concluídas|misiones completadas|missions terminées|Missionen abgeschlossen|missioni completate
+YOUR NEXT MISSION|SUA PRÓXIMA MISSÃO|TU PRÓXIMA MISIÓN|VOTRE PROCHAINE MISSION|DEINE NÄCHSTE MISSION|LA TUA PROSSIMA MISSIONE
+Knowledge earned. Ready for the field.|Conhecimento conquistado. Pronto para a prática.|Conocimiento adquirido. Listo para el campo.|Connaissances acquises. Prêt pour le terrain.|Wissen erworben. Bereit für die Praxis.|Conoscenze acquisite. Pronto per il campo.
+Build your skills, one step at a time.|Desenvolva suas habilidades, um passo de cada vez.|Desarrolla tus habilidades, paso a paso.|Développez vos compétences, pas à pas.|Baue deine Fähigkeiten Schritt für Schritt auf.|Sviluppa le tue competenze, un passo alla volta.
+Start mission|Iniciar missão|Iniciar misión|Commencer la mission|Mission starten|Inizia missione
+Continue mission|Continuar missão|Continuar misión|Continuer la mission|Mission fortsetzen|Continua missione
+Completed|Concluído|Completado|Terminé|Abgeschlossen|Completato
+Explore all|Explorar tudo|Explorar todo|Tout explorer|Alles erkunden|Esplora tutto
+SMALL STEPS. A SAFER TOMORROW.|PEQUENOS PASSOS. UM AMANHÃ MAIS SEGURO.|PEQUEÑOS PASOS. UN MAÑANA MÁS SEGURO.|DE PETITS PAS. UN AVENIR PLUS SÛR.|KLEINE SCHRITTE. EIN SICHERERES MORGEN.|PICCOLI PASSI. UN DOMANI PIÙ SICURO.
+Today|Hoje|Hoy|Aujourd'hui|Heute|Oggi
+lessons ·|aulas ·|lecciones ·|leçons ·|Lektionen ·|lezioni ·
+field tests|testes práticos|pruebas de campo|épreuves pratiques|Praxistests|prove sul campo
+No daily limit on this plan.|Sem limite diário neste plano.|Sin límite diario en este plan.|Aucune limite quotidienne avec cette offre.|Kein Tageslimit in diesem Abo.|Nessun limite giornaliero con questo piano.
+{{value0}} used today|{{value0}} utilizados hoje|{{value0}} utilizados hoy|{{value0}} utilisés aujourd'hui|Heute {{value0}} genutzt|{{value0}} utilizzati oggi
+Daily allowance used|Cota diária utilizada|Cuota diaria utilizada|Quota quotidien utilisé|Tageskontingent verbraucht|Quota giornaliera utilizzata
+Every mission complete|Todas as missões concluídas|Todas las misiones completadas|Toutes les missions sont terminées|Alle Missionen abgeschlossen|Tutte le missioni completate
+You have worked through the whole curriculum. Your full record — scores, streaks and achievements — is on your expedition page.|Você concluiu todo o programa. Seu histórico completo — notas, sequências e conquistas — está na página da sua expedição.|Has completado todo el programa. Tu historial completo, con notas, rachas y logros, está en la página de tu expedición.|Vous avez terminé tout le programme. Votre bilan complet, avec scores, séries et succès, figure sur votre page d'expédition.|Du hast den gesamten Lehrplan durchgearbeitet. Deine vollständige Übersicht mit Ergebnissen, Serien und Erfolgen findest du auf deiner Expeditionsseite.|Hai completato l'intero programma. Il tuo resoconto completo, con punteggi, serie e traguardi, si trova nella pagina della tua spedizione.
+Review your record →|Ver seu histórico →|Ver tu historial →|Consulter votre bilan →|Deine Übersicht ansehen →|Visualizza il tuo resoconto →
+Nothing here yet|Ainda não há nada aqui|Aún no hay nada aquí|Rien pour le moment|Hier gibt es noch nichts|Non c'è ancora nulla
+Content is on its way — check back soon.|O conteúdo está chegando — volte em breve.|El contenido está en camino: vuelve pronto.|Le contenu arrive : revenez bientôt.|Inhalte sind unterwegs. Schau bald wieder vorbei.|I contenuti sono in arrivo: torna presto.
+First mission|Primeira missão|Primera misión|Première mission|Erste Mission|Prima missione
+{{value0}} awaits|{{value0}} espera por você|{{value0}} te espera|{{value0}} vous attend|{{value0}} wartet auf dich|{{value0}} ti aspetta
+awaits|espera por você|te espera|vous attend|wartet auf dich|ti aspetta
+Begin your expedition with your first mission.|Comece sua expedição com a primeira missão.|Empieza tu expedición con tu primera misión.|Commencez votre expédition avec votre première mission.|Beginne deine Expedition mit deiner ersten Mission.|Inizia la tua spedizione con la prima missione.
+Explore {{value0}} →|Explorar {{value0}} →|Explorar {{value0}} →|Explorer {{value0}} →|{{value0}} erkunden →|Esplora {{value0}} →
+Explore|Explorar|Explorar|Explorer|Erkunden|Esplora
+Base camp overview|Visão geral do acampamento base|Resumen del campamento base|Vue d'ensemble du camp de base|Basislagerübersicht|Panoramica del campo base
+Welcome back, {{value0}}|Bem-vindo de volta, {{value0}}|Te damos la bienvenida, {{value0}}|Bon retour, {{value0}}|Willkommen zurück, {{value0}}|Bentornato, {{value0}}
+Welcome|Bem-vindo|Bienvenido|Bienvenue|Willkommen|Benvenuto
+{{value0}} XP to Level {{value1}}|{{value0}} XP para o Nível {{value1}}|{{value0}} XP para el Nivel {{value1}}|{{value0}} XP avant le niveau {{value1}}|{{value0}} XP bis Stufe {{value1}}|{{value0}} XP al livello {{value1}}
+Daily limits|Limites diários|Límites diarios|Limites quotidiennes|Tageslimits|Limiti giornalieri
+Today · Lessons|Hoje · Aulas|Hoy · Lecciones|Aujourd'hui · Leçons|Heute · Lektionen|Oggi · Lezioni
+Today · Field tests|Hoje · Testes práticos|Hoy · Pruebas de campo|Aujourd'hui · Épreuves|Heute · Praxistests|Oggi · Prove sul campo
+Current plan|Plano atual|Plan actual|Offre actuelle|Aktuelles Abo|Piano attuale
+Unlimited lessons and field tests per day.|Aulas e testes práticos ilimitados por dia.|Lecciones y pruebas de campo ilimitadas al día.|Leçons et épreuves pratiques illimitées par jour.|Unbegrenzte Lektionen und Praxistests pro Tag.|Lezioni e prove sul campo illimitate al giorno.
+{{value0}} lessons and {{value1}} field tests per day.|{{value0}} aulas e {{value1}} testes práticos por dia.|{{value0}} lecciones y {{value1}} pruebas de campo al día.|{{value0}} leçons et {{value1}} épreuves pratiques par jour.|{{value0}} Lektionen und {{value1}} Praxistests pro Tag.|{{value0}} lezioni e {{value1}} prove sul campo al giorno.
+Compare|Comparar|Comparar|Comparer|Vergleichen|Confronta
+Next mission|Próxima missão|Próxima misión|Prochaine mission|Nächste Mission|Prossima missione
+Your expedition|Sua expedição|Tu expedición|Votre expédition|Deine Expedition|La tua spedizione
+Your Expedition|Sua Expedição|Tu Expedición|Votre expédition|Deine Expedition|La tua spedizione
+The route you're currently walking.|A rota que você está percorrendo.|La ruta que estás recorriendo.|L'itinéraire que vous parcourez actuellement.|Die Route, auf der du gerade unterwegs bist.|Il percorso che stai seguendo.
+Full record →|Histórico completo →|Historial completo →|Bilan complet →|Vollständige Übersicht →|Resoconto completo →
+Your expedition starts here|Sua expedição começa aqui|Tu expedición comienza aquí|Votre expédition commence ici|Deine Expedition beginnt hier|La tua spedizione inizia qui
+Complete a lesson or field test and your route will appear here.|Conclua uma aula ou teste prático e sua rota aparecerá aqui.|Completa una lección o prueba de campo y tu ruta aparecerá aquí.|Terminez une leçon ou une épreuve et votre parcours apparaîtra ici.|Schließe eine Lektion oder einen Praxistest ab, damit deine Route hier erscheint.|Completa una lezione o una prova sul campo e il tuo percorso apparirà qui.
+Explore regions →|Explorar regiões →|Explorar regiones →|Explorer les régions →|Regionen erkunden →|Esplora le regioni →
+Explore Regions|Explorar Regiões|Explorar regiones|Explorer les régions|Regionen erkunden|Esplora le regioni
+Choose a region and begin your expedition.|Escolha uma região e comece sua expedição.|Elige una región y comienza tu expedición.|Choisissez une région et commencez votre expédition.|Wähle eine Region und beginne deine Expedition.|Scegli una regione e inizia la tua spedizione.
+View all →|Ver tudo →|Ver todo →|Tout voir →|Alle anzeigen →|Vedi tutto →
+Recommended|Recomendado|Recomendado|Recommandé|Empfohlen|Consigliato
+Continue Training|Continuar treinamento|Continuar entrenamiento|Continuer l'entraînement|Training fortsetzen|Continua l'allenamento
+XP & Achievements|XP e conquistas|XP y logros|XP et succès|XP und Erfolge|XP e traguardi
+Total XP|XP total|XP totales|XP totaux|Gesamte XP|XP totali
+Streak|Sequência|Racha|Série|Serie|Serie
+Personal best: {{value0}}d|Recorde pessoal: {{value0}}d|Récord personal: {{value0}}d|Record personnel : {{value0}} j|Persönlicher Rekord: {{value0}} T.|Record personale: {{value0}} g
+{{value0}} of {{value1}} achievements earned|{{value0}} de {{value1}} conquistas obtidas|{{value0}} de {{value1}} logros obtenidos|{{value0}} succès sur {{value1}} obtenus|{{value0}} von {{value1}} Erfolgen erhalten|{{value0}} traguardi su {{value1}} ottenuti
+{{value0}} achievements earned|{{value0}} conquistas obtidas|{{value0}} logros obtenidos|{{value0}} succès obtenus|{{value0}} Erfolge erhalten|{{value0}} traguardi ottenuti
+Open →|Abrir →|Abrir →|Ouvrir →|Öffnen →|Apri →
+Latest From The Field|Novidades de campo|Novedades del campo|Actualités du terrain|Neues aus der Praxis|Novità dal campo
+Open community →|Abrir comunidade →|Abrir comunidad →|Ouvrir la communauté →|Community öffnen →|Apri la community →
+No discussions yet|Ainda não há discussões|Aún no hay debates|Aucune discussion pour le moment|Noch keine Diskussionen|Nessuna discussione per ora
+Be the first to share a field question.|Seja o primeiro a compartilhar uma dúvida de campo.|Comparte la primera pregunta sobre el terreno.|Soyez le premier à poser une question de terrain.|Stelle die erste Frage aus der Praxis.|Condividi la prima domanda sul campo.
+Community access requires a paid plan|O acesso à comunidade exige um plano pago|El acceso a la comunidad requiere un plan de pago|L'accès à la communauté nécessite une offre payante|Der Community-Zugang erfordert ein kostenpflichtiges Abo|L'accesso alla community richiede un piano a pagamento
+Explore plans →|Explorar planos →|Explorar planes →|Découvrir les offres →|Abos ansehen →|Esplora i piani →
+Rewards and progression|Recompensas e progressão|Recompensas y progresión|Récompenses et progression|Belohnungen und Fortschritt|Ricompense e progressione
+Current rank|Patente atual|Rango actual|Rang actuel|Aktueller Rang|Grado attuale
+Current title|Título atual|Título actual|Titre actuel|Aktueller Titel|Titolo attuale
+Maximum level reached|Nível máximo alcançado|Nivel máximo alcanzado|Niveau maximal atteint|Höchste Stufe erreicht|Livello massimo raggiunto
+{{value0}} XP toward Level {{value1}}|{{value0}} XP para o Nível {{value1}}|{{value0}} XP hacia el Nivel {{value1}}|{{value0}} XP avant le niveau {{value1}}|{{value0}} XP bis Stufe {{value1}}|{{value0}} XP verso il livello {{value1}}
+Total XP toward Level {{value0}}|XP total para o Nível {{value0}}|XP totales hacia el Nivel {{value0}}|XP totaux avant le niveau {{value0}}|Gesamte XP bis Stufe {{value0}}|XP totali verso il livello {{value0}}
+{{value0}} / {{value1}} XP|{{value0}} / {{value1}} XP|{{value0}} / {{value1}} XP|{{value0}} / {{value1}} XP|{{value0}} / {{value1}} XP|{{value0}} / {{value1}} XP
+Reward statistics|Estatísticas de recompensas|Estadísticas de recompensas|Statistiques des récompenses|Belohnungsstatistiken|Statistiche delle ricompense
+Personal best: {{value0}} {{value1}} · Keep it alive today!|Recorde pessoal: {{value0}} {{value1}} · Mantenha a sequência hoje!|Récord personal: {{value0}} {{value1}} · ¡Mantén la racha hoy!|Record personnel : {{value0}} {{value1}} · Prolongez votre série aujourd'hui !|Persönlicher Rekord: {{value0}} {{value1}} · Halte deine Serie heute aufrecht!|Record personale: {{value0}} {{value1}} · Mantieni la serie oggi!
+day|dia|día|jour|Tag|giorno
+days|dias|días|jours|Tage|giorni
+Achievements|Conquistas|Logros|Succès|Erfolge|Traguardi
+Next rank|Próxima patente|Próximo rango|Prochain rang|Nächster Rang|Prossimo grado
+Highest rank|Patente máxima|Rango máximo|Rang maximal|Höchster Rang|Grado massimo
+Next unlock|Próximo desbloqueio|Próximo desbloqueo|Prochain déblocage|Nächste Freischaltung|Prossimo sblocco
+Level {{value0}} — {{value1}}|Nível {{value0}} — {{value1}}|Nivel {{value0}} — {{value1}}|Niveau {{value0}} — {{value1}}|Stufe {{value0}} — {{value1}}|Livello {{value0}} — {{value1}}
+Maximum level reached. Keep building your survival skills.|Nível máximo alcançado. Continue desenvolvendo suas habilidades de sobrevivência.|Has alcanzado el nivel máximo. Sigue desarrollando tus habilidades de supervivencia.|Niveau maximal atteint. Continuez à développer vos compétences de survie.|Höchste Stufe erreicht. Baue deine Überlebensfähigkeiten weiter aus.|Livello massimo raggiunto. Continua a sviluppare le tue abilità di sopravvivenza.
+Keep learning and earn {{value0}} XP to unlock your next title.|Continue aprendendo e ganhe {{value0}} XP para desbloquear seu próximo título.|Sigue aprendiendo y consigue {{value0}} XP para desbloquear tu próximo título.|Continuez à apprendre et gagnez {{value0}} XP pour débloquer votre prochain titre.|Lerne weiter und verdiene {{value0}} XP, um deinen nächsten Titel freizuschalten.|Continua a imparare e guadagna {{value0}} XP per sbloccare il prossimo titolo.
+{{value0}} XP to go|Faltam {{value0}} XP|Faltan {{value0}} XP|Encore {{value0}} XP|Noch {{value0}} XP|Mancano {{value0}} XP
+XP to go|XP restantes|XP restantes|XP restants|XP verbleibend|XP rimanenti
+Next rank XP progress|Progresso de XP para a próxima patente|Progreso de XP al próximo rango|Progression des XP vers le prochain rang|XP-Fortschritt zum nächsten Rang|Progressi XP verso il prossimo grado
+Reward progression|Progressão de recompensas|Progresión de recompensas|Progression des récompenses|Belohnungsfortschritt|Progressione delle ricompense
+Reward Progression|Progressão de Recompensas|Progresión de recompensas|Progression des récompenses|Belohnungsfortschritt|Progressione delle ricompense
+Your title journey at Survival Academy.|Sua jornada de títulos na Survival Academy.|Tu recorrido de títulos en Survival Academy.|Votre parcours de titres à Survival Academy.|Dein Titelpfad bei Survival Academy.|Il tuo percorso di titoli in Survival Academy.
+Unlocked|Desbloqueado|Desbloqueado|Débloqué|Freigeschaltet|Sbloccato
+Loading rewards|Carregando recompensas|Cargando recompensas|Chargement des récompenses|Belohnungen werden geladen|Caricamento delle ricompense
+Wall|Mural|Muro|Mur|Wand|Bacheca
+{{value0}} / {{value1}} unlocked|{{value0}} / {{value1}} desbloqueadas|{{value0}} / {{value1}} desbloqueados|{{value0}} / {{value1}} débloqués|{{value0}} / {{value1}} freigeschaltet|{{value0}} / {{value1}} sbloccati
+unlocked|desbloqueadas|desbloqueados|débloqués|freigeschaltet|sbloccati
+Achievements unlocked|Conquistas desbloqueadas|Logros desbloqueados|Succès débloqués|Freigeschaltete Erfolge|Traguardi sbloccati
+No achievements yet|Ainda não há conquistas|Aún no hay logros|Aucun succès pour le moment|Noch keine Erfolge|Nessun traguardo per ora
+Your achievements will appear here as you learn.|Suas conquistas aparecerão aqui conforme você aprende.|Tus logros aparecerán aquí a medida que aprendes.|Vos succès apparaîtront ici au fil de votre apprentissage.|Deine Erfolge erscheinen hier, während du lernst.|I tuoi traguardi appariranno qui man mano che impari.
+Ledger|Registro|Registro|Registre|Verlauf|Registro
+XP Transactions|Histórico de XP|Historial de XP|Historique des XP|XP-Verlauf|Cronologia XP
+{{value0}}{{value1}} XP|{{value0}}{{value1}} XP|{{value0}}{{value1}} XP|{{value0}}{{value1}} XP|{{value0}}{{value1}} XP|{{value0}}{{value1}} XP
+No XP earned yet|Nenhum XP conquistado ainda|Aún no has ganado XP|Aucun XP gagné pour le moment|Noch keine XP verdient|Nessun XP guadagnato per ora
+Complete a lesson or take a quiz to earn XP.|Conclua uma aula ou faça um quiz para ganhar XP.|Completa una lección o un cuestionario para ganar XP.|Terminez une leçon ou passez un quiz pour gagner des XP.|Schließe eine Lektion ab oder mache ein Quiz, um XP zu verdienen.|Completa una lezione o svolgi un quiz per guadagnare XP.

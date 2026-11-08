@@ -6,6 +6,8 @@ import { useId, type SelectHTMLAttributes } from "react";
 import { clsx } from "clsx";
 import { Label } from "./Input";
 import { COUNTRIES } from "@/lib/geo/countries";
+import { useLocale } from "@/i18n";
+import { FORMATTING_LOCALES } from "@/i18n/config";
 
 export interface CountrySelectProps
   extends SelectHTMLAttributes<HTMLSelectElement> {
@@ -24,6 +26,8 @@ export function CountrySelect({
   ...props
 }: CountrySelectProps) {
   const autoId = useId();
+  const locale = useLocale();
+  const countryNames = new Intl.DisplayNames([FORMATTING_LOCALES[locale]], { type: "region" });
   const selectId = id ?? autoId;
   const errorId = error ? `${selectId}-error` : undefined;
 
@@ -49,7 +53,7 @@ export function CountrySelect({
         <option value="">{placeholder}</option>
         {COUNTRIES.map((country) => (
           <option key={country.code} value={country.code}>
-            {country.name}
+            {countryNames.of(country.code) ?? country.name}
           </option>
         ))}
       </select>

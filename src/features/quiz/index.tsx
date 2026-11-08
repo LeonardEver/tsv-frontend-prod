@@ -11,15 +11,17 @@
  * PRODUCT RULE (DEC-022): the Quiz is reachable without completing the
  * Lesson — this route has no lesson guard and never will.
  */
-import { useRef } from "react";
-import { Link, useParams } from "react-router";
+import { tr as uiText, useLocale as useInterfaceLocale, uiValue } from "@/i18n";
+import { ContentLanguageNotice } from "@/i18n/ContentLanguageNotice";
+import { useEffect, useRef } from "react";
+import { Link, useLocation, useNavigate, useParams } from "react-router";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { Brain, LockKeyhole } from "lucide-react";
+import { ArrowLeft, Brain, LockKeyhole, X } from "lucide-react";
 import { useAuth } from "@/features/auth/auth-context";
-import { queryKeys } from "@/lib/api/keys";
+import { allLocales, queryKeys } from "@/lib/api/keys";
 import { catColorForCode } from "@/lib/category-visuals";
 import { formatScorePct, formatDate } from "@/lib/format/format";
-import { Chip, Eyebrow, EmptyState, ProgressBar } from "@/components/sa/primitives";
+import { Chip, Eyebrow, EmptyState } from "@/components/sa/primitives";
 import { ErrorState } from "@/components/shared/ErrorState";
 import type { AchievementsResponse, QuizResponse } from "@/lib/api/types";
 import { fetchModule } from "@/features/modules/modules.api";
@@ -29,15 +31,19 @@ import { useFieldTestGate } from "./use-field-test-gate";
 import { useQuizSession } from "./useQuizSession";
 import { QuestionCard } from "./QuestionCard";
 import { QuizResultView } from "./QuizResultView";
+import styles from "./quiz.module.css";
 
 export default function QuizPage() {
+  useInterfaceLocale();
   const { moduleId = "" } = useParams();
+  const location = useLocation();
   const { user } = useAuth();
   const queryClient = useQueryClient();
 
   const moduleQuery = useQuery({
     queryKey: queryKeys.content.module(moduleId),
     queryFn: () => fetchModule(moduleId),
+    placeholderData: (previous) => previous?.module_id === moduleId ? previous : undefined,
     staleTime: 30_000,
     refetchOnWindowFocus: true,
     retry: false,
@@ -48,6 +54,8 @@ export default function QuizPage() {
   const quizQuery = useQuery({
     queryKey: quizId ? queryKeys.content.quiz(quizId) : ["quizzes", "pending"],
     queryFn: () => fetchQuiz(quizId as string),
+    placeholderData: (previous) => previous?.quiz_id === quizId ? previous : undefined,
+    enabled: Boolean(quizId),
     staleTime: 5 * 60_000,
     retry: false,
   });
@@ -88,9 +96,9 @@ export default function QuizPage() {
   if (moduleQuery.isError) {
     return <ErrorState error={moduleQuery.error} onRetry={() => void moduleQuery.refetch()} />;
   }
-  if (moduleQuery.isPending || quizQuery.isPending || gate === "checking") {
+  if (moduleQuery.isPending || (quizId && quizQuery.isPending) || gate === "checking") {
     return (
-      <div role="status" aria-label="Loading quiz" className="space-y-6">
+      <div role="status" aria-label={uiText("learning:loading_quiz_b255cc")} className="space-y-6">
         <div className="panel h-16 animate-pulse" aria-hidden="true" />
         <div className="panel h-96 animate-pulse" aria-hidden="true" />
       </div>
@@ -99,15 +107,13 @@ export default function QuizPage() {
   if (!quizId) {
     return (
       <EmptyState
-        title="This quiz isn't available"
-        description="This module has no quiz content yet."
+        title={uiText("learning:this_quiz_isn_t_available_c52f93")}
+        description={uiText("learning:this_module_has_no_quiz_content_yet_c36415")}
         action={
           <Link
             to={`/modules/${moduleId}`}
             className="mt-6 inline-flex min-h-11 items-center rounded-lg bg-primary px-5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
-          >
-            Back to module
-          </Link>
+          >{uiText("learning:back_to_module_e2d3bf")}</Link>
         }
       />
     );
@@ -119,27 +125,33 @@ export default function QuizPage() {
   // state in which the payload is absent, and an errored query returned
   // earlier.
   const quiz = quizQuery.data;
+  if (!quiz) return <div role="status" aria-label={uiText("learning:loading_quiz_b255cc")}>{uiText("learning:preparing_your_questions_11c71c")}</div>;
 
   if (gate === "locked") {
     return <QuizLocked moduleId={moduleId} quizTitle={quiz.title} />;
   }
 
   return (
+    <>
+    <ContentLanguageNotice data={quiz} />
     <QuizSessionScreen
       moduleId={moduleId}
       quiz={quiz}
       userId={user?.user_id ?? 0}
+      autoStart={Boolean((location.state as { startQuiz?: boolean } | null)?.startQuiz)}
       quizBeforeLesson={quizBeforeLesson}
       categorySlug={moduleQuery.data.category}
       onSubmitted={() => {
         // Targeted invalidation: quiz (attempt history), module detail,
         // progress, gamification summary + achievements (the reveal
         // diff) — nothing else.
-        void queryClient.invalidateQueries({ queryKey: queryKeys.content.quiz(quiz.quiz_id) });
-        void queryClient.invalidateQueries({ queryKey: queryKeys.content.module(moduleId) });
+        void queryClient.invalidateQueries({ queryKey: allLocales(queryKeys.content.quiz(quiz.quiz_id)) });
+        void queryClient.invalidateQueries({ queryKey: allLocales(queryKeys.content.module(moduleId)) });
+        void queryClient.invalidateQueries({ queryKey: allLocales(queryKeys.content.modulesAll) });
+        void queryClient.invalidateQueries({ queryKey: allLocales(queryKeys.content.categories) });
         void queryClient.invalidateQueries({ queryKey: queryKeys.learning.progress });
         void queryClient.invalidateQueries({ queryKey: queryKeys.gamification.summary });
-        void queryClient.invalidateQueries({ queryKey: queryKeys.gamification.achievements });
+        void queryClient.invalidateQueries({ queryKey: allLocales(queryKeys.gamification.achievements) });
       }}
       newAchievements={
         achievementsQuery.data && earnedBeforeRef.current
@@ -149,6 +161,7 @@ export default function QuizPage() {
           : []
       }
     />
+    </>
   );
 }
 
@@ -160,6 +173,7 @@ function QuizSessionScreen({
   categorySlug,
   onSubmitted,
   newAchievements,
+  autoStart,
 }: {
   moduleId: string;
   quiz: QuizResponse;
@@ -169,15 +183,29 @@ function QuizSessionScreen({
   categorySlug?: string;
   onSubmitted: () => void;
   newAchievements: QuizResultViewNewAchievements;
+  autoStart: boolean;
 }) {
+  useInterfaceLocale();
   const session = useQuizSession(quiz, userId, onSubmitted);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const autoStarted = useRef(false);
+  useEffect(() => {
+    if (!autoStart || autoStarted.current) return;
+    if (session.state.name !== "ready" && session.state.name !== "recover") return;
+    autoStarted.current = true;
+    // Consume the navigation intent once. Keeping it in history would
+    // create an unintended new attempt on refresh after a completed test.
+    void navigate({ pathname: location.pathname, search: location.search, hash: location.hash }, { replace: true, state: null });
+    if (session.state.name === "ready") session.startAttempt();
+  }, [autoStart, session, navigate, location.pathname, location.search, location.hash]);
   const color = catColorForCode(categorySlug);
   const title = quiz.title;
 
   // ── Route-level states ──
   if (session.state.name === "loading") {
     return (
-      <div role="status" aria-label="Loading quiz" className="space-y-6">
+      <div role="status" aria-label={uiText("learning:loading_quiz_b255cc")} className="space-y-6">
         <div className="panel h-96 animate-pulse" aria-hidden="true" />
       </div>
     );
@@ -189,6 +217,9 @@ function QuizSessionScreen({
   }
 
   if (session.state.name === "ready" || session.state.name === "creating") {
+    if ((autoStart && !autoStarted.current) || (autoStarted.current && session.state.name === "creating")) {
+      return <div className={styles.preparing} role="status">{uiText("learning:preparing_your_field_test_d999d7")}</div>;
+    }
     return (
       <QuizIntro
         moduleId={moduleId}
@@ -205,29 +236,20 @@ function QuizSessionScreen({
     return (
       <div className="mx-auto max-w-3xl">
         <div className="panel space-y-4 p-6">
-          <Eyebrow>Field test</Eyebrow>
-          <h2 className="text-xl font-semibold tracking-wide uppercase">
-            Continue previous attempt?
-          </h2>
-          <p className="text-sm text-muted-foreground">
-            You have saved answers from a previous session. Continue where you
-            left off, or start a new attempt.
-          </p>
+          <Eyebrow>{uiText("learning:field_test_c7b676")}</Eyebrow>
+          <h2 className="text-xl font-semibold tracking-wide uppercase">{uiText("learning:continue_previous_attempt_d686e8")}</h2>
+          <p className="text-sm text-muted-foreground">{uiText("learning:you_have_saved_answers_from_a_previous_0d771b")}</p>
           <div className="flex flex-wrap gap-3">
             <button
               type="button"
               onClick={session.continueDraft}
               className="inline-flex min-h-11 items-center rounded-lg bg-primary px-5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
-            >
-              Continue
-            </button>
+            >{uiText("learning:continue_2e0262")}</button>
             <button
               type="button"
               onClick={session.discardDraft}
               className="inline-flex min-h-11 items-center rounded-lg border border-border px-5 text-sm font-semibold uppercase transition-colors hover:bg-accent"
-            >
-              Start Over
-            </button>
+            >{uiText("learning:start_over_dc3c6d")}</button>
           </div>
         </div>
       </div>
@@ -254,25 +276,18 @@ function QuizSessionScreen({
   const total = questions.length;
 
   return (
-    <div className="mx-auto max-w-3xl pb-24 lg:pb-0">
-      <header className="rise mb-8">
-        <div className="grid grid-cols-[minmax(0,1fr)_auto] items-start gap-4">
-          <div className="min-w-0">
-            <Eyebrow>Field Test</Eyebrow>
-            <h1 className="mt-1.5 font-display text-3xl font-semibold tracking-wide uppercase">
-              {title}
-            </h1>
-          </div>
-          <Chip color={color}>
-            Question {session.currentQuestionIndex + 1} of {total}
-          </Chip>
+    <div className={styles.session}>
+      <header className={styles.header}>
+        <div className={styles.utilities}>
+          <Link to={`/modules/${moduleId}/lesson`} aria-label={uiText("learning:back_to_lesson_656011")}><ArrowLeft size={22} /></Link>
+          <span>{uiText("learning:field_test_d43f99")}</span>
+          <Link to="/dashboard" aria-label={uiText("learning:exit_field_test_49e5c5")}><X size={23} /></Link>
         </div>
-        <ProgressBar
-          className="mt-5"
-          value={((session.currentQuestionIndex + 1) / total) * 100}
-          color={color}
-          label="Field test progress"
-        />
+        <div className={styles.segments} role="progressbar" aria-label={uiText("learning:field_test_progress_7e95cf")} aria-valuenow={session.currentQuestionIndex + 1} aria-valuemin={0} aria-valuemax={total}>
+          {questions.map((q, index) => <span key={q.question_id} data-filled={index <= session.currentQuestionIndex} />)}
+        </div>
+        <div className={styles.questionMeta}><span>{uiText("learning:question_value_of_value_55b16a", { value0: uiValue(session.currentQuestionIndex + 1), value1: uiValue(total) })}</span><span>{uiText("learning:value_answered_da643d", { value0: uiValue(session.answeredCount) })}</span></div>
+        <h1 className="sr-only">{title}</h1>
       </header>
 
       {current ? (
@@ -293,7 +308,6 @@ function QuizSessionScreen({
           onSubmit={session.submit}
           submissionError={session.submissionError}
           onRetrySubmission={session.retrySubmission}
-          color={color}
         />
       ) : null}
     </div>
@@ -315,6 +329,7 @@ function QuizIntro({
   quizBeforeLesson: boolean;
   onStart: () => void;
 }) {
+  useInterfaceLocale();
   const attempts = quiz.previous_attempts;
   const best = attempts.reduce<number | null>(
     (acc, a) => (a.score !== null && (acc === null || a.score > acc) ? a.score : acc),
@@ -323,10 +338,8 @@ function QuizIntro({
 
   return (
     <div className="mx-auto max-w-3xl">
-      <nav aria-label="Breadcrumb" className="mb-4 font-mono text-[11px] tracking-widest uppercase">
-        <Link to={`/modules/${moduleId}`} className="text-muted-foreground hover:text-foreground">
-          ← Back to module
-        </Link>
+      <nav aria-label={uiText("learning:breadcrumb_c766e6")} className="mb-4 font-mono text-[11px] tracking-widest uppercase">
+        <Link to={`/modules/${moduleId}`} className="text-muted-foreground hover:text-foreground">{uiText("learning:back_to_module_c75c75")}</Link>
       </nav>
 
       <header className="rise mb-8">
@@ -339,25 +352,21 @@ function QuizIntro({
             <Brain className="size-6" />
           </span>
           <div>
-            <Eyebrow>Field test</Eyebrow>
+            <Eyebrow>{uiText("learning:field_test_c7b676")}</Eyebrow>
             <h1 className="mt-1 font-display text-3xl font-semibold tracking-wide uppercase">
               {quiz.title}
             </h1>
           </div>
         </div>
-        <p className="mt-2 font-mono text-xs text-muted-foreground">
-          {quiz.question_count} question{quiz.question_count === 1 ? "" : "s"} · no time limit
-        </p>
+        <p className="mt-2 font-mono text-xs text-muted-foreground">{uiText("learning:noTimeQuestions", { questions: uiText("common:questions", { count: quiz.question_count }) })}</p>
       </header>
 
       {attempts.length > 0 ? (
         <section aria-labelledby="history-heading" className="mb-6">
-          <h2 id="history-heading" className="mb-3 text-xl font-semibold tracking-wide uppercase">
-            Previous attempts
-          </h2>
+          <h2 id="history-heading" className="mb-3 text-xl font-semibold tracking-wide uppercase">{uiText("learning:previous_attempts_ee1b33")}</h2>
           <div className="panel divide-y divide-border">
             <p className="flex items-center justify-between p-4 text-sm">
-              <span className="text-muted-foreground">Best score</span>
+              <span className="text-muted-foreground">{uiText("learning:best_score_613d6f")}</span>
               <span className="font-mono">{best !== null ? formatScorePct(best) : "—"}</span>
             </p>
             {attempts.slice(0, 3).map((a) => (
@@ -366,9 +375,9 @@ function QuizIntro({
                 <span className="inline-flex items-center gap-3">
                   <span className="font-mono">{a.score !== null ? formatScorePct(a.score) : "—"}</span>
                   {a.passed === true ? (
-                    <Chip color="var(--success)">Passed</Chip>
+                    <Chip color="var(--success)">{uiText("learning:passed_271d60")}</Chip>
                   ) : a.passed === false ? (
-                    <Chip color="var(--destructive)">Failed</Chip>
+                    <Chip color="var(--destructive)">{uiText("learning:failed_09fef5")}</Chip>
                   ) : null}
                 </span>
               </div>
@@ -380,8 +389,8 @@ function QuizIntro({
       <div className="panel space-y-4 p-6">
         <p className="text-sm text-muted-foreground">
           {quizBeforeLesson
-            ? "Test yourself now — a fresh attempt starts when you begin."
-            : "Field test unlocked — test yourself with the quiz to earn XP."}
+            ? uiText("learning:test_yourself_now_a_fresh_attempt_starts_168746")
+            : uiText("learning:field_test_unlocked_test_yourself_with_the_0a6550")}
         </p>
         <button
           type="button"
@@ -389,7 +398,7 @@ function QuizIntro({
           disabled={creating}
           className="glow-ember inline-flex min-h-12 items-center rounded-lg bg-primary px-6 text-sm font-semibold tracking-wide text-primary-foreground uppercase transition-colors hover:bg-primary/90 disabled:opacity-60"
         >
-          {creating ? "Starting…" : "Start Field Test →"}
+          {creating ? uiText("learning:starting_e5f580") : uiText("learning:start_field_test_e3daa1")}
         </button>
       </div>
     </div>
@@ -408,12 +417,11 @@ function QuizLocked({
   moduleId: string;
   quizTitle: string;
 }) {
+  useInterfaceLocale();
   return (
     <div className="mx-auto max-w-3xl">
-      <nav aria-label="Breadcrumb" className="mb-4 font-mono text-[11px] tracking-widest uppercase">
-        <Link to={`/modules/${moduleId}`} className="text-muted-foreground hover:text-foreground">
-          ← Back to module
-        </Link>
+      <nav aria-label={uiText("learning:breadcrumb_c766e6")} className="mb-4 font-mono text-[11px] tracking-widest uppercase">
+        <Link to={`/modules/${moduleId}`} className="text-muted-foreground hover:text-foreground">{uiText("learning:back_to_module_c75c75")}</Link>
       </nav>
 
       <div className="panel grain relative overflow-hidden px-6 py-16 text-center">
@@ -431,28 +439,18 @@ function QuizLocked({
           >
             <LockKeyhole className="size-6" />
           </span>
-          <Eyebrow className="mt-4">Field test · {quizTitle}</Eyebrow>
-          <h2 className="mt-2 text-2xl font-semibold tracking-wide uppercase">
-            Complete the lesson to unlock this field test
-          </h2>
-          <p className="mt-3 text-sm text-muted-foreground">
-            On the Free plan, lessons come first — finish this module&apos;s
-            lesson and the quiz opens. Survivor and Operator members can test
-            themselves any time.
-          </p>
+          <Eyebrow className="mt-4">{uiText("learning:field_test_value_fe7251", { value0: uiValue(quizTitle) })}</Eyebrow>
+          <h2 className="mt-2 text-2xl font-semibold tracking-wide uppercase">{uiText("learning:complete_the_lesson_to_unlock_this_field_deebc6")}</h2>
+          <p className="mt-3 text-sm text-muted-foreground">{uiText("learning:on_the_free_plan_lessons_come_first_38c0b7")}</p>
           <div className="mt-6 flex flex-wrap justify-center gap-3">
             <Link
               to={`/modules/${moduleId}/lesson`}
               className="inline-flex min-h-11 items-center rounded-lg bg-primary px-5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
-            >
-              Go to the lesson
-            </Link>
+            >{uiText("learning:go_to_the_lesson_40a017")}</Link>
             <Link
               to="/plans"
               className="inline-flex min-h-11 items-center rounded-lg border border-border px-5 text-sm font-semibold uppercase transition-colors hover:bg-accent"
-            >
-              See plans
-            </Link>
+            >{uiText("learning:see_plans_5942a8")}</Link>
           </div>
         </div>
       </div>

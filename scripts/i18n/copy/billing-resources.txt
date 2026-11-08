@@ -1,0 +1,25 @@
+The downloadable file is currently available in English.|O arquivo para download está disponível em inglês no momento.|El archivo descargable está disponible en inglés por ahora.|Le fichier téléchargeable est actuellement disponible en anglais.|Die herunterladbare Datei ist derzeit auf Englisch verfügbar.|Il file scaricabile è attualmente disponibile in inglese.
+{{plan}} stays active until {{date}}. You won't be charged again.|O plano {{plan}} fica ativo até {{date}}. Você não será cobrado novamente.|El plan {{plan}} sigue activo hasta {{date}}. No se realizarán más cargos.|L'offre {{plan}} reste active jusqu'au {{date}}. Vous ne serez plus débité.|Dein Abo {{plan}} bleibt bis {{date}} aktiv. Es erfolgen keine weiteren Abbuchungen.|Il piano {{plan}} resta attivo fino al {{date}}. Non riceverai altri addebiti.
+Next payment on {{date}}.|Próximo pagamento em {{date}}.|Próximo pago el {{date}}.|Prochain paiement le {{date}}.|Nächste Zahlung am {{date}}.|Prossimo pagamento il {{date}}.
+Subscription is active.|A assinatura está ativa.|La suscripción está activa.|L'abonnement est actif.|Das Abonnement ist aktiv.|L'abbonamento è attivo.
+Paid period starts {{date}}.|O período pago começa em {{date}}.|El período de pago comienza el {{date}}.|La période payante commence le {{date}}.|Der kostenpflichtige Zeitraum beginnt am {{date}}.|Il periodo a pagamento inizia il {{date}}.
+Trial active.|Período de teste ativo.|Prueba activa.|Essai actif.|Testphase aktiv.|Prova attiva.
+Your payment method needs attention. Update it to keep full access.|Sua forma de pagamento precisa de atenção. Atualize-a para manter o acesso completo.|Tu método de pago requiere atención. Actualízalo para conservar el acceso completo.|Votre moyen de paiement nécessite une intervention. Mettez-le à jour pour conserver l'accès complet.|Deine Zahlungsmethode erfordert Aufmerksamkeit. Aktualisiere sie, um vollen Zugang zu behalten.|Il metodo di pagamento richiede attenzione. Aggiornalo per mantenere l'accesso completo.
+Your payment hasn't been completed yet.|Seu pagamento ainda não foi concluído.|Tu pago aún no se ha completado.|Votre paiement n'est pas encore terminé.|Deine Zahlung ist noch nicht abgeschlossen.|Il pagamento non è ancora stato completato.
+Payment failed after retries — paid features are paused.|O pagamento falhou após novas tentativas — os recursos pagos estão suspensos.|El pago falló tras varios intentos: las funciones de pago están pausadas.|Le paiement a échoué après plusieurs tentatives : les fonctionnalités payantes sont suspendues.|Die Zahlung ist nach Wiederholungsversuchen fehlgeschlagen. Kostenpflichtige Funktionen sind pausiert.|Il pagamento non è riuscito dopo nuovi tentativi: le funzionalità a pagamento sono sospese.
+The subscription has ended. Choose a plan to come back.|A assinatura foi encerrada. Escolha um plano para voltar.|La suscripción ha terminado. Elige un plan para volver.|L'abonnement est terminé. Choisissez une offre pour revenir.|Das Abonnement ist beendet. Wähle ein Abo, um zurückzukehren.|L'abbonamento è terminato. Scegli un piano per tornare.
+Status unavailable|Status indisponível|Estado no disponible|Statut indisponible|Status nicht verfügbar|Stato non disponibile
+Checklist|Lista de verificação|Lista de comprobación|Liste de contrôle|Checkliste|Lista di controllo
+Guide|Guia|Guía|Guide|Leitfaden|Guida
+Table|Tabela|Tabla|Tableau|Tabelle|Tabella
+Map|Mapa|Mapa|Carte|Karte|Mappa
+Template|Modelo|Plantilla|Modèle|Vorlage|Modello
+Worksheet|Ficha de trabalho|Ficha de trabajo|Fiche de travail|Arbeitsblatt|Scheda di lavoro
+Resource|Recurso|Recurso|Ressource|Ressource|Risorsa
+External source|Fonte externa|Fuente externa|Source externe|Externe Quelle|Fonte esterna
+Ready|Pronto|Listo|Prêt|Bereit|Pronto
+Not yet generated|Ainda não gerado|Aún no generado|Pas encore généré|Noch nicht erstellt|Non ancora generato
+Allowed|Permitida|Permitida|Autorisée|Erlaubt|Consentita
+Restricted|Restrita|Restringida|Limitée|Eingeschränkt|Limitata
+Not allowed|Não permitida|No permitida|Non autorisée|Nicht erlaubt|Non consentita
+Unknown|Desconhecida|Desconocida|Inconnue|Unbekannt|Sconosciuta

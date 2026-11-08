@@ -1,0 +1,35 @@
+@media (max-width: 63.999rem) {
+  .focusedQuiz .utilityBar, .focusedQuiz .bottomNav { display: none; }
+  .focusedQuiz .main { padding: max(1.5rem, env(safe-area-inset-top)) 1.4rem 1rem; background: color-mix(in oklab, var(--background) 82%, transparent); }
+  .focusedQuiz::before, .focusedQuiz::after { opacity: .3; }
+  .bottomNav a { min-height: 4.25rem; font-size: .6rem; text-transform: none; letter-spacing: .015em; }
+  .bottomNav a[aria-current="page"] svg { fill: color-mix(in oklab, var(--primary) 20%, transparent); }
+}
+@media (max-width: 39.999rem) {
+  .mobileBrand { gap: .4rem; }
+  .mobileBrand > span > span:first-child { font-size: .8rem; }
+  .mobileBrand > span > span:last-child { font-size: .45rem; }
+}
+.shell { --app-header-height: 4.5rem; }
+.sidebarScenery { isolation: isolate; }
+.sidebarScenery::before { content: ""; position: absolute; inset: 50% 0 0; z-index: -1; pointer-events: none; background: linear-gradient(180deg, var(--sidebar), color-mix(in oklab, var(--sidebar) 30%, transparent)), url("../../assets/learn-forest.jpg") left bottom / cover; opacity: .55; }
+.toolbar { display: grid; grid-template-columns: minmax(8rem, 1fr) auto auto auto; align-items: center; gap: .85rem; padding: .75rem 1.5rem; }
+.statusControls { display: flex; align-items: center; gap: .5rem; min-width: 0; white-space: nowrap; }
+.modeControls { display: flex; align-items: center; justify-content: flex-end; }
+.utilities { min-width: 0; }
+.utilities button[data-shell-account] > span:last-child { max-width: 10rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+@media (max-width: 79.999rem) { .utilities button[data-shell-account] > span:last-child { display: none; } }
+@media (min-width: 48rem) and (max-width: 63.999rem) {
+  .toolbar { grid-template-columns: minmax(0, 1fr) auto auto auto; gap: .65rem; }
+  .utilities button[data-shell-account] > span:last-child { display: none; }
+}
+@media (max-width: 47.999rem) {
+  .shell { --app-header-height: 7.5rem; }
+  .toolbar { grid-template-columns: minmax(0, 1fr) auto; gap: .5rem .65rem; padding: .6rem 1rem; }
+  .mobileIdentity { grid-column: 1; grid-row: 1; }
+  .utilities { grid-column: 2; grid-row: 1; }
+  .statusControls { grid-column: 1; grid-row: 2; gap: .35rem; }
+  .statusControls > span:nth-child(2) > span + span { display: none; }
+  .modeControls { grid-column: 2; grid-row: 2; }
+  .utilities button[data-shell-account] > span:last-child { display: none; }
+}

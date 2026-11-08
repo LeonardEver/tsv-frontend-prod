@@ -282,8 +282,9 @@ test.describe("quiz journeys", () => {
     await page.goto("/modules/WAT-boiling");
     await page.getByRole("link", { name: /take field test/i }).click();
 
-    await expect(page.getByRole("heading", { name: "Boiling Water Quiz" })).toBeVisible();
-    await page.getByRole("button", { name: /start field test/i }).click();
+    // The module action starts the questions directly; it already expresses
+    // the learner's intent to begin, so no second Start screen is needed.
+    await expect(page.getByRole("button", { name: /start field test/i })).toHaveCount(0);
     await expect(page.getByText(/question 1 of 3/i)).toBeVisible();
 
     await answerAll(page);

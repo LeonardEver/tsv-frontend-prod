@@ -600,6 +600,7 @@ export function __resetCommunity(): void {
 }
 
 export const handlers = [
+  http.get(`${API}/notifications`, () => HttpResponse.json({ items: [], unread_count: 0 })),
   // ── Admin analytics ──
   // Registered FIRST: the default session is a normal user, so the
   // capability probe answers 403 and AppShell hides the admin entry.

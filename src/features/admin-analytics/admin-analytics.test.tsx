@@ -12,7 +12,7 @@
  * probe and the geography data call.
  */
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import { render, screen, waitFor, within } from "@testing-library/react";
+import { act, render, screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { createMemoryRouter, RouterProvider } from "react-router";
@@ -29,6 +29,7 @@ import {
   adminOverview,
 } from "@/test/msw/admin-analytics";
 import { router as appRouter } from "@/app/router";
+import { changeLocale, getLocale } from "@/i18n";
 import { __resetAdminLanguage } from "./language";
 
 const API = "*/api/v1";
@@ -38,8 +39,8 @@ const API = "*/api/v1";
 // choice. The English assertions below are the same ones that guarded this
 // surface before the toggle existed — which is the point: English is the
 // default and the previously shipped copy.
-beforeEach(() => {
-  __resetAdminLanguage();
+beforeEach(async () => {
+  await __resetAdminLanguage();
   window.localStorage.clear();
 });
 
@@ -208,10 +209,8 @@ describe("admin analytics — overview", () => {
 });
 
 describe("admin analytics — language", () => {
-  /** The header's language switch, as the admin sees it. */
-  function languageSwitch() {
-    return screen.getByRole("group", { name: /language|idioma/i });
-  }
+  /** Account-level preference changes all surfaces; analytics has no duplicate selector. */
+  async function switchLanguage() { await act(() => changeLocale("pt-BR", { explicit: true })); }
 
   it("renders in English by default", async () => {
     asAdmin();
@@ -224,15 +223,8 @@ describe("admin analytics — language", () => {
       SETTLE,
     );
 
-    const toggle = languageSwitch();
-    expect(within(toggle).getByRole("button", { name: "EN" })).toHaveAttribute(
-      "aria-pressed",
-      "true",
-    );
-    expect(within(toggle).getByRole("button", { name: "PT" })).toHaveAttribute(
-      "aria-pressed",
-      "false",
-    );
+    expect(screen.queryByRole("group", { name: /language|idioma/i })).toBeNull();
+    expect(getLocale()).toBe("en");
   });
 
   it("switches the whole interface to Portuguese", async () => {
@@ -246,13 +238,13 @@ describe("admin analytics — language", () => {
       SETTLE,
     );
 
-    await userEvent.click(within(languageSwitch()).getByRole("button", { name: "PT" }));
+    await switchLanguage();
 
     // Page chrome, tab strip, filter bar and KPI labels all follow.
     expect(screen.getByRole("heading", { name: /analytics de produto/i })).toBeInTheDocument();
     expect(screen.getByRole("link", { name: "Visão geral" })).toBeInTheDocument();
     expect(screen.getByRole("link", { name: "Retenção" })).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: "Todo o período" })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Desde o início" })).toBeInTheDocument();
     expect(within(document.body).getByText(/métricas principais/i)).toBeInTheDocument();
     expect(screen.getByText(/usuários totais/i)).toBeInTheDocument();
     // The English copy is gone, not merely joined.
@@ -269,7 +261,7 @@ describe("admin analytics — language", () => {
       },
       SETTLE,
     );
-    await userEvent.click(within(languageSwitch()).getByRole("button", { name: "PT" }));
+    await switchLanguage();
 
     await userEvent.click(screen.getByRole("link", { name: "Usuários" }));
 
@@ -279,10 +271,8 @@ describe("admin analytics — language", () => {
       },
       SETTLE,
     );
-    expect(within(languageSwitch()).getByRole("button", { name: "PT" })).toHaveAttribute(
-      "aria-pressed",
-      "true",
-    );
+    expect(getLocale()).toBe("pt-BR");
+    expect(document.documentElement.lang).toBe("pt-BR");
     expect(await screen.findByText(/distribuição por plano/i)).toBeInTheDocument();
   });
 
@@ -296,7 +286,7 @@ describe("admin analytics — language", () => {
       },
       SETTLE,
     );
-    await userEvent.click(within(languageSwitch()).getByRole("button", { name: "PT" }));
+    await switchLanguage();
 
     // The limitation reason and the endpoint's notes are the backend's
     // explanation of what it cannot compute; paraphrasing them would turn a
@@ -319,7 +309,7 @@ describe("admin analytics — language", () => {
 
     // The gate renders before any admin-only chrome, so the switch is
     // reached through the page header rather than the dashboard.
-    await userEvent.click(within(languageSwitch()).getByRole("button", { name: "PT" }));
+    await switchLanguage();
 
     expect(
       screen.getByText(/acesso de administrador necessário/i),

@@ -1,0 +1,4 @@
+{
+  "authentication:termsAgreement": ["Concordo com os <policy>Termos de Serviço</policy>", "Acepto los <policy>Términos de servicio</policy>", "J'accepte les <policy>Conditions d'utilisation</policy>", "Ich akzeptiere die <policy>Nutzungsbedingungen</policy>", "Accetto i <policy>Termini di servizio</policy>"],
+  "authentication:privacyAgreement": ["Declaro que li a <policy>Política de Privacidade</policy>", "Declaro haber leído la <policy>Política de privacidad</policy>", "Je reconnais avoir lu la <policy>Politique de confidentialité</policy>", "Ich bestätige, die <policy>Datenschutzerklärung</policy> gelesen zu haben", "Dichiaro di aver letto l'<policy>Informativa sulla privacy</policy>"]
+}

@@ -6,6 +6,7 @@
  * checkout.stripe.com. The browser only touches Stripe's client-side
  * components; card data never transits our backend.
  */
+import { tr as uiText, useLocale as useInterfaceLocale } from "@/i18n";
 import { loadStripe } from "@stripe/stripe-js";
 import {
   EmbeddedCheckout,
@@ -34,14 +35,15 @@ export function EmbeddedCheckoutModal({
   onComplete,
   onClose,
 }: EmbeddedCheckoutModalProps) {
+  useInterfaceLocale();
   if (!stripePromise) return null;
 
   return (
     <Dialog
       open={open}
       onOpenChange={(next) => { if (!next) onClose(); }}
-      title="Subscribe"
-      description="Secure payment processed by Stripe. You won't leave the Academy."
+      title={uiText("subscriptions:subscribe_d6981f")}
+      description={uiText("subscriptions:secure_payment_processed_by_stripe_you_won_2aab36")}
     >
       {open ? (
         <EmbeddedCheckoutProvider

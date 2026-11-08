@@ -1,0 +1,12 @@
+.compact { grid-template-columns: auto auto; }
+.compact button {
+  min-height: 2rem;
+  min-width: 2.5rem;
+  padding: .35rem .65rem;
+  font-size: .625rem;
+  line-height: 1.2;
+}
+
+@media (pointer: coarse) {
+  .compact button { min-height: 2.75rem; min-width: 2.75rem; }
+}

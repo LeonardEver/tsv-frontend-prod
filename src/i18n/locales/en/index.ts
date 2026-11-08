@@ -1,0 +1,14 @@
+import admin from "./admin.json";
+import authentication from "./authentication.json";
+import common from "./common.json";
+import community from "./community.json";
+import dashboard from "./dashboard.json";
+import errors from "./errors.json";
+import learning from "./learning.json";
+import navigation from "./navigation.json";
+import progress from "./progress.json";
+import publicCopy from "./public.json";
+import rewards from "./rewards.json";
+import settings from "./settings.json";
+import subscriptions from "./subscriptions.json";
+export default { admin, authentication, common, community, dashboard, errors, learning, navigation, progress, public: publicCopy, rewards, settings, subscriptions };

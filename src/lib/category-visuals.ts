@@ -15,6 +15,7 @@
  *   Unknown/future categories return null and render the icon identity
  *   from features/categories/category-identity instead of a wrong photo.
  */
+import { tr as uiText } from "@/i18n";
 import agricultureImg from "@/assets/agriculture.jpg";
 import energyImg from "@/assets/energy.jpg";
 import fireImg from "@/assets/fire.jpg";
@@ -96,57 +97,57 @@ export const CATEGORY_IMAGE_BY_CODE: Record<string, string> = {
  * is authoritative for titles and counts. */
 const CATEGORY_COPY: Record<string, { tagline: string; description: string }> = {
   WAT: {
-    tagline: "Find it. Judge it. Treat it.",
-    description: "Master the skills required to find, collect, evaluate and treat water in the field.",
+    get tagline() { return uiText("learning:copy_2706795e38e2"); },
+    get description() { return uiText("common:master_the_skills_required_to_find_collect_527973"); },
   },
   FIR: {
-    tagline: "Heat, light, sterilisation.",
-    description: "Build, sustain and control fire in wet, cold and windy conditions.",
+    get tagline() { return uiText("learning:copy_fac6e57e3200"); },
+    get description() { return uiText("common:build_sustain_and_control_fire_in_wet_caddcb"); },
   },
   SHE: {
-    tagline: "Stay dry. Stay warm.",
-    description: "Site selection, tarp systems and insulation against ground and weather.",
+    get tagline() { return uiText("learning:copy_8285be33be83"); },
+    get description() { return uiText("common:site_selection_tarp_systems_and_insulation_against_e6c057"); },
   },
   FOD: {
-    tagline: "Store what you have.",
-    description: "Preservation, drying, canning and safe storage without refrigeration.",
+    get tagline() { return uiText("learning:copy_e2fa22d8e0b4"); },
+    get description() { return uiText("common:preservation_drying_canning_and_safe_storage_without_294c31"); },
   },
   AGR: {
-    tagline: "Grow a supply line.",
-    description: "Soil, seed, irrigation and season planning for a self-reliant plot.",
+    get tagline() { return uiText("learning:copy_1342d1bccb57"); },
+    get description() { return uiText("common:soil_seed_irrigation_and_season_planning_for_f2fe93"); },
   },
   FOR: {
-    tagline: "Read the ground.",
-    description: "Botanical identification, look-alikes and responsible harvesting.",
+    get tagline() { return uiText("learning:copy_db210d82916a"); },
+    get description() { return uiText("common:botanical_identification_look_alikes_and_responsible_harvesting_0c0707"); },
   },
   MED: {
-    tagline: "Stabilise and evacuate.",
-    description: "Bleeding control, wound care and field assessment under pressure.",
+    get tagline() { return uiText("learning:copy_fa65255ec1ca"); },
+    get description() { return uiText("common:bleeding_control_wound_care_and_field_assessment_9f4ece"); },
   },
   NAV: {
-    tagline: "Know where you stand.",
-    description: "Map reading, bearings, terrain association and route planning.",
+    get tagline() { return uiText("learning:copy_fa5a0f4b5edc"); },
+    get description() { return uiText("common:map_reading_bearings_terrain_association_and_route_d2fc27"); },
   },
   SUR: {
-    tagline: "The base layer.",
-    description: "Priorities of survival, kit discipline and emergency planning.",
+    get tagline() { return uiText("learning:copy_c95c13c721b6"); },
+    get description() { return uiText("common:priorities_of_survival_kit_discipline_and_emergency_73cd24"); },
   },
   ENE: {
-    tagline: "Power off the grid.",
-    description: "Solar capture, storage sizing and safe off-grid electrical practice.",
+    get tagline() { return uiText("learning:copy_7b74f1ca63c1"); },
+    get description() { return uiText("common:solar_capture_storage_sizing_and_safe_off_94e6c3"); },
   },
 };
 
 /** Region tagline for a backend category code (or slug). */
 export function categoryTagline(code: string | null | undefined): string {
   const resolved = codeFromSlug(code);
-  return (resolved ? CATEGORY_COPY[resolved] : undefined)?.tagline ?? "Uncharted region";
+  return (resolved ? CATEGORY_COPY[resolved] : undefined)?.tagline ?? uiText("learning:uncharted");
 }
 
 /** Region description for a backend category code (or slug). */
 export function categoryDescription(code: string | null | undefined): string {
   const resolved = codeFromSlug(code);
-  return (resolved ? CATEGORY_COPY[resolved] : undefined)?.description ?? "New region — content in development.";
+  return (resolved ? CATEGORY_COPY[resolved] : undefined)?.description ?? uiText("learning:developing");
 }
 
 /** Neutral fallback design slug for categories without a registered

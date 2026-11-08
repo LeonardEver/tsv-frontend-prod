@@ -10,7 +10,8 @@
  */
 import type { LucideIcon } from "lucide-react";
 
-export type Difficulty = "Beginner" | "Intermediate" | "Advanced";
+/** Localized display label; the API's difficulty code remains unchanged. */
+export type Difficulty = string;
 export type MissionStatus = "locked" | "available" | "in-progress" | "complete";
 
 export interface CategoryCardModel {

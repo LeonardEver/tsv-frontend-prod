@@ -1,0 +1,50 @@
+.session { width: min(100%, 42rem); margin-inline: auto; padding-bottom: calc(7.5rem + env(safe-area-inset-bottom)); }
+.header { margin-bottom: 2.2rem; }
+.utilities { display: flex; align-items: center; justify-content: space-between; margin: -.25rem -.5rem 1.25rem; }
+.utilities a { display: grid; place-items: center; width: 2.75rem; height: 2.75rem; color: var(--muted-foreground); border-radius: .75rem; }
+.utilities a:hover { background: var(--surface-2); color: var(--foreground); }
+.utilities > span { color: var(--muted-foreground); font: 500 .65rem/1 var(--font-mono); letter-spacing: .18em; }
+.segments { display: flex; gap: .3rem; height: .45rem; }
+.segments span { flex: 1; min-width: 0; border-radius: 1rem; background: var(--surface-3); }
+.segments span[data-filled="true"] { background: var(--primary); box-shadow: 0 0 10px color-mix(in oklab, var(--primary) 20%, transparent); }
+.questionMeta { display: flex; justify-content: space-between; gap: 1rem; margin-top: 1rem; font-size: .95rem; color: var(--muted-foreground); }
+.questionMeta span:last-child { font-size: .8rem; }
+.preparing { display: grid; place-content: center; min-height: 60dvh; color: var(--muted-foreground); }
+.card { display: flex; flex-direction: column; }
+.question { font: 500 clamp(1.45rem, 5.5vw, 1.9rem)/1.4 var(--font-display); letter-spacing: .005em; }
+.instructions { margin-top: .75rem; color: var(--muted-foreground); font-size: .95rem; }
+.options { display: grid; gap: .7rem; margin-top: 1.6rem; }
+.option { display: flex; align-items: center; gap: .85rem; min-height: 3.75rem; padding: .9rem; border: 1px solid var(--border); border-radius: .7rem; background: color-mix(in oklab, var(--surface-2) 50%, transparent); cursor: pointer; transition: border-color .15s, background .15s, transform .15s; }
+.option:has(input:checked) { border-color: var(--primary); background: color-mix(in oklab, var(--primary) 9%, var(--background)); box-shadow: 0 2px 0 color-mix(in oklab, var(--primary) 55%, transparent); }
+.option:has(input:focus-visible) { outline: 2px solid var(--ring); outline-offset: 4px; }
+.option:has(input:disabled) { cursor: wait; }
+.optionText { font-size: 1rem; line-height: 1.45; }
+.choice { display: grid; place-items: center; width: 1.65rem; height: 1.65rem; flex: none; border: 2px solid color-mix(in oklab, var(--muted-foreground) 55%, transparent); border-radius: .35rem; color: transparent; }
+.option:has(input:checked) .choice { color: var(--primary-foreground); background: var(--primary); border-color: var(--primary); }
+.choice svg { width: 1.1rem; height: 1.1rem; stroke-width: 3; }
+.footer { position: fixed; inset: auto 0 0; z-index: var(--z-chrome); padding: 1rem 1.4rem max(1.2rem, env(safe-area-inset-bottom)); background: linear-gradient(transparent, var(--background) 18%); }
+.footerInner { display: flex; gap: .75rem; max-width: 42rem; margin-inline: auto; padding-top: .6rem; }
+.previous { display: grid; place-items: center; flex: none; min-height: 3.3rem; padding-inline: 1rem; border: 1px solid var(--border); border-radius: .7rem; color: var(--muted-foreground); font-size: .85rem; }
+.next { display: flex; align-items: center; justify-content: center; gap: .7rem; flex: 1; min-height: 3.3rem; border-radius: .7rem; background: var(--primary); color: var(--primary-foreground); box-shadow: 0 4px 0 color-mix(in oklab, var(--primary) 60%, black); font: 600 1rem/1.2 var(--font-display); text-transform: uppercase; letter-spacing: .05em; }
+.next:active { transform: translateY(2px); box-shadow: 0 2px 0 color-mix(in oklab, var(--primary) 60%, black); }
+.previous:disabled, .next:disabled { opacity: .45; cursor: default; }
+.saved { display: flex; justify-content: center; align-items: center; gap: .4rem; margin-top: .9rem; font-size: .75rem; color: var(--muted-foreground); }
+.resultImage { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: .35; }
+.resultShade { position: absolute; inset: 0; background: linear-gradient(180deg, color-mix(in oklab, var(--background) 15%, transparent), color-mix(in oklab, var(--background) 94%, transparent) 70%, var(--background)); }
+.resultMark { display: grid; place-items: center; width: 4.5rem; height: 4.5rem; margin: 0 auto 1.25rem; border: 4px solid color-mix(in oklab, var(--success) 28%, var(--background)); border-radius: 50%; background: var(--success); color: var(--background); box-shadow: 0 0 0 5px color-mix(in oklab, var(--success) 20%, transparent); }
+.resultMark svg { width: 2.2rem; height: 2.2rem; stroke-width: 3; }
+.resultMark[data-passed="false"] { background: var(--primary); border-color: var(--background); box-shadow: 0 0 0 5px color-mix(in oklab, var(--primary) 20%, transparent); }
+@media (max-width: 39.999rem) {
+  .resultHero { margin: -1.5rem -1.4rem 0; padding: 1.5rem 1.4rem; border: none; border-radius: 0; background: transparent; }
+  .resultHero .resultImage { height: 19rem; opacity: .9; }
+  .resultHero .resultShade { background: linear-gradient(180deg, transparent, var(--background) 19rem); }
+  .withArtwork .resultMark { margin-top: 10.5rem; }
+  .resultData { flex-direction: row; justify-content: center; gap: 1.5rem; }
+  .resultActions { flex-direction: column; gap: .65rem; }
+  .resultActions a { justify-content: center; min-height: 3.25rem; border-radius: .7rem; }
+  .resultActions a[href="/dashboard"], .resultActions a[href^="/simplified"] { order: -1; box-shadow: 0 3px 0 color-mix(in oklab, var(--primary) 60%, black); }
+  .resultActions a[href="#review"], .resultActions a[href="/community"] { border: none; font-size: .8rem; color: var(--muted-foreground); min-height: 2.75rem; }
+}
+@media (min-width: 64rem) { .footer { left: 16rem; } }
+@media (max-width: 23rem) { .option { padding: .75rem; gap: .6rem; } .question { font-size: 1.4rem; } .header { margin-bottom: 1.5rem; } }
+@media (prefers-reduced-motion: reduce) { .option { transition: none; } }

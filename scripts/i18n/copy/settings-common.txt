@@ -1,0 +1,125 @@
+Couldn't delete your account|Não foi possível excluir sua conta|No se pudo eliminar tu cuenta|Impossible de supprimer votre compte|Dein Konto konnte nicht gelöscht werden|Impossibile eliminare il tuo account
+Loading profile|Carregando perfil|Cargando perfil|Chargement du profil|Profil wird geladen|Caricamento del profilo
+Your identity, preferences and subscription inside the academy.|Sua identidade, preferências e assinatura na academia.|Tu identidad, preferencias y suscripción en la academia.|Votre identité, vos préférences et votre abonnement au sein de l'académie.|Deine Identität, Einstellungen und dein Abo in der Akademie.|La tua identità, le preferenze e l'abbonamento nell'accademia.
+Survivor|Survivor|Survivor|Survivor|Survivor|Survivor
+{{value0}} plan|Plano {{value0}}|Plan {{value0}}|Offre {{value0}}|Abo {{value0}}|Piano {{value0}}
+plan|plano|plan|offre|Abo|piano
+Level {{value0}}|Nível {{value0}}|Nivel {{value0}}|Niveau {{value0}}|Stufe {{value0}}|Livello {{value0}}
+Level|Nível|Nivel|Niveau|Stufe|Livello
+Profile saved|Perfil salvo|Perfil guardado|Profil enregistré|Profil gespeichert|Profilo salvato
+Subscription|Assinatura|Suscripción|Abonnement|Abonnement|Abbonamento
+Plan & Usage|Plano e uso|Plan y uso|Offre et utilisation|Abo und Nutzung|Piano e utilizzo
+Upgrade plan|Melhorar plano|Mejorar plan|Changer d'offre|Abo erweitern|Passa a un piano superiore
+Your daily training ration|Sua cota diária de treinamento|Tu cuota diaria de entrenamiento|Votre quota quotidien d'entraînement|Dein tägliches Trainingskontingent|La tua quota giornaliera di allenamento
+Active subscription|Assinatura ativa|Suscripción activa|Abonnement actif|Aktives Abonnement|Abbonamento attivo
+Upgrade|Melhorar plano|Mejorar plan|Changer d'offre|Abo erweitern|Passa a un piano superiore
+Manage plan|Gerenciar plano|Gestionar plan|Gérer l'offre|Abo verwalten|Gestisci piano
+Lessons today|Aulas hoje|Lecciones de hoy|Leçons du jour|Heutige Lektionen|Lezioni di oggi
+Unlimited|Ilimitado|Ilimitado|Illimité|Unbegrenzt|Illimitato
+Lessons used today|Aulas utilizadas hoje|Lecciones utilizadas hoy|Leçons utilisées aujourd'hui|Heute genutzte Lektionen|Lezioni utilizzate oggi
+Field tests today|Testes práticos hoje|Pruebas de campo de hoy|Épreuves du jour|Heutige Praxistests|Prove sul campo di oggi
+Field tests used today|Testes práticos utilizados hoje|Pruebas utilizadas hoy|Épreuves utilisées aujourd'hui|Heute genutzte Praxistests|Prove utilizzate oggi
+Session|Sessão|Sesión|Session|Sitzung|Sessione
+Member since|Membro desde|Miembro desde|Membre depuis|Mitglied seit|Membro dal
+Identity|Identidade|Identidad|Identité|Identität|Identità
+Your first name|Seu nome|Tu nombre|Votre prénom|Dein Vorname|Il tuo nome
+Your last name|Seu sobrenome|Tus apellidos|Votre nom|Dein Nachname|Il tuo cognome
+Full name|Nome completo|Nombre completo|Nom complet|Vollständiger Name|Nome completo
+Your name in the field|Seu nome em campo|Tu nombre en el campo|Votre nom sur le terrain|Dein Name im Einsatz|Il tuo nome sul campo
+Username|Nome de usuário|Nombre de usuario|Nom d'utilisateur|Benutzername|Nome utente
+Lowercase letters, digits, - and _ (3–30 characters). The backend validates this format.|Letras minúsculas, números, - e _ (3–30 caracteres). Este formato é validado ao salvar.|Letras minúsculas, números, - y _ (3–30 caracteres). El formato se valida al guardar.|Lettres minuscules, chiffres, - et _ (3–30 caractères). Le format est vérifié à l'enregistrement.|Kleinbuchstaben, Zahlen, - und _ (3–30 Zeichen). Das Format wird beim Speichern geprüft.|Lettere minuscole, cifre, - e _ (3–30 caratteri). Il formato viene verificato al salvataggio.
+Account email|E-mail da conta|Correo de la cuenta|E-mail du compte|E-Mail-Adresse des Kontos|E-mail dell'account
+Verified at sign-in — account emails can't be changed here.|Verificado no login — o e-mail da conta não pode ser alterado aqui.|Verificado al acceder: el correo de la cuenta no se puede cambiar aquí.|Vérifié à la connexion : l'e-mail du compte ne peut pas être modifié ici.|Bei der Anmeldung bestätigt. Die E-Mail-Adresse kann hier nicht geändert werden.|Verificata all'accesso: l'e-mail dell'account non può essere modificata qui.
+Bio|Biografia|Biografía|Biographie|Über mich|Biografia
+A line about you and your preparedness journey|Uma frase sobre você e sua jornada de preparo|Una frase sobre ti y tu preparación|Quelques mots sur vous et votre parcours de préparation|Ein Satz über dich und deinen Weg zur Vorbereitung|Una frase su di te e il tuo percorso di preparazione
+Personal|Pessoal|Personal|Personnel|Persönlich|Personale
+Region & Language|Região e idioma|Región e idioma|Région et langue|Region und Sprache|Regione e lingua
+Country|País|País|Pays|Land|Paese
+Timezone|Fuso horário|Zona horaria|Fuseau horaire|Zeitzone|Fuso orario
+America/Sao_Paulo|America/Sao_Paulo|America/Sao_Paulo|America/Sao_Paulo|America/Sao_Paulo|America/Sao_Paulo
+Daily limits reset on your timezone (UTC when unset).|Os limites diários são renovados no seu fuso horário (UTC quando não definido).|Los límites diarios se renuevan en tu zona horaria (UTC si no se indica).|Les limites quotidiennes sont réinitialisées selon votre fuseau horaire (UTC par défaut).|Tageslimits werden in deiner Zeitzone zurückgesetzt (ohne Angabe UTC).|I limiti giornalieri si azzerano nel tuo fuso orario (UTC se non impostato).
+Learning|Aprendizado|Aprendizaje|Apprentissage|Lernen|Apprendimento
+Training Preferences|Preferências de treinamento|Preferencias de entrenamiento|Préférences d'entraînement|Trainingseinstellungen|Preferenze di allenamento
+Experience level|Nível de experiência|Nivel de experiencia|Niveau d'expérience|Erfahrungsstufe|Livello di esperienza
+Prefer not to say|Prefiro não informar|Prefiero no indicarlo|Je préfère ne pas répondre|Keine Angabe|Preferisco non indicarlo
+Beginner|Iniciante|Principiante|Débutant|Anfänger|Principiante
+Intermediate|Intermediário|Intermedio|Intermédiaire|Fortgeschritten|Intermedio
+Advanced|Avançado|Avanzado|Avancé|Erfahren|Avanzato
+Learning reminder|Lembrete de estudo|Recordatorio de estudio|Rappel d'apprentissage|Lernerinnerung|Promemoria di studio
+No reminders|Sem lembretes|Sin recordatorios|Aucun rappel|Keine Erinnerungen|Nessun promemoria
+Daily|Diário|Diario|Quotidien|Täglich|Giornaliero
+Weekly|Semanal|Semanal|Hebdomadaire|Wöchentlich|Settimanale
+Learning goals (optional)|Objetivos de aprendizado (opcional)|Objetivos de aprendizaje (opcional)|Objectifs d'apprentissage (facultatif)|Lernziele (optional)|Obiettivi di apprendimento (facoltativo)
+What do you want to be ready for?|Para o que você quer se preparar?|¿Para qué quieres prepararte?|À quoi souhaitez-vous vous préparer ?|Worauf möchtest du vorbereitet sein?|Per cosa vuoi prepararti?
+Privacy|Privacidade|Privacidad|Confidentialité|Datenschutz|Privacy
+Visibility|Visibilidade|Visibilidad|Visibilité|Sichtbarkeit|Visibilità
+Profile visibility|Visibilidade do perfil|Visibilidad del perfil|Visibilité du profil|Profilsichtbarkeit|Visibilità del profilo
+Community profile|Perfil na comunidade|Perfil de comunidad|Profil communautaire|Community-Profil|Profilo della community
+Private|Privado|Privado|Privé|Privat|Privato
+Private profiles hide your bio from other members.|Perfis privados ocultam sua biografia de outros membros.|Los perfiles privados ocultan tu biografía a otros miembros.|Les profils privés masquent votre biographie aux autres membres.|Private Profile verbergen deine Biografie vor anderen Mitgliedern.|I profili privati nascondono la tua biografia agli altri membri.
+Avatar visibility|Visibilidade do avatar|Visibilidad del avatar|Visibilité de l'avatar|Avatarsichtbarkeit|Visibilità dell'avatar
+Show avatar|Mostrar avatar|Mostrar avatar|Afficher l'avatar|Avatar anzeigen|Mostra avatar
+Hide avatar|Ocultar avatar|Ocultar avatar|Masquer l'avatar|Avatar ausblenden|Nascondi avatar
+Community display name|Nome exibido na comunidade|Nombre visible en la comunidad|Nom affiché dans la communauté|Anzeigename in der Community|Nome visualizzato nella community
+How other members see you (defaults to your name)|Como outros membros veem você (por padrão, seu nome)|Cómo te ven otros miembros (por defecto, tu nombre)|Comment les autres membres vous voient (votre nom par défaut)|So sehen dich andere Mitglieder (standardmäßig dein Name)|Come ti vedono gli altri membri (il tuo nome per impostazione predefinita)
+Saving…|Salvando…|Guardando…|Enregistrement…|Wird gespeichert…|Salvataggio…
+Save profile|Salvar perfil|Guardar perfil|Enregistrer le profil|Profil speichern|Salva profilo
+Reset|Restaurar|Restablecer|Réinitialiser|Zurücksetzen|Ripristina
+Delete account|Excluir conta|Eliminar cuenta|Supprimer le compte|Konto löschen|Elimina account
+Delete your account?|Excluir sua conta?|¿Eliminar tu cuenta?|Supprimer votre compte ?|Dein Konto löschen?|Eliminare il tuo account?
+This permanently deletes your account, progress, XP and community content. This cannot be undone.|Isso exclui permanentemente sua conta, progresso, XP e conteúdo na comunidade. Esta ação não pode ser desfeita.|Esto elimina permanentemente tu cuenta, progreso, XP y contenido de la comunidad. No se puede deshacer.|Votre compte, votre progression, vos XP et vos contenus communautaires seront définitivement supprimés. Cette action est irréversible.|Dies löscht dein Konto, deinen Fortschritt, deine XP und deine Community-Inhalte dauerhaft. Dies kann nicht rückgängig gemacht werden.|Questa operazione elimina definitivamente account, progressi, XP e contenuti della community. Non può essere annullata.
+Keep account|Manter conta|Conservar cuenta|Conserver le compte|Konto behalten|Mantieni account
+Delete permanently|Excluir permanentemente|Eliminar permanentemente|Supprimer définitivement|Endgültig löschen|Elimina definitivamente
+Retry|Tentar novamente|Reintentar|Réessayer|Erneut versuchen|Riprova
+Reference:|Referência:|Referencia:|Référence :|Referenz:|Riferimento:
+Master the skills required to find, collect, evaluate and treat water in the field.|Domine as habilidades para encontrar, coletar, avaliar e tratar água em campo.|Domina las habilidades para encontrar, recoger, evaluar y tratar agua en el campo.|Maîtrisez les compétences nécessaires pour trouver, recueillir, évaluer et traiter l'eau sur le terrain.|Lerne, Wasser im Gelände zu finden, zu sammeln, zu beurteilen und aufzubereiten.|Impara a trovare, raccogliere, valutare e trattare l'acqua sul campo.
+Build, sustain and control fire in wet, cold and windy conditions.|Acenda, mantenha e controle o fogo em condições de umidade, frio e vento.|Enciende, mantén y controla el fuego con humedad, frío y viento.|Allumez, entretenez et maîtrisez un feu par temps humide, froid ou venteux.|Entfache, erhalte und kontrolliere Feuer bei Nässe, Kälte und Wind.|Accendi, mantieni e controlla il fuoco in condizioni di umidità, freddo e vento.
+Site selection, tarp systems and insulation against ground and weather.|Escolha do local, abrigos de lona e isolamento do solo e do clima.|Elección del lugar, refugios de lona y aislamiento del suelo y la intemperie.|Choix de l'emplacement, abris sous bâche et isolation contre le sol et les intempéries.|Standortwahl, Planensysteme und Isolierung gegen Boden und Witterung.|Scelta del luogo, sistemi con telo e isolamento dal terreno e dalle intemperie.
+Preservation, drying, canning and safe storage without refrigeration.|Conservação, secagem, enlatamento e armazenamento seguro sem refrigeração.|Conservación, secado, envasado y almacenamiento seguro sin refrigeración.|Conservation, séchage, mise en conserve et stockage sûr sans réfrigération.|Haltbarmachen, Trocknen, Einkochen und sichere Lagerung ohne Kühlung.|Conservazione, essiccazione, inscatolamento e stoccaggio sicuro senza refrigerazione.
+Soil, seed, irrigation and season planning for a self-reliant plot.|Solo, sementes, irrigação e planejamento sazonal para uma horta autossuficiente.|Suelo, semillas, riego y planificación estacional para un huerto autosuficiente.|Sol, semences, irrigation et planification saisonnière pour un potager autonome.|Boden, Saatgut, Bewässerung und Saisonplanung für einen Selbstversorgergarten.|Terreno, semi, irrigazione e pianificazione stagionale per un orto autosufficiente.
+Botanical identification, look-alikes and responsible harvesting.|Identificação botânica, espécies semelhantes e coleta responsável.|Identificación botánica, especies similares y recolección responsable.|Identification botanique, espèces ressemblantes et récolte responsable.|Pflanzenbestimmung, Verwechslungsgefahren und verantwortungsvolles Sammeln.|Identificazione botanica, specie simili e raccolta responsabile.
+Bleeding control, wound care and field assessment under pressure.|Controle de sangramentos, cuidado de feridas e avaliação em campo sob pressão.|Control de hemorragias, cuidado de heridas y evaluación sobre el terreno bajo presión.|Contrôle des hémorragies, soins des plaies et évaluation sur le terrain sous pression.|Blutstillung, Wundversorgung und Beurteilung vor Ort unter Druck.|Controllo delle emorragie, cura delle ferite e valutazione sul campo sotto pressione.
+Map reading, bearings, terrain association and route planning.|Leitura de mapas, azimutes, reconhecimento do terreno e planejamento de rotas.|Lectura de mapas, rumbos, reconocimiento del terreno y planificación de rutas.|Lecture de carte, azimuts, lecture du terrain et planification d'itinéraires.|Kartenlesen, Peilungen, Geländeabgleich und Routenplanung.|Lettura delle mappe, rilevamenti, riconoscimento del terreno e pianificazione dei percorsi.
+Priorities of survival, kit discipline and emergency planning.|Prioridades de sobrevivência, organização do kit e planejamento de emergência.|Prioridades de supervivencia, organización del kit y planificación de emergencias.|Priorités de survie, organisation du kit et planification d'urgence.|Überlebensprioritäten, Ausrüstungsorganisation und Notfallplanung.|Priorità di sopravvivenza, organizzazione del kit e pianificazione delle emergenze.
+Solar capture, storage sizing and safe off-grid electrical practice.|Captação solar, dimensionamento do armazenamento e práticas elétricas seguras fora da rede.|Captación solar, dimensionamiento del almacenamiento y prácticas eléctricas seguras sin conexión a la red.|Captation solaire, dimensionnement du stockage et pratiques électriques sûres hors réseau.|Solarstromgewinnung, Speicherdimensionierung und sichere netzunabhängige Elektropraxis.|Raccolta di energia solare, dimensionamento dell'accumulo e pratiche elettriche sicure fuori rete.
+{{value0}} XP|{{value0}} XP|{{value0}} XP|{{value0}} XP|{{value0}} XP|{{value0}} XP
+XP|XP|XP|XP|XP|XP
+LVL {{value0}}|NÍV {{value0}}|NIV {{value0}}|NIV {{value0}}|STUFE {{value0}}|LIV {{value0}}
+LVL|NÍV|NIV|NIV|STUFE|LIV
+Entitlement required|Acesso necessário|Se requiere acceso|Accès requis|Zugriffsberechtigung erforderlich|Autorizzazione richiesta
+Reload the app|Recarregar o app|Recargar la app|Recharger l'application|App neu laden|Ricarica l'app
+Back to Base Camp|Voltar ao Acampamento Base|Volver al Campamento Base|Retour au camp de base|Zurück zum Basislager|Torna al campo base
+Hide password|Ocultar senha|Ocultar contraseña|Masquer le mot de passe|Passwort ausblenden|Nascondi password
+Show password|Mostrar senha|Mostrar contraseña|Afficher le mot de passe|Passwort anzeigen|Mostra password
+Phase 11+|Fase 11+|Fase 11+|Phase 11+|Phase 11+|Fase 11+
+The {{value0}} experience arrives in the feature phases.|A experiência {{value0}} chega nas próximas fases de recursos.|La experiencia {{value0}} llegará en las próximas fases de funciones.|L'expérience {{value0}} arrive lors des prochaines phases de fonctionnalités.|Die Erfahrung {{value0}} folgt in den nächsten Funktionsphasen.|L'esperienza {{value0}} arriverà nelle prossime fasi delle funzionalità.
+Lesson|Aula|Lección|Leçon|Lektion|Lezione
+Quiz|Quiz|Cuestionario|Quiz|Quiz|Quiz
+{{value0}} missions|{{value0}} missões|{{value0}} misiones|{{value0}} missions|{{value0}} Missionen|{{value0}} missioni
+missions|missões|misiones|missions|Missionen|missioni
+{{value0}} complete|{{value0}} concluídas|{{value0}} completadas|{{value0}} terminées|{{value0}} abgeschlossen|{{value0}} completate
+complete|concluídas|completadas|terminées|abgeschlossen|completate
+{{value0}} progress|Progresso: {{value0}}|Progreso: {{value0}}|Progression : {{value0}}|Fortschritt: {{value0}}|Progressi: {{value0}}
+Complete|Concluído|Completado|Terminé|Abgeschlossen|Completato
+Locked|Bloqueado|Bloqueado|Verrouillé|Gesperrt|Bloccato
+Mission|Missão|Misión|Mission|Mission|Missione
+min|min|min|min|Min.|min
+{{value0}}% complete|{{value0}}% concluído|{{value0}}% completado|{{value0}} % terminé|{{value0}} % abgeschlossen|{{value0}}% completato
+% complete|% concluído|% completado|% terminé|% abgeschlossen|% completato
+Your next mission|Sua próxima missão|Tu próxima misión|Votre prochaine mission|Deine nächste Mission|La tua prossima missione
+{{value0}} min|{{value0}} min|{{value0}} min|{{value0}} min|{{value0}} Min.|{{value0}} min
+Mission progress|Progresso da missão|Progreso de la misión|Progression de la mission|Missionsfortschritt|Progressi della missione
+Open|Abrir|Abrir|Ouvrir|Öffnen|Apri
+Download|Baixar|Descargar|Télécharger|Herunterladen|Scarica
+Download with Survivor|Baixar com Survivor|Descargar con Survivor|Télécharger avec Survivor|Mit Survivor herunterladen|Scarica con Survivor
+Artifact not yet available.|Arquivo ainda não disponível.|Archivo aún no disponible.|Fichier pas encore disponible.|Datei noch nicht verfügbar.|File non ancora disponibile.
+Earned {{value0}}|Conquistado em {{value0}}|Obtenido el {{value0}}|Obtenu le {{value0}}|Erhalten am {{value0}}|Ottenuto il {{value0}}
+Not earned|Não conquistado|No obtenido|Non obtenu|Nicht erhalten|Non ottenuto
+Upvote {{value0}}|Curtir {{value0}}|Votar a favor de {{value0}}|Voter pour {{value0}}|{{value0}} positiv bewerten|Vota {{value0}}
+comments|comentários|comentarios|commentaires|Kommentare|commenti
+Report|Denunciar|Denunciar|Signaler|Melden|Segnala
+Edit|Editar|Editar|Modifier|Bearbeiten|Modifica
+Delete|Excluir|Eliminar|Supprimer|Löschen|Elimina
+Close dialog|Fechar diálogo|Cerrar diálogo|Fermer la boîte de dialogue|Dialog schließen|Chiudi finestra di dialogo
+Not found|Não encontrado|No encontrado|Introuvable|Nicht gefunden|Non trovato
+This page doesn't exist.|Esta página não existe.|Esta página no existe.|Cette page n'existe pas.|Diese Seite existiert nicht.|Questa pagina non esiste.

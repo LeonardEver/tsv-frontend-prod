@@ -400,7 +400,7 @@ test.describe("release journey", () => {
 
     // Quiz → authoritative result.
     await page.getByRole("link", { name: /take field test/i }).click();
-    await page.getByRole("button", { name: /start field test/i }).click();
+    // Lesson completion hands off directly to the first question.
     await expect(page.getByText(/question 1 of 3/i)).toBeVisible();
     await answerAll(page);
     await page.getByRole("button", { name: /submit field test/i }).click();
@@ -411,7 +411,7 @@ test.describe("release journey", () => {
     // Progress reflects both actions.
     await page.getByRole("navigation", { name: "Primary" }).getByRole("link", { name: "Progress" }).click();
     await expect(page.getByText("Missions complete")).toBeVisible();
-    await expect(page.getByText("11%")).toBeVisible();
+    await expect(page.getByText("11%", { exact: true })).toBeVisible();
 
     // Gamification: XP from lesson + quiz, achievement earned.
     await page.getByRole("navigation", { name: "Primary" }).getByRole("link", { name: "Rewards" }).click();

@@ -1,15 +1,16 @@
 /**
- * Learn — Explore Regions (Phase 23). The Lovable reference
- * `src/routes/learn.index.tsx` is the visual source of truth: stat tiles,
- * all regions as CategoryCards with generated artwork, and a "Start Here"
- * section of beginner missions.
+ * Learn — a region atlas with panoramic scenery, illustrated summary
+ * tiles, and category artwork. The "Start Here" section continues to
+ * recommend beginner missions in the canonical curriculum order.
  *
  * All values authoritative (module counts, completion counts) — nothing
  * fabricated. Category images resolve through the config-driven visual
  * map (lib/category-visuals); categories without registered artwork fall
  * back to their icon identity.
  */
+import { tr as uiText, useLocale as useInterfaceLocale, uiValue } from "@/i18n";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { Compass, Mountain } from "lucide-react";
 import { queryKeys } from "@/lib/api/keys";
 import { CategoryCard, MissionCard } from "@/components/sa/cards";
 import { EmptyState, SectionHeader, Stat } from "@/components/sa/primitives";
@@ -21,8 +22,12 @@ import { categoryCardModel } from "./adapters";
 import { missionCardModelFromListRow } from "@/features/dashboard/adapters";
 import { codeFromSlug } from "@/lib/category-visuals";
 import { sortModulesByCurriculum } from "@/lib/curriculum";
+import panorama from "@/assets/learn-panorama.jpg";
+import forest from "@/assets/learn-forest.jpg";
+import styles from "./categories.module.css";
 
 export default function CategoriesPage() {
+  useInterfaceLocale();
   const queryClient = useQueryClient();
   const query = useQuery({
     queryKey: queryKeys.content.categories,
@@ -55,17 +60,31 @@ export default function CategoriesPage() {
     .map((m) => missionCardModelFromListRow(m, categoriesBySlug));
 
   return (
-    <div>
-      <PageHeader
-        eyebrow="Learn"
-        title="Explore Regions"
-        description="Choose a region and begin your expedition. Each region holds a set of missions, field manuals and field tests."
-      />
+    <div className={styles.page}>
+      <img src={forest} alt="" width={1536} height={1024} className={styles.forest} loading="lazy" />
+      <section className={styles.hero} aria-label={uiText("learning:explore_regions_overview_2aa4c1")}>
+        <img src={panorama} alt="" width={1920} height={640} className={styles.panorama} fetchPriority="high" />
+        <div className={styles.heading}>
+          <PageHeader
+            eyebrow={uiText("learning:learn_b04837")}
+            title={uiText("learning:explore_regions_9be4e2")}
+            description={uiText("learning:choose_a_region_and_begin_your_expedition_5d298d")}
+          />
+        </div>
 
-      <section className="mb-10 grid gap-4 sm:grid-cols-3">
-        <Stat label="Regions" value={categories.length} hint="Open to your plan" />
-        <Stat label="Missions" value={totalMissions} hint="Across all regions" />
-        <Stat label="Complete" value={totalDone} hint={`${pct}% of the academy`} color="var(--ember)" />
+        <section className={styles.stats} aria-label={uiText("learning:academy_overview_03b502")}>
+          <div className={styles.statTile}>
+            <Mountain className={styles.statMotif} aria-hidden="true" />
+            <Stat label={uiText("learning:regions_039711")} value={categories.length} hint={uiText("learning:open_to_your_plan_7b1340")} />
+          </div>
+          <div className={styles.statTile}>
+            <Stat label={uiText("learning:missions_323ea3")} value={totalMissions} hint={uiText("learning:across_all_regions_ae9969")} />
+          </div>
+          <div className={styles.statTile}>
+            <Compass className={styles.statMotif} aria-hidden="true" />
+            <Stat label={uiText("learning:complete_1f5a1a")} value={totalDone} hint={uiText("learning:value_of_the_academy_45eed5", { value0: uiValue(pct) })} color="var(--ember)" />
+          </div>
+        </section>
       </section>
 
       {query.isError ? (
@@ -80,11 +99,11 @@ export default function CategoriesPage() {
         </section>
       ) : categories.length === 0 ? (
         <section className="mb-12">
-          <EmptyState title="No regions yet" description="Content is being prepared. Check back soon." />
+          <EmptyState title={uiText("learning:no_regions_yet_910604")} description={uiText("learning:content_is_being_prepared_check_back_soon_beed41")} />
         </section>
       ) : (
-        <section className="mb-12">
-          <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+        <section className={styles.regionSection} aria-label={uiText("learning:regions_039711")}>
+          <div className={styles.regionGrid}>
             {categories.map((cat) => (
               <div
                 key={cat.slug}
@@ -96,7 +115,7 @@ export default function CategoriesPage() {
                   });
                 }}
               >
-                <CategoryCard category={categoryCardModel(cat)} />
+                <CategoryCard category={categoryCardModel(cat)} className={styles.regionCard} />
               </div>
             ))}
           </div>
@@ -104,11 +123,11 @@ export default function CategoriesPage() {
       )}
 
       {beginner.length > 0 && (
-        <section>
+        <section className={styles.recommendations}>
           <SectionHeader
-            eyebrow="Recommended"
-            title="Start Here"
-            description="Short missions that pay off immediately in the field."
+            eyebrow={uiText("learning:recommended_9ef937")}
+            title={uiText("learning:start_here_477344")}
+            description={uiText("learning:short_missions_that_pay_off_immediately_in_ac5c59")}
           />
           <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
             {beginner.map((m) => (

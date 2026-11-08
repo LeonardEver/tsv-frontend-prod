@@ -206,7 +206,7 @@ test.describe("progress journeys", () => {
     await page.goto("/progress");
     await expectAcademyCompletion(page, 0);
     await expect(page.getByText(/no learning activity yet/i)).toBeVisible();
-    await expect(page.getByText(/no objective performance yet/i)).toBeVisible();
+    await expect(page.getByText(/no lesson results yet/i)).toBeVisible();
   });
 
   test("FLOW 2 — active user: module rows link to modules", async ({ page }) => {
@@ -220,6 +220,7 @@ test.describe("progress journeys", () => {
     });
     await page.goto("/progress");
     await expectAcademyCompletion(page, 1);
+    await page.getByText("Mission Details", { exact: true }).click();
     const module = page.getByRole("link", { name: /boiling water for purification/i });
     await expect(module).toHaveAttribute("href", "/modules/WAT-boiling");
     await expect(module.getByText(/quiz: 100%/i)).toBeVisible();
@@ -251,6 +252,7 @@ test.describe("progress journeys", () => {
 
     await page.goto("/progress");
     await expectAcademyCompletion(page, 1);
+    await page.getByText("Mission Details", { exact: true }).click();
     await expect(page.getByText(/quiz: 100%/i)).toBeVisible();
   });
 
@@ -287,6 +289,7 @@ test.describe("progress journeys", () => {
     });
     await page.goto("/progress");
     await expectAcademyCompletion(page, 1);
+    await page.getByText("Mission Details", { exact: true }).click();
     await expect(page.getByRole("link", { name: /boiling water for purification/i })).toBeVisible();
   });
 });
@@ -307,8 +310,9 @@ test.describe("gamification journeys", () => {
     // (the old combined "Level 1 · Novice" line). The AppShell also
     // renders LevelBadges — scope to the page content.
     const main = page.locator("main");
-    await expect(main.getByText("LVL 1")).toBeVisible();
-    await expect(main.getByText("Novice", { exact: true })).toBeVisible();
+    const rankHero = main.getByRole("region", { name: "Current rank" });
+    await expect(rankHero.getByText("LVL 1")).toBeVisible();
+    await expect(rankHero.getByRole("heading", { name: "Novice", exact: true })).toBeVisible();
     await expect(page.getByText("2 days", { exact: true })).toBeVisible();
     await expect(page.getByText("First Water Module", { exact: true })).toBeVisible();
     // Earned card carries the authoritative date ("Earned <date>"); the

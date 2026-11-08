@@ -1,0 +1,18 @@
+.missionGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: stretch;
+  gap: 1.25rem;
+}
+
+@media (min-width: 40rem) {
+  .missionGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (min-width: 80rem) {
+  .missionGrid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+@media (min-width: 108rem) {
+  .missionGrid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}

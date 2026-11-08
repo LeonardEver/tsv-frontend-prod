@@ -1,0 +1,106 @@
+Switch to light theme|Ativar tema claro|Activar tema claro|Activer le thème clair|Helles Design aktivieren|Attiva tema chiaro
+Switch to dark theme|Ativar tema escuro|Activar tema oscuro|Activer le thème sombre|Dunkles Design aktivieren|Attiva tema scuro
+Skip to content|Pular para o conteúdo|Saltar al contenido|Aller au contenu|Zum Inhalt springen|Vai al contenuto
+You're offline — showing what's already loaded.|Você está offline — exibindo o que já foi carregado.|Sin conexión: se muestra el contenido ya cargado.|Vous êtes hors ligne : affichage du contenu déjà chargé.|Du bist offline. Bereits geladene Inhalte werden angezeigt.|Sei offline: vengono mostrati i contenuti già caricati.
+Dismiss notification|Dispensar notificação|Cerrar notificación|Fermer la notification|Benachrichtigung schließen|Chiudi notifica
+Account menu|Menu da conta|Menú de cuenta|Menu du compte|Kontomenü|Menu account
+Profile|Perfil|Perfil|Profil|Profil|Profilo
+Sign out|Sair|Cerrar sesión|Se déconnecter|Abmelden|Esci
+Base Camp|Acampamento Base|Campamento Base|Camp de base|Basislager|Campo base
+Learn|Aprender|Aprender|Apprendre|Lernen|Impara
+Progress|Progresso|Progreso|Progression|Fortschritt|Progressi
+Rewards|Recompensas|Recompensas|Récompenses|Belohnungen|Ricompense
+Community|Comunidade|Comunidad|Communauté|Community|Community
+Plans|Planos|Planes|Offres|Abos|Piani
+Regions|Regiões|Regiones|Régions|Regionen|Regioni
+Primary|Principal|Principal|Principale|Hauptnavigation|Principale
+Account|Conta|Cuenta|Compte|Konto|Account
+Analytics|Análises|Analítica|Statistiques|Analysen|Analisi
+Settings|Configurações|Configuración|Paramètres|Einstellungen|Impostazioni
+Open navigation|Abrir navegação|Abrir navegación|Ouvrir la navigation|Navigation öffnen|Apri navigazione
+Search lessons, missions, resources|Buscar aulas, missões e recursos|Buscar lecciones, misiones y recursos|Rechercher des leçons, missions et ressources|Lektionen, Missionen und Ressourcen suchen|Cerca lezioni, missioni e risorse
+Search missions, field manuals, resources…|Buscar missões, manuais e recursos…|Buscar misiones, manuales y recursos…|Rechercher des missions, manuels et ressources…|Missionen, Feldhandbücher und Ressourcen suchen…|Cerca missioni, manuali e risorse…
+Max level reached|Nível máximo alcançado|Nivel máximo alcanzado|Niveau maximal atteint|Höchste Stufe erreicht|Livello massimo raggiunto
+{{value0}} XP to LVL {{value1}}|{{value0}} XP para o NÍVEL {{value1}}|{{value0}} XP para el NIVEL {{value1}}|{{value0}} XP avant le NIVEAU {{value1}}|{{value0}} XP bis STUFE {{value1}}|{{value0}} XP al LIVELLO {{value1}}
+Notifications|Notificações|Notificaciones|Notifications|Benachrichtigungen|Notifiche
+Close navigation|Fechar navegação|Cerrar navegación|Fermer la navigation|Navigation schließen|Chiudi navigazione
+Primary mobile|Navegação principal no celular|Navegación principal móvil|Navigation principale mobile|Mobile Hauptnavigation|Navigazione principale mobile
+Home|Início|Inicio|Accueil|Startseite|Home
+Loading|Carregando|Cargando|Chargement|Wird geladen|Caricamento
+Loading…|Carregando…|Cargando…|Chargement…|Wird geladen…|Caricamento…
+We couldn't reach the server to verify your session.|Não foi possível acessar o servidor para verificar sua sessão.|No se pudo contactar con el servidor para verificar tu sesión.|Impossible de joindre le serveur pour vérifier votre session.|Der Server konnte zur Überprüfung deiner Sitzung nicht erreicht werden.|Impossibile raggiungere il server per verificare la sessione.
+Try again|Tentar novamente|Intentar de nuevo|Réessayer|Erneut versuchen|Riprova
+Practical survival,|Sobrevivência na prática,|Supervivencia práctica,|Survie pratique,|Praktisches Überleben,|Sopravvivenza pratica,
+preparedness and|preparo e|preparación y|préparation et|Vorsorge und|preparazione e
+self-reliance.|autossuficiência.|autosuficiencia.|autonomie.|Selbstständigkeit.|autosufficienza.
+Field manuals, missions and field tests built for people who want usable skills — not trivia.|Manuais, missões e testes práticos para quem busca habilidades úteis no dia a dia.|Manuales, misiones y pruebas de campo para quienes buscan habilidades prácticas.|Manuels, missions et épreuves pratiques pour développer des compétences utiles.|Feldhandbücher, Missionen und Praxistests für alle, die anwendbare Fähigkeiten lernen wollen.|Manuali, missioni e prove sul campo per chi cerca competenze pratiche.
+Continue with Google|Continuar com Google|Continuar con Google|Continuer avec Google|Mit Google fortfahren|Continua con Google
+or use email|ou use seu e-mail|o usa tu correo|ou utilisez votre e-mail|oder E-Mail verwenden|oppure usa l'e-mail
+Email address|Endereço de e-mail|Correo electrónico|Adresse e-mail|E-Mail-Adresse|Indirizzo e-mail
+Password|Senha|Contraseña|Mot de passe|Passwort|Password
+Forgot password?|Esqueceu a senha?|¿Olvidaste tu contraseña?|Mot de passe oublié ?|Passwort vergessen?|Password dimenticata?
+Verify your email before signing in.|Verifique seu e-mail antes de entrar.|Verifica tu correo antes de iniciar sesión.|Vérifiez votre e-mail avant de vous connecter.|Bestätige deine E-Mail-Adresse, bevor du dich anmeldest.|Verifica la tua e-mail prima di accedere.
+Resend the verification email|Reenviar e-mail de verificação|Reenviar correo de verificación|Renvoyer l'e-mail de vérification|Bestätigungs-E-Mail erneut senden|Invia di nuovo l'e-mail di verifica
+Sign in|Entrar|Iniciar sesión|Se connecter|Anmelden|Accedi
+New to Survival Academy?|Novo na Survival Academy?|¿Nuevo en Survival Academy?|Vous découvrez Survival Academy ?|Neu bei Survival Academy?|Non conosci Survival Academy?
+Create an account|Criar uma conta|Crear una cuenta|Créer un compte|Konto erstellen|Crea un account
+Illuminated tent on a mountain ridge at blue hour|Barraca iluminada em uma crista de montanha ao anoitecer|Tienda iluminada en una cresta de montaña al anochecer|Tente éclairée sur une crête à l'heure bleue|Beleuchtetes Zelt auf einem Bergkamm in der blauen Stunde|Tenda illuminata su una cresta montuosa all'imbrunire
+Expedition begins at base camp|A expedição começa no acampamento base|La expedición comienza en el campamento base|L'expédition commence au camp de base|Die Expedition beginnt im Basislager|La spedizione inizia al campo base
+Water · Fire · Shelter · Food · Agriculture · Foraging · Medical · Navigation · Energy|Água · Fogo · Abrigo · Alimentos · Agricultura · Coleta · Primeiros socorros · Navegação · Energia|Agua · Fuego · Refugio · Alimentos · Agricultura · Recolección · Primeros auxilios · Orientación · Energía|Eau · Feu · Abri · Alimentation · Agriculture · Cueillette · Secourisme · Orientation · Énergie|Wasser · Feuer · Schutz · Nahrung · Landwirtschaft · Sammeln · Erste Hilfe · Orientierung · Energie|Acqua · Fuoco · Riparo · Cibo · Agricoltura · Raccolta · Primo soccorso · Orientamento · Energia
+At least 12 characters|Pelo menos 12 caracteres|Al menos 12 caracteres|Au moins 12 caractères|Mindestens 12 Zeichen|Almeno 12 caratteri
+One lowercase letter|Uma letra minúscula|Una letra minúscula|Une lettre minuscule|Ein Kleinbuchstabe|Una lettera minuscola
+One uppercase letter|Uma letra maiúscula|Una letra mayúscula|Une lettre majuscule|Ein Großbuchstabe|Una lettera maiuscola
+One number|Um número|Un número|Un chiffre|Eine Zahl|Un numero
+One special character|Um caractere especial|Un carácter especial|Un caractère spécial|Ein Sonderzeichen|Un carattere speciale
+Create your account|Crie sua conta|Crea tu cuenta|Créez votre compte|Erstelle dein Konto|Crea il tuo account
+Field manuals, missions and field tests — start your expedition at base camp.|Manuais, missões e testes práticos — comece sua expedição no acampamento base.|Manuales, misiones y pruebas de campo: inicia tu expedición en el campamento base.|Manuels, missions et épreuves pratiques : commencez votre expédition au camp de base.|Feldhandbücher, Missionen und Praxistests: Starte deine Expedition im Basislager.|Manuali, missioni e prove sul campo: inizia la tua spedizione al campo base.
+First name|Nome|Nombre|Prénom|Vorname|Nome
+Last name|Sobrenome|Apellidos|Nom|Nachname|Cognome
+Date of birth|Data de nascimento|Fecha de nacimiento|Date de naissance|Geburtsdatum|Data di nascita
+Country / Region|País / Região|País / Región|Pays / Région|Land / Region|Paese / Regione
+Password requirements|Requisitos da senha|Requisitos de contraseña|Critères du mot de passe|Passwortanforderungen|Requisiti della password
+I agree to the|Concordo com os|Acepto los|J'accepte les|Ich akzeptiere die|Accetto i
+Terms of Service|Termos de Uso|Términos de servicio|Conditions d'utilisation|Nutzungsbedingungen|Termini di servizio
+I acknowledge the|Declaro estar ciente da|Reconozco la|Je reconnais avoir pris connaissance de la|Ich bestätige die Kenntnisnahme der|Dichiaro di aver letto l'
+Privacy Policy|Política de Privacidade|Política de privacidad|Politique de confidentialité|Datenschutzerklärung|Informativa sulla privacy
+Send me occasional Survival Academy updates, new content and offers|Quero receber novidades, novos conteúdos e ofertas ocasionais da Survival Academy|Quiero recibir novedades, contenido y ofertas ocasionales de Survival Academy|Je souhaite recevoir des actualités, contenus et offres occasionnels de Survival Academy|Ich möchte gelegentlich Neuigkeiten, neue Inhalte und Angebote von Survival Academy erhalten|Desidero ricevere occasionalmente novità, contenuti e offerte di Survival Academy
+Create account|Criar conta|Crear cuenta|Créer un compte|Konto erstellen|Crea account
+or|ou|o|ou|oder|oppure
+Already have an account?|Já tem uma conta?|¿Ya tienes una cuenta?|Vous avez déjà un compte ?|Du hast bereits ein Konto?|Hai già un account?
+Verify your email|Verifique seu e-mail|Verifica tu correo|Vérifiez votre e-mail|Bestätige deine E-Mail-Adresse|Verifica la tua e-mail
+One more step before base camp opens.|Só mais um passo para acessar o acampamento base.|Un paso más para acceder al campamento base.|Encore une étape avant d'accéder au camp de base.|Noch ein Schritt bis zum Basislager.|Un ultimo passo prima di accedere al campo base.
+Your email address is verified.|Seu e-mail foi verificado.|Tu correo está verificado.|Votre adresse e-mail est vérifiée.|Deine E-Mail-Adresse wurde bestätigt.|Il tuo indirizzo e-mail è verificato.
+Your account is ready — sign in to continue.|Sua conta está pronta — entre para continuar.|Tu cuenta está lista: inicia sesión para continuar.|Votre compte est prêt : connectez-vous pour continuer.|Dein Konto ist bereit. Melde dich an, um fortzufahren.|Il tuo account è pronto: accedi per continuare.
+This verification link has expired.|Este link de verificação expirou.|Este enlace de verificación ha caducado.|Ce lien de vérification a expiré.|Dieser Bestätigungslink ist abgelaufen.|Questo link di verifica è scaduto.
+Request a new one below.|Solicite um novo link abaixo.|Solicita uno nuevo abajo.|Demandez-en un nouveau ci-dessous.|Fordere unten einen neuen an.|Richiedine uno nuovo qui sotto.
+This verification link was already used.|Este link de verificação já foi usado.|Este enlace de verificación ya se ha utilizado.|Ce lien de vérification a déjà été utilisé.|Dieser Bestätigungslink wurde bereits verwendet.|Questo link di verifica è già stato utilizzato.
+If your email is verified, sign in to continue — otherwise request a new link below.|Se seu e-mail já foi verificado, entre para continuar. Caso contrário, solicite um novo link abaixo.|Si tu correo está verificado, inicia sesión. Si no, solicita un nuevo enlace abajo.|Si votre e-mail est vérifié, connectez-vous. Sinon, demandez un nouveau lien ci-dessous.|Ist deine E-Mail-Adresse bestätigt, melde dich an. Andernfalls fordere unten einen neuen Link an.|Se la tua e-mail è verificata, accedi. Altrimenti richiedi un nuovo link qui sotto.
+This verification link is invalid.|Este link de verificação é inválido.|Este enlace de verificación no es válido.|Ce lien de vérification est invalide.|Dieser Bestätigungslink ist ungültig.|Questo link di verifica non è valido.
+Something went wrong.|Algo deu errado.|Algo ha salido mal.|Une erreur est survenue.|Etwas ist schiefgelaufen.|Si è verificato un errore.
+Please try again.|Tente novamente.|Inténtalo de nuevo.|Veuillez réessayer.|Bitte versuche es erneut.|Riprova.
+Verifying your email address…|Verificando seu e-mail…|Verificando tu correo…|Vérification de votre e-mail…|E-Mail-Adresse wird bestätigt…|Verifica dell'indirizzo e-mail…
+Check your inbox.|Confira sua caixa de entrada.|Revisa tu bandeja de entrada.|Consultez votre boîte de réception.|Sieh in deinem Posteingang nach.|Controlla la posta in arrivo.
+We sent a verification email to|Enviamos um e-mail de verificação para|Enviamos un correo de verificación a|Nous avons envoyé un e-mail de vérification à|Wir haben eine Bestätigungs-E-Mail gesendet an|Abbiamo inviato un'e-mail di verifica a
+your email address|seu endereço de e-mail|tu dirección de correo|votre adresse e-mail|deine E-Mail-Adresse|il tuo indirizzo e-mail
+. Open the link to activate your account. It expires in 24 hours.|. Abra o link para ativar sua conta. Ele expira em 24 horas.|. Abre el enlace para activar tu cuenta. Caduca en 24 horas.|. Ouvrez le lien pour activer votre compte. Il expire dans 24 heures.|. Öffne den Link, um dein Konto zu aktivieren. Er läuft nach 24 Stunden ab.|. Apri il link per attivare il tuo account. Scade tra 24 ore.
+If a verification is pending for this email address, a new email has been sent.|Se houver uma verificação pendente para este endereço, um novo e-mail foi enviado.|Si hay una verificación pendiente para este correo, se ha enviado un nuevo mensaje.|Si une vérification est en attente pour cette adresse, un nouvel e-mail a été envoyé.|Falls für diese Adresse eine Bestätigung aussteht, wurde eine neue E-Mail gesendet.|Se è in attesa una verifica per questo indirizzo, è stata inviata una nuova e-mail.
+Resend verification email|Reenviar e-mail de verificação|Reenviar correo de verificación|Renvoyer l'e-mail de vérification|Bestätigungs-E-Mail erneut senden|Invia di nuovo l'e-mail di verifica
+Back to sign in|Voltar para entrar|Volver a iniciar sesión|Retour à la connexion|Zurück zur Anmeldung|Torna all'accesso
+Reset your password|Redefina sua senha|Restablece tu contraseña|Réinitialisez votre mot de passe|Setze dein Passwort zurück|Reimposta la tua password
+Enter your account email and we'll send a reset link.|Informe o e-mail da sua conta para receber um link de redefinição.|Introduce el correo de tu cuenta y te enviaremos un enlace de recuperación.|Saisissez l'e-mail de votre compte pour recevoir un lien de réinitialisation.|Gib die E-Mail-Adresse deines Kontos ein, um einen Link zum Zurücksetzen zu erhalten.|Inserisci l'e-mail del tuo account per ricevere un link di reimpostazione.
+If an account exists for this email, a password reset email has been sent. The link expires in 1 hour.|Se existir uma conta com este e-mail, enviamos uma mensagem para redefinir a senha. O link expira em 1 hora.|Si existe una cuenta con este correo, se ha enviado un mensaje para restablecer la contraseña. El enlace caduca en 1 hora.|Si un compte existe pour cet e-mail, un message de réinitialisation a été envoyé. Le lien expire dans 1 heure.|Falls ein Konto mit dieser E-Mail-Adresse existiert, wurde eine Nachricht zum Zurücksetzen gesendet. Der Link läuft nach 1 Stunde ab.|Se esiste un account con questa e-mail, è stato inviato un messaggio per reimpostare la password. Il link scade tra 1 ora.
+Send reset link|Enviar link de redefinição|Enviar enlace de recuperación|Envoyer le lien|Link zum Zurücksetzen senden|Invia link di reimpostazione
+Remembered it?|Lembrou da senha?|¿La recordaste?|Vous vous en souvenez ?|Wieder eingefallen?|Te la ricordi?
+This link isn't valid.|Este link não é válido.|Este enlace no es válido.|Ce lien n'est pas valide.|Dieser Link ist ungültig.|Questo link non è valido.
+This password reset link is missing.|O link de redefinição de senha está ausente.|Falta el enlace para restablecer la contraseña.|Le lien de réinitialisation du mot de passe est manquant.|Der Link zum Zurücksetzen des Passworts fehlt.|Il link per reimpostare la password è mancante.
+Request a new one from the sign-in page.|Solicite um novo link na página de login.|Solicita uno nuevo en la página de acceso.|Demandez-en un nouveau sur la page de connexion.|Fordere auf der Anmeldeseite einen neuen Link an.|Richiedine uno nuovo dalla pagina di accesso.
+Request a new link|Solicitar novo link|Solicitar nuevo enlace|Demander un nouveau lien|Neuen Link anfordern|Richiedi un nuovo link
+All set.|Tudo pronto.|Todo listo.|Tout est prêt.|Alles bereit.|Tutto pronto.
+Your password has been reset.|Sua senha foi redefinida.|Tu contraseña se ha restablecido.|Votre mot de passe a été réinitialisé.|Dein Passwort wurde zurückgesetzt.|La tua password è stata reimpostata.
+All other sessions were signed out.|Todas as outras sessões foram encerradas.|Se han cerrado las demás sesiones.|Toutes les autres sessions ont été déconnectées.|Alle anderen Sitzungen wurden abgemeldet.|Tutte le altre sessioni sono state disconnesse.
+Sign in with your new password|Entrar com a nova senha|Acceder con tu nueva contraseña|Se connecter avec le nouveau mot de passe|Mit neuem Passwort anmelden|Accedi con la nuova password
+Choose a new password|Escolha uma nova senha|Elige una nueva contraseña|Choisissez un nouveau mot de passe|Wähle ein neues Passwort|Scegli una nuova password
+You'll be signed out everywhere else after this.|Depois disso, suas outras sessões serão encerradas.|Después se cerrarán tus demás sesiones.|Vos autres sessions seront ensuite déconnectées.|Danach wirst du auf allen anderen Geräten abgemeldet.|Dopo questa operazione verranno disconnesse le altre sessioni.
+New password|Nova senha|Nueva contraseña|Nouveau mot de passe|Neues Passwort|Nuova password
+Confirm new password|Confirme a nova senha|Confirma la nueva contraseña|Confirmez le nouveau mot de passe|Neues Passwort bestätigen|Conferma nuova password
+Reset password|Redefinir senha|Restablecer contraseña|Réinitialiser le mot de passe|Passwort zurücksetzen|Reimposta password
