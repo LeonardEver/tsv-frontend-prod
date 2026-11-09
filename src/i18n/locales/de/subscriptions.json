@@ -83,5 +83,18 @@
   "incompletePayment": "Deine Zahlung ist noch nicht abgeschlossen.",
   "unpaidDetail": "Die Zahlung ist nach Wiederholungsversuchen fehlgeschlagen. Kostenpflichtige Funktionen sind pausiert.",
   "endedDetail": "Das Abonnement ist beendet. Wähle ein Abo, um zurückzukehren.",
-  "unknownStatus": "Status nicht verfügbar"
+  "unknownStatus": "Status nicht verfügbar",
+  "localTestingNote": "Lokaler Test: Zahlungen sind deaktiviert. Abos können nur für verifizierte lokale Testkonten simuliert werden.",
+  "localMockOnly": "Lokale Aboänderungen erfordern ein verifiziertes Testkonto ohne Abonnement bei einem Zahlungsanbieter.",
+  "billingUnavailable": "Aboänderungen sind verfügbar, sobald Zahlungen aktiviert werden. Die angezeigten Preise sind die vorgesehenen Produktpreise.",
+  "priceMonthly": "{{price}} /Monat",
+  "freeTagline": "Dein tägliches Training. Eine Lektion und ein Praxistest pro Tag.",
+  "survivorTagline": "10 Lektionen und 10 Praxistests pro Tag, Zugang zur Community und herunterladbare Feldmaterialien.",
+  "operatorTagline": "Unbegrenztes Training. Alles aus Survivor, ohne Tageslimits.",
+  "unlimitedLessons": "Unbegrenzte Lektionen pro Tag",
+  "unlimitedTests": "Unbegrenzte Praxistests pro Tag",
+  "dailyLessons_one": "{{count}} Lektion pro Tag",
+  "dailyLessons_other": "{{count}} Lektionen pro Tag",
+  "dailyTests_one": "{{count}} Praxistest pro Tag",
+  "dailyTests_other": "{{count}} Praxistests pro Tag"
 }

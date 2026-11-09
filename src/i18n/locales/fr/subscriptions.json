@@ -83,5 +83,18 @@
   "incompletePayment": "Votre paiement n'est pas encore terminé.",
   "unpaidDetail": "Le paiement a échoué après plusieurs tentatives : les fonctionnalités payantes sont suspendues.",
   "endedDetail": "L'abonnement est terminé. Choisissez une offre pour revenir.",
-  "unknownStatus": "Statut indisponible"
+  "unknownStatus": "Statut indisponible",
+  "localTestingNote": "Tests locaux : paiements désactivés. La simulation des offres est réservée aux comptes de test locaux vérifiés.",
+  "localMockOnly": "Le changement local d'offre exige un compte de test vérifié sans abonnement lié à un prestataire de paiement.",
+  "billingUnavailable": "Le changement d'offre sera disponible à l'activation des paiements. Les prix affichés sont ceux prévus pour le produit.",
+  "priceMonthly": "{{price}} /mois",
+  "freeTagline": "Votre entraînement quotidien. Une leçon et un test de terrain par jour.",
+  "survivorTagline": "10 leçons et 10 tests de terrain par jour, accès à la communauté et ressources de terrain à télécharger.",
+  "operatorTagline": "Entraînement illimité. Tout le contenu de Survivor, sans limites quotidiennes.",
+  "unlimitedLessons": "Leçons illimitées par jour",
+  "unlimitedTests": "Tests de terrain illimités par jour",
+  "dailyLessons_one": "{{count}} leçon par jour",
+  "dailyLessons_other": "{{count}} leçons par jour",
+  "dailyTests_one": "{{count}} test de terrain par jour",
+  "dailyTests_other": "{{count}} tests de terrain par jour"
 }

@@ -29,10 +29,10 @@ describe("authored locale catalogs", () => {
       }
     }
   });
-  it("falls back to English copy when a namespace is unavailable", async () => {
+  it("keeps missing catalog text in the selected language", async () => {
     await changeLocale("it");
     i18n.removeResourceBundle("it", "rewards");
-    expect(tr("rewards:current_title_3d4b9e")).toBe("Current title");
+    expect(tr("rewards:current_title_3d4b9e")).toBe("Testo non disponibile");
   });
   it("uses real plurals for translated counts", async () => {
     await changeLocale("de");
@@ -49,9 +49,9 @@ describe("authored locale catalogs", () => {
     expect(subcategoryTitle("wound-care")).toBe("Wundversorgung");
     expect(subcategoryTitle("new-topic")).toBe("New topic");
   });
-  it("discloses English instructional fallback without adding language controls", async () => {
+  it("discloses English PDF artifacts without treating localized metadata as English fallback", async () => {
     await changeLocale("pt-BR");
-    renderWithProviders(<ContentLanguageNotice data={{ localization: { fallback: true, content_locale: "en" } }} />);
+    renderWithProviders(<ContentLanguageNotice data={{ localization: { fallback: false, content_locale: "pt-BR", artifact_locale: "en" } }} />);
     expect(screen.getByRole("note")).toHaveTextContent("inglês");
     expect(screen.queryByRole("combobox")).toBeNull();
   });

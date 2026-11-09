@@ -90,16 +90,27 @@ for (const [index, locale] of locales.entries()) {
     }
     add(src, fields, true);
   }
+  // Complete offline translations supersede pilots, with a distinct unverified
+  // status. Source hashes and all safety invariants are rechecked by the CLI.
+  const complete = JSON.parse(await readFile(`${root}/instructional/${locale}.json`, "utf8"));
+  for (const item of complete.records) {
+    const src = sourcePack.sources.find((source) => source.entity_type === item.entity_type && source.entity_id === item.entity_id);
+    if (!src || src.source_hash !== item.source_hash) throw new Error("Stale instructional translation: " + item.entity_id);
+    const existing = records.findIndex((record) => record.entity_type === item.entity_type && record.entity_id === item.entity_id);
+    if (existing !== -1) records.splice(existing, 1);
+    records.push({ ...src, localized_fields: item.localized_fields, status: "machine_translated", safety_critical: true, reviewed_by: null, reviewed_at: null });
+  }
+  if (records.length !== sourcePack.sources.length) throw new Error("Incomplete locale pack: " + locale);
   await writeFile(`${root}/${locale}.json`, JSON.stringify({ schema_version: 1, locale, records }, null, 2) + "\n");
   const domains = {};
   for (const src of sourcePack.sources) {
-    const domain = domains[src.entity_type] ??= { total: 0, authored: 0, draft: 0, reviewed: 0, missing: 0 };
+    const domain = domains[src.entity_type] ??= { total: 0, authored: 0, machine_translated: 0, draft: 0, reviewed: 0, missing: 0 };
     domain.total++;
     const record = records.find((item) => item.entity_type === src.entity_type && item.entity_id === src.entity_id);
-    if (!record) domain.missing++; else if (record.status === "translated") domain.authored++; else domain.draft++;
+    if (!record) domain.missing++; else if (record.status === "translated") domain.authored++; else if (record.status === "machine_translated") domain.machine_translated++; else domain.draft++;
   }
   reports[locale] = domains;
-  console.log(`${locale}: ${records.length} actual translated records; instructional drafts require human review`);
+  console.log(`${locale}: ${records.length} localized records; machine-authored instruction remains pending human review`);
 }
 const canonicalDomains = {};
 for (const item of sourcePack.sources) canonicalDomains[item.entity_type] = (canonicalDomains[item.entity_type] ?? 0) + 1;

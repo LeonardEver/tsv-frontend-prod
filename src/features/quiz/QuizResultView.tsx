@@ -13,6 +13,11 @@
  * style instead.
  */
 import { tr as uiText, useLocale as useInterfaceLocale, uiValue } from "@/i18n";
+import { useQuery } from "@tanstack/react-query";
+import { queryKeys } from "@/lib/api/keys";
+import { ErrorState } from "@/components/shared/ErrorState";
+import { ContentLanguageNotice } from "@/i18n/ContentLanguageNotice";
+import { fetchAttemptResult } from "./quiz.api";
 import { Link } from "react-router";
 import { BookOpen, Check, MessageSquare, RotateCcw, Target, Trophy, X } from "lucide-react";
 import type { AchievementsResponse, QuizSubmissionResponse } from "@/lib/api/types";
@@ -24,13 +29,15 @@ import styles from "./quiz.module.css";
 export function QuizResultView({
   moduleId,
   quizTitle,
-  result,
+  quizId,
+  result: suppliedResult,
   onRetry,
   newAchievements = [],
   simplifiedActions,
 }: {
   moduleId: string;
   quizTitle: string;
+  quizId?: string;
   /** Region link target for "Continue expedition" (module category). */
   categorySlug?: string;
   result: QuizSubmissionResponse;
@@ -57,9 +64,26 @@ export function QuizResultView({
     missionId: string;
   };
 }) {
-  useInterfaceLocale();
+  const locale = useInterfaceLocale();
+  const resultLocale = suppliedResult.localization?.content_locale ?? "en";
+  const matching = resultLocale === locale;
+  const localized = useQuery({
+    queryKey: quizId ? queryKeys.learning.attempt(quizId, suppliedResult.attempt_id) : ["result", "no-quiz"],
+    queryFn: () => fetchAttemptResult(quizId as string, suppliedResult.attempt_id),
+    initialData: matching ? suppliedResult : undefined,
+    enabled: Boolean(quizId) && !matching,
+    staleTime: Infinity,
+    retry: false,
+  });
+  if (quizId && !matching && localized.isError) return <ErrorState error={localized.error} onRetry={() => void localized.refetch()} />;
+  if (quizId && !matching && !localized.data) return <div role="status" aria-label={uiText("learning:loading_result_9b5f36")} />;
+  // GET replay reports zero newly awarded XP. Changing language only replaces
+  // explanations; preserve the original submission receipt and grading values.
+  const explanations = new Map(localized.data?.results.map((row) => [row.question_id, row.explanation]));
+  const result = localized.data ? { ...suppliedResult, localization: localized.data.localization, results: suppliedResult.results.map((row) => ({ ...row, explanation: explanations.get(row.question_id) ?? null })) } : suppliedResult;
   return (
     <div className="mx-auto max-w-4xl">
+      <ContentLanguageNotice data={result} />
       <section className={`rise panel grain relative overflow-hidden p-6 text-center sm:p-12 ${styles.resultHero} ${moduleImage(moduleId) ? styles.withArtwork : ""}`}>
         {moduleImage(moduleId) ? <img className={styles.resultImage} src={moduleImage(moduleId) ?? undefined} alt="" /> : null}
         <div className={styles.resultShade} />

@@ -552,11 +552,11 @@ function tree(entries: Record<string, string>): Dict {
 export const STRINGS = { en: tree(english), pt: tree(portuguese) };
 function lookup(language: AdminLanguage, key: string): unknown {
   const locale = language === "pt" ? "pt-BR" : normalizeLocale(language) ?? "en";
-  return i18n.getResource(locale, "admin", key) ?? i18n.getResource("en", "admin", key);
+  return i18n.getResource(locale, "admin", key);
 }
 export function translate(language: AdminLanguage, key: string): string {
   const value = lookup(language, key);
-  return typeof value === "string" ? value : key;
+  return typeof value === "string" ? value : String(i18n.getResource(i18n.language, "common", "textUnavailable") ?? "…");
 }
 export function interpolate(language: AdminLanguage, key: string, params: Readonly<Record<string, number | string>>): string {
   const template = lookup(language, key);

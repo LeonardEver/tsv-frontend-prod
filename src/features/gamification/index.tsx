@@ -25,12 +25,12 @@ import map from "@/assets/navigation.jpg";
 import summit from "@/assets/progress-summit.jpg";
 import styles from "./rewards.module.css";
 
-const XP_SOURCE_LABELS: Record<string, string> = {
-  lesson_completed: "Lesson completed", quiz_completed: "Quiz completed",
-  quiz_passed: "Quiz passed", module_completed: "Module completed",
-  achievement: "Achievement", achievement_earned: "Achievement",
-  streak_milestone: "Streak milestone",
-};
+const XP_SOURCE_LABELS = {
+  lesson_completed: "common:actionLessonCompleted", quiz_completed: "common:actionQuizCompleted",
+  quiz_passed: "common:actionQuizPassed", module_completed: "common:actionModuleCompleted",
+  achievement: "common:actionAchievement", achievement_earned: "common:actionAchievement",
+  streak_milestone: "common:actionStreakMilestone",
+} as const;
 
 const ACHIEVEMENT_ART: Record<string, { icon: LucideIcon; scene: string }> = {
   first_quiz_passed: { icon: Check, scene: earnedScene },
@@ -155,7 +155,7 @@ export default function GamificationPage() {
         {summary && summary.recent_transactions.length > 0 ? (
           <ul className={styles.transactions}>
             {summary.recent_transactions.map((tx, index) => (
-              <li key={`${tx.at}-${index}`}><span className={styles.transactionIcon}><Layers size={18} aria-hidden="true" /></span><div><p>{XP_SOURCE_LABELS[tx.source] ?? tx.source.replaceAll("_", " ")}</p><time dateTime={tx.at}>{formatDate(tx.at)}</time></div><strong>{uiText("rewards:valuevalue_xp_5c6278", { value0: uiValue(tx.amount >= 0 ? "+" : ""), value1: uiValue(formatXp(tx.amount)) })}</strong></li>
+              <li key={`${tx.at}-${index}`}><span className={styles.transactionIcon}><Layers size={18} aria-hidden="true" /></span><div><p>{uiText(Object.hasOwn(XP_SOURCE_LABELS, tx.source) ? XP_SOURCE_LABELS[tx.source as keyof typeof XP_SOURCE_LABELS] : "common:actionXp")}</p><time dateTime={tx.at}>{formatDate(tx.at)}</time></div><strong>{uiText("rewards:valuevalue_xp_5c6278", { value0: uiValue(tx.amount >= 0 ? "+" : ""), value1: uiValue(formatXp(tx.amount)) })}</strong></li>
             ))}
           </ul>
         ) : summary ? <EmptyState title={uiText("rewards:no_xp_earned_yet_7a221f")} description={uiText("rewards:complete_a_lesson_or_take_a_quiz_905392")} /> : null}

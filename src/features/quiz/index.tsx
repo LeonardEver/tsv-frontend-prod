@@ -13,6 +13,7 @@
  */
 import { tr as uiText, useLocale as useInterfaceLocale, uiValue } from "@/i18n";
 import { ContentLanguageNotice } from "@/i18n/ContentLanguageNotice";
+import { useRetainedEntity } from "@/i18n/use-retained-entity";
 import { useEffect, useRef } from "react";
 import { Link, useLocation, useNavigate, useParams } from "react-router";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
@@ -49,7 +50,8 @@ export default function QuizPage() {
     retry: false,
   });
 
-  const quizId = moduleQuery.data?.quiz?.quiz_id;
+  const retainedModule = useRetainedEntity(moduleId, moduleQuery.data);
+  const quizId = retainedModule?.quiz?.quiz_id;
 
   const quizQuery = useQuery({
     queryKey: quizId ? queryKeys.content.quiz(quizId) : ["quizzes", "pending"],
@@ -59,6 +61,7 @@ export default function QuizPage() {
     staleTime: 5 * 60_000,
     retry: false,
   });
+  const retainedQuiz = useRetainedEntity(quizId, quizQuery.data);
 
   // ── Phase 21 §5 — quiz-before-lesson gate (presentation only; the
   // backend refuses attempt creation regardless). The rule is shared with
@@ -93,10 +96,10 @@ export default function QuizPage() {
   // they refetch.
   // Module failure outranks the gate: with no module resolved the gate can
   // only ever say "checking", and "checking" is not an error state.
-  if (moduleQuery.isError) {
+  if (moduleQuery.isError && !retainedModule) {
     return <ErrorState error={moduleQuery.error} onRetry={() => void moduleQuery.refetch()} />;
   }
-  if (moduleQuery.isPending || (quizId && quizQuery.isPending) || gate === "checking") {
+  if (!retainedModule || (!retainedQuiz && quizId && quizQuery.isPending) || gate === "checking") {
     return (
       <div role="status" aria-label={uiText("learning:loading_quiz_b255cc")} className="space-y-6">
         <div className="panel h-16 animate-pulse" aria-hidden="true" />
@@ -118,13 +121,13 @@ export default function QuizPage() {
       />
     );
   }
-  if (quizQuery.isError) {
+  if (quizQuery.isError && !retainedQuiz) {
     return <ErrorState error={quizQuery.error} onRetry={() => void quizQuery.refetch()} />;
   }
   // Non-null by construction: the pending branch above covers the only
   // state in which the payload is absent, and an errored query returned
   // earlier.
-  const quiz = quizQuery.data;
+  const quiz = retainedQuiz;
   if (!quiz) return <div role="status" aria-label={uiText("learning:loading_quiz_b255cc")}>{uiText("learning:preparing_your_questions_11c71c")}</div>;
 
   if (gate === "locked") {
@@ -133,6 +136,9 @@ export default function QuizPage() {
 
   return (
     <>
+    {moduleQuery.isError || quizQuery.isError ? <ErrorState error={moduleQuery.error ?? quizQuery.error} onRetry={() => { void moduleQuery.refetch(); void quizQuery.refetch(); }} /> : null}
+    {!moduleQuery.isError && !quizQuery.isError && (moduleQuery.isPlaceholderData || quizQuery.isPlaceholderData || !moduleQuery.data || !quizQuery.data) ? <div role="status" aria-label={uiText("learning:loading_quiz_b255cc")}>{uiText("learning:preparing_your_questions_11c71c")}</div> : null}
+    <div hidden={moduleQuery.isError || quizQuery.isError || moduleQuery.isPlaceholderData || quizQuery.isPlaceholderData || !moduleQuery.data || !quizQuery.data}>
     <ContentLanguageNotice data={quiz} />
     <QuizSessionScreen
       moduleId={moduleId}
@@ -140,7 +146,7 @@ export default function QuizPage() {
       userId={user?.user_id ?? 0}
       autoStart={Boolean((location.state as { startQuiz?: boolean } | null)?.startQuiz)}
       quizBeforeLesson={quizBeforeLesson}
-      categorySlug={moduleQuery.data.category}
+      categorySlug={retainedModule.category}
       onSubmitted={() => {
         // Targeted invalidation: quiz (attempt history), module detail,
         // progress, gamification summary + achievements (the reveal
@@ -161,6 +167,7 @@ export default function QuizPage() {
           : []
       }
     />
+    </div>
     </>
   );
 }
@@ -261,6 +268,7 @@ function QuizSessionScreen({
     return (
       <QuizResultView
         moduleId={moduleId}
+        quizId={quiz.quiz_id}
         quizTitle={title}
         categorySlug={categorySlug}
         result={previous}

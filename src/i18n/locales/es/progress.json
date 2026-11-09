@@ -77,5 +77,7 @@
   "review_lesson_0e3fba": "Repasar lección",
   "some_lesson_results_could_not_be_loaded_d01453": "No se pudieron cargar algunos resultados de lecciones.",
   "quizAttempts": "Cuestionario: {{score}} · {{attempts}}",
-  "bestQuizAttempts": "{{title}} · Mejor nota: {{score}} · {{attempts}}"
+  "bestQuizAttempts": "{{title}} · Mejor nota: {{score}} · {{attempts}}",
+  "currentLevel": "Nivel actual: {{level}}",
+  "levelUnavailable": "Nivel no disponible"
 }

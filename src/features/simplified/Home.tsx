@@ -55,7 +55,7 @@ export default function SimplifiedHome() {
   const world = visualWorld(roadmap.category.code);
   const lessonDone = currentDetail.data?.lesson?.completed === true;
   const missionTo = roadmap.current ? `/simplified/missions/${roadmap.current.module_id}` : "/progress";
-  const actionLabel = roadmap.current ? (roadmap.current.progress_pct > 0 || lessonDone ? "Continue mission" : "Start mission") : "Review progress";
+  const actionLabel = roadmap.current ? (roadmap.current.progress_pct > 0 || lessonDone ? uiText("dashboard:continue_mission_498583") : uiText("dashboard:start_mission_26b70a")) : uiText("learning:review_progress_afc225");
 
   return (
     <SimplifiedShell>

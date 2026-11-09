@@ -11,8 +11,9 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
-    "build:dev": "vite build --mode development",
+    "build": "node scripts/i18n/check-release-coverage.mjs && tsc -b && vite build",
+    "build:dev": "node scripts/i18n/check-release-coverage.mjs && vite build --mode development",
+    "i18n:check": "node scripts/i18n/check-release-coverage.mjs",
     "preview": "vite preview",
     "api:generate": "node scripts/api-generate.mjs",
     "api:check": "node scripts/api-generate.mjs && git diff --exit-code -- src/types/api.d.ts",

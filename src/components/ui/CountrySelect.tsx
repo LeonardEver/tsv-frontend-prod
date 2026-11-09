@@ -6,7 +6,7 @@ import { useId, type SelectHTMLAttributes } from "react";
 import { clsx } from "clsx";
 import { Label } from "./Input";
 import { COUNTRIES } from "@/lib/geo/countries";
-import { useLocale } from "@/i18n";
+import { useLocale, tr } from "@/i18n";
 import { FORMATTING_LOCALES } from "@/i18n/config";
 
 export interface CountrySelectProps
@@ -22,7 +22,7 @@ export function CountrySelect({
   error,
   id,
   className,
-  placeholder = "Select a country or region",
+  placeholder,
   ...props
 }: CountrySelectProps) {
   const autoId = useId();
@@ -50,7 +50,7 @@ export function CountrySelect({
         )}
         {...props}
       >
-        <option value="">{placeholder}</option>
+        <option value="">{placeholder ?? tr("common:selectCountry")}</option>
         {COUNTRIES.map((country) => (
           <option key={country.code} value={country.code}>
             {countryNames.of(country.code) ?? country.name}

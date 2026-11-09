@@ -83,5 +83,18 @@
   "incompletePayment": "Seu pagamento ainda não foi concluído.",
   "unpaidDetail": "O pagamento falhou após novas tentativas — os recursos pagos estão suspensos.",
   "endedDetail": "A assinatura foi encerrada. Escolha um plano para voltar.",
-  "unknownStatus": "Status indisponível"
+  "unknownStatus": "Status indisponível",
+  "localTestingNote": "Teste local: pagamentos desativados. A simulação de planos está disponível apenas para contas mock locais verificadas.",
+  "localMockOnly": "A troca local de plano exige uma conta mock verificada, sem assinatura vinculada a um provedor de pagamento.",
+  "billingUnavailable": "A troca de planos ficará disponível quando os pagamentos forem ativados. Os preços exibidos são os previstos para o produto.",
+  "priceMonthly": "{{price}} /mês",
+  "freeTagline": "Sua dose diária de treinamento. Uma aula e um teste de campo por dia.",
+  "survivorTagline": "10 aulas e 10 testes de campo por dia, acesso à comunidade e recursos de campo para baixar.",
+  "operatorTagline": "Treinamento ilimitado. Tudo do Survivor, sem limites diários.",
+  "unlimitedLessons": "Aulas ilimitadas por dia",
+  "unlimitedTests": "Testes de campo ilimitados por dia",
+  "dailyLessons_one": "{{count}} aula por dia",
+  "dailyLessons_other": "{{count}} aulas por dia",
+  "dailyTests_one": "{{count}} teste de campo por dia",
+  "dailyTests_other": "{{count}} testes de campo por dia"
 }

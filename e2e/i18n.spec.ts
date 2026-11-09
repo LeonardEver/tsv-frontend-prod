@@ -1,7 +1,34 @@
 import { expect, test, type Page } from "@playwright/test";
+import { readFileSync } from "node:fs";
 
 type Language = "en" | "pt-BR" | "es" | "fr" | "de" | "it";
 const MODULE = "SUR-emergency-planning";
+interface ContentFields {
+  title?: string;
+  description?: string;
+  sections?: unknown[];
+  questions?: Array<{ question_id: string; question_text: string; options: Array<{ label: string; text: string }> }>;
+}
+interface ContentRecord { entity_type: string; entity_id: string; source_fields: ContentFields; localized_fields?: ContentFields }
+const canonical = (JSON.parse(readFileSync("docs/i18n/content/source.json", "utf8")) as { sources: ContentRecord[] }).sources;
+const packs = new Map<Language, ContentRecord[]>((["pt-BR", "es", "fr", "de", "it"] as Language[]).map((locale) => [locale, (JSON.parse(readFileSync(`docs/i18n/content/${locale}.json`, "utf8")) as { records: ContentRecord[] }).records]));
+function fields(locale: Language, type: string, id: string): ContentFields {
+  const record = (locale === "en" ? canonical : packs.get(locale))?.find((item) => item.entity_type === type && item.entity_id === id);
+  if (!record) throw new Error("Missing real curriculum fixture: " + locale + "/" + id);
+  if (locale === "en") return record.source_fields;
+  if (!record.localized_fields) throw new Error("Missing translated fixture");
+  return record.localized_fields;
+}
+function question(locale: Language, index: number) {
+  const item = fields(locale, "quiz", `${MODULE}-Q01`).questions?.[index];
+  if (!item) throw new Error("Missing real quiz fixture");
+  return item;
+}
+function firstOption(locale: Language): string {
+  const text = question(locale, 0).options[0]?.text;
+  if (!text) throw new Error("Missing first option");
+  return text;
+}
 const entitlements = { daily_lessons: 10, daily_quizzes: 10, resource_download: true, quiz_before_lesson: true, community: true };
 
 async function localizedBackend(page: Page, initial: Language, country: string) {
@@ -20,8 +47,12 @@ async function localizedBackend(page: Page, initial: Language, country: string) 
   const detail = { ...module, knowledge_items: [], lesson: { lesson_id: `${MODULE}-L01`, title: module.title, estimated_minutes: 21, completed: true }, quiz: { quiz_id: `${MODULE}-Q01`, title: "Planning Quiz", question_count: 2, best_score: null, attempt_count: 0 }, resources: [], progress: { lesson_completed: true, quiz_best_score: null, completed: true } };
   await page.route("**/api/v1/**", async (route) => {
     const request = route.request(); const path = new URL(request.url()).pathname.replace("/api/v1", "");
-    languages.push(request.headers()["accept-language"] ?? "");
-    const json = (body: unknown, status = 200) => route.fulfill({ status, contentType: "application/json", body: JSON.stringify(body) });
+    const requested = (request.headers()["accept-language"] ?? "en") as Language;
+    languages.push(requested);
+    const metadata = { requested_locale: requested, content_locale: requested, fallback: false, missing_count: 0, reasons: [], artifact_locale: null, review_pending: requested !== "en" && /\/(?:lessons|quizzes)\//.test(path) };
+    const json = (body: unknown, status = 200) => route.fulfill({ status, contentType: "application/json", body: JSON.stringify(status === 200 && body && typeof body === "object" && /^\/(?:categories|modules|lessons|quizzes|notifications|gamification\/achievements)(?:\/|$)/.test(path) ? { ...body, localization: metadata } : body) });
+    const localizedModule = { ...module, ...fields(requested, "module", MODULE), ...fields(requested, "module_description", MODULE) };
+    const localizedDetail = { ...detail, ...localizedModule, lesson: { ...detail.lesson, ...fields(requested, "lesson_title", `${MODULE}-L01`) }, quiz: { ...detail.quiz, ...fields(requested, "quiz_title", `${MODULE}-Q01`) } };
     if (path === "/auth/me") return signedIn ? json({ user_id: 1, email: profile.email, display_name: profile.display_name, role: "user", country, created_at: profile.member_since, preferred_language: language, language_confirmed_at: "2026-11-08T10:00:00Z" }) : json({ error: { code: "UNAUTHORIZED", message: "Signed out", request_id: "test" } }, 401);
     if (path === "/auth/logout") { signedIn = false; return json({ ok: true }); }
     if (path === "/profile" && request.method() === "PATCH") {
@@ -30,17 +61,18 @@ async function localizedBackend(page: Page, initial: Language, country: string) 
       return json({ ...profile, preferred_language: language });
     }
     if (path === "/profile") return json({ ...profile, preferred_language: language });
-    if (path === "/categories") return json({ categories: [{ slug: "survival-fundamentals", code: "SUR", title: "Survival Fundamentals", module_count: 1, completed_count: 1 }] });
-    if (path === "/modules") return json({ modules: [module], pagination: { next_cursor: null, has_more: false, page_size: 100 } });
-    if (path === `/modules/${MODULE}`) return json(detail);
+    if (path === "/categories") return json({ categories: [{ slug: "survival-fundamentals", code: "SUR", ...fields(requested, "category", "survival-fundamentals"), module_count: 1, completed_count: 1 }] });
+    if (path === "/modules") return json({ modules: [localizedModule], pagination: { next_cursor: null, has_more: false, page_size: 100 } });
+    if (path === `/modules/${MODULE}`) return json(localizedDetail);
+    if (path === "/notifications") return json({ items: [], unread_count: 0 });
     if (path === "/subscription") return json({ plan_code: "survivor", plan_name: "Survivor", price: 9.9, currency: "usd", billing_period: "month", status: "active", started_at: profile.member_since, current_period_started_at: profile.member_since, renews_at: null, ends_at: null, canceled_at: null, cancel_at_period_end: false, provider: null, entitlements });
     if (path === "/usage") return json({ plan_code: "survivor", plan_name: "Survivor", date: "2026-11-08", timezone: "UTC", lesson_completions: 1, quiz_attempts: 0, limits: { daily_lessons: 10, daily_quizzes: 10 } });
     if (path === "/gamification") return json({ total_xp: 125, level: 1, level_title: "Novice", xp_to_next_level: 175, current_streak: 1, longest_streak: 1, achievements_earned: 0, recent_transactions: [] });
     if (path === "/gamification/achievements") return json({ earned: [], unearned: [] });
     if (path === "/progress") return json({ total_modules: 1, modules_completed: 1, completion_pct: 100, current_streak: 1, longest_streak: 1, recent_activity: [] });
     if (path === `/progress/modules/${MODULE}`) return json({ module_id: MODULE, lesson_completed: true, quiz_best_score: null, quiz_attempts: 0, lo_performance: [] });
-    if (path === `/lessons/${MODULE}-L01`) return json({ lesson_id: `${MODULE}-L01`, module_id: MODULE, title: module.title, content_version: 1, estimated_minutes: 21, sections: [{ type: "introduction", heading: "Introduction", content: "Make a plan." }, { type: "recap", heading: "Recap", content: "Review it." }], progress: { completed: true, last_position: 0 }, localization: { requested_locale: request.headers()["accept-language"], content_locale: "en", fallback: true, missing_count: 1, reasons: ["missing"], artifact_locale: null } });
-    if (path === `/quizzes/${MODULE}-Q01`) return json({ quiz_id: `${MODULE}-Q01`, module_id: MODULE, title: "Planning Quiz", question_count: 2, passing_score: 0.7, previous_attempts: [], questions: [1, 2].map((number) => ({ question_id: `q0${number}`, question_type: "multiple_choice", question_text: `Planning question ${number}`, difficulty: "beginner", options: [{ label: "A", text: "A written plan" }, { label: "B", text: "No plan" }] })) });
+    if (path === `/lessons/${MODULE}-L01`) return json({ lesson_id: `${MODULE}-L01`, module_id: MODULE, ...fields(requested, "lesson", `${MODULE}-L01`), content_version: 1, estimated_minutes: 21, progress: { completed: true, last_position: 0 } });
+    if (path === `/quizzes/${MODULE}-Q01`) return json({ quiz_id: `${MODULE}-Q01`, module_id: MODULE, ...fields(requested, "quiz_title", `${MODULE}-Q01`), question_count: 2, passing_score: 0.7, previous_attempts: [], questions: fields(requested, "quiz", `${MODULE}-Q01`).questions?.slice(0, 2) });
     if (path === `/quizzes/${MODULE}-Q01/attempts` && request.method() === "POST") { attempts++; return json({ attempt_id: 1, quiz_id: `${MODULE}-Q01`, status: "in_progress", started_at: "2026-11-08T10:00:00Z", content_version: 1 }, 201); }
     if (path === "/community/posts") return json({ posts: [], pagination: { next_cursor: null, has_more: false, page_size: 20 } });
     return json({ error: { code: "FORBIDDEN", message: "Not available in fixture", request_id: "test" } }, 403);
@@ -87,7 +119,7 @@ test("profile change preserves draft and URL, persists after reload and uses bot
 });
 
 for (const language of ["fr", "it"] as const) {
-  test(`${language}: profile expansion and instructional fallback stay usable`, async ({ page }, info) => {
+  test(`${language}: profile expansion and real translated instruction stay usable`, async ({ page }, info) => {
     await localizedBackend(page, language, "DE");
     await page.goto("/profile");
     await expect(page.locator("html")).toHaveAttribute("lang", language);
@@ -108,14 +140,15 @@ test("changing the shared locale retains the active quiz question, answers and a
   const backend = await localizedBackend(page, "en", "US");
   await page.goto(`/modules/${MODULE}/quiz`);
   await page.getByRole("button", { name: /start field test/i }).click();
-  await page.getByText("A written plan", { exact: true }).click();
+  await page.getByText(firstOption("en"), { exact: true }).click();
   await page.getByRole("button", { name: "Next", exact: true }).click();
-  await expect(page.getByText("Planning question 2", { exact: true })).toBeVisible();
+  await expect(page.getByText(question("en", 1).question_text, { exact: true })).toBeVisible();
   await page.evaluate(() => { window.dispatchEvent(new StorageEvent("storage", { key: "survival-academy-language", newValue: "fr" })); });
   await expect(page.locator("html")).toHaveAttribute("lang", "fr");
-  await expect(page.getByText("Planning question 2", { exact: true })).toBeVisible();
+  await expect(page.getByText(question("fr", 1).question_text, { exact: true })).toBeVisible();
   await page.getByRole("button", { name: "Précédent", exact: true }).click();
-  await expect(page.getByRole("radio", { name: /A written plan/ })).toBeChecked();
+  await expect(page.getByText(firstOption("fr"), { exact: true })).toBeVisible();
+  await expect(page.getByRole("radio").first()).toBeChecked();
   expect(backend.attempts()).toBe(1);
   await expect(page).toHaveURL(new RegExp(`/modules/${MODULE}/quiz$`));
 });

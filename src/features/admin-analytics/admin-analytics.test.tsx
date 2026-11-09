@@ -245,7 +245,7 @@ describe("admin analytics — language", () => {
     expect(screen.getByRole("link", { name: "Visão geral" })).toBeInTheDocument();
     expect(screen.getByRole("link", { name: "Retenção" })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "Desde o início" })).toBeInTheDocument();
-    expect(within(document.body).getByText(/métricas principais/i)).toBeInTheDocument();
+    expect(await within(document.body).findByText(/métricas principais/i)).toBeInTheDocument();
     expect(screen.getByText(/usuários totais/i)).toBeInTheDocument();
     // The English copy is gone, not merely joined.
     expect(screen.queryByText(/total users/i)).toBeNull();
@@ -291,7 +291,7 @@ describe("admin analytics — language", () => {
     // The limitation reason and the endpoint's notes are the backend's
     // explanation of what it cannot compute; paraphrasing them would turn a
     // data limitation into what looks like a UI gap.
-    expect(screen.getByText(adminBilling.revenue.reason)).toBeInTheDocument();
+    expect(await screen.findByText(adminBilling.revenue.reason)).toBeInTheDocument();
     expect(screen.getByText(adminBilling.notes.trials)).toBeInTheDocument();
     // The metric's own name IS frontend copy, so it does translate.
     expect(screen.getByText(/receita \/ mrr \/ arr/i)).toBeInTheDocument();

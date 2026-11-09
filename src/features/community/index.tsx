@@ -104,7 +104,7 @@ export default function CommunityPage() {
     },
     onError: (err) => {
       const copy = describeError(err);
-      pushToast({ tone: "error", title: copy.title, description: copy.description });
+      pushToast({ tone: "error", get title() { return copy.title; }, get description() { return copy.description; } });
     },
   });
 
@@ -117,7 +117,7 @@ export default function CommunityPage() {
     },
     onError: (err) => {
       const copy = describeError(err);
-      pushToast({ tone: "error", title: copy.title, description: copy.description });
+      pushToast({ tone: "error", get title() { return copy.title; }, get description() { return copy.description; } });
     },
   });
 

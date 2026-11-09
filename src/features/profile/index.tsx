@@ -158,8 +158,8 @@ export default function ProfilePage() {
           const copy = describeError(err);
           pushToast({
             tone: "error",
-            title: copy.title,
-            description: copy.description,
+            get title() { return copy.title; },
+            get description() { return copy.description; },
           });
         }}
       />
@@ -347,7 +347,7 @@ function ProfileEditor({
 }) {
   useInterfaceLocale();
   const [draft, setDraft] = useState<DraftState>(() => toDraft(profile));
-  const [saveError, setSaveError] = useState<string | null>(null);
+  const [saveError, setSaveError] = useState<ReturnType<typeof describeError> | null>(null);
   const currentLocale = useLocale();
   const t = useT();
   const client = useQueryClient();
@@ -397,7 +397,7 @@ function ProfileEditor({
     },
     onError: (err) => {
       const copy = describeError(err);
-      setSaveError(copy.title + (copy.description ? ` ${copy.description}` : ""));
+      setSaveError(copy);
       onError(err);
     },
   });
@@ -594,7 +594,7 @@ function ProfileEditor({
 
       {saveError ? (
         <div className="mb-4 rounded-lg border border-destructive/40 bg-destructive/5 p-4" role="alert">
-          <p className="text-sm text-destructive">{saveError}</p>
+          <p className="text-sm text-destructive">{saveError.title}{saveError.description ? ` ${saveError.description}` : ""}</p>
         </div>
       ) : null}
 

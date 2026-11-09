@@ -54,7 +54,7 @@ describe("account notification center", () => {
   });
   it("keeps unread state and reports a failed acknowledgement in the selected language", async () => {
     await changeLocale("pt-BR");
-    server.use(http.get(API, () => HttpResponse.json({ items: [item], unread_count: 1 })), http.post(`${API}/read`, () => HttpResponse.json({ error: { code: "FORBIDDEN", message: "Denied", request_id: "notification-test" } }, { status: 403 })));
+    server.use(http.get(API, () => HttpResponse.json({ items: [{ ...item, subject: { ...item.subject, title: "Primeiro quiz aprovado", description: "Passe no seu primeiro quiz" } }], unread_count: 1, localization: { content_locale: "pt-BR", fallback: false, missing_count: 0 } })), http.post(`${API}/read`, () => HttpResponse.json({ error: { code: "FORBIDDEN", message: "Denied", request_id: "notification-test" } }, { status: 403 })));
     const user = userEvent.setup();
     renderAtRoute(<NotificationCenter />, "/dashboard");
     await user.click(screen.getByRole("button", { name: "Notificações" }));

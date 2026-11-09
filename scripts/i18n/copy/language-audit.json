@@ -1,0 +1,247 @@
+{
+  "common:takeLesson": [
+    "Iniciar aula",
+    "Iniciar lección",
+    "Commencer la leçon",
+    "Lektion starten",
+    "Inizia la lezione"
+  ],
+  "common:takeQuiz": [
+    "Iniciar quiz",
+    "Iniciar cuestionario",
+    "Commencer le quiz",
+    "Quiz starten",
+    "Inizia il quiz"
+  ],
+  "common:retakeQuiz": [
+    "Refazer quiz",
+    "Repetir cuestionario",
+    "Refaire le quiz",
+    "Quiz wiederholen",
+    "Ripeti il quiz"
+  ],
+  "common:enterMission": [
+    "Entrar na missão",
+    "Entrar en la misión",
+    "Ouvrir la mission",
+    "Mission öffnen",
+    "Apri la missione"
+  ],
+  "common:exploreSurvivor": [
+    "Conheça o Survivor",
+    "Conoce Survivor",
+    "Découvrir Survivor",
+    "Survivor entdecken",
+    "Scopri Survivor"
+  ],
+  "common:selectCountry": [
+    "Selecione um país ou região",
+    "Selecciona un país o región",
+    "Choisir un pays ou une région",
+    "Land oder Region auswählen",
+    "Seleziona un paese o una regione"
+  ],
+  "common:modeSimplified": [
+    "Simplificado",
+    "Simplificado",
+    "Simplifié",
+    "Vereinfacht",
+    "Semplificato"
+  ],
+  "common:textUnavailable": [
+    "Texto indisponível",
+    "Texto no disponible",
+    "Texte indisponible",
+    "Text nicht verfügbar",
+    "Testo non disponibile"
+  ],
+  "common:actionQuizPassed": [
+    "Quiz aprovado",
+    "Cuestionario aprobado",
+    "Quiz réussi",
+    "Quiz bestanden",
+    "Quiz superato"
+  ],
+  "common:actionAchievement": [
+    "Conquista obtida",
+    "Logro obtenido",
+    "Succès obtenu",
+    "Erfolg freigeschaltet",
+    "Traguardo raggiunto"
+  ],
+  "common:actionStreakMilestone": [
+    "Marco de sequência",
+    "Hito de racha",
+    "Étape de série",
+    "Serienmeilenstein",
+    "Traguardo della serie"
+  ],
+  "common:actionXp": [
+    "Experiência obtida",
+    "Experiencia obtenida",
+    "Expérience acquise",
+    "Erfahrung erhalten",
+    "Esperienza ottenuta"
+  ],
+  "common:calloutFieldNote": [
+    "Nota de campo",
+    "Nota de campo",
+    "Note de terrain",
+    "Feldnotiz",
+    "Nota sul campo"
+  ],
+  "common:calloutWarning": [
+    "Aviso",
+    "Advertencia",
+    "Avertissement",
+    "Warnung",
+    "Avvertenza"
+  ],
+  "common:calloutSafety": [
+    "Segurança",
+    "Seguridad",
+    "Sécurité",
+    "Sicherheit",
+    "Sicurezza"
+  ],
+  "common:calloutImportant": [
+    "Importante",
+    "Importante",
+    "Important",
+    "Wichtig",
+    "Importante"
+  ],
+  "common:calloutRemember": [
+    "Lembre-se",
+    "Recuerda",
+    "À retenir",
+    "Merke",
+    "Ricorda"
+  ],
+  "common:calloutProcedure": [
+    "Procedimento",
+    "Procedimiento",
+    "Procédure",
+    "Vorgehensweise",
+    "Procedura"
+  ],
+  "common:calloutExample": [
+    "Exemplo",
+    "Ejemplo",
+    "Exemple",
+    "Beispiel",
+    "Esempio"
+  ],
+  "common:calloutKnowledgeCheck": [
+    "Verificação de conhecimento",
+    "Comprobación de conocimientos",
+    "Vérification des connaissances",
+    "Wissensüberprüfung",
+    "Verifica delle conoscenze"
+  ],
+  "errors:contentTranslationUnavailable": [
+    "Este conteúdo está temporariamente indisponível no seu idioma. Tente novamente em instantes.",
+    "Este contenido no está disponible temporalmente en tu idioma. Inténtalo de nuevo en unos instantes.",
+    "Ce contenu est temporairement indisponible dans votre langue. Réessayez dans un instant.",
+    "Dieser Inhalt ist in deiner Sprache vorübergehend nicht verfügbar. Versuche es gleich erneut.",
+    "Questo contenuto è temporaneamente non disponibile nella tua lingua. Riprova tra poco."
+  ],
+  "errors:retryAfterSeconds": [
+    "Tente novamente em cerca de {{seconds}} segundos.",
+    "Inténtalo de nuevo en unos {{seconds}} segundos.",
+    "Réessayez dans environ {{seconds}} secondes.",
+    "Versuche es in etwa {{seconds}} Sekunden erneut.",
+    "Riprova tra circa {{seconds}} secondi."
+  ],
+  "errors:waitBeforeRetry": [
+    "Aguarde um momento e tente novamente.",
+    "Espera un momento e inténtalo de nuevo.",
+    "Patientez un instant et réessayez.",
+    "Warte einen Moment und versuche es erneut.",
+    "Attendi un momento e riprova."
+  ],
+  "subscriptions:priceMonthly": [
+    "{{price}} /mês",
+    "{{price}} /mes",
+    "{{price}} /mois",
+    "{{price}} /Monat",
+    "{{price}} /mese"
+  ],
+  "subscriptions:freeTagline": [
+    "Sua dose diária de treinamento. Uma aula e um teste de campo por dia.",
+    "Tu dosis diaria de entrenamiento. Una lección y una prueba de campo al día.",
+    "Votre entraînement quotidien. Une leçon et un test de terrain par jour.",
+    "Dein tägliches Training. Eine Lektion und ein Praxistest pro Tag.",
+    "Il tuo allenamento quotidiano. Una lezione e una prova sul campo al giorno."
+  ],
+  "subscriptions:survivorTagline": [
+    "10 aulas e 10 testes de campo por dia, acesso à comunidade e recursos de campo para baixar.",
+    "10 lecciones y 10 pruebas de campo al día, acceso a la comunidad y recursos de campo descargables.",
+    "10 leçons et 10 tests de terrain par jour, accès à la communauté et ressources de terrain à télécharger.",
+    "10 Lektionen und 10 Praxistests pro Tag, Zugang zur Community und herunterladbare Feldmaterialien.",
+    "10 lezioni e 10 prove sul campo al giorno, accesso alla community e risorse sul campo da scaricare."
+  ],
+  "subscriptions:operatorTagline": [
+    "Treinamento ilimitado. Tudo do Survivor, sem limites diários.",
+    "Entrenamiento ilimitado. Todo lo de Survivor, sin límites diarios.",
+    "Entraînement illimité. Tout le contenu de Survivor, sans limites quotidiennes.",
+    "Unbegrenztes Training. Alles aus Survivor, ohne Tageslimits.",
+    "Allenamento illimitato. Tutto ciò che offre Survivor, senza limiti giornalieri."
+  ],
+  "subscriptions:unlimitedLessons": [
+    "Aulas ilimitadas por dia",
+    "Lecciones ilimitadas al día",
+    "Leçons illimitées par jour",
+    "Unbegrenzte Lektionen pro Tag",
+    "Lezioni illimitate al giorno"
+  ],
+  "subscriptions:unlimitedTests": [
+    "Testes de campo ilimitados por dia",
+    "Pruebas de campo ilimitadas al día",
+    "Tests de terrain illimités par jour",
+    "Unbegrenzte Praxistests pro Tag",
+    "Prove sul campo illimitate al giorno"
+  ],
+  "subscriptions:dailyLessons_one": [
+    "{{count}} aula por dia",
+    "{{count}} lección al día",
+    "{{count}} leçon par jour",
+    "{{count}} Lektion pro Tag",
+    "{{count}} lezione al giorno"
+  ],
+  "subscriptions:dailyLessons_other": [
+    "{{count}} aulas por dia",
+    "{{count}} lecciones al día",
+    "{{count}} leçons par jour",
+    "{{count}} Lektionen pro Tag",
+    "{{count}} lezioni al giorno"
+  ],
+  "subscriptions:dailyTests_one": [
+    "{{count}} teste de campo por dia",
+    "{{count}} prueba de campo al día",
+    "{{count}} test de terrain par jour",
+    "{{count}} Praxistest pro Tag",
+    "{{count}} prova sul campo al giorno"
+  ],
+  "subscriptions:dailyTests_other": [
+    "{{count}} testes de campo por dia",
+    "{{count}} pruebas de campo al día",
+    "{{count}} tests de terrain par jour",
+    "{{count}} Praxistests pro Tag",
+    "{{count}} prove sul campo al giorno"
+  ],
+  "progress:currentLevel": [
+    "Nível atual: {{level}}",
+    "Nivel actual: {{level}}",
+    "Niveau actuel : {{level}}",
+    "Aktuelle Stufe: {{level}}",
+    "Livello attuale: {{level}}"
+  ],
+  "progress:levelUnavailable": [
+    "Nível indisponível",
+    "Nivel no disponible",
+    "Niveau indisponible",
+    "Stufe nicht verfügbar",
+    "Livello non disponibile"
+  ]
+}

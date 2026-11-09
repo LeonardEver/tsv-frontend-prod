@@ -222,7 +222,7 @@ export function FieldCallout({
       style={{ borderColor: color }}
     >
       <p className="font-mono text-[10px] tracking-[0.2em] uppercase" style={{ color }}>
-        {kind}
+        {uiText(({ "FIELD NOTE": "common:calloutFieldNote", IMPORTANT: "common:calloutImportant", WARNING: "common:calloutWarning", SAFETY: "common:calloutSafety", PROCEDURE: "common:calloutProcedure", REMEMBER: "common:calloutRemember", "KNOWLEDGE CHECK": "common:calloutKnowledgeCheck" } as const)[kind])}
       </p>
       <div className="mt-2 text-[15px] leading-relaxed text-foreground/90">{children}</div>
     </aside>
@@ -253,7 +253,7 @@ export function EmptyState({
 export function LockedState({
   title,
   description,
-  cta = "Explore Survivor",
+  cta,
 }: {
   title: string;
   description: string;
@@ -277,7 +277,7 @@ export function LockedState({
           to="/plans"
           className="mt-6 inline-flex min-h-11 items-center rounded-lg bg-primary px-5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
         >
-          {cta} →
+          {cta ?? uiText("common:exploreSurvivor")} →
         </Link>
       </div>
     </div>

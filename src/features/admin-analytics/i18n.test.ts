@@ -81,7 +81,7 @@ describe("admin analytics dictionary", () => {
   });
 
   it("reports an unknown key rather than rendering blank", () => {
-    expect(translate("en", "charts.notAKey")).toBe("charts.notAKey");
+    expect(translate("en", "charts.notAKey")).toBe("Text unavailable");
   });
 
   it("exposes the same accessors outside React", () => {

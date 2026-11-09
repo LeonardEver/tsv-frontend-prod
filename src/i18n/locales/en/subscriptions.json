@@ -83,5 +83,18 @@
   "incompletePayment": "Your payment hasn't been completed yet.",
   "unpaidDetail": "Payment failed after retries — paid features are paused.",
   "endedDetail": "The subscription has ended. Choose a plan to come back.",
-  "unknownStatus": "Status unavailable"
+  "unknownStatus": "Status unavailable",
+  "localTestingNote": "Local testing: payments are disabled. Plans can be simulated only for verified local mock accounts.",
+  "localMockOnly": "Local plan changes require a verified mock account without a provider subscription.",
+  "billingUnavailable": "Plan changes will be available here when billing goes live. Prices shown are the planned product pricing.",
+  "priceMonthly": "{{price}} /month",
+  "freeTagline": "Your daily training ration. One lesson and one field test a day.",
+  "survivorTagline": "10 lessons and 10 field tests a day, community access and downloadable field resources.",
+  "operatorTagline": "Unlimited training. Everything in Survivor, without daily limits.",
+  "unlimitedLessons": "Unlimited lessons per day",
+  "unlimitedTests": "Unlimited field tests per day",
+  "dailyLessons_one": "{{count}} lesson per day",
+  "dailyLessons_other": "{{count}} lessons per day",
+  "dailyTests_one": "{{count}} field test per day",
+  "dailyTests_other": "{{count}} field tests per day"
 }

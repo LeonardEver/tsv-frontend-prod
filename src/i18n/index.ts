@@ -14,7 +14,7 @@ void i18n.use({
       : String(value);
   },
 }).use(initReactI18next).init({
-  lng: DEFAULT_LOCALE, fallbackLng: DEFAULT_LOCALE,
+  lng: DEFAULT_LOCALE, fallbackLng: false,
   supportedLngs: [...SUPPORTED_LOCALES], load: "currentOnly",
   defaultNS: "common", ns: Object.keys(english), keySeparator: false,
   resources: { en: english }, initAsync: false, returnNull: false,
@@ -23,6 +23,7 @@ void i18n.use({
     alwaysFormat: true,
   },
   react: { useSuspense: false },
+  parseMissingKeyHandler: () => String(i18n.getResource(i18n.language, "common", "textUnavailable") ?? "…"),
 });
 
 const loaders = {
@@ -54,6 +55,12 @@ export async function loadLocale(locale: Locale): Promise<void> {
   if (existing) return existing;
   if (locale === "en") return;
   const promise = loaders[locale]().then(({ default: resources }) => {
+    for (const [namespace, baseline] of Object.entries(english)) {
+      const candidate: unknown = resources[namespace as keyof typeof resources];
+      if (!candidate || typeof candidate !== "object" || Array.isArray(candidate)) throw new Error("Incomplete language catalog: " + locale + "/" + namespace);
+      const entries = candidate as Record<string, unknown>;
+      if (Object.keys(entries).length !== Object.keys(baseline).length || Object.keys(baseline).some((key) => typeof entries[key] !== "string" || !entries[key].trim())) throw new Error("Incomplete language catalog: " + locale + "/" + namespace);
+    }
     for (const [namespace, entries] of Object.entries(resources)) {
       i18n.addResourceBundle(locale, namespace, entries, true, true);
     }

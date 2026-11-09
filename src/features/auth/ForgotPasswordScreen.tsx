@@ -16,7 +16,7 @@ export function ForgotPasswordScreen() {
   useInterfaceLocale();
   const [email, setEmail] = useState("");
   const [state, setState] = useState<"idle" | "submitting" | "sent">("idle");
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<ReturnType<typeof describeError> | null>(null);
 
   async function submit(): Promise<void> {
     setError(null);
@@ -25,7 +25,7 @@ export function ForgotPasswordScreen() {
       await forgotPassword(email);
       setState("sent");
     } catch (err) {
-      setError(describeError(err).title);
+      setError(describeError(err));
       setState("idle");
     }
   }
@@ -63,7 +63,7 @@ export function ForgotPasswordScreen() {
             />
           </div>
 
-          {error ? <Alert tone="danger" title={error} /> : null}
+          {error ? <Alert tone="danger" title={error.title} /> : null}
 
           <Button type="submit" loading={state === "submitting"}>{uiText("authentication:send_reset_link_b8ec55")}</Button>
 

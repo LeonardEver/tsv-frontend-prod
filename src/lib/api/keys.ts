@@ -59,6 +59,11 @@ export const queryKeys = {
      * scoping guarantees cross-user cache isolation (Phase 21 §16). */
     posts: (userId: number, category?: string, sort?: string) =>
       ["community", "posts", userId, { category: category ?? null, sort: sort ?? "latest" }] as const,
+    /** Base Camp "Field News" preview — a plain (non-infinite) query. It must
+     * NOT share a key with `posts(...)`: that one is a useInfiniteQuery, and a
+     * shared cache entry makes the infinite observer read `data.pages` on a
+     * `{ posts, pagination }` payload (TypeError: reading 'length'). */
+    preview: (userId: number) => ["community", "posts", userId, "preview"] as const,
     post: (userId: number, postId: number) => ["community", "posts", userId, postId] as const,
     comments: (userId: number, postId: number) =>
       ["community", "posts", userId, postId, "comments"] as const,
@@ -74,6 +79,6 @@ export const queryKeys = {
   admin: {
     access: ["admin", "access"] as const,
     analytics: (section: string, filters?: unknown) =>
-      ["admin", "analytics", section, filters ?? null] as const,
+      ["admin", "analytics", section, filters ?? null, getLocale()] as const,
   },
 } as const;

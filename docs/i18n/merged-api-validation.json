@@ -1,0 +1,52 @@
+{
+  "local_only": true,
+  "locales": [
+    {
+      "locale": "pt-BR",
+      "lessons": 80,
+      "quizzes": 80,
+      "resources": 81,
+      "localized_headers": true,
+      "answer_keys_hidden": true,
+      "english_pdf_artifacts": true
+    },
+    {
+      "locale": "es",
+      "lessons": 80,
+      "quizzes": 80,
+      "resources": 81,
+      "localized_headers": true,
+      "answer_keys_hidden": true,
+      "english_pdf_artifacts": true
+    },
+    {
+      "locale": "fr",
+      "lessons": 80,
+      "quizzes": 80,
+      "resources": 81,
+      "localized_headers": true,
+      "answer_keys_hidden": true,
+      "english_pdf_artifacts": true
+    },
+    {
+      "locale": "de",
+      "lessons": 80,
+      "quizzes": 80,
+      "resources": 81,
+      "localized_headers": true,
+      "answer_keys_hidden": true,
+      "english_pdf_artifacts": true
+    },
+    {
+      "locale": "it",
+      "lessons": 80,
+      "quizzes": 80,
+      "resources": 81,
+      "localized_headers": true,
+      "answer_keys_hidden": true,
+      "english_pdf_artifacts": true
+    }
+  ],
+  "protected_tables_unchanged": 16,
+  "temporary_user_removed": true
+}

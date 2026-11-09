@@ -39,4 +39,12 @@ describe("ui-store theme", () => {
     expect(useUiStore.getState().theme).toBe("dark");
     expect(localStorage.getItem("theme-pref")).toBe("dark");
   });
+  it("preserves localized toast getters through queue insertion", async () => {
+    const { useUiStore } = await import("./ui-store");
+    let language = "en";
+    useUiStore.getState().pushToast({ tone: "success", get title() { return language === "en" ? "Profile saved" : "Perfil salvo"; } });
+    expect(useUiStore.getState().toasts.at(-1)?.title).toBe("Profile saved");
+    language = "pt-BR";
+    expect(useUiStore.getState().toasts.at(-1)?.title).toBe("Perfil salvo");
+  });
 });

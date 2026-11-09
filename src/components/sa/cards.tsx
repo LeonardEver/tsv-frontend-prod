@@ -131,7 +131,7 @@ export function MissionCard({ mission, compact = false }: { mission: MissionCard
 
 export function MissionHero({
   mission,
-  ctaLabel = "Enter mission",
+  ctaLabel,
   className,
 }: {
   mission: MissionCardModel;
@@ -178,7 +178,7 @@ export function MissionHero({
               state={{ startQuiz: true }}
               className="glow-ember inline-flex min-h-12 items-center justify-center rounded-lg bg-primary px-6 text-sm font-semibold tracking-wide text-primary-foreground uppercase transition-colors hover:bg-primary/90"
             >
-              {ctaLabel} →
+              {ctaLabel ?? uiText("common:enterMission")} →
             </Link>
           </div>
         </div>

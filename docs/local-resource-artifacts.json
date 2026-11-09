@@ -1,0 +1,738 @@
+{
+  "schema_version": 1,
+  "scope": "local published generated resources",
+  "artifact_count": 81,
+  "total_bytes": 29906140,
+  "uploads_performed": false,
+  "artifacts": [
+    {
+      "resource_id": "AGR-composting-R01",
+      "title": "Composting — Quick Reference Card",
+      "object_key": "resources/agr-composting-quick-reference-card.pdf",
+      "file_format": "PDF",
+      "content_version": 1,
+      "bytes": 407451,
+      "sha256": "c8bcef1b474cfaa376bca93a00baf5803f313b4b61ccc496a8633f6e30ec3141"
+    },
+    {
+      "resource_id": "AGR-crop-planning-R01",
+      "title": "Crop Planning — Planting Calendar Worksheet",
+      "object_key": "resources/agr-crop-planning-planting-calendar-worksheet.pdf",
+      "file_format": "PDF",
+      "content_version": 1,
+      "bytes": 405904,
+      "sha256": "746d4ee7ad5b4c3d2186484840a643eca3cdbae2b427bb1de87b872edbf09a2c"
+    },
+    {
+      "resource_id": "AGR-food-production-R01",
+      "title": "Basic Food Production for Preparedness — Production Planning Worksheet",
+      "object_key": "resources/agr-food-production-planning-worksheet.pdf",
+      "file_format": "PDF",
+      "content_version": 1,
+      "bytes": 427547,
+      "sha256": "8c4ab0a0460bb1a1d9b9ca7d0038a5aad9a804b922e8e89dc05a89f868b580fd"
+    },
+    {
+      "resource_id": "AGR-garden-planning-R01",
+      "title": "Garden Planning Fundamentals — Planning Worksheet",
+      "object_key": "resources/agr-garden-planning-worksheet.pdf",
+      "file_format": "PDF",
+      "content_version": 1,
+      "bytes": 382711,
+      "sha256": "68af065bb3f2284588185a01194e5691ce5f8d84eaed003955030a045e5e23cc"
+    },
+    {
+      "resource_id": "AGR-greenhouses-R01",
+      "title": "Greenhouses — Structure Decision Guide",
+      "object_key": "resources/agr-greenhouses-structure-decision-guide.pdf",
+      "file_format": "PDF",
+      "content_version": 1,
+      "bytes": 400286,
+      "sha256": "2773dc25b739cea72743989c5a14ba0cb84bbbcf74f1491e9c9e05bc1c9b2563"
+    },
+    {
+      "resource_id": "AGR-irrigation-R01",
+      "title": "Irrigation — Watering Field Card",
+      "object_key": "resources/agr-irrigation-watering-field-card.pdf",
+      "file_format": "PDF",
+      "content_version": 1,
+      "bytes": 333797,
+      "sha256": "e1bc78ac305df5927c824639d9dad1c5e9573834725834c7bbdbbb133953f9f7"
+    },
+    {
+      "resource_id": "AGR-pest-management-R01",
+      "title": "Pest Management — Scouting Field Card",
+      "object_key": "resources/agr-pest-management-scouting-field-card.pdf",
+      "file_format": "PDF",
+      "content_version": 1,
+      "bytes": 330634,
+      "sha256": "1cebb8aa4779bfb3911102caad6ea4d8baeff652a6cf2dc386b22a807fa3a374"
+    },
+    {
+      "resource_id": "AGR-seed-saving-R01",
+      "title": "Seed Saving Fundamentals — Quick Reference Card",
+      "object_key": "resources/agr-seed-saving-quick-reference.pdf",
+      "file_format": "PDF",
+      "content_version": 1,
+      "bytes": 381980,
+      "sha256": "fe0781bab0fb4242338a44c2498e587e325f8889933087e785645877293a640b"
+    },
+    {
+      "resource_id": "AGR-soil-fundamentals-R01",
+      "title": "Soil & Growing Fundamentals — Observation Field Card",
+      "object_key": "resources/agr-soil-observation-field-card.pdf",
+      "file_format": "PDF",
+      "content_version": 1,
+      "bytes": 375750,
+      "sha256": "4381b1aef6631bcc5e67afeda4a00dc64bf17e5ce6af72f630718e1b77f69ebe"
+    },
+    {
+      "resource_id": "FIR-emergency-cooking-R01",
+      "title": "Emergency Cooking — Field Card",
+      "object_key": "resources/fir-emergency-cooking.pdf",
+      "file_format": "PDF",
+      "content_version": 1,
+      "bytes": 336856,
+      "sha256": "f31989e5fa41d4bf0c30f5eb6158f22841b8a7b5b15b5a9c04e3fffe4a7038a1"
+    },
+    {
+      "resource_id": "FIR-fire-fuel-R01",
+      "title": "Fire Fuel & Fuel Selection — Quick Reference Table",
+      "object_key": "resources/fir-fire-fuel.pdf",
+      "file_format": "PDF",
+      "content_version": 1,
+      "bytes": 371309,
+      "sha256": "ebed5394c84e5698cda14a4a8b37ab6befb09d0e213eb84add5c8a0b206b7bd4"
+    },
+    {
+      "resource_id": "FIR-fire-fundamentals-R01",
+      "title": "Fire Fundamentals — Quick Reference Card",
+      "object_key": "resources/fir-fire-fundamentals.pdf",
+      "file_format": "PDF",
+      "content_version": 1,
+      "bytes": 359650,
+      "sha256": "b14734c5d2ef0ee7422a4277b3bbfe978036ca98b057d67b3008de23fb811204"
+    },
+    {
+      "resource_id": "FIR-fire-laying-R01",
+      "title": "Fire Laying — Field Card",
+      "object_key": "resources/fir-fire-laying.pdf",
+      "file_format": "PDF",
+      "content_version": 1,
+      "bytes": 354987,
+      "sha256": "7c9b2017992311455a2b0080c6d2de39b616f708abe78ae7963c83754fdbf056"
+    },
+    {
+      "resource_id": "FIR-fire-maintenance-R01",
+      "title": "Fire Maintenance — Checklist",
+      "object_key": "resources/fir-fire-maintenance.pdf",
+      "file_format": "PDF",
+      "content_version": 1,
+      "bytes": 325807,
+      "sha256": "44555a310d44f97ff60be15382c70f45bcd4f60bcf258ae0b5766c191d75d243"
+    },
+    {
+      "resource_id": "FIR-safety-R01",
+      "title": "Fire Safety — Quick Reference Card",
+      "object_key": "resources/fir-safety-r01-quick-reference.pdf",
+      "file_format": "PDF",
+      "content_version": 1,
+      "bytes": 341114,
+      "sha256": "365bf5642b1d1acae8068edc59ded00002ebfe525f3627415d82f454a52b0e90"
+    },
+    {
+      "resource_id": "FIR-starting-R01",
+      "title": "Fire Starting — Quick Reference Card",
+      "object_key": "resources/fir-starting-quick-reference.pdf",
+      "file_format": "PDF",
+      "content_version": 1,
+      "bytes": 288586,
+      "sha256": "261ccab07198d852f6e51c0e300461cf7669fd712399d71efe21ade1b827686e"
+    },
+    {
+      "resource_id": "FOD-canning-R01",
+      "title": "Canning — Safety Checklist",
+      "object_key": "resources/fod-canning-safety-checklist.pdf",
+      "file_format": "PDF",
+      "content_version": 1,
+      "bytes": 354018,
+      "sha256": "89c670ad95a4cc62b583d067f670d6b547325b5a2320b346b00fa49ef815849b"
+    },
+    {
+      "resource_id": "FOD-drying-R01",
+      "title": "Food Dehydration and Drying — Time and Temperature Table",
+      "object_key": "resources/fod-drying-time-temperature-table.pdf",
+      "file_format": "PDF",
+      "content_version": 1,
+      "bytes": 383925,
+      "sha256": "8116bddd5d56b9ccdd2eb79dd32a2acbf676fc74f66bd3a3cf62a764f58472ff"
+    },
+    {
+      "resource_id": "FOD-emergency-food-R01",
+      "title": "Emergency Food — Quick Reference Card",
+      "object_key": "resources/fod-emergency-food-quick-reference-card.pdf",
+      "file_format": "PDF",
+      "content_version": 1,
+      "bytes": 338665,
+      "sha256": "6896377f8a392da21b44c797036f402b3107db7a494f6cc477caeaa6ebe034ad"
+    },
+    {
+      "resource_id": "FOD-fermentation-R01",
+      "title": "Fermentation — Quick Reference Card",
+      "object_key": "resources/fod-fermentation-quick-reference-card.pdf",
+      "file_format": "PDF",
+      "content_version": 1,
+      "bytes": 364046,
+      "sha256": "59c2da0a48f643e077ff1b3f945188378d152848b19a83b8fb95a56c1f67179f"
+    },
+    {
+      "resource_id": "FOD-food-safety-R01",
+      "title": "Food Safety — Quick Reference Card",
+      "object_key": "resources/fod-food-safety-quick-reference-card.pdf",
+      "file_format": "PDF",
+      "content_version": 1,
+      "bytes": 365747,
+      "sha256": "2fe2aac8e0837e5edccfd5379bfad8ff150c1a322276d0e6f2817a11cc452522"
+    },
+    {
+      "resource_id": "FOD-food-storage-R01",
+      "title": "Food Storage Fundamentals — Quick Reference Card",
+      "object_key": "resources/fod-food-storage-quick-reference.pdf",
+      "file_format": "PDF",
+      "content_version": 1,
+      "bytes": 378731,
+      "sha256": "b7ed44271ffbcefcc2b96fa3d85308aeb0748c450c3b1671f5bacbdd6daf97b8"
+    },
+    {
+      "resource_id": "FOD-long-term-storage-R01",
+      "title": "Long-Term Food Storage — Inventory Checklist",
+      "object_key": "resources/fod-long-term-storage-inventory-checklist.pdf",
+      "file_format": "PDF",
+      "content_version": 1,
+      "bytes": 310159,
+      "sha256": "2abc216f637b81f7d0f7655e897b225a25e5607dafc197f57ef072e46e8bf5c5"
+    },
+    {
+      "resource_id": "FOD-nutrition-R01",
+      "title": "Emergency Nutrition — Quick Reference Card",
+      "object_key": "resources/fod-nutrition-quick-reference-card.pdf",
+      "file_format": "PDF",
+      "content_version": 1,
+      "bytes": 358707,
+      "sha256": "741aee29dbb39c0acf88aa89af0052dd1dfb28cabca86afd74864b755daa9da1"
+    },
+    {
+      "resource_id": "FOD-off-grid-cooking-R01",
+      "title": "Off-Grid Cooking — Fuel and Safety Guide",
+      "object_key": "resources/fod-off-grid-cooking-fuel-safety-guide.pdf",
+      "file_format": "PDF",
+      "content_version": 1,
+      "bytes": 348993,
+      "sha256": "d5689abf54ce922ee2562effad6733a515dda67d298344bb5c82600c61632e4b"
+    },
+    {
+      "resource_id": "FOD-smoking-R01",
+      "title": "Food Smoking — Safety Guide",
+      "object_key": "resources/fod-smoking-safety-guide.pdf",
+      "file_format": "PDF",
+      "content_version": 1,
+      "bytes": 365319,
+      "sha256": "9f80027e47602cd38520b229b66184b3b0f4bcd66035feb96d2d2be7cf235b65"
+    },
+    {
+      "resource_id": "FOR-dangerous-plants-R01",
+      "title": "Dangerous & Toxic Plants — Field Card",
+      "object_key": "resources/for-dangerous-plants-field-card.pdf",
+      "file_format": "PDF",
+      "content_version": 1,
+      "bytes": 396746,
+      "sha256": "0a8ed35105069a1d072e51c60d7ea294791d60bb7bc127b4f177b22e23af0ee2"
+    },
+    {
+      "resource_id": "FOR-edibility-safety-R01",
+      "title": "Wild Edibility & Safety — Safety Rules Card",
+      "object_key": "resources/for-edibility-safety-rules-card.pdf",
+      "file_format": "PDF",
+      "content_version": 1,
+      "bytes": 372914,
+      "sha256": "140a4714ae7c30b6cd734188fe6d3427a9342d27aedcf0ad714e007bfb33476a"
+    },
+    {
+      "resource_id": "FOR-ethical-foraging-R01",
+      "title": "Sustainable & Ethical Foraging — Checklist",
+      "object_key": "resources/for-ethical-foraging-checklist.pdf",
+      "file_format": "PDF",
+      "content_version": 1,
+      "bytes": 377471,
+      "sha256": "20dcc504276a57defe75ca80682322196bcee13a39d48fa13c2b0fb006be8d50"
+    },
+    {
+      "resource_id": "FOR-foraging-practice-R01",
+      "title": "Foraging Fieldcraft — Checklist",
+      "object_key": "resources/for-foraging-practice-checklist.pdf",
+      "file_format": "PDF",
+      "content_version": 1,
+      "bytes": 395677,
+      "sha256": "961e9e6054c38e6907e8af76b257559201b661261e10c18cb2b11b2f7b5828ce"
+    },
+    {
+      "resource_id": "FOR-fruits-berries-R01",
+      "title": "Wild Fruits & Berries — Field Card",
+      "object_key": "resources/for-fruits-berries-field-card.pdf",
+      "file_format": "PDF",
+      "content_version": 1,
+      "bytes": 383324,
+      "sha256": "399434018c7ce8a899a5a93dbe335d0468370c92461a8db8313bd5f5573078be"
+    },
+    {
+      "resource_id": "FOR-leaves-R01",
+      "title": "Edible Leaves, Shoots & Greens — Quick Reference Card",
+      "object_key": "resources/for-leaves-quick-reference.pdf",
+      "file_format": "PDF",
+      "content_version": 1,
+      "bytes": 420929,
+      "sha256": "7de6026821ebc3f5dd47125fd822270502e065e4e7b15e485e41a20a8cf693e3"
+    },
+    {
+      "resource_id": "FOR-lookalikes-R01",
+      "title": "Dangerous Look-Alikes — Comparison Table",
+      "object_key": "resources/for-lookalikes-comparison-table.pdf",
+      "file_format": "PDF",
+      "content_version": 1,
+      "bytes": 402766,
+      "sha256": "dee1698376f108b2171ef6bbf6aba4c60921698e724caba5afaae0bc40e7badb"
+    },
+    {
+      "resource_id": "FOR-mushrooms-R01",
+      "title": "Wild Mushrooms & Fungal Safety — Safety Guide",
+      "object_key": "resources/for-mushrooms-safety-guide.pdf",
+      "file_format": "PDF",
+      "content_version": 1,
+      "bytes": 407922,
+      "sha256": "5b8977362fc0e15ad1b449ceaf32f2ec04f636e54da456b617b1c94d4d60863e"
+    },
+    {
+      "resource_id": "FOR-plant-identification-R01",
+      "title": "Plant Identification Fundamentals — Field Checklist",
+      "object_key": "resources/for-plant-identification-field-checklist.pdf",
+      "file_format": "PDF",
+      "content_version": 1,
+      "bytes": 364109,
+      "sha256": "c8a0d11fd599877491be62b9be3bacc58c0780cf85031cbe43c0f90bbd2c12dd"
+    },
+    {
+      "resource_id": "FOR-roots-tubers-R01",
+      "title": "Roots, Tubers & Underground Foods — Field Card",
+      "object_key": "resources/for-roots-tubers-field-card.pdf",
+      "file_format": "PDF",
+      "content_version": 1,
+      "bytes": 410273,
+      "sha256": "4247269979413c5da238231c1f710e34bf3d67f3c6968b18c257b861afb0c503"
+    },
+    {
+      "resource_id": "MED-bleeding-control-R01",
+      "title": "Bleeding Control — Quick Reference Card",
+      "object_key": "resources/med-bleeding-control-quick-reference.pdf",
+      "file_format": "PDF",
+      "content_version": 1,
+      "bytes": 396024,
+      "sha256": "0d99b36a1ae66207cd72b4142ad28caa7e0f84737315f882607be36ff3234a70"
+    },
+    {
+      "resource_id": "MED-burns-R01",
+      "title": "Burns — First Aid Guide",
+      "object_key": "resources/med-burns-first-aid-guide.pdf",
+      "file_format": "PDF",
+      "content_version": 1,
+      "bytes": 370678,
+      "sha256": "56c397c81c75043f948cce9bf3c9d293fd99d1c1c2415067a0decae2a077204b"
+    },
+    {
+      "resource_id": "MED-emergency-assessment-R01",
+      "title": "Emergency Assessment — Checklist",
+      "object_key": "resources/med-emergency-assessment-checklist.pdf",
+      "file_format": "PDF",
+      "content_version": 1,
+      "bytes": 363396,
+      "sha256": "ad03aae9085eeac4d3255c1f65e6c88103ee33577357d47181dd01063e11e97b"
+    },
+    {
+      "resource_id": "MED-emergency-kit-R01",
+      "title": "Emergency Kit — Checklist",
+      "object_key": "resources/med-emergency-kit-checklist.pdf",
+      "file_format": "PDF",
+      "content_version": 1,
+      "bytes": 403887,
+      "sha256": "cbe75bef7d8f20581955238480e35f72cb1963f0d416224957f1e8e80ceda3c9"
+    },
+    {
+      "resource_id": "MED-fractures-R01",
+      "title": "Fractures & Immobilization — Splinting Checklist",
+      "object_key": "resources/med-fractures-splinting-checklist.pdf",
+      "file_format": "PDF",
+      "content_version": 1,
+      "bytes": 358453,
+      "sha256": "785c8a7c3dd34797cc2d96f8c6d2f2a64a0eda7bb1172aeb90d4c10d867f1c01"
+    },
+    {
+      "resource_id": "MED-heat-cold-R01",
+      "title": "Heat & Cold Emergencies — Field Card",
+      "object_key": "resources/med-heat-cold-field-card.pdf",
+      "file_format": "PDF",
+      "content_version": 1,
+      "bytes": 395544,
+      "sha256": "a7e145e4b2eb0c5a9d4d5c99270a77b94def80483b96154270452827fe45f47b"
+    },
+    {
+      "resource_id": "MED-wound-care-R01",
+      "title": "Wound Care — Field Card",
+      "object_key": "resources/med-wound-care-field-card.pdf",
+      "file_format": "PDF",
+      "content_version": 1,
+      "bytes": 366231,
+      "sha256": "3e68cb26daf89c6439db962e1858475bbf80c04ba6168ef036372cb6f2b9616a"
+    },
+    {
+      "resource_id": "NAV-compass-R01",
+      "title": "Compass Navigation — Practice Sheet",
+      "object_key": "resources/nav-compass-practice-sheet.pdf",
+      "file_format": "PDF",
+      "content_version": 1,
+      "bytes": 349004,
+      "sha256": "fae47fbcaca16934f477c0fb3ae313cb023ef754a69202ad9971f75646c5247c"
+    },
+    {
+      "resource_id": "NAV-coordinate-systems-R01",
+      "title": "Coordinates & Grid Navigation — Reference Card",
+      "object_key": "resources/nav-coordinate-systems-reference-card.pdf",
+      "file_format": "PDF",
+      "content_version": 1,
+      "bytes": 372046,
+      "sha256": "9619f304ebc74fef1c938730614525ed659ed9599fab9643069d2461e1bc9f9e"
+    },
+    {
+      "resource_id": "NAV-emergency-location-R01",
+      "title": "Emergency Location & Signaling — Emergency Location Card",
+      "object_key": "resources/nav-emergency-location-card.pdf",
+      "file_format": "PDF",
+      "content_version": 1,
+      "bytes": 374288,
+      "sha256": "a1995121eb3a99034e1b3fc04a95acfd54bd619c61a3ab06755ff9ad13b5e906"
+    },
+    {
+      "resource_id": "NAV-gps-offline-R01",
+      "title": "GPS & Offline Navigation — Checklist",
+      "object_key": "resources/nav-gps-offline-checklist.pdf",
+      "file_format": "PDF",
+      "content_version": 1,
+      "bytes": 388606,
+      "sha256": "d62ab35a362c5dedbc4ab88dcb8dc9efa2577bafc4bbf5dbe859195a4ee8c084"
+    },
+    {
+      "resource_id": "NAV-map-reading-R01",
+      "title": "Map Reading Fundamentals - Worksheet",
+      "object_key": "resources/nav-map-reading-worksheet.pdf",
+      "file_format": "PDF",
+      "content_version": 1,
+      "bytes": 371903,
+      "sha256": "30b0a22b53bc657d9a2d043f12636d6ad154cbc5a7f32684177e8987271cf58f"
+    },
+    {
+      "resource_id": "NAV-navigation-errors-R01",
+      "title": "Navigation Errors & Recovery — Recovery Card",
+      "object_key": "resources/nav-navigation-errors-recovery-card.pdf",
+      "file_format": "PDF",
+      "content_version": 1,
+      "bytes": 408620,
+      "sha256": "19d76fe2f91528b044c231926612789f346e25ef1d1417d6a2103970f5260a2c"
+    },
+    {
+      "resource_id": "NAV-navigation-fundamentals-R01",
+      "title": "Navigation Fundamentals — Field Guide",
+      "object_key": "resources/nav-navigation-fundamentals-field-guide.pdf",
+      "file_format": "PDF",
+      "content_version": 1,
+      "bytes": 391915,
+      "sha256": "0a0049441b83841063496016ff5d1a4c466e5f00abdcb2bd9bd7a4ec75c22add"
+    },
+    {
+      "resource_id": "NAV-night-navigation-R01",
+      "title": "Night Navigation — Checklist",
+      "object_key": "resources/nav-night-navigation-checklist.pdf",
+      "file_format": "PDF",
+      "content_version": 1,
+      "bytes": 323738,
+      "sha256": "026ce9f3aacf4d08038784dba057554a5d21cdca54f9dde836f96cf77724e2ca"
+    },
+    {
+      "resource_id": "NAV-route-planning-R01",
+      "title": "Route Planning — Worksheet",
+      "object_key": "resources/nav-route-planning-worksheet.pdf",
+      "file_format": "PDF",
+      "content_version": 1,
+      "bytes": 394822,
+      "sha256": "76a711101f9026f03dc23b9ac8e98f6f7bff66992e93fd03a7ff9c8f48f7dcd2"
+    },
+    {
+      "resource_id": "NAV-terrain-association-R01",
+      "title": "Terrain Association — Field Checklist",
+      "object_key": "resources/nav-terrain-association-field-checklist.pdf",
+      "file_format": "PDF",
+      "content_version": 1,
+      "bytes": 363033,
+      "sha256": "dd9d2211431775472fcb1cb789ff044a612f443940fb9ca266f79ac75f8d29a6"
+    },
+    {
+      "resource_id": "NAV-water-navigation-R01",
+      "title": "Rivers, Lakes & Water Crossings — Safety Checklist",
+      "object_key": "resources/nav-water-navigation-safety-checklist.pdf",
+      "file_format": "PDF",
+      "content_version": 1,
+      "bytes": 404238,
+      "sha256": "0ec06d1086cd30892097a7bd22d3036daf5b29ef7d0c2caeb0a27aab557ec61a"
+    },
+    {
+      "resource_id": "NAV-weather-navigation-R01",
+      "title": "Weather, Visibility & Navigation — Decision Card",
+      "object_key": "resources/nav-weather-navigation-decision-card.pdf",
+      "file_format": "PDF",
+      "content_version": 1,
+      "bytes": 360302,
+      "sha256": "0dcad98e0f6d0c38b474fe84ae14b3da798b3ab40b61ba7781644219e1911c42"
+    },
+    {
+      "resource_id": "SHE-insulation-R01",
+      "title": "Shelter Insulation — Field Card",
+      "object_key": "resources/she-insulation-field-card.pdf",
+      "file_format": "PDF",
+      "content_version": 1,
+      "bytes": 393794,
+      "sha256": "e4c3e611bf04421e8a7d033bc590274898113f03c7b3b7ba2359671a6d272f98"
+    },
+    {
+      "resource_id": "SHE-long-term-shelter-R01",
+      "title": "Long-Term Shelter — Checklist",
+      "object_key": "resources/she-long-term-shelter-checklist.pdf",
+      "file_format": "PDF",
+      "content_version": 1,
+      "bytes": 412530,
+      "sha256": "b3510b006e90f4a16db04395a5b8cad536c6ad62c74d07d27dbfea362687fdec"
+    },
+    {
+      "resource_id": "SHE-natural-shelter-R01",
+      "title": "Natural Shelter — Field Card",
+      "object_key": "resources/she-natural-shelter-field-card.pdf",
+      "file_format": "PDF",
+      "content_version": 1,
+      "bytes": 415100,
+      "sha256": "783e3729bede72949fb0501d133e23a12d2b7211366120c841aa4c5257a76eda"
+    },
+    {
+      "resource_id": "SHE-shelter-materials-R01",
+      "title": "Shelter Materials — Field Card",
+      "object_key": "resources/she-shelter-materials-field-card.pdf",
+      "file_format": "PDF",
+      "content_version": 1,
+      "bytes": 390818,
+      "sha256": "7331651b237f4103faad3dd0f1a65b034c4230e5a7984851499b840bd80ccc3e"
+    },
+    {
+      "resource_id": "SHE-site-selection-R01",
+      "title": "Shelter Site Selection — Field Card",
+      "object_key": "resources/she-site-selection-field-card.pdf",
+      "file_format": "PDF",
+      "content_version": 1,
+      "bytes": 409433,
+      "sha256": "3d545e1867ee530916a097534d98e4d3e1a7ccabaa40a79512167a80a5075a51"
+    },
+    {
+      "resource_id": "SHE-tarp-shelters-R01",
+      "title": "Tarp Shelters — Field Card",
+      "object_key": "resources/she-tarp-shelters-field-card.pdf",
+      "file_format": "PDF",
+      "content_version": 1,
+      "bytes": 366455,
+      "sha256": "201f63d118ff493abb108935e3c3e5573d259f571dc6e0e78deee29ca55526d7"
+    },
+    {
+      "resource_id": "SHE-tents-R01",
+      "title": "Tents — Quick Reference Card",
+      "object_key": "resources/she-tents-quick-reference-card.pdf",
+      "file_format": "PDF",
+      "content_version": 1,
+      "bytes": 363243,
+      "sha256": "f7557c056a019f6ba6ab7f8531e1432c929e0bd0237cbfacb7ecf4f1099e3fc5"
+    },
+    {
+      "resource_id": "SHE-weather-protection-R01",
+      "title": "Weather Protection — Field Card",
+      "object_key": "resources/she-weather-protection-field-card.pdf",
+      "file_format": "PDF",
+      "content_version": 1,
+      "bytes": 350544,
+      "sha256": "b60515d919622924aed8d76452591bfe06efd9dbf3780f2cc3e8645d3ca4aa44"
+    },
+    {
+      "resource_id": "SUR-emergency-planning-R01",
+      "title": "Household Emergency Planning — One-Page Plan Worksheet",
+      "object_key": "resources/sur-emergency-planning-worksheet.pdf",
+      "file_format": "PDF",
+      "content_version": 1,
+      "bytes": 312132,
+      "sha256": "7df26822148142e07bdbb33bf7b522a07721a8a84441499ea5483ad37ba59fb7"
+    },
+    {
+      "resource_id": "SUR-preparedness-R01",
+      "title": "Emergency Preparedness Basics — Household Checklist",
+      "object_key": "resources/sur-preparedness-household-checklist.pdf",
+      "file_format": "PDF",
+      "content_version": 1,
+      "bytes": 327914,
+      "sha256": "92074b5c5889dfb81db13299846a8cb46cedd61a5344c5b4e7a80d8306b196f8"
+    },
+    {
+      "resource_id": "SUR-prioritization-R01",
+      "title": "Prioritization — Decision Checklist",
+      "object_key": "resources/sur-prioritization-decision-checklist.pdf",
+      "file_format": "PDF",
+      "content_version": 1,
+      "bytes": 399702,
+      "sha256": "78e89d8cf869cc7304b435c2c48dbb66bc0d5b3686417c7ae844d85dd4a44011"
+    },
+    {
+      "resource_id": "SUR-risk-assessment-R01",
+      "title": "Risk Assessment — Assessment Worksheet",
+      "object_key": "resources/sur-risk-assessment-worksheet.pdf",
+      "file_format": "PDF",
+      "content_version": 1,
+      "bytes": 385622,
+      "sha256": "847c328ebdecf0e049ee49db1fbf9375e35b51779339cc553a4f0b27c3589eaf"
+    },
+    {
+      "resource_id": "SUR-situational-awareness-R01",
+      "title": "Situational Awareness — Quick Reference Card",
+      "object_key": "resources/sur-situational-awareness-quick-reference-card.pdf",
+      "file_format": "PDF",
+      "content_version": 1,
+      "bytes": 404105,
+      "sha256": "baeb98ad2c89028664ba8b4af895fc27c420ab6b0c2163f36458c0857f39e232"
+    },
+    {
+      "resource_id": "SUR-survival-psychology-R01",
+      "title": "Survival Psychology — Quick Reference Card",
+      "object_key": "resources/sur-survival-psychology-quick-reference-card.pdf",
+      "file_format": "PDF",
+      "content_version": 1,
+      "bytes": 369470,
+      "sha256": "5484720d07758ab613d0fdb60863b4a836ce9f2da66e568c5f30aa560bfad185"
+    },
+    {
+      "resource_id": "WAT-boiling-R01",
+      "title": "Boiling Water for Purification — Quick Reference Card",
+      "object_key": "resources/wat-boiling-quick-reference.pdf",
+      "file_format": "PDF",
+      "content_version": 1,
+      "bytes": 336871,
+      "sha256": "176d30dccd50550038f244098e3ccb091c7a89d86828ce9366f916abd5a69d30"
+    },
+    {
+      "resource_id": "WAT-chemical-purification-R01",
+      "title": "Chemical Water Purification — Quick Reference Card",
+      "object_key": "resources/wat-chemical-purification-r01-quick-reference.pdf",
+      "file_format": "PDF",
+      "content_version": 1,
+      "bytes": 316777,
+      "sha256": "f2a1abb95775e323c0c2b32e43c72f65a1582f63bd81cfc44f17a41db897b40e"
+    },
+    {
+      "resource_id": "WAT-distillation-R01",
+      "title": "Water Distillation — Quick Reference Card",
+      "object_key": "resources/wat-distillation-r01-quick-reference.pdf",
+      "file_format": "PDF",
+      "content_version": 1,
+      "bytes": 327843,
+      "sha256": "5477fc1a130b6b416cb390689997a073398d2f00f09c1eb4caaa284811abd452"
+    },
+    {
+      "resource_id": "WAT-filtration-R01",
+      "title": "Water Filtration — Quick Reference Card",
+      "object_key": "resources/wat-filtration-quick-reference.pdf",
+      "file_format": "PDF",
+      "content_version": 1,
+      "bytes": 341404,
+      "sha256": "546882a5f208581945f5d9744e1e5fff6be489ede4fe8311b9200df02f54e8c1"
+    },
+    {
+      "resource_id": "WAT-finding-water-R01",
+      "title": "Finding Water — Field Card",
+      "object_key": "resources/wat-finding-water-field-card.pdf",
+      "file_format": "PDF",
+      "content_version": 1,
+      "bytes": 392394,
+      "sha256": "9ac46d024ea7d360727b06800dbd34782905a40d1a2ba481d981fbc57c54ba6e"
+    },
+    {
+      "resource_id": "WAT-method-comparison-R01",
+      "title": "Water Purification Method Comparison Table",
+      "object_key": "resources/water-purification-method-comparison.pdf",
+      "file_format": "PDF",
+      "content_version": 1,
+      "bytes": 340093,
+      "sha256": "5fd2ea1b02f927404c9ddaa9cf3679a5086124eaec55f7f42ec3c4a73ac73c2f"
+    },
+    {
+      "resource_id": "WAT-purification-R01",
+      "title": "Water Purification Methods — Quick Reference Card",
+      "object_key": "resources/water-purification-quick-reference.pdf",
+      "file_format": "PDF",
+      "content_version": 1,
+      "bytes": 346539,
+      "sha256": "7d473f16244ddb756888a57b0fa214fcf3311fe43e3cff829451f32496ae556a"
+    },
+    {
+      "resource_id": "WAT-rainwater-collection-R01",
+      "title": "Rainwater Collection — Quick Reference Card",
+      "object_key": "resources/wat-rainwater-collection-quick-reference-card.pdf",
+      "file_format": "PDF",
+      "content_version": 1,
+      "bytes": 367895,
+      "sha256": "9773663d88676cd16fce338e73d241f3fdaa4c93aa132534e1b08c9a7864a389"
+    },
+    {
+      "resource_id": "WAT-sodis-R01",
+      "title": "Solar Disinfection (SODIS) — Quick Reference Card",
+      "object_key": "resources/wat-sodis-r01-quick-reference.pdf",
+      "file_format": "PDF",
+      "content_version": 1,
+      "bytes": 320210,
+      "sha256": "4c4b06834f67e0d8e50a0508b8904bdef4052c7756f58f7f50b98df2d42ff3db"
+    },
+    {
+      "resource_id": "WAT-storage-R01",
+      "title": "Emergency Water Storage — Quick Reference Card",
+      "object_key": "resources/wat-storage-r01-quick-reference.pdf",
+      "file_format": "PDF",
+      "content_version": 1,
+      "bytes": 292144,
+      "sha256": "e0551d7a4e51229b816e1f0c53ac95ac4097802a6fceb1bc966319179c2f7387"
+    },
+    {
+      "resource_id": "WAT-water-systems-R01",
+      "title": "Water Systems — Quick Reference Card",
+      "object_key": "resources/wat-water-systems-quick-reference-card.pdf",
+      "file_format": "PDF",
+      "content_version": 1,
+      "bytes": 386405,
+      "sha256": "6e9084ce89e07af073a9a889df3600ab730c983c5c4a6e8de5d3819c20f0567f"
+    },
+    {
+      "resource_id": "WAT-water-testing-R01",
+      "title": "Water Testing — Checklist",
+      "object_key": "resources/wat-water-testing-checklist.pdf",
+      "file_format": "PDF",
+      "content_version": 1,
+      "bytes": 355165,
+      "sha256": "3b919353dfb093bd17c8158b690ce79a2b2cb30acbabf742109de5e032e05865"
+    }
+  ]
+}

@@ -54,7 +54,8 @@ export const useUiStore = create<UiState>((set) => ({
   theme: typeof window === "undefined" ? "dark" : readStoredTheme(),
   pushToast: (toast) =>
     { set((state) => ({
-      toasts: [...state.toasts, { ...toast, id: nextToastId++ }].slice(-4),
+      // Preserve localized getters instead of freezing their current strings.
+      toasts: [...state.toasts, Object.defineProperties({ id: nextToastId++ }, Object.getOwnPropertyDescriptors(toast)) as Toast].slice(-4),
     })); },
   dismissToast: (id) =>
     { set((state) => ({ toasts: state.toasts.filter((t) => t.id !== id) })); },

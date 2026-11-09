@@ -33,8 +33,6 @@
   "you_don_t_have_access_to_this_6cf57c": "Du hast keinen Zugriff auf diesen Inhalt.",
   "too_many_requests_8ae8c5": "Zu viele Anfragen.",
   "on_the_free_plan_the_lesson_must_0587ba": "Im Free-Abo muss zuerst die Lektion abgeschlossen werden. Mit Survivor und Operator kannst du dich jederzeit testen.",
-  "downloading_is_a_plan_feature_ad4064": "Downloads erfordern ein kostenpflichtiges Abo",
-  "viewing_is_free_downloads_are_included_in_895009": "Das Ansehen ist kostenlos. Downloads sind in Survivor und Operator enthalten.",
   "community_is_a_plan_feature_98f610": "Community-Zugang erfordert ein kostenpflichtiges Abo",
   "community_access_is_included_in_survivor_and_f345a2": "Der Community-Zugang ist in Survivor und Operator enthalten.",
   "you_re_posting_too_quickly_4a1d75": "Du veröffentlichst zu schnell",
@@ -53,5 +51,9 @@
   "the_payment_provider_couldn_t_complete_the_37ee07": "Der Zahlungsanbieter konnte die Anfrage nicht abschließen",
   "please_try_again_in_a_moment_a917db": "Bitte versuche es gleich erneut.",
   "something_went_wrong_8d886c": "Etwas ist schiefgelaufen",
-  "the_app_hit_an_unexpected_error_34e108": "In der App ist ein unerwarteter Fehler aufgetreten."
+  "the_app_hit_an_unexpected_error_34e108": "In der App ist ein unerwarteter Fehler aufgetreten.",
+  "resourcePlanRequired": "Ein kostenpflichtiges Abo ist erforderlich",
+  "contentTranslationUnavailable": "Dieser Inhalt ist in deiner Sprache vorübergehend nicht verfügbar. Versuche es gleich erneut.",
+  "retryAfterSeconds": "Versuche es in etwa {{seconds}} Sekunden erneut.",
+  "waitBeforeRetry": "Warte einen Moment und versuche es erneut."
 }

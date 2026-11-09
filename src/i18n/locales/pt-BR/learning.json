@@ -218,7 +218,6 @@
   "open_artifact_0b927a": "Abrir arquivo",
   "this_field_resource_hasn_t_been_generated_b5140f": "Este recurso de campo ainda não foi gerado.",
   "downloads_are_served_through_your_authenticated_session_c460e2": "Os downloads são disponibilizados pela sua sessão autenticada — nunca compartilhados fora da sua conta.",
-  "you_can_always_view_this_resource_here_447b83": "Você sempre pode visualizar este recurso aqui. Downloads offline estão incluídos nos planos Survivor e Operator.",
   "license_322960": "Licença",
   "redistribution_c5d1f4": "Redistribuição",
   "type_3deb74": "Tipo",
@@ -372,5 +371,6 @@
   "subcategory_water_systems": "Sistemas de água",
   "subcategory_water_testing": "Teste da água",
   "subcategory_weather_protection": "Proteção contra o clima",
-  "subcategory_wound_care": "Cuidados com feridas"
+  "subcategory_wound_care": "Cuidados com feridas",
+  "paidResourceAccess": "A abertura e o download dos recursos de campo exigem Survivor ou Operator."
 }

@@ -63,8 +63,9 @@ export function RegisterScreen() {
   const [acceptPrivacy, setAcceptPrivacy] = useState(false);
   const [marketingOptIn, setMarketingOptIn] = useState(false);
   const [submitting, setSubmitting] = useState(false);
-  const [formError, setFormError] = useState<string | null>(null);
-  const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
+  const [formError, setFormError] = useState<ReturnType<typeof describeError> | null>(null);
+  const [fieldErrorSource, setFieldErrorSource] = useState<unknown>(null);
+  const fieldErrors = issuesByPath(fieldErrorSource);
 
   const minDate = isoYearsAgo(MAXIMUM_AGE);
   const maxDate = isoYearsAgo(MINIMUM_AGE);
@@ -72,7 +73,7 @@ export function RegisterScreen() {
   async function submit(): Promise<void> {
     confirmLocaleChoice();
     setFormError(null);
-    setFieldErrors({});
+    setFieldErrorSource(null);
     setSubmitting(true);
     try {
       await registerAccount({
@@ -91,10 +92,10 @@ export function RegisterScreen() {
       void navigate(`/verify-email?email=${encodeURIComponent(email)}&sent=1`);
     } catch (err) {
       if (err instanceof ApiError && err.code === "VALIDATION_ERROR") {
-        setFieldErrors(issuesByPath(err));
+        setFieldErrorSource(err);
       } else {
         const copy = describeError(err);
-        setFormError(copy.title);
+        setFormError(copy);
       }
     } finally {
       setSubmitting(false);
@@ -259,7 +260,7 @@ export function RegisterScreen() {
           </p>
         )}
 
-        {formError ? <Alert tone="danger" title={formError} /> : null}
+        {formError ? <Alert tone="danger" title={formError.title} /> : null}
 
         <Button type="submit" loading={submitting} className="w-full">{uiText("authentication:create_account_aaf374")}</Button>
 

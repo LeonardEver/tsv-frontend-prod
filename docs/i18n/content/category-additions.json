@@ -1,0 +1,16 @@
+{
+  "note": "Taxonomy categories seeded in every environment (seeds/001_taxonomy_seed.ts) but absent from source.json. Merged into the release artifact by scripts/i18n/stage-release-artifacts.mjs.",
+  "categories": {
+    "bushcraft": { "en": "Bushcraft", "pt-BR": "Bushcraft", "es": "Bushcraft", "fr": "Bushcraft", "de": "Bushcraft", "it": "Bushcraft" },
+    "communication": { "en": "Communication", "pt-BR": "Comunicação", "es": "Comunicación", "fr": "Communication", "de": "Kommunikation", "it": "Comunicazione" },
+    "energy": { "en": "Energy", "pt-BR": "Energia", "es": "Energía", "fr": "Énergie", "de": "Energie", "it": "Energia" },
+    "engineering-diy": { "en": "Engineering & DIY", "pt-BR": "Engenharia e faça você mesmo", "es": "Ingeniería y bricolaje", "fr": "Ingénierie et bricolage", "de": "Technik und Heimwerken", "it": "Ingegneria e fai da te" },
+    "food-production": { "en": "Food Production", "pt-BR": "Produção de alimentos", "es": "Producción de alimentos", "fr": "Production alimentaire", "de": "Lebensmittelproduktion", "it": "Produzione alimentare" },
+    "homesteading": { "en": "Homesteading", "pt-BR": "Autossuficiência rural", "es": "Autosuficiencia rural", "fr": "Autosuffisance rurale", "de": "Selbstversorgung", "it": "Autosufficienza rurale" },
+    "hunting-fishing": { "en": "Hunting & Fishing", "pt-BR": "Caça e pesca", "es": "Caza y pesca", "fr": "Chasse et pêche", "de": "Jagd und Fischerei", "it": "Caccia e pesca" },
+    "maps-reference": { "en": "Maps & Reference Materials", "pt-BR": "Mapas e materiais de referência", "es": "Mapas y materiales de referencia", "fr": "Cartes et documents de référence", "de": "Karten und Referenzmaterial", "it": "Mappe e materiali di riferimento" },
+    "mechanical": { "en": "Mechanical", "pt-BR": "Mecânica", "es": "Mecánica", "fr": "Mécanique", "de": "Mechanik", "it": "Meccanica" },
+    "military-government": { "en": "Military & Government Knowledge", "pt-BR": "Conhecimento militar e governamental", "es": "Conocimiento militar y gubernamental", "fr": "Savoirs militaires et gouvernementaux", "de": "Militär- und Behördenwissen", "it": "Conoscenze militari e governative" },
+    "security-safety": { "en": "Security & Personal Safety", "pt-BR": "Segurança e proteção pessoal", "es": "Seguridad y protección personal", "fr": "Sécurité et protection personnelle", "de": "Sicherheit und persönlicher Schutz", "it": "Sicurezza e protezione personale" }
+  }
+}

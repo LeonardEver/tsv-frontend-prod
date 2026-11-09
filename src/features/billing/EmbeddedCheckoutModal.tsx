@@ -7,7 +7,7 @@
  * components; card data never transits our backend.
  */
 import { tr as uiText, useLocale as useInterfaceLocale } from "@/i18n";
-import { loadStripe } from "@stripe/stripe-js";
+import { loadStripe } from "@stripe/stripe-js/pure";
 import {
   EmbeddedCheckout,
   EmbeddedCheckoutProvider,

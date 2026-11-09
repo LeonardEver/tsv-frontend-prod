@@ -17,6 +17,7 @@
 import { API_BASE } from "../config/env";
 import { getLocale } from "@/i18n";
 import type { Locale } from "@/i18n/config";
+import { assertContentLocale } from "@/i18n/content-response";
 import {
   ApiError,
   NetworkError,
@@ -32,6 +33,8 @@ const MAX_GET_RETRIES = 2;
 const RETRY_BASE_DELAY_MS = 500;
 
 export interface RequestOptions {
+  /** Pin multi-request operations to the locale they started in. */
+  locale?: Locale;
   method?: "GET" | "POST" | "PATCH" | "DELETE";
   body?: unknown;
   /** Client UUID for idempotent mutations (attempt creation, quiz submit). */
@@ -130,7 +133,7 @@ async function doFetch(path: string, options: RequestOptions, timeoutMs: number,
  * Perform one request with retry policy applied for idempotent GETs only.
  */
 export async function request<T>(path: string, options: RequestOptions = {}): Promise<T> {
-  const locale = getLocale();
+  const locale = options.locale ?? getLocale();
   const method = options.method ?? "GET";
   const isRead = method === "GET";
   const timeoutMs = options.timeoutMs ?? (isRead ? READ_TIMEOUT_MS : MUTATION_TIMEOUT_MS);
@@ -152,7 +155,9 @@ export async function request<T>(path: string, options: RequestOptions = {}): Pr
     }
 
     if (raw.status >= 200 && raw.status < 300) {
-      return parseBody(raw) as T;
+      const data = parseBody(raw);
+      assertContentLocale(path, data, locale, raw.xRequestId ?? undefined);
+      return data as T;
     }
 
     const apiError = normalizeApiError(raw.status, raw.bodyText, raw.xRequestId, raw.retryAfterSec);

@@ -1224,6 +1224,7 @@ export interface paths {
                                 missing_count: number;
                                 reasons: string[];
                                 artifact_locale: null | string;
+                                review_pending?: boolean;
                             };
                         };
                     };
@@ -1287,6 +1288,7 @@ export interface paths {
                                 missing_count: number;
                                 reasons: string[];
                                 artifact_locale: null | string;
+                                review_pending?: boolean;
                             };
                         };
                     };
@@ -1371,6 +1373,7 @@ export interface paths {
                                 missing_count: number;
                                 reasons: string[];
                                 artifact_locale: null | string;
+                                review_pending?: boolean;
                             };
                         };
                     };
@@ -1456,6 +1459,7 @@ export interface paths {
                                 missing_count: number;
                                 reasons: string[];
                                 artifact_locale: null | string;
+                                review_pending?: boolean;
                             };
                         };
                     };
@@ -1550,6 +1554,7 @@ export interface paths {
                                 missing_count: number;
                                 reasons: string[];
                                 artifact_locale: null | string;
+                                review_pending?: boolean;
                             };
                         } | {
                             lesson_id: string;
@@ -1571,6 +1576,7 @@ export interface paths {
                                 missing_count: number;
                                 reasons: string[];
                                 artifact_locale: null | string;
+                                review_pending?: boolean;
                             };
                         };
                     };
@@ -1666,6 +1672,7 @@ export interface paths {
                                 missing_count: number;
                                 reasons: string[];
                                 artifact_locale: null | string;
+                                review_pending?: boolean;
                             };
                         };
                     };
@@ -1745,6 +1752,7 @@ export interface paths {
                                 missing_count: number;
                                 reasons: string[];
                                 artifact_locale: null | string;
+                                review_pending?: boolean;
                             };
                         };
                     };
@@ -2009,6 +2017,7 @@ export interface paths {
                                 missing_count: number;
                                 reasons: string[];
                                 artifact_locale: null | string;
+                                review_pending?: boolean;
                             };
                         };
                     };
@@ -2152,6 +2161,7 @@ export interface paths {
                                 missing_count: number;
                                 reasons: string[];
                                 artifact_locale: null | string;
+                                review_pending?: boolean;
                             };
                         };
                     };
@@ -2438,6 +2448,7 @@ export interface paths {
                                 missing_count: number;
                                 reasons: string[];
                                 artifact_locale: null | string;
+                                review_pending?: boolean;
                             };
                         };
                     };
@@ -2753,6 +2764,42 @@ export interface paths {
                 };
                 /** @description Default Response */
                 400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            error?: {
+                                code?: string;
+                                message?: string;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
+                                request_id?: string;
+                            };
+                        };
+                    };
+                };
+                /** @description Default Response */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            error?: {
+                                code?: string;
+                                message?: string;
+                                details?: {
+                                    [key: string]: unknown;
+                                };
+                                request_id?: string;
+                            };
+                        };
+                    };
+                };
+                /** @description Default Response */
+                403: {
                     headers: {
                         [name: string]: unknown;
                     };
@@ -3565,6 +3612,7 @@ export interface paths {
                                 missing_count: number;
                                 reasons: string[];
                                 artifact_locale: null | string;
+                                review_pending?: boolean;
                             };
                         };
                     };
@@ -4978,6 +5026,7 @@ export interface paths {
                     plan?: "free" | "survivor" | "operator";
                     /** @description ISO-3166-1 alpha-2 country filter (users.country). */
                     country?: string;
+                    locale?: "en" | "pt-BR" | "es" | "fr" | "de" | "it";
                 };
                 header?: never;
                 path?: never;
@@ -5009,6 +5058,15 @@ export interface paths {
                             };
                             limitations?: {
                                 [key: string]: unknown;
+                            };
+                            localization?: {
+                                requested_locale: string;
+                                content_locale: string;
+                                fallback: boolean;
+                                missing_count: number;
+                                reasons: string[];
+                                artifact_locale: null | string;
+                                review_pending?: boolean;
                             };
                         } & {
                             [key: string]: unknown;
@@ -5100,6 +5158,7 @@ export interface paths {
                     country?: string;
                     /** @description Time-series bucket size. */
                     granularity?: "day" | "week" | "month";
+                    locale?: "en" | "pt-BR" | "es" | "fr" | "de" | "it";
                 };
                 header?: never;
                 path?: never;
@@ -5137,6 +5196,15 @@ export interface paths {
                             }[];
                             notes?: {
                                 [key: string]: unknown;
+                            };
+                            localization?: {
+                                requested_locale: string;
+                                content_locale: string;
+                                fallback: boolean;
+                                missing_count: number;
+                                reasons: string[];
+                                artifact_locale: null | string;
+                                review_pending?: boolean;
                             };
                         } & {
                             [key: string]: unknown;
@@ -5228,6 +5296,7 @@ export interface paths {
                     country?: string;
                     /** @description Time-series bucket size. */
                     granularity?: "day" | "week" | "month";
+                    locale?: "en" | "pt-BR" | "es" | "fr" | "de" | "it";
                 };
                 header?: never;
                 path?: never;
@@ -5260,6 +5329,15 @@ export interface paths {
                             }[];
                             notes?: {
                                 [key: string]: unknown;
+                            };
+                            localization?: {
+                                requested_locale: string;
+                                content_locale: string;
+                                fallback: boolean;
+                                missing_count: number;
+                                reasons: string[];
+                                artifact_locale: null | string;
+                                review_pending?: boolean;
                             };
                         } & {
                             [key: string]: unknown;
@@ -5349,6 +5427,7 @@ export interface paths {
                     plan?: "free" | "survivor" | "operator";
                     /** @description ISO-3166-1 alpha-2 country filter (users.country). */
                     country?: string;
+                    locale?: "en" | "pt-BR" | "es" | "fr" | "de" | "it";
                 };
                 header?: never;
                 path?: never;
@@ -5377,6 +5456,15 @@ export interface paths {
                             }[];
                             notes?: {
                                 [key: string]: unknown;
+                            };
+                            localization?: {
+                                requested_locale: string;
+                                content_locale: string;
+                                fallback: boolean;
+                                missing_count: number;
+                                reasons: string[];
+                                artifact_locale: null | string;
+                                review_pending?: boolean;
                             };
                         } & {
                             [key: string]: unknown;
@@ -5473,6 +5561,7 @@ export interface paths {
                     sort?: string;
                     limit?: number;
                     cursor?: string;
+                    locale?: "en" | "pt-BR" | "es" | "fr" | "de" | "it";
                 };
                 header?: never;
                 path?: never;
@@ -5502,6 +5591,15 @@ export interface paths {
                             };
                             notes?: {
                                 [key: string]: unknown;
+                            };
+                            localization?: {
+                                requested_locale: string;
+                                content_locale: string;
+                                fallback: boolean;
+                                missing_count: number;
+                                reasons: string[];
+                                artifact_locale: null | string;
+                                review_pending?: boolean;
                             };
                         } & {
                             [key: string]: unknown;
@@ -5594,6 +5692,7 @@ export interface paths {
                     limit?: number;
                     /** @description Minimum answers in range before an item is reported. */
                     min_sample?: number;
+                    locale?: "en" | "pt-BR" | "es" | "fr" | "de" | "it";
                 };
                 header?: never;
                 path?: never;
@@ -5626,6 +5725,15 @@ export interface paths {
                             }[];
                             notes?: {
                                 [key: string]: unknown;
+                            };
+                            localization?: {
+                                requested_locale: string;
+                                content_locale: string;
+                                fallback: boolean;
+                                missing_count: number;
+                                reasons: string[];
+                                artifact_locale: null | string;
+                                review_pending?: boolean;
                             };
                         } & {
                             [key: string]: unknown;
@@ -5720,6 +5828,7 @@ export interface paths {
                     module_id?: string;
                     limit?: number;
                     cursor?: string;
+                    locale?: "en" | "pt-BR" | "es" | "fr" | "de" | "it";
                 };
                 header?: never;
                 path?: never;
@@ -5742,6 +5851,15 @@ export interface paths {
                             }[];
                             pagination?: {
                                 [key: string]: unknown;
+                            };
+                            localization?: {
+                                requested_locale: string;
+                                content_locale: string;
+                                fallback: boolean;
+                                missing_count: number;
+                                reasons: string[];
+                                artifact_locale: null | string;
+                                review_pending?: boolean;
                             };
                         } & {
                             [key: string]: unknown;
@@ -5833,6 +5951,7 @@ export interface paths {
                     country?: string;
                     cohort?: "day" | "week" | "month";
                     limit?: number;
+                    locale?: "en" | "pt-BR" | "es" | "fr" | "de" | "it";
                 };
                 header?: never;
                 path?: never;
@@ -5859,6 +5978,15 @@ export interface paths {
                             cohorts?: {
                                 [key: string]: unknown;
                             }[];
+                            localization?: {
+                                requested_locale: string;
+                                content_locale: string;
+                                fallback: boolean;
+                                missing_count: number;
+                                reasons: string[];
+                                artifact_locale: null | string;
+                                review_pending?: boolean;
+                            };
                         } & {
                             [key: string]: unknown;
                         };
@@ -5949,6 +6077,7 @@ export interface paths {
                     country?: string;
                     /** @description Time-series bucket size. */
                     granularity?: "day" | "week" | "month";
+                    locale?: "en" | "pt-BR" | "es" | "fr" | "de" | "it";
                 };
                 header?: never;
                 path?: never;
@@ -5983,6 +6112,15 @@ export interface paths {
                             }[];
                             notes?: {
                                 [key: string]: unknown;
+                            };
+                            localization?: {
+                                requested_locale: string;
+                                content_locale: string;
+                                fallback: boolean;
+                                missing_count: number;
+                                reasons: string[];
+                                artifact_locale: null | string;
+                                review_pending?: boolean;
                             };
                         } & {
                             [key: string]: unknown;
@@ -6074,6 +6212,7 @@ export interface paths {
                     country?: string;
                     /** @description Time-series bucket size. */
                     granularity?: "day" | "week" | "month";
+                    locale?: "en" | "pt-BR" | "es" | "fr" | "de" | "it";
                 };
                 header?: never;
                 path?: never;
@@ -6105,6 +6244,15 @@ export interface paths {
                             };
                             notes?: {
                                 [key: string]: unknown;
+                            };
+                            localization?: {
+                                requested_locale: string;
+                                content_locale: string;
+                                fallback: boolean;
+                                missing_count: number;
+                                reasons: string[];
+                                artifact_locale: null | string;
+                                review_pending?: boolean;
                             };
                         } & {
                             [key: string]: unknown;
@@ -6196,6 +6344,7 @@ export interface paths {
                     country?: string;
                     /** @description Time-series bucket size. */
                     granularity?: "day" | "week" | "month";
+                    locale?: "en" | "pt-BR" | "es" | "fr" | "de" | "it";
                 };
                 header?: never;
                 path?: never;
@@ -6233,6 +6382,15 @@ export interface paths {
                             };
                             notes?: {
                                 [key: string]: unknown;
+                            };
+                            localization?: {
+                                requested_locale: string;
+                                content_locale: string;
+                                fallback: boolean;
+                                missing_count: number;
+                                reasons: string[];
+                                artifact_locale: null | string;
+                                review_pending?: boolean;
                             };
                         } & {
                             [key: string]: unknown;
@@ -6323,6 +6481,7 @@ export interface paths {
                     /** @description ISO-3166-1 alpha-2 country filter (users.country). */
                     country?: string;
                     limit?: number;
+                    locale?: "en" | "pt-BR" | "es" | "fr" | "de" | "it";
                 };
                 header?: never;
                 path?: never;
@@ -6352,6 +6511,15 @@ export interface paths {
                             }[];
                             notes?: {
                                 [key: string]: unknown;
+                            };
+                            localization?: {
+                                requested_locale: string;
+                                content_locale: string;
+                                fallback: boolean;
+                                missing_count: number;
+                                reasons: string[];
+                                artifact_locale: null | string;
+                                review_pending?: boolean;
                             };
                         } & {
                             [key: string]: unknown;

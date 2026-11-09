@@ -70,7 +70,8 @@ export default function QuizResultPage() {
   return (
     <QuizResultView
       moduleId={moduleId}
-      quizTitle={moduleQuery.data.quiz?.title ?? "Field Test"}
+      quizId={quizId}
+      quizTitle={moduleQuery.data.quiz?.title ?? uiText("learning:field_test_c7b676")}
       categorySlug={moduleQuery.data.category}
       result={result}
       onRetry={() => {

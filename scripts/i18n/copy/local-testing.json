@@ -1,0 +1,37 @@
+{
+  "subscriptions:localTestingNote": [
+    "Teste local: pagamentos desativados. A simulação de planos está disponível apenas para contas mock locais verificadas.",
+    "Pruebas locales: pagos desactivados. Los planes solo se simulan en cuentas de prueba locales verificadas.",
+    "Tests locaux : paiements désactivés. La simulation des offres est réservée aux comptes de test locaux vérifiés.",
+    "Lokaler Test: Zahlungen sind deaktiviert. Abos können nur für verifizierte lokale Testkonten simuliert werden.",
+    "Test locale: pagamenti disattivati. I piani si possono simulare solo per account di prova locali verificati."
+  ],
+  "subscriptions:localMockOnly": [
+    "A troca local de plano exige uma conta mock verificada, sem assinatura vinculada a um provedor de pagamento.",
+    "Cambiar planes localmente requiere una cuenta de prueba verificada sin suscripción de un proveedor de pagos.",
+    "Le changement local d'offre exige un compte de test vérifié sans abonnement lié à un prestataire de paiement.",
+    "Lokale Aboänderungen erfordern ein verifiziertes Testkonto ohne Abonnement bei einem Zahlungsanbieter.",
+    "Il cambio locale di piano richiede un account di prova verificato senza abbonamento collegato a un fornitore di pagamenti."
+  ],
+  "subscriptions:billingUnavailable": [
+    "A troca de planos ficará disponível quando os pagamentos forem ativados. Os preços exibidos são os previstos para o produto.",
+    "Los cambios de plan estarán disponibles cuando se activen los pagos. Los precios mostrados son los previstos para el producto.",
+    "Le changement d'offre sera disponible à l'activation des paiements. Les prix affichés sont ceux prévus pour le produit.",
+    "Aboänderungen sind verfügbar, sobald Zahlungen aktiviert werden. Die angezeigten Preise sind die vorgesehenen Produktpreise.",
+    "I cambi di piano saranno disponibili quando verranno attivati i pagamenti. I prezzi mostrati sono quelli previsti per il prodotto."
+  ],
+  "learning:paidResourceAccess": [
+    "A abertura e o download dos recursos de campo exigem Survivor ou Operator.",
+    "Abrir y descargar recursos de campo requiere Survivor u Operator.",
+    "L'ouverture et le téléchargement des ressources de terrain nécessitent Survivor ou Operator.",
+    "Zum Öffnen und Herunterladen von Feldressourcen ist Survivor oder Operator erforderlich.",
+    "Per aprire e scaricare le risorse sul campo serve Survivor oppure Operator."
+  ],
+  "errors:resourcePlanRequired": [
+    "É necessário um plano pago",
+    "Se requiere un plan de pago",
+    "Une offre payante est nécessaire",
+    "Ein kostenpflichtiges Abo ist erforderlich",
+    "È necessario un piano a pagamento"
+  ]
+}

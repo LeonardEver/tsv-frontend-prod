@@ -231,7 +231,7 @@ export default function DashboardPage() {
 
   const entitledCommunity = subscriptionQuery.data?.entitlements.community ?? false;
   const postsQuery = useQuery({
-    queryKey: queryKeys.community.posts(userId, undefined, "latest"),
+    queryKey: queryKeys.community.preview(userId),
     queryFn: () => fetchCommunityPosts({ sort: "latest", limit: 2 }),
     enabled: entitledCommunity && userId > 0,
   });

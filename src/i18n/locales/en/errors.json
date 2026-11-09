@@ -30,8 +30,6 @@
   "daily_quiz_limit_reached_c5d7b8": "Daily quiz limit reached",
   "complete_the_lesson_to_unlock_this_field_deebc6": "Complete the lesson to unlock this field test",
   "on_the_free_plan_the_lesson_must_0587ba": "On the Free plan the lesson must be completed first. Survivor and Operator can test themselves any time.",
-  "downloading_is_a_plan_feature_ad4064": "Downloading is a plan feature",
-  "viewing_is_free_downloads_are_included_in_895009": "Viewing is free — downloads are included in Survivor and Operator.",
   "community_is_a_plan_feature_98f610": "Community is a plan feature",
   "community_access_is_included_in_survivor_and_f345a2": "Community access is included in Survivor and Operator.",
   "you_re_posting_too_quickly_4a1d75": "You're posting too quickly",
@@ -53,5 +51,9 @@
   "please_try_again_83a6fd": "Please try again.",
   "something_went_wrong_8d886c": "Something went wrong",
   "the_app_hit_an_unexpected_error_34e108": "The app hit an unexpected error.",
-  "try_again_042c86": "Try again"
+  "try_again_042c86": "Try again",
+  "resourcePlanRequired": "A paid plan is required",
+  "contentTranslationUnavailable": "This content is temporarily unavailable in your language. Please try again shortly.",
+  "retryAfterSeconds": "Try again in about {{seconds}} seconds.",
+  "waitBeforeRetry": "Please wait a moment and try again."
 }

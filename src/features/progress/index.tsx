@@ -76,7 +76,7 @@ export default function ProgressPage() {
     { get label() { return uiText("progress:start_your_journey_cdb6f2"); }, icon: Mountain, done: Boolean(overview && (overview.modules_completed > 0 || activity.length > 0 || modules.some((m) => m.progress_pct > 0))), get hint() { return uiText("progress:begin_a_lesson_or_field_test_f25cbe"); } },
     { get label() { return uiText("progress:complete_3_missions_2ee2ac"); }, icon: Crosshair, done: (overview?.modules_completed ?? 0) >= 3, get hint() { return uiText("progress:value_3_missions_3ba134", { value0: uiValue(overview?.modules_completed ?? 0) }); } },
     { get label() { return uiText("progress:finish_1_region_eb8239"); }, icon: RegionMap, done: completedRegions > 0, get hint() { return uiText("progress:value_complete_732282", { value0: uiValue(completedRegions) }); } },
-    { get label() { return uiText("progress:reach_level_2_cd78d9"); }, icon: Layers, done: summary !== undefined && summary.level >= 2, hint: summary ? `Current level: ${summary.level}` : "Level unavailable" },
+    { get label() { return uiText("progress:reach_level_2_cd78d9"); }, icon: Layers, done: summary !== undefined && summary.level >= 2, hint: summary ? uiText("progress:currentLevel", { level: summary.level }) : uiText("progress:levelUnavailable") },
     { get label() { return uiText("progress:build_a_3_day_streak_c4ad05"); }, icon: Flame, done: (overview?.longest_streak ?? 0) >= 3, get hint() { return uiText("progress:personal_best_value_days_b3ddaf", { value0: uiValue(overview?.longest_streak ?? 0) }); } },
   ];
   const nextMilestone = milestones.findIndex((m) => !m.done);

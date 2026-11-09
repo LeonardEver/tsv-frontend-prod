@@ -2,7 +2,7 @@
  * Resource download entitlement states (Phase 21 §6).
  *
  * The server enforces downloads; the UI only projects the verdict:
- *   Free — Open always available; Download replaced by the upgrade CTA.
+ *   Free — both Open and Download are replaced by the upgrade CTA.
  *   Survivor/Operator — Open + Download.
  */
 import { describe, expect, it } from "vitest";
@@ -25,12 +25,12 @@ function renderResource() {
 }
 
 describe("ResourcePage — download entitlement", () => {
-  it("keeps Open but replaces Download with the upgrade CTA on Free", async () => {
+  it("blocks Open and Download and shows the upgrade CTA on Free", async () => {
     __setTestPlan("free");
     renderResource();
 
     await screen.findByRole("heading", { name: "Boiling Water Quick Reference" });
-    expect(screen.getByRole("link", { name: /^open artifact$/i })).toBeInTheDocument();
+    expect(screen.queryByRole("link", { name: /^open artifact$/i })).toBeNull();
     expect(screen.queryByRole("link", { name: /^download$/i })).toBeNull();
     expect(screen.getByRole("link", { name: /download with survivor/i })).toBeInTheDocument();
     __setTestPlan("survivor");

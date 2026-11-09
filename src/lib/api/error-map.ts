@@ -26,6 +26,8 @@ export function describeError(err: unknown): ErrorCopy {
   }
   if (err instanceof ApiError) {
     switch (err.code) {
+      case "CONTENT_TRANSLATION_UNAVAILABLE":
+        return { get title() { return uiText("errors:contentTranslationUnavailable"); }, retryable: true };
       case "NOT_FOUND":
         return { get title() { return uiText("errors:this_content_isn_t_available_0fe9d0"); }, retryable: false };
       // ── Production auth phase — credentials ──
@@ -95,9 +97,9 @@ export function describeError(err: unknown): ErrorCopy {
       case "RATE_LIMITED":
         return {
           get title() { return uiText("errors:too_many_requests_8ae8c5"); },
-          description: err.retryAfterSec
-            ? `Try again in about ${Math.ceil(err.retryAfterSec)} seconds.`
-            : "Please wait a moment and try again.",
+          get description() { return err.retryAfterSec
+            ? uiText("errors:retryAfterSeconds", { seconds: Math.ceil(err.retryAfterSec) })
+            : uiText("errors:waitBeforeRetry"); },
           retryable: true,
         };
       // ── Phase 21 — plan limits and entitlements ──
@@ -121,8 +123,8 @@ export function describeError(err: unknown): ErrorCopy {
         };
       case "RESOURCE_DOWNLOAD_REQUIRES_PLAN":
         return {
-          get title() { return uiText("errors:downloading_is_a_plan_feature_ad4064"); },
-          get description() { return uiText("errors:viewing_is_free_downloads_are_included_in_895009"); },
+          get title() { return uiText("errors:resourcePlanRequired"); },
+          get description() { return uiText("learning:paidResourceAccess"); },
           retryable: false,
         };
       case "COMMUNITY_REQUIRES_PLAN":

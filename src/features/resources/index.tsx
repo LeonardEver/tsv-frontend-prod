@@ -206,7 +206,7 @@ export default function ResourcePage() {
             </div>
           ) : resource.artifact_available ? (
             <div className="mt-6 flex flex-wrap gap-3">
-              <a
+              {canDownload && <a
                 href={`${downloadBase}?disposition=inline`}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -218,7 +218,7 @@ export default function ResourcePage() {
                 }}
                 className="glow-ember inline-flex min-h-12 items-center gap-2 rounded-lg bg-primary px-5 text-sm font-semibold tracking-wide text-primary-foreground uppercase transition-colors hover:bg-primary/90"
               >
-                <Eye className="size-4" />{" "}{uiText("learning:open_artifact_0b927a")}</a>
+                <Eye className="size-4" />{" "}{uiText("learning:open_artifact_0b927a")}</a>}
               {canDownload ? (
                 <a
                   href={`${downloadBase}?disposition=attachment`}
@@ -247,7 +247,7 @@ export default function ResourcePage() {
             <p className="mt-4 max-w-md font-mono text-[11px] leading-relaxed text-muted-foreground">
               {canDownload
                 ? uiText("learning:downloads_are_served_through_your_authenticated_session_c460e2")
-                : uiText("learning:you_can_always_view_this_resource_here_447b83")}
+                : uiText("learning:paidResourceAccess")}
             </p>
           ) : null}
 

@@ -1,56 +1,49 @@
-# Validation — 2026-11-08
+# Translation integration validation — 2026-11-08
 
-All database mutations described here used only the dedicated disposable PostgreSQL database `localhost:5434/survival_academy_i18n_test`. No development/production database migration, deployment, payment or real outbound email was performed.
+This report supersedes the initial pilot validation. The completed offline delivery is integrated with the application audit fixes. Production was not deployed or modified.
+
+## Current evidence
 
 | Check | Result |
 | --- | --- |
-| Frontend unit/component suite | 46 files, **355 tests passed** (`vitest run --maxWorkers=2`) |
-| Backend unit suite | 10 files, **125 tests passed** |
-| Backend integration suite | 20 files, **360 tests passed** |
-| Full Playwright suite, Chromium + mobile Chromium + Firefox + WebKit | **452 passed, 31 project-specific skips, 1 failure** |
-| Additional French/Italian profile expansion + lesson fallback browser checks | **8 passed** across the same four projects |
-| Frontend TypeScript + production build | Passed |
-| Backend TypeScript + build | Passed |
-| Frontend lint | Zero errors; 5 existing Fast Refresh export warnings |
-| Backend lint | Passed |
-| OpenAPI export + frontend client generation | Passed; optional localization metadata included |
-| UI catalog key/interpolation parity | All six locales; **1,786 / 1,786** keys each |
-| Static UI source inventory | Zero remaining candidates under the audit heuristic |
-| Five real instructional/metadata packs | **508 records validated per locale** against canonical source |
-| Real local import and idempotent re-import | Passed; 497 authored metadata records + 11 drafts per locale |
-| Before/after canonical/account/progress fingerprints | Identical across all checked tables |
-| Real Fastify response checks for all five imported locales | Translated metadata, unchanged canonical IDs and hidden answers, explicit unreviewed-English fallback |
-| Whitespace validation | `git diff --check` passed in frontend and backend |
+| UI catalogs | Six languages, 1,839 keys each; key/interpolation parity |
+| Full curriculum packs | Five languages × 1,438 records; strict source/hash/structure validation passed |
+| Instructional coverage per language | 80 full lessons, 80 full quizzes, 781 explanations; zero missing |
+| Internal reference preservation | Literal canonical references preserved; alias-renderer experiment removed |
+| Frontend unit/component suite | 379 passed across 54 files |
+| Backend unit suite | 148 passed across 11 files |
+| Backend integration suite | 367 passed across 21 files |
+| Browser language journeys | 14 passed across Chromium and mobile Chromium |
+| Frontend and backend TypeScript/build | Passed |
+| Lint | Backend passed; frontend zero errors and five existing Fast Refresh warnings |
+| OpenAPI and client type generation | Completed with localized response metadata |
+| Real local import | All five locales installed completely; 16 protected tables unchanged |
+| Real API content audit | Each locale: all 80 lessons, 80 quizzes and 81 resources passed |
+| PDF authorization | Free preview and download denied; English artifact metadata preserved |
+| Temporary API-test account | Removed; protected table fingerprints still match |
 
-Earlier integration failures exposed shared test fixtures leaking into another file's taxonomy assertions. The i18n fixture now cleans up its disposable rows after the test. The final complete integration run passed. Earlier unit timeouts under simultaneous multi-browser load were rerun with two Vitest workers; the final full unit suite passed without increasing application or test timeouts.
+The final frontend unit/component suite passed: **379 tests across 54 files**, including pagination and submitted-result language regressions. Backend integration tests used only `localhost:5434/survival_academy_i18n_test`. The guarded content installation and real API audit used the local development database; details are in [merged-local-validation.json](merged-local-validation.json) and [merged-api-validation.json](merged-api-validation.json).
 
-## Covered behavior
+## Covered regressions
 
-- Browser aliases and first-supported preference; country suggestion never overriding explicit account/local preference.
-- Confirmed account locale held before protected content; explicit pre-login choice synchronized once; logout and fresh bootstrap preserve the choice.
-- Germany + Portuguese, Brazil + English, United States + Spanish, with intentionally conflicting browser/local suggestions.
-- Profile selection retains unrelated unsaved text, URL and account identity, persists through refresh and applies to both experience modes.
-- Mid-quiz language change preserves current question, prior selected answer and a single attempt.
-- English fallback for missing catalogs and missing/stale/unreviewed/malformed instructional records, with no language selectors inserted into learning flows.
-- Complete UI keys/placeholders, real plurals, locale-aware large numbers and native language selector accessibility.
-- Real API headers, locale query validation, source fingerprints, historical explanation snapshots, hidden answer keys and unchanged lesson/progress IDs.
-- Six transactional email translations preserve expiry limits, token URLs and HTML escaping.
-- Authentication, subscriptions, plan gates, community, resources, rewards, lesson completion, quiz submission, mobile overlays and reduced-motion regressions run through the existing suites.
+- Incomplete, stale, invalid or missing translations produce localized unavailable states rather than mixed English instructional content.
+- Cache keys, multi-page requests and retries preserve the correct content locale.
+- Active quizzes keep selected answers, question position and one attempt while language-specific text is refreshed.
+- Submitted results refresh explanations without replacing the authoritative score or losing earned XP.
+- Lesson objectives, section navigation, quiz alternatives and feedback use the selected language.
+- Profile changes preserve unrelated unsaved fields, URL, account identity and language persistence.
+- Errors, validation, toasts and notifications follow subsequent language changes.
+- Source IDs, answer labels, correct answers, protected units/numbers, links and literal internal references remain intact.
+- Resource titles are translated independently from their parent module titles.
+- Base Camp community previews cannot corrupt the infinite-feed cache shape.
+- Paid PDF authorization and the existing local-only mock/Stripe boundary remain enforced.
 
-## Remaining WebKit download failure
+## Editorial state and environment limits
 
-`e2e/resource-journeys.spec.ts`, R-02: WebKit on this Windows environment receives the mocked PDF attachment response but does not emit Playwright's `download` event. Chromium, mobile Chromium and Firefox pass the same journey. The trace shows HTTP 200 with `Content-Type: application/pdf` and `Content-Disposition: attachment; filename="wat-boiling-quick-reference.pdf"`, followed by WebKit's `Frame load interrupted`.
+The 941 instructional records per locale are explicitly machine translated and pending human review. No reviewer identity, review timestamp or published status was fabricated. Existing human-reviewed/published records are preserved by imports. English remains the canonical curriculum and the file language of PDFs. User-authored community text, names, internal identifiers/references and diagnostic prose retain their authored wording.
 
-To isolate it, a temporary diagnostic test served a static HTML link and the same PDF headers/body, with **no Survival Academy JavaScript at all**. Chromium passed; WebKit again failed to emit the download event within five seconds. The diagnostic test was then removed. The original resource test remains enabled and its failure is reported, rather than hidden by a new skip. Native attachment-download verification on Safari/macOS remains outstanding; this work did not alter download authorization, endpoints or attachment disposition.
+The initial full browser regression run, before this integration, recorded 452 passes, 31 project-specific skips and one WebKit attachment-download failure on Windows. A minimal static-link diagnostic reproduced that missing download event without application JavaScript. The final language journeys passed on Chromium and mobile Chromium; native Safari/macOS attachment verification remains outstanding. This integration does not claim a new full four-browser run.
 
-## Editorial and rollout limits
+Existing non-blocking notices: Vite's 500 kB chunk warning, five frontend Fast Refresh export warnings, Fastify deprecation notices and a local Node 22 runtime against the backend's declared Node >=24. Both builds and the suites above completed on the available runtime.
 
-This is not a claim of complete educational localization. Per new language, 79 lesson bodies, 79 quizzes and 772 explanations remain untranslated. The full pilot lesson/quiz and its nine explanations are drafts pending appropriate human review. All downloadable artifacts remain English. The checked-in coverage reports distinguish missing, authored, draft and published states; no reviewed/published translation was fabricated. Admin API diagnostic prose and community user-authored content retain their source wording.
-
-Non-blocking build/environment notices: the frontend bundle exceeds Vite's 500 kB warning threshold; non-English catalogs are lazy chunks. The backend declares Node >=24 while the available local runtime was Node 22.14.0. Both builds and the suites above completed on that runtime. Existing Fastify deprecation warnings were emitted during tests.
-
-The implementation is prepared locally. Apply migrations and import reviewed content through the approved release process when production rollout is authorized.
-
-## Subsequent local access repair
-
-After a reported session-verification failure (`42703`, missing `users.language_confirmed_at`), the configured development connection was checked without exposing credentials: `localhost:5434/survival_academy_dev`, with 18 completed migrations. Only the pending `019_internationalization.ts` and `020_authored_metadata_translations.ts` were then applied. The account column and translation table were confirmed, and the actual `getAuthUserPayload` query succeeded. Fingerprints confirmed unchanged canonical content, existing account identifiers/preferences, sessions and learning progress. This was the local development database; production was not modified. The test results above describe the earlier disposable-database validation.
+The release artifacts and manual transactional installation command are prepared. Production migrations/import/deployment were not executed.

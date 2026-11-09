@@ -23,7 +23,7 @@ export function ResetPasswordScreen() {
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");
   const [state, setState] = useState<"idle" | "submitting" | "done">("idle");
-  const [formError, setFormError] = useState<string | null>(null);
+  const [formError, setFormError] = useState<ReturnType<typeof describeError> | null>(null);
 
   const passwordFeedback = PASSWORD_RULES.map((rule) => ({
     ...rule,
@@ -40,9 +40,9 @@ export function ResetPasswordScreen() {
       setState("done");
     } catch (err) {
       if (err instanceof ApiError && err.code === "VALIDATION_ERROR") {
-        setFormError(uiText("common:passwordPolicy"));
+        setFormError({ get title() { return uiText("common:passwordPolicy"); }, retryable: false });
       } else {
-        setFormError(describeError(err).title);
+        setFormError(describeError(err));
       }
       setState("idle");
     }
@@ -119,7 +119,7 @@ export function ResetPasswordScreen() {
           error={mismatch ? uiText("common:passwordMismatch") : undefined}
         />
 
-        {formError ? <Alert tone="danger" title={formError} /> : null}
+        {formError ? <Alert tone="danger" title={formError.title} /> : null}
 
         <Button
           type="submit"

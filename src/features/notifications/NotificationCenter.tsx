@@ -31,7 +31,7 @@ export function NotificationCenter() {
   const read = useMutation({
     mutationFn: markNotificationsRead,
     onSuccess: () => client.invalidateQueries({ queryKey: queryKeys.notifications.all(userId) }),
-    onError: () => { useUiStore.getState().pushToast({ tone: "error", title: t("navigation:notificationSaveError") }); },
+    onError: () => { useUiStore.getState().pushToast({ tone: "error", get title() { return t("navigation:notificationSaveError"); } }); },
   });
   const unread = query.data?.unread_count ?? 0;
   const items = query.data?.items ?? [];

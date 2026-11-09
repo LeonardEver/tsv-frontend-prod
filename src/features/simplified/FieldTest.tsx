@@ -52,7 +52,7 @@ export default function SimplifiedFieldTest() {
   const session = useQuizSession(gate === "open" ? quizQuery.data ?? null : null, user?.user_id ?? 0, onSubmitted);
 
   if (modQuery.isError) return <SimplifiedShell><ErrorState error={modQuery.error} onRetry={() => void modQuery.refetch()} /></SimplifiedShell>;
-  if (modQuery.isPending) return <SimplifiedShell><div role="status" aria-label={uiText("learning:loading_field_test_56f536")} className={styles.loading} /></SimplifiedShell>;
+  if (modQuery.isPending || modQuery.isPlaceholderData || quizQuery.isPlaceholderData) return <SimplifiedShell><div role="status" aria-label={uiText("learning:loading_field_test_56f536")} className={styles.loading} /></SimplifiedShell>;
 
   const mod = modQuery.data;
 
@@ -117,6 +117,7 @@ export default function SimplifiedFieldTest() {
           ) : state.name === "result" ? (
             <QuizResultView
               moduleId={moduleId}
+              quizId={quiz.quiz_id}
               quizTitle={quiz.title}
               result={state.result}
               onRetry={session.reset}

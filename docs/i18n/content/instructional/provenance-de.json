@@ -1,0 +1,8 @@
+{
+  "locale": "de",
+  "method": "llm_machine_translation",
+  "provider": "deepseek",
+  "model": "deepseek-flash",
+  "human_reviewed": false,
+  "generated_at": "2026-11-09T01:59:13.203Z"
+}

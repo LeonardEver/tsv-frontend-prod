@@ -1,18 +1,22 @@
 {
   "locale": "es",
+  "environment": "local development only",
+  "evidence": "../merged-local-validation.json",
   "domains": {
     "achievement": {
       "total": 7,
       "published": 0,
       "authored": 7,
+      "machine_translated": 0,
       "draft": 0,
       "stale": 0,
       "missing": 0
     },
     "category": {
-      "total": 9,
+      "total": 20,
       "published": 0,
-      "authored": 9,
+      "authored": 20,
+      "machine_translated": 0,
       "draft": 0,
       "stale": 0,
       "missing": 0
@@ -21,14 +25,16 @@
       "total": 781,
       "published": 0,
       "authored": 0,
-      "draft": 9,
+      "machine_translated": 781,
+      "draft": 0,
       "stale": 0,
-      "missing": 772
+      "missing": 0
     },
     "knowledge": {
       "total": 80,
       "published": 0,
       "authored": 80,
+      "machine_translated": 0,
       "draft": 0,
       "stale": 0,
       "missing": 0
@@ -37,6 +43,7 @@
       "total": 80,
       "published": 0,
       "authored": 80,
+      "machine_translated": 0,
       "draft": 0,
       "stale": 0,
       "missing": 0
@@ -45,14 +52,16 @@
       "total": 80,
       "published": 0,
       "authored": 0,
-      "draft": 1,
+      "machine_translated": 80,
+      "draft": 0,
       "stale": 0,
-      "missing": 79
+      "missing": 0
     },
     "module_description": {
       "total": 80,
       "published": 0,
       "authored": 80,
+      "machine_translated": 0,
       "draft": 0,
       "stale": 0,
       "missing": 0
@@ -61,6 +70,7 @@
       "total": 80,
       "published": 0,
       "authored": 80,
+      "machine_translated": 0,
       "draft": 0,
       "stale": 0,
       "missing": 0
@@ -69,6 +79,7 @@
       "total": 80,
       "published": 0,
       "authored": 80,
+      "machine_translated": 0,
       "draft": 0,
       "stale": 0,
       "missing": 0
@@ -77,14 +88,16 @@
       "total": 80,
       "published": 0,
       "authored": 0,
-      "draft": 1,
+      "machine_translated": 80,
+      "draft": 0,
       "stale": 0,
-      "missing": 79
+      "missing": 0
     },
     "resource": {
       "total": 81,
       "published": 0,
       "authored": 81,
+      "machine_translated": 0,
       "draft": 0,
       "stale": 0,
       "missing": 0

@@ -43,7 +43,7 @@ export function VerifyEmailScreen() {
   );
   const [email, setEmail] = useState(emailParam ?? "");
   const [resendState, setResendState] = useState<"idle" | "submitting" | "sent">("idle");
-  const [resendError, setResendError] = useState<string | null>(null);
+  const [resendError, setResendError] = useState<ReturnType<typeof describeError> | null>(null);
   const startedVerification = useRef(false);
 
   // Auto-consume the token from the email link (exactly once).
@@ -63,7 +63,7 @@ export function VerifyEmailScreen() {
       await resendVerificationEmail(email);
       setResendState("sent");
     } catch (err) {
-      setResendError(describeError(err).title);
+      setResendError(describeError(err));
       setResendState("idle");
     }
   }
@@ -123,7 +123,7 @@ export function VerifyEmailScreen() {
               {resendState === "sent" ? (
                 <Alert tone="success" title={uiText("authentication:check_your_inbox_48f7d4")}>{uiText("authentication:if_a_verification_is_pending_for_this_655450")}</Alert>
               ) : null}
-              {resendError ? <Alert tone="danger" title={resendError} /> : null}
+              {resendError ? <Alert tone="danger" title={resendError.title} /> : null}
 
               <Button type="submit" loading={resendState === "submitting"}>{uiText("authentication:resend_verification_email_0ca4ac")}</Button>
             </form>

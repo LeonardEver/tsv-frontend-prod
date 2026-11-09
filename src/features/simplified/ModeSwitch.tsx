@@ -38,7 +38,7 @@ export function ModeSwitch({ compact = false }: { compact?: boolean }) {
               : "text-muted-foreground hover:text-foreground",
           )}
         >
-          {option}
+          {option === "pro" ? "PRO" : uiText("common:modeSimplified")}
         </Button>
       ))}
     </div>

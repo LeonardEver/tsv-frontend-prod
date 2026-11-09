@@ -3,6 +3,7 @@
  * visual view models. Pure presentation mapping; no business rules.
  */
 import { communityCategoryTitle } from "@/i18n/community-category";
+import { tr } from "@/i18n";
 import type { CommunityPostsResponse, ModuleListResponse } from "@/lib/api/types";
 import type { CommunityPostModel, MissionCardModel } from "@/components/sa/types";
 import { codeFromSlug } from "@/lib/category-visuals";
@@ -73,11 +74,11 @@ export function nextMissionAction(
   moduleId: string,
 ): { to: string; ctaLabel: string } {
   if (!lessonDone) {
-    return { to: `/modules/${moduleId}/lesson`, ctaLabel: "Take lesson" };
+    return { to: `/modules/${moduleId}/lesson`, ctaLabel: tr("common:takeLesson") };
   }
   return {
     to: `/modules/${moduleId}/quiz`,
-    ctaLabel: quizAttempted ? "Retake quiz" : "Take quiz",
+    ctaLabel: quizAttempted ? tr("common:retakeQuiz") : tr("common:takeQuiz"),
   };
 }
 

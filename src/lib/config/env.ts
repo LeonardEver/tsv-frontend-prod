@@ -34,6 +34,9 @@ export const env = {
 
 /** True when embedded checkout can be mounted (key + backend config). */
 export function isBillingEnabled(): boolean {
+  // The local Vite development server never mounts Stripe or starts a checkout.
+  // This is presentation only: server guards still decide every entitlement.
+  if (import.meta.env.DEV && import.meta.env.MODE !== "test") return false;
   return typeof env.stripePublishableKey === "string" && env.stripePublishableKey.length > 0;
 }
 

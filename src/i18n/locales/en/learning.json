@@ -212,7 +212,6 @@
   "download_with_survivor_c3ca4e": "Download with Survivor",
   "this_field_resource_hasn_t_been_generated_b5140f": "This field resource hasn't been generated yet.",
   "downloads_are_served_through_your_authenticated_session_c460e2": "Downloads are served through your authenticated session — never shared outside your account.",
-  "you_can_always_view_this_resource_here_447b83": "You can always view this resource here. Offline downloads are included in Survivor and Operator.",
   "license_322960": "License",
   "redistribution_c5d1f4": "Redistribution",
   "type_3deb74": "Type",
@@ -372,5 +371,6 @@
   "subcategory_water_systems": "Water systems",
   "subcategory_water_testing": "Water testing",
   "subcategory_weather_protection": "Weather protection",
-  "subcategory_wound_care": "Wound care"
+  "subcategory_wound_care": "Wound care",
+  "paidResourceAccess": "Opening and downloading field resources requires Survivor or Operator."
 }

@@ -47,7 +47,7 @@ export function MobileExpedition({ modules, categories, current, action, streak,
                   {active && <span className={styles.currentLabel}>{uiText("dashboard:your_next_mission_fae696")}</span>}
                   <h2><Link to={active && action ? action.to : `/modules/${row.module_id}/lesson`} state={active ? { startQuiz: true } : undefined}>{firstVisible + index + 1}. {row.title}</Link></h2>
                   <p>{row.description || (row.completed ? uiText("dashboard:knowledge_earned_ready_for_the_field_c3b042") : uiText("dashboard:build_your_skills_one_step_at_a_0f4e18"))}</p>
-                  {active && action ? <Link to={action.to} state={{ startQuiz: true }} className={styles.continue}>{action.ctaLabel === "Take lesson" ? uiText("dashboard:start_mission_26b70a") : uiText("dashboard:continue_mission_498583")}<ArrowRight size={18} /></Link> : null}
+                  {active && action ? <Link to={action.to} state={{ startQuiz: true }} className={styles.continue}>{action.to.endsWith("/lesson") ? uiText("dashboard:start_mission_26b70a") : uiText("dashboard:continue_mission_498583")}<ArrowRight size={18} /></Link> : null}
                   {row.completed && <span className={styles.done}><Check size={12} />{" "}{uiText("dashboard:completed_1798b3")}{" "}<RotateCcw size={11} /></span>}
                 </div>
               </li>

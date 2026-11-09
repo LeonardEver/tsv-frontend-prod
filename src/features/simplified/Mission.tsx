@@ -75,7 +75,7 @@ export default function SimplifiedMission() {
 
   if (moduleQuery.isError) return <SimplifiedShell><ErrorState error={moduleQuery.error} onRetry={() => void moduleQuery.refetch()} /></SimplifiedShell>;
   if (lessonQuery.isError) return <SimplifiedShell><ErrorState error={lessonQuery.error} onRetry={() => void lessonQuery.refetch()} /></SimplifiedShell>;
-  if (moduleQuery.isPending || (lessonId && lessonQuery.isPending)) return <SimplifiedShell><div className={styles.loading} role="status" aria-label={uiText("learning:loading_mission_e01030")} /></SimplifiedShell>;
+  if (moduleQuery.isPending || moduleQuery.isPlaceholderData || lessonQuery.isPlaceholderData || (lessonId && lessonQuery.isPending)) return <SimplifiedShell><div className={styles.loading} role="status" aria-label={uiText("learning:loading_mission_e01030")} /></SimplifiedShell>;
   const mod = moduleQuery.data;
   const lesson = lessonQuery.data;
   if (!lesson) {

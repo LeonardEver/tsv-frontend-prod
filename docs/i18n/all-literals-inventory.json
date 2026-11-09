@@ -1,0 +1,1186 @@
+{
+  "candidates": [
+    {
+      "file": "src/components/layout/AppShell.tsx",
+      "line": 242,
+      "kind": "CallExpression",
+      "text": "topo grain relative min-h-dvh"
+    },
+    {
+      "file": "src/components/layout/BrandMark.tsx",
+      "line": 13,
+      "kind": "JsxAttribute",
+      "text": "Survival Academy"
+    },
+    {
+      "file": "src/components/sa/cards.tsx",
+      "line": 33,
+      "kind": "CallExpression",
+      "text": "group panel relative block overflow-hidden transition-transform duration-200 hover:-translate-y-0.5"
+    },
+    {
+      "file": "src/components/sa/cards.tsx",
+      "line": 34,
+      "kind": "PropertyAssignment",
+      "text": "`color-mix(in oklab, ${color} var(--region-border-strength, 22%), var(--border))`"
+    },
+    {
+      "file": "src/components/sa/cards.tsx",
+      "line": 85,
+      "kind": "CallExpression",
+      "text": "relative overflow-hidden"
+    },
+    {
+      "file": "src/components/sa/cards.tsx",
+      "line": 134,
+      "kind": "BindingElement",
+      "text": "Enter mission"
+    },
+    {
+      "file": "src/components/sa/cards.tsx",
+      "line": 147,
+      "kind": "CallExpression",
+      "text": "panel relative overflow-hidden"
+    },
+    {
+      "file": "src/components/sa/cards.tsx",
+      "line": 148,
+      "kind": "PropertyAssignment",
+      "text": "`var(--mission-hero-border, color-mix(in oklab, ${color} 26%, var(--border)))`"
+    },
+    {
+      "file": "src/components/sa/cards.tsx",
+      "line": 208,
+      "kind": "PropertyAssignment",
+      "text": "`color-mix(in oklab, ${color} 16%, var(--surface-2))`"
+    },
+    {
+      "file": "src/components/sa/cards.tsx",
+      "line": 272,
+      "kind": "ConditionalExpression",
+      "text": "color-mix(in oklab, var(--ember) 16%, transparent)"
+    },
+    {
+      "file": "src/components/sa/cards.tsx",
+      "line": 274,
+      "kind": "ConditionalExpression",
+      "text": "0 0 26px -8px var(--ember)"
+    },
+    {
+      "file": "src/components/sa/primitives.tsx",
+      "line": 114,
+      "kind": "PropertyAssignment",
+      "text": "stroke-dashoffset 600ms cubic-bezier(.22,1,.36,1)"
+    },
+    {
+      "file": "src/components/sa/primitives.tsx",
+      "line": 164,
+      "kind": "PropertyAssignment",
+      "text": "`color-mix(in oklab, ${color} 40%, transparent)`"
+    },
+    {
+      "file": "src/components/sa/primitives.tsx",
+      "line": 165,
+      "kind": "PropertyAssignment",
+      "text": "`color-mix(in oklab, ${color} 12%, transparent)`"
+    },
+    {
+      "file": "src/components/sa/primitives.tsx",
+      "line": 205,
+      "kind": "LiteralType",
+      "text": "FIELD NOTE"
+    },
+    {
+      "file": "src/components/sa/primitives.tsx",
+      "line": 205,
+      "kind": "LiteralType",
+      "text": "KNOWLEDGE CHECK"
+    },
+    {
+      "file": "src/components/sa/primitives.tsx",
+      "line": 210,
+      "kind": "PropertyAssignment",
+      "text": "FIELD NOTE"
+    },
+    {
+      "file": "src/components/sa/primitives.tsx",
+      "line": 216,
+      "kind": "PropertyAssignment",
+      "text": "KNOWLEDGE CHECK"
+    },
+    {
+      "file": "src/components/sa/primitives.tsx",
+      "line": 256,
+      "kind": "BindingElement",
+      "text": "Explore Survivor"
+    },
+    {
+      "file": "src/components/sa/primitives.tsx",
+      "line": 269,
+      "kind": "PropertyAssignment",
+      "text": "radial-gradient(600px 320px at 50% 0%, color-mix(in oklab, var(--ember) 14%, transparent), transparent 70%)"
+    },
+    {
+      "file": "src/components/sa/primitives.tsx",
+      "line": 315,
+      "kind": "PropertyAssignment",
+      "text": "`color-mix(in oklab, ${color ?? \"var(--ember)\"} 18%, var(--surface-2))`"
+    },
+    {
+      "file": "src/components/shared/MarkdownContent.tsx",
+      "line": 32,
+      "kind": "JsxAttribute",
+      "text": "noopener noreferrer"
+    },
+    {
+      "file": "src/components/shared/remark-callouts.ts",
+      "line": 21,
+      "kind": "PropertyAssignment",
+      "text": "FIELD NOTE"
+    },
+    {
+      "file": "src/components/shared/remark-callouts.ts",
+      "line": 28,
+      "kind": "PropertyAssignment",
+      "text": "KNOWLEDGE CHECK"
+    },
+    {
+      "file": "src/components/ui/Button.tsx",
+      "line": 31,
+      "kind": "VariableDeclaration",
+      "text": "transition-all active:translate-y-px active:scale-[0.99]"
+    },
+    {
+      "file": "src/components/ui/Button.tsx",
+      "line": 62,
+      "kind": "CallExpression",
+      "text": "focus-visible:outline-2 focus-visible:outline-accent-ember focus-visible:outline-offset-2"
+    },
+    {
+      "file": "src/components/ui/Button.tsx",
+      "line": 63,
+      "kind": "CallExpression",
+      "text": "disabled:pointer-events-none disabled:opacity-50"
+    },
+    {
+      "file": "src/components/ui/Button.tsx",
+      "line": 83,
+      "kind": "CallExpression",
+      "text": "focus-visible:outline-2 focus-visible:outline-accent-ember focus-visible:outline-offset-2"
+    },
+    {
+      "file": "src/components/ui/Button.tsx",
+      "line": 84,
+      "kind": "CallExpression",
+      "text": "disabled:pointer-events-none disabled:opacity-50"
+    },
+    {
+      "file": "src/components/ui/CountrySelect.tsx",
+      "line": 25,
+      "kind": "BindingElement",
+      "text": "Select a country or region"
+    },
+    {
+      "file": "src/components/ui/CountrySelect.tsx",
+      "line": 47,
+      "kind": "CallExpression",
+      "text": "disabled:cursor-not-allowed disabled:opacity-50"
+    },
+    {
+      "file": "src/components/ui/Dialog.tsx",
+      "line": 39,
+      "kind": "CallExpression",
+      "text": "fixed top-1/2 left-1/2 z-[var(--z-modal)] -translate-x-1/2 -translate-y-1/2"
+    },
+    {
+      "file": "src/components/ui/Dialog.tsx",
+      "line": 42,
+      "kind": "CallExpression",
+      "text": "overflow-y-auto overscroll-contain"
+    },
+    {
+      "file": "src/components/ui/Input.tsx",
+      "line": 41,
+      "kind": "CallExpression",
+      "text": "focus-visible:outline-2 focus-visible:outline-accent-ember focus-visible:outline-offset-0"
+    },
+    {
+      "file": "src/components/ui/Input.tsx",
+      "line": 42,
+      "kind": "CallExpression",
+      "text": "disabled:cursor-not-allowed disabled:opacity-50"
+    },
+    {
+      "file": "src/features/admin-analytics/charts.tsx",
+      "line": 42,
+      "kind": "CallExpression",
+      "text": "panel mb-8 p-5"
+    },
+    {
+      "file": "src/features/admin-analytics/dictionary.ts",
+      "line": 563,
+      "kind": "BinaryExpression",
+      "text": "\" is not an interpolated string"
+    },
+    {
+      "file": "src/features/admin-analytics/dictionary.ts",
+      "line": 566,
+      "kind": "BinaryExpression",
+      "text": "\" is missing the \"{{"
+    },
+    {
+      "file": "src/features/admin-analytics/tabs/LearningTab.tsx",
+      "line": 111,
+      "kind": "PropertyAssignment",
+      "text": "0 0 12px -2px var(--ember)"
+    },
+    {
+      "file": "src/features/auth/auth-context.ts",
+      "line": 32,
+      "kind": "NewExpression",
+      "text": "useAuth must be used within AuthProvider"
+    },
+    {
+      "file": "src/features/auth/use-auth.tsx",
+      "line": 81,
+      "kind": "NewExpression",
+      "text": "Authentication request failed"
+    },
+    {
+      "file": "src/features/categories/CategoryDetail.tsx",
+      "line": 96,
+      "kind": "PropertyAssignment",
+      "text": "`color-mix(in oklab, ${color} 26%, var(--border))`"
+    },
+    {
+      "file": "src/features/dashboard/adapters.ts",
+      "line": 76,
+      "kind": "PropertyAssignment",
+      "text": "Take lesson"
+    },
+    {
+      "file": "src/features/dashboard/adapters.ts",
+      "line": 80,
+      "kind": "ConditionalExpression",
+      "text": "Retake quiz"
+    },
+    {
+      "file": "src/features/dashboard/adapters.ts",
+      "line": 80,
+      "kind": "ConditionalExpression",
+      "text": "Take quiz"
+    },
+    {
+      "file": "src/features/dashboard/index.tsx",
+      "line": 92,
+      "kind": "JsxExpression",
+      "text": "`font-display leading-none ${styles.usageValue}`"
+    },
+    {
+      "file": "src/features/dashboard/index.tsx",
+      "line": 97,
+      "kind": "JsxExpression",
+      "text": "`font-display leading-none ${styles.usageValue}`"
+    },
+    {
+      "file": "src/features/dashboard/index.tsx",
+      "line": 152,
+      "kind": "PropertyAssignment",
+      "text": "`color-mix(in oklab, ${color} 26%, var(--border))`"
+    },
+    {
+      "file": "src/features/dashboard/index.tsx",
+      "line": 475,
+      "kind": "PropertyAssignment",
+      "text": "`color-mix(in oklab, ${color} 14%, transparent)`"
+    },
+    {
+      "file": "src/features/dashboard/MobileExpedition.tsx",
+      "line": 50,
+      "kind": "BinaryExpression",
+      "text": "Take lesson"
+    },
+    {
+      "file": "src/features/gamification/index.tsx",
+      "line": 29,
+      "kind": "PropertyAssignment",
+      "text": "Lesson completed"
+    },
+    {
+      "file": "src/features/gamification/index.tsx",
+      "line": 29,
+      "kind": "PropertyAssignment",
+      "text": "Quiz completed"
+    },
+    {
+      "file": "src/features/gamification/index.tsx",
+      "line": 30,
+      "kind": "PropertyAssignment",
+      "text": "Quiz passed"
+    },
+    {
+      "file": "src/features/gamification/index.tsx",
+      "line": 30,
+      "kind": "PropertyAssignment",
+      "text": "Module completed"
+    },
+    {
+      "file": "src/features/gamification/index.tsx",
+      "line": 32,
+      "kind": "PropertyAssignment",
+      "text": "Streak milestone"
+    },
+    {
+      "file": "src/features/legal/TermsScreen.tsx",
+      "line": 15,
+      "kind": "ArrayLiteralExpression",
+      "text": "1. The service"
+    },
+    {
+      "file": "src/features/legal/TermsScreen.tsx",
+      "line": 17,
+      "kind": "ArrayLiteralExpression",
+      "text": "3. Content and learning materials"
+    },
+    {
+      "file": "src/features/legal/TermsScreen.tsx",
+      "line": 18,
+      "kind": "ArrayLiteralExpression",
+      "text": "4. Acceptable use"
+    },
+    {
+      "file": "src/features/legal/TermsScreen.tsx",
+      "line": 19,
+      "kind": "ArrayLiteralExpression",
+      "text": "5. Subscriptions and payments"
+    },
+    {
+      "file": "src/features/legal/TermsScreen.tsx",
+      "line": 20,
+      "kind": "ArrayLiteralExpression",
+      "text": "6. Intellectual property"
+    },
+    {
+      "file": "src/features/legal/TermsScreen.tsx",
+      "line": 22,
+      "kind": "ArrayLiteralExpression",
+      "text": "8. Limitation of liability"
+    },
+    {
+      "file": "src/features/legal/TermsScreen.tsx",
+      "line": 23,
+      "kind": "ArrayLiteralExpression",
+      "text": "9. Changes to the service"
+    },
+    {
+      "file": "src/features/legal/TermsScreen.tsx",
+      "line": 24,
+      "kind": "ArrayLiteralExpression",
+      "text": "10. Changes to these terms"
+    },
+    {
+      "file": "src/features/legal/TermsScreen.tsx",
+      "line": 26,
+      "kind": "ArrayLiteralExpression",
+      "text": "12. Governing law"
+    },
+    {
+      "file": "src/features/legal/TermsScreen.tsx",
+      "line": 30,
+      "kind": "PropertyAssignment",
+      "text": "1. The service"
+    },
+    {
+      "file": "src/features/legal/TermsScreen.tsx",
+      "line": 32,
+      "kind": "PropertyAssignment",
+      "text": "3. Content and learning materials"
+    },
+    {
+      "file": "src/features/legal/TermsScreen.tsx",
+      "line": 33,
+      "kind": "PropertyAssignment",
+      "text": "4. Acceptable use"
+    },
+    {
+      "file": "src/features/legal/TermsScreen.tsx",
+      "line": 34,
+      "kind": "PropertyAssignment",
+      "text": "5. Subscriptions and payments"
+    },
+    {
+      "file": "src/features/legal/TermsScreen.tsx",
+      "line": 35,
+      "kind": "PropertyAssignment",
+      "text": "6. Intellectual property"
+    },
+    {
+      "file": "src/features/legal/TermsScreen.tsx",
+      "line": 37,
+      "kind": "PropertyAssignment",
+      "text": "8. Limitation of liability"
+    },
+    {
+      "file": "src/features/legal/TermsScreen.tsx",
+      "line": 38,
+      "kind": "PropertyAssignment",
+      "text": "9. Changes to the service"
+    },
+    {
+      "file": "src/features/legal/TermsScreen.tsx",
+      "line": 39,
+      "kind": "PropertyAssignment",
+      "text": "10. Changes to these terms"
+    },
+    {
+      "file": "src/features/legal/TermsScreen.tsx",
+      "line": 41,
+      "kind": "PropertyAssignment",
+      "text": "12. Governing law"
+    },
+    {
+      "file": "src/features/legal/TermsScreen.tsx",
+      "line": 83,
+      "kind": "PropertyAssignment",
+      "text": "1. The service"
+    },
+    {
+      "file": "src/features/legal/TermsScreen.tsx",
+      "line": 87,
+      "kind": "PropertyAssignment",
+      "text": "3. Content and learning materials"
+    },
+    {
+      "file": "src/features/legal/TermsScreen.tsx",
+      "line": 89,
+      "kind": "PropertyAssignment",
+      "text": "4. Acceptable use"
+    },
+    {
+      "file": "src/features/legal/TermsScreen.tsx",
+      "line": 91,
+      "kind": "PropertyAssignment",
+      "text": "5. Subscriptions and payments"
+    },
+    {
+      "file": "src/features/legal/TermsScreen.tsx",
+      "line": 93,
+      "kind": "PropertyAssignment",
+      "text": "6. Intellectual property"
+    },
+    {
+      "file": "src/features/legal/TermsScreen.tsx",
+      "line": 97,
+      "kind": "PropertyAssignment",
+      "text": "8. Limitation of liability"
+    },
+    {
+      "file": "src/features/legal/TermsScreen.tsx",
+      "line": 99,
+      "kind": "PropertyAssignment",
+      "text": "9. Changes to the service"
+    },
+    {
+      "file": "src/features/legal/TermsScreen.tsx",
+      "line": 101,
+      "kind": "PropertyAssignment",
+      "text": "10. Changes to these terms"
+    },
+    {
+      "file": "src/features/legal/TermsScreen.tsx",
+      "line": 105,
+      "kind": "PropertyAssignment",
+      "text": "12. Governing law"
+    },
+    {
+      "file": "src/features/modules/ModuleDetail.tsx",
+      "line": 151,
+      "kind": "PropertyAssignment",
+      "text": "`color-mix(in oklab, ${color} 24%, var(--border))`"
+    },
+    {
+      "file": "src/features/modules/ModuleDetail.tsx",
+      "line": 155,
+      "kind": "PropertyAssignment",
+      "text": "`color-mix(in oklab, ${color} 16%, transparent)`"
+    },
+    {
+      "file": "src/features/modules/ModuleDetail.tsx",
+      "line": 222,
+      "kind": "PropertyAssignment",
+      "text": "`color-mix(in oklab, ${color} 16%, var(--surface-2))`"
+    },
+    {
+      "file": "src/features/plans/index.tsx",
+      "line": 60,
+      "kind": "PropertyAssignment",
+      "text": "Your daily training ration. One lesson and one field test a day, with every resource available to view."
+    },
+    {
+      "file": "src/features/plans/index.tsx",
+      "line": 61,
+      "kind": "PropertyAssignment",
+      "text": "For the committed prepper — 10 lessons and 10 quizzes a day, full Community access and downloadable field resources."
+    },
+    {
+      "file": "src/features/plans/index.tsx",
+      "line": 62,
+      "kind": "PropertyAssignment",
+      "text": "Unlimited training for daily operators and instructors. Everything in Survivor, without daily limits."
+    },
+    {
+      "file": "src/features/plans/index.tsx",
+      "line": 72,
+      "kind": "ConditionalExpression",
+      "text": "Unlimited lessons per day"
+    },
+    {
+      "file": "src/features/plans/index.tsx",
+      "line": 73,
+      "kind": "ConditionalExpression",
+      "text": "`${e.daily_lessons} ${e.daily_lessons === 1 ? \"lesson\" : \"lessons\"} per day`"
+    },
+    {
+      "file": "src/features/plans/index.tsx",
+      "line": 79,
+      "kind": "ConditionalExpression",
+      "text": "Unlimited field tests per day"
+    },
+    {
+      "file": "src/features/plans/index.tsx",
+      "line": 80,
+      "kind": "ConditionalExpression",
+      "text": "`${e.daily_quizzes} ${e.daily_quizzes === 1 ? \"field test\" : \"field tests\"} per day`"
+    },
+    {
+      "file": "src/features/plans/index.tsx",
+      "line": 80,
+      "kind": "ConditionalExpression",
+      "text": "field test"
+    },
+    {
+      "file": "src/features/plans/index.tsx",
+      "line": 80,
+      "kind": "ConditionalExpression",
+      "text": "field tests"
+    },
+    {
+      "file": "src/features/plans/index.tsx",
+      "line": 398,
+      "kind": "PropertyAssignment",
+      "text": "color-mix(in oklab, var(--ember) 40%, var(--border))"
+    },
+    {
+      "file": "src/features/progress/index.tsx",
+      "line": 79,
+      "kind": "ConditionalExpression",
+      "text": "`Current level: ${summary.level}`"
+    },
+    {
+      "file": "src/features/progress/index.tsx",
+      "line": 79,
+      "kind": "ConditionalExpression",
+      "text": "Level unavailable"
+    },
+    {
+      "file": "src/features/quiz/index.tsx",
+      "line": 350,
+      "kind": "PropertyAssignment",
+      "text": "`color-mix(in oklab, ${color} 16%, transparent)`"
+    },
+    {
+      "file": "src/features/quiz/index.tsx",
+      "line": 432,
+      "kind": "PropertyAssignment",
+      "text": "radial-gradient(600px 320px at 50% 0%, color-mix(in oklab, var(--ember) 14%, transparent), transparent 70%)"
+    },
+    {
+      "file": "src/features/quiz/QuizResult.tsx",
+      "line": 73,
+      "kind": "BinaryExpression",
+      "text": "Field Test"
+    },
+    {
+      "file": "src/features/quiz/QuizResultView.tsx",
+      "line": 70,
+      "kind": "PropertyAssignment",
+      "text": "radial-gradient(600px 300px at 50% 0%, color-mix(in oklab, var(--ember) 18%, transparent), transparent 70%)"
+    },
+    {
+      "file": "src/features/quiz/useQuizSession.ts",
+      "line": 337,
+      "kind": "ConditionalExpression",
+      "text": "Request failed"
+    },
+    {
+      "file": "src/features/resources/index.tsx",
+      "line": 199,
+      "kind": "JsxAttribute",
+      "text": "noopener noreferrer"
+    },
+    {
+      "file": "src/features/resources/index.tsx",
+      "line": 212,
+      "kind": "JsxAttribute",
+      "text": "noopener noreferrer"
+    },
+    {
+      "file": "src/features/simplified/Home.tsx",
+      "line": 58,
+      "kind": "ConditionalExpression",
+      "text": "Continue mission"
+    },
+    {
+      "file": "src/features/simplified/Home.tsx",
+      "line": 58,
+      "kind": "ConditionalExpression",
+      "text": "Start mission"
+    },
+    {
+      "file": "src/features/simplified/Home.tsx",
+      "line": 58,
+      "kind": "ConditionalExpression",
+      "text": "Review progress"
+    },
+    {
+      "file": "src/lib/api/client.ts",
+      "line": 114,
+      "kind": "ConditionalExpression",
+      "text": "Network request failed"
+    },
+    {
+      "file": "src/lib/api/client.ts",
+      "line": 146,
+      "kind": "NewExpression",
+      "text": "Request failed"
+    },
+    {
+      "file": "src/lib/api/client.ts",
+      "line": 167,
+      "kind": "NewExpression",
+      "text": "Request failed"
+    },
+    {
+      "file": "src/lib/api/client.ts",
+      "line": 193,
+      "kind": "NewExpression",
+      "text": "Invalid JSON response"
+    },
+    {
+      "file": "src/lib/api/error-map.ts",
+      "line": 99,
+      "kind": "ConditionalExpression",
+      "text": "`Try again in about ${Math.ceil(err.retryAfterSec)} seconds.`"
+    },
+    {
+      "file": "src/lib/api/error-map.ts",
+      "line": 100,
+      "kind": "ConditionalExpression",
+      "text": "Please wait a moment and try again."
+    },
+    {
+      "file": "src/lib/api/errors.ts",
+      "line": 67,
+      "kind": "CallExpression",
+      "text": "`Request timed out after ${timeoutMs}ms`"
+    },
+    {
+      "file": "src/lib/api/errors.ts",
+      "line": 133,
+      "kind": "BinaryExpression",
+      "text": "`Request failed with status ${status}`"
+    },
+    {
+      "file": "src/lib/config/env.ts",
+      "line": 48,
+      "kind": "CallExpression",
+      "text": "`[config] VITE_API_BASE_URL \"${env.apiBaseUrl}\" is not a valid origin.`"
+    },
+    {
+      "file": "src/lib/format/format.ts",
+      "line": 35,
+      "kind": "ReturnStatement",
+      "text": "`${new Intl.NumberFormat(formattingLocale(), { minimumFractionDigits: digits, maximumFractionDigits: digits }).format(value)}%`"
+    },
+    {
+      "file": "src/lib/format/format.ts",
+      "line": 139,
+      "kind": "ReturnStatement",
+      "text": "`${new Intl.NumberFormat(formattingLocale()).format(amount)} ${code}`"
+    },
+    {
+      "file": "src/lib/geo/countries.ts",
+      "line": 15,
+      "kind": "PropertyAssignment",
+      "text": "Åland Islands"
+    },
+    {
+      "file": "src/lib/geo/countries.ts",
+      "line": 18,
+      "kind": "PropertyAssignment",
+      "text": "American Samoa"
+    },
+    {
+      "file": "src/lib/geo/countries.ts",
+      "line": 23,
+      "kind": "PropertyAssignment",
+      "text": "Antigua and Barbuda"
+    },
+    {
+      "file": "src/lib/geo/countries.ts",
+      "line": 41,
+      "kind": "PropertyAssignment",
+      "text": "Bonaire, Sint Eustatius and Saba"
+    },
+    {
+      "file": "src/lib/geo/countries.ts",
+      "line": 42,
+      "kind": "PropertyAssignment",
+      "text": "Bosnia and Herzegovina"
+    },
+    {
+      "file": "src/lib/geo/countries.ts",
+      "line": 44,
+      "kind": "PropertyAssignment",
+      "text": "Bouvet Island"
+    },
+    {
+      "file": "src/lib/geo/countries.ts",
+      "line": 46,
+      "kind": "PropertyAssignment",
+      "text": "British Indian Ocean Territory"
+    },
+    {
+      "file": "src/lib/geo/countries.ts",
+      "line": 47,
+      "kind": "PropertyAssignment",
+      "text": "Brunei Darussalam"
+    },
+    {
+      "file": "src/lib/geo/countries.ts",
+      "line": 49,
+      "kind": "PropertyAssignment",
+      "text": "Burkina Faso"
+    },
+    {
+      "file": "src/lib/geo/countries.ts",
+      "line": 51,
+      "kind": "PropertyAssignment",
+      "text": "Cabo Verde"
+    },
+    {
+      "file": "src/lib/geo/countries.ts",
+      "line": 55,
+      "kind": "PropertyAssignment",
+      "text": "Cayman Islands"
+    },
+    {
+      "file": "src/lib/geo/countries.ts",
+      "line": 56,
+      "kind": "PropertyAssignment",
+      "text": "Central African Republic"
+    },
+    {
+      "file": "src/lib/geo/countries.ts",
+      "line": 60,
+      "kind": "PropertyAssignment",
+      "text": "Christmas Island"
+    },
+    {
+      "file": "src/lib/geo/countries.ts",
+      "line": 65,
+      "kind": "PropertyAssignment",
+      "text": "Congo (Democratic Republic of the)"
+    },
+    {
+      "file": "src/lib/geo/countries.ts",
+      "line": 66,
+      "kind": "PropertyAssignment",
+      "text": "Cook Islands"
+    },
+    {
+      "file": "src/lib/geo/countries.ts",
+      "line": 67,
+      "kind": "PropertyAssignment",
+      "text": "Costa Rica"
+    },
+    {
+      "file": "src/lib/geo/countries.ts",
+      "line": 77,
+      "kind": "PropertyAssignment",
+      "text": "Dominican Republic"
+    },
+    {
+      "file": "src/lib/geo/countries.ts",
+      "line": 80,
+      "kind": "PropertyAssignment",
+      "text": "El Salvador"
+    },
+    {
+      "file": "src/lib/geo/countries.ts",
+      "line": 81,
+      "kind": "PropertyAssignment",
+      "text": "Equatorial Guinea"
+    },
+    {
+      "file": "src/lib/geo/countries.ts",
+      "line": 86,
+      "kind": "PropertyAssignment",
+      "text": "Falkland Islands (Malvinas)"
+    },
+    {
+      "file": "src/lib/geo/countries.ts",
+      "line": 87,
+      "kind": "PropertyAssignment",
+      "text": "Faroe Islands"
+    },
+    {
+      "file": "src/lib/geo/countries.ts",
+      "line": 91,
+      "kind": "PropertyAssignment",
+      "text": "French Guiana"
+    },
+    {
+      "file": "src/lib/geo/countries.ts",
+      "line": 92,
+      "kind": "PropertyAssignment",
+      "text": "French Polynesia"
+    },
+    {
+      "file": "src/lib/geo/countries.ts",
+      "line": 93,
+      "kind": "PropertyAssignment",
+      "text": "French Southern Territories"
+    },
+    {
+      "file": "src/lib/geo/countries.ts",
+      "line": 111,
+      "kind": "PropertyAssignment",
+      "text": "Heard Island and McDonald Islands"
+    },
+    {
+      "file": "src/lib/geo/countries.ts",
+      "line": 112,
+      "kind": "PropertyAssignment",
+      "text": "Holy See"
+    },
+    {
+      "file": "src/lib/geo/countries.ts",
+      "line": 114,
+      "kind": "PropertyAssignment",
+      "text": "Hong Kong"
+    },
+    {
+      "file": "src/lib/geo/countries.ts",
+      "line": 119,
+      "kind": "PropertyAssignment",
+      "text": "Iran (Islamic Republic of)"
+    },
+    {
+      "file": "src/lib/geo/countries.ts",
+      "line": 122,
+      "kind": "PropertyAssignment",
+      "text": "Isle of Man"
+    },
+    {
+      "file": "src/lib/geo/countries.ts",
+      "line": 132,
+      "kind": "PropertyAssignment",
+      "text": "Korea (Democratic People's Republic of)"
+    },
+    {
+      "file": "src/lib/geo/countries.ts",
+      "line": 133,
+      "kind": "PropertyAssignment",
+      "text": "Korea (Republic of)"
+    },
+    {
+      "file": "src/lib/geo/countries.ts",
+      "line": 136,
+      "kind": "PropertyAssignment",
+      "text": "Lao People's Democratic Republic"
+    },
+    {
+      "file": "src/lib/geo/countries.ts",
+      "line": 152,
+      "kind": "PropertyAssignment",
+      "text": "Marshall Islands"
+    },
+    {
+      "file": "src/lib/geo/countries.ts",
+      "line": 158,
+      "kind": "PropertyAssignment",
+      "text": "Micronesia (Federated States of)"
+    },
+    {
+      "file": "src/lib/geo/countries.ts",
+      "line": 159,
+      "kind": "PropertyAssignment",
+      "text": "Moldova (Republic of)"
+    },
+    {
+      "file": "src/lib/geo/countries.ts",
+      "line": 171,
+      "kind": "PropertyAssignment",
+      "text": "New Caledonia"
+    },
+    {
+      "file": "src/lib/geo/countries.ts",
+      "line": 172,
+      "kind": "PropertyAssignment",
+      "text": "New Zealand"
+    },
+    {
+      "file": "src/lib/geo/countries.ts",
+      "line": 177,
+      "kind": "PropertyAssignment",
+      "text": "Norfolk Island"
+    },
+    {
+      "file": "src/lib/geo/countries.ts",
+      "line": 178,
+      "kind": "PropertyAssignment",
+      "text": "North Macedonia"
+    },
+    {
+      "file": "src/lib/geo/countries.ts",
+      "line": 179,
+      "kind": "PropertyAssignment",
+      "text": "Northern Mariana Islands"
+    },
+    {
+      "file": "src/lib/geo/countries.ts",
+      "line": 184,
+      "kind": "PropertyAssignment",
+      "text": "Palestine, State of"
+    },
+    {
+      "file": "src/lib/geo/countries.ts",
+      "line": 186,
+      "kind": "PropertyAssignment",
+      "text": "Papua New Guinea"
+    },
+    {
+      "file": "src/lib/geo/countries.ts",
+      "line": 193,
+      "kind": "PropertyAssignment",
+      "text": "Puerto Rico"
+    },
+    {
+      "file": "src/lib/geo/countries.ts",
+      "line": 197,
+      "kind": "PropertyAssignment",
+      "text": "Russian Federation"
+    },
+    {
+      "file": "src/lib/geo/countries.ts",
+      "line": 199,
+      "kind": "PropertyAssignment",
+      "text": "Saint Barthélemy"
+    },
+    {
+      "file": "src/lib/geo/countries.ts",
+      "line": 200,
+      "kind": "PropertyAssignment",
+      "text": "Saint Helena, Ascension and Tristan da Cunha"
+    },
+    {
+      "file": "src/lib/geo/countries.ts",
+      "line": 201,
+      "kind": "PropertyAssignment",
+      "text": "Saint Kitts and Nevis"
+    },
+    {
+      "file": "src/lib/geo/countries.ts",
+      "line": 202,
+      "kind": "PropertyAssignment",
+      "text": "Saint Lucia"
+    },
+    {
+      "file": "src/lib/geo/countries.ts",
+      "line": 203,
+      "kind": "PropertyAssignment",
+      "text": "Saint Martin (French part)"
+    },
+    {
+      "file": "src/lib/geo/countries.ts",
+      "line": 204,
+      "kind": "PropertyAssignment",
+      "text": "Saint Pierre and Miquelon"
+    },
+    {
+      "file": "src/lib/geo/countries.ts",
+      "line": 205,
+      "kind": "PropertyAssignment",
+      "text": "Saint Vincent and the Grenadines"
+    },
+    {
+      "file": "src/lib/geo/countries.ts",
+      "line": 207,
+      "kind": "PropertyAssignment",
+      "text": "San Marino"
+    },
+    {
+      "file": "src/lib/geo/countries.ts",
+      "line": 208,
+      "kind": "PropertyAssignment",
+      "text": "Sao Tome and Principe"
+    },
+    {
+      "file": "src/lib/geo/countries.ts",
+      "line": 209,
+      "kind": "PropertyAssignment",
+      "text": "Saudi Arabia"
+    },
+    {
+      "file": "src/lib/geo/countries.ts",
+      "line": 213,
+      "kind": "PropertyAssignment",
+      "text": "Sierra Leone"
+    },
+    {
+      "file": "src/lib/geo/countries.ts",
+      "line": 215,
+      "kind": "PropertyAssignment",
+      "text": "Sint Maarten (Dutch part)"
+    },
+    {
+      "file": "src/lib/geo/countries.ts",
+      "line": 218,
+      "kind": "PropertyAssignment",
+      "text": "Solomon Islands"
+    },
+    {
+      "file": "src/lib/geo/countries.ts",
+      "line": 220,
+      "kind": "PropertyAssignment",
+      "text": "South Africa"
+    },
+    {
+      "file": "src/lib/geo/countries.ts",
+      "line": 221,
+      "kind": "PropertyAssignment",
+      "text": "South Georgia and the South Sandwich Islands"
+    },
+    {
+      "file": "src/lib/geo/countries.ts",
+      "line": 222,
+      "kind": "PropertyAssignment",
+      "text": "South Sudan"
+    },
+    {
+      "file": "src/lib/geo/countries.ts",
+      "line": 224,
+      "kind": "PropertyAssignment",
+      "text": "Sri Lanka"
+    },
+    {
+      "file": "src/lib/geo/countries.ts",
+      "line": 227,
+      "kind": "PropertyAssignment",
+      "text": "Svalbard and Jan Mayen"
+    },
+    {
+      "file": "src/lib/geo/countries.ts",
+      "line": 230,
+      "kind": "PropertyAssignment",
+      "text": "Syrian Arab Republic"
+    },
+    {
+      "file": "src/lib/geo/countries.ts",
+      "line": 233,
+      "kind": "PropertyAssignment",
+      "text": "Tanzania (United Republic of)"
+    },
+    {
+      "file": "src/lib/geo/countries.ts",
+      "line": 239,
+      "kind": "PropertyAssignment",
+      "text": "Trinidad and Tobago"
+    },
+    {
+      "file": "src/lib/geo/countries.ts",
+      "line": 243,
+      "kind": "PropertyAssignment",
+      "text": "Turks and Caicos Islands"
+    },
+    {
+      "file": "src/lib/geo/countries.ts",
+      "line": 247,
+      "kind": "PropertyAssignment",
+      "text": "United Arab Emirates"
+    },
+    {
+      "file": "src/lib/geo/countries.ts",
+      "line": 248,
+      "kind": "PropertyAssignment",
+      "text": "United Kingdom"
+    },
+    {
+      "file": "src/lib/geo/countries.ts",
+      "line": 249,
+      "kind": "PropertyAssignment",
+      "text": "United States"
+    },
+    {
+      "file": "src/lib/geo/countries.ts",
+      "line": 250,
+      "kind": "PropertyAssignment",
+      "text": "United States Minor Outlying Islands"
+    },
+    {
+      "file": "src/lib/geo/countries.ts",
+      "line": 254,
+      "kind": "PropertyAssignment",
+      "text": "Venezuela (Bolivarian Republic of)"
+    },
+    {
+      "file": "src/lib/geo/countries.ts",
+      "line": 255,
+      "kind": "PropertyAssignment",
+      "text": "Viet Nam"
+    },
+    {
+      "file": "src/lib/geo/countries.ts",
+      "line": 256,
+      "kind": "PropertyAssignment",
+      "text": "Virgin Islands (British)"
+    },
+    {
+      "file": "src/lib/geo/countries.ts",
+      "line": 257,
+      "kind": "PropertyAssignment",
+      "text": "Virgin Islands (U.S.)"
+    },
+    {
+      "file": "src/lib/geo/countries.ts",
+      "line": 258,
+      "kind": "PropertyAssignment",
+      "text": "Wallis and Futuna"
+    },
+    {
+      "file": "src/lib/geo/countries.ts",
+      "line": 259,
+      "kind": "PropertyAssignment",
+      "text": "Western Sahara"
+    },
+    {
+      "file": "src/main.tsx",
+      "line": 9,
+      "kind": "NewExpression",
+      "text": "#root element missing"
+    },
+    {
+      "file": "src/worker.ts",
+      "line": 26,
+      "kind": "NewExpression",
+      "text": "Not found"
+    },
+    {
+      "file": "src/worker.ts",
+      "line": 31,
+      "kind": "NewExpression",
+      "text": "API_ORIGIN not configured"
+    }
+  ]
+}

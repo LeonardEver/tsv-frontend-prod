@@ -33,8 +33,6 @@
   "you_don_t_have_access_to_this_6cf57c": "Non hai accesso a questo contenuto.",
   "too_many_requests_8ae8c5": "Troppe richieste.",
   "on_the_free_plan_the_lesson_must_0587ba": "Con il piano Free bisogna prima completare la lezione. Con Survivor e Operator puoi metterti alla prova in qualsiasi momento.",
-  "downloading_is_a_plan_feature_ad4064": "I download richiedono un piano a pagamento",
-  "viewing_is_free_downloads_are_included_in_895009": "La visualizzazione è gratuita: i download sono inclusi in Survivor e Operator.",
   "community_is_a_plan_feature_98f610": "La community richiede un piano a pagamento",
   "community_access_is_included_in_survivor_and_f345a2": "L'accesso alla community è incluso in Survivor e Operator.",
   "you_re_posting_too_quickly_4a1d75": "Stai pubblicando troppo velocemente",
@@ -53,5 +51,9 @@
   "the_payment_provider_couldn_t_complete_the_37ee07": "Il fornitore di pagamento non ha potuto completare la richiesta",
   "please_try_again_in_a_moment_a917db": "Riprova tra poco.",
   "something_went_wrong_8d886c": "Si è verificato un errore",
-  "the_app_hit_an_unexpected_error_34e108": "L'app ha riscontrato un errore imprevisto."
+  "the_app_hit_an_unexpected_error_34e108": "L'app ha riscontrato un errore imprevisto.",
+  "resourcePlanRequired": "È necessario un piano a pagamento",
+  "contentTranslationUnavailable": "Questo contenuto è temporaneamente non disponibile nella tua lingua. Riprova tra poco.",
+  "retryAfterSeconds": "Riprova tra circa {{seconds}} secondi.",
+  "waitBeforeRetry": "Attendi un momento e riprova."
 }

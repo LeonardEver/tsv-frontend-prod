@@ -77,5 +77,7 @@
   "review_lesson_0e3fba": "Lektion wiederholen",
   "some_lesson_results_could_not_be_loaded_d01453": "Einige Lektionsergebnisse konnten nicht geladen werden.",
   "quizAttempts": "Quiz: {{score}} · {{attempts}}",
-  "bestQuizAttempts": "{{title}} · Bestes Ergebnis: {{score}} · {{attempts}}"
+  "bestQuizAttempts": "{{title}} · Bestes Ergebnis: {{score}} · {{attempts}}",
+  "currentLevel": "Aktuelle Stufe: {{level}}",
+  "levelUnavailable": "Stufe nicht verfügbar"
 }

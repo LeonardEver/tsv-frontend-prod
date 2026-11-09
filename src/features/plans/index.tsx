@@ -53,13 +53,13 @@ function priceLabel(price: number, currency: string, period: string | null): str
   // Free renders as "$0" (formatMoney's zero case) — the plan card
   // never shows a localized free label.
   const base = formatMoney(price, currency);
-  return period === "month" ? `${base} /month` : base;
+  return period === "month" ? uiText("subscriptions:priceMonthly", { price: base }) : base;
 }
 
 const PLAN_TAGLINES: Record<string, string> = {
-  free: "Your daily training ration. One lesson and one field test a day, with every resource available to view.",
-  survivor: "For the committed prepper — 10 lessons and 10 quizzes a day, full Community access and downloadable field resources.",
-  operator: "Unlimited training for daily operators and instructors. Everything in Survivor, without daily limits.",
+  get free() { return uiText("subscriptions:freeTagline"); },
+  get survivor() { return uiText("subscriptions:survivorTagline"); },
+  get operator() { return uiText("subscriptions:operatorTagline"); },
 };
 
 /** Feature rows for one plan — derived from its REAL entitlements. */
@@ -69,19 +69,19 @@ function planFeatures(plan: PlansResponse["plans"][number]) {
     {
       label:
         e.daily_lessons === null
-          ? "Unlimited lessons per day"
-          : `${e.daily_lessons} ${e.daily_lessons === 1 ? "lesson" : "lessons"} per day`,
+          ? uiText("subscriptions:unlimitedLessons")
+          : uiText("subscriptions:dailyLessons", { count: e.daily_lessons }),
       included: true,
     },
     {
       label:
         e.daily_quizzes === null
-          ? "Unlimited field tests per day"
-          : `${e.daily_quizzes} ${e.daily_quizzes === 1 ? "field test" : "field tests"} per day`,
+          ? uiText("subscriptions:unlimitedTests")
+          : uiText("subscriptions:dailyTests", { count: e.daily_quizzes }),
       included: true,
     },
     { get label() { return uiText("subscriptions:field_test_before_lesson_f25ded"); }, included: e.quiz_before_lesson },
-    { get label() { return uiText("subscriptions:view_field_resources_09c551"); }, included: true },
+    { get label() { return uiText("subscriptions:view_field_resources_09c551"); }, included: e.resource_download },
     { get label() { return uiText("subscriptions:download_field_resources_2b048b"); }, included: e.resource_download },
     { get label() { return uiText("subscriptions:community_access_b8fca8"); }, included: e.community },
   ];
@@ -116,7 +116,7 @@ export default function PlansPage() {
   const queryClient = useQueryClient();
   const pushToast = useUiStore((s) => s.pushToast);
   const [searchParams, setSearchParams] = useSearchParams();
-  const [billingNote, setBillingNote] = useState<string | null>(null);
+  const [billingNote, setBillingNote] = useState<"billingUnavailable" | "localMockOnly" | null>(null);
   const [switchingPlan, setSwitchingPlan] = useState<string | null>(null);
   const [phase, setPhase] = useState<CheckoutPhase>({ kind: "idle" });
   const [cancelDialogOpen, setCancelDialogOpen] = useState(false);
@@ -236,14 +236,14 @@ export default function PlansPage() {
       pushToast({
         tone: "success",
         get title() { return uiText("subscriptions:cancellation_scheduled_70cd2e"); },
-        description: subscription.ends_at
+        get description() { return subscription.ends_at
           ? uiText("subscriptions:planActiveUntil", { plan: subscription.plan_name, date: formatDate(subscription.ends_at) })
-          : uiText("subscriptions:planWillEnd"),
+          : uiText("subscriptions:planWillEnd"); },
       });
     },
     onError: (err) => {
       const copy = describeError(err);
-      pushToast({ tone: "error", title: copy.title, description: copy.description });
+      pushToast({ tone: "error", get title() { return copy.title; }, get description() { return copy.description; } });
     },
   });
 
@@ -254,9 +254,12 @@ export default function PlansPage() {
       if (err instanceof ApiError && err.status === 404) {
         // Production without the dev switch. Honest state — no payment
         // is claimed.
-        setBillingNote(
-          "Plan changes will be available here when billing goes live. Prices shown are the planned product pricing.",
-        );
+        setBillingNote("billingUnavailable");
+      } else if (err instanceof ApiError && err.status === 403) {
+        setBillingNote("localMockOnly");
+      } else {
+        const copy = describeError(err);
+        pushToast({ tone: "error", get title() { return copy.title; }, get description() { return copy.description; } });
       }
     },
     onSettled: () => { setSwitchingPlan(null); },
@@ -320,6 +323,8 @@ export default function PlansPage() {
         title={uiText("subscriptions:choose_your_plan_c197d6")}
         description={uiText("subscriptions:every_plan_opens_the_whole_academy_plans_c7c2eb")}
       />
+
+      {import.meta.env.DEV && import.meta.env.MODE !== "test" ? <p role="note" className="mb-6 rounded-lg border border-primary/25 bg-primary/5 px-4 py-3 text-sm text-muted-foreground">{uiText("subscriptions:localTestingNote")}</p> : null}
 
       {subscription ? <div className="mb-10"><BillingCard subscription={subscription} /></div> : null}
 
@@ -514,7 +519,7 @@ export default function PlansPage() {
       {billingNote ? (
         <div className="panel-2 mb-6 p-4">
           <p role="status" className="text-sm text-muted-foreground">
-            {billingNote}
+            {uiText(`subscriptions:${billingNote}`)}
           </p>
         </div>
       ) : null}

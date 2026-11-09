@@ -1,0 +1,529 @@
+{
+  "applied_locally": true,
+  "installed_complete": true,
+  "protected_tables_unchanged": [
+    "users",
+    "subscriptions",
+    "stripe_billing",
+    "stripe_events",
+    "categories",
+    "subcategories",
+    "modules",
+    "knowledge_items",
+    "lessons",
+    "learning_objectives",
+    "quizzes",
+    "quiz_questions",
+    "resources",
+    "user_module_progress",
+    "user_lesson_progress",
+    "quiz_attempts"
+  ],
+  "locales": {
+    "pt-BR": {
+      "achievement": {
+        "total": 7,
+        "published": 0,
+        "authored": 7,
+        "machine_translated": 0,
+        "draft": 0,
+        "stale": 0,
+        "missing": 0
+      },
+      "category": {
+        "total": 20,
+        "published": 0,
+        "authored": 20,
+        "machine_translated": 0,
+        "draft": 0,
+        "stale": 0,
+        "missing": 0
+      },
+      "explanation": {
+        "total": 781,
+        "published": 0,
+        "authored": 0,
+        "machine_translated": 781,
+        "draft": 0,
+        "stale": 0,
+        "missing": 0
+      },
+      "knowledge": {
+        "total": 80,
+        "published": 0,
+        "authored": 80,
+        "machine_translated": 0,
+        "draft": 0,
+        "stale": 0,
+        "missing": 0
+      },
+      "lesson_title": {
+        "total": 80,
+        "published": 0,
+        "authored": 80,
+        "machine_translated": 0,
+        "draft": 0,
+        "stale": 0,
+        "missing": 0
+      },
+      "lesson": {
+        "total": 80,
+        "published": 0,
+        "authored": 0,
+        "machine_translated": 80,
+        "draft": 0,
+        "stale": 0,
+        "missing": 0
+      },
+      "module_description": {
+        "total": 80,
+        "published": 0,
+        "authored": 80,
+        "machine_translated": 0,
+        "draft": 0,
+        "stale": 0,
+        "missing": 0
+      },
+      "module": {
+        "total": 80,
+        "published": 0,
+        "authored": 80,
+        "machine_translated": 0,
+        "draft": 0,
+        "stale": 0,
+        "missing": 0
+      },
+      "quiz_title": {
+        "total": 80,
+        "published": 0,
+        "authored": 80,
+        "machine_translated": 0,
+        "draft": 0,
+        "stale": 0,
+        "missing": 0
+      },
+      "quiz": {
+        "total": 80,
+        "published": 0,
+        "authored": 0,
+        "machine_translated": 80,
+        "draft": 0,
+        "stale": 0,
+        "missing": 0
+      },
+      "resource": {
+        "total": 81,
+        "published": 0,
+        "authored": 81,
+        "machine_translated": 0,
+        "draft": 0,
+        "stale": 0,
+        "missing": 0
+      }
+    },
+    "es": {
+      "achievement": {
+        "total": 7,
+        "published": 0,
+        "authored": 7,
+        "machine_translated": 0,
+        "draft": 0,
+        "stale": 0,
+        "missing": 0
+      },
+      "category": {
+        "total": 20,
+        "published": 0,
+        "authored": 20,
+        "machine_translated": 0,
+        "draft": 0,
+        "stale": 0,
+        "missing": 0
+      },
+      "explanation": {
+        "total": 781,
+        "published": 0,
+        "authored": 0,
+        "machine_translated": 781,
+        "draft": 0,
+        "stale": 0,
+        "missing": 0
+      },
+      "knowledge": {
+        "total": 80,
+        "published": 0,
+        "authored": 80,
+        "machine_translated": 0,
+        "draft": 0,
+        "stale": 0,
+        "missing": 0
+      },
+      "lesson_title": {
+        "total": 80,
+        "published": 0,
+        "authored": 80,
+        "machine_translated": 0,
+        "draft": 0,
+        "stale": 0,
+        "missing": 0
+      },
+      "lesson": {
+        "total": 80,
+        "published": 0,
+        "authored": 0,
+        "machine_translated": 80,
+        "draft": 0,
+        "stale": 0,
+        "missing": 0
+      },
+      "module_description": {
+        "total": 80,
+        "published": 0,
+        "authored": 80,
+        "machine_translated": 0,
+        "draft": 0,
+        "stale": 0,
+        "missing": 0
+      },
+      "module": {
+        "total": 80,
+        "published": 0,
+        "authored": 80,
+        "machine_translated": 0,
+        "draft": 0,
+        "stale": 0,
+        "missing": 0
+      },
+      "quiz_title": {
+        "total": 80,
+        "published": 0,
+        "authored": 80,
+        "machine_translated": 0,
+        "draft": 0,
+        "stale": 0,
+        "missing": 0
+      },
+      "quiz": {
+        "total": 80,
+        "published": 0,
+        "authored": 0,
+        "machine_translated": 80,
+        "draft": 0,
+        "stale": 0,
+        "missing": 0
+      },
+      "resource": {
+        "total": 81,
+        "published": 0,
+        "authored": 81,
+        "machine_translated": 0,
+        "draft": 0,
+        "stale": 0,
+        "missing": 0
+      }
+    },
+    "fr": {
+      "achievement": {
+        "total": 7,
+        "published": 0,
+        "authored": 7,
+        "machine_translated": 0,
+        "draft": 0,
+        "stale": 0,
+        "missing": 0
+      },
+      "category": {
+        "total": 20,
+        "published": 0,
+        "authored": 20,
+        "machine_translated": 0,
+        "draft": 0,
+        "stale": 0,
+        "missing": 0
+      },
+      "explanation": {
+        "total": 781,
+        "published": 0,
+        "authored": 0,
+        "machine_translated": 781,
+        "draft": 0,
+        "stale": 0,
+        "missing": 0
+      },
+      "knowledge": {
+        "total": 80,
+        "published": 0,
+        "authored": 80,
+        "machine_translated": 0,
+        "draft": 0,
+        "stale": 0,
+        "missing": 0
+      },
+      "lesson_title": {
+        "total": 80,
+        "published": 0,
+        "authored": 80,
+        "machine_translated": 0,
+        "draft": 0,
+        "stale": 0,
+        "missing": 0
+      },
+      "lesson": {
+        "total": 80,
+        "published": 0,
+        "authored": 0,
+        "machine_translated": 80,
+        "draft": 0,
+        "stale": 0,
+        "missing": 0
+      },
+      "module_description": {
+        "total": 80,
+        "published": 0,
+        "authored": 80,
+        "machine_translated": 0,
+        "draft": 0,
+        "stale": 0,
+        "missing": 0
+      },
+      "module": {
+        "total": 80,
+        "published": 0,
+        "authored": 80,
+        "machine_translated": 0,
+        "draft": 0,
+        "stale": 0,
+        "missing": 0
+      },
+      "quiz_title": {
+        "total": 80,
+        "published": 0,
+        "authored": 80,
+        "machine_translated": 0,
+        "draft": 0,
+        "stale": 0,
+        "missing": 0
+      },
+      "quiz": {
+        "total": 80,
+        "published": 0,
+        "authored": 0,
+        "machine_translated": 80,
+        "draft": 0,
+        "stale": 0,
+        "missing": 0
+      },
+      "resource": {
+        "total": 81,
+        "published": 0,
+        "authored": 81,
+        "machine_translated": 0,
+        "draft": 0,
+        "stale": 0,
+        "missing": 0
+      }
+    },
+    "de": {
+      "achievement": {
+        "total": 7,
+        "published": 0,
+        "authored": 7,
+        "machine_translated": 0,
+        "draft": 0,
+        "stale": 0,
+        "missing": 0
+      },
+      "category": {
+        "total": 20,
+        "published": 0,
+        "authored": 20,
+        "machine_translated": 0,
+        "draft": 0,
+        "stale": 0,
+        "missing": 0
+      },
+      "explanation": {
+        "total": 781,
+        "published": 0,
+        "authored": 0,
+        "machine_translated": 781,
+        "draft": 0,
+        "stale": 0,
+        "missing": 0
+      },
+      "knowledge": {
+        "total": 80,
+        "published": 0,
+        "authored": 80,
+        "machine_translated": 0,
+        "draft": 0,
+        "stale": 0,
+        "missing": 0
+      },
+      "lesson_title": {
+        "total": 80,
+        "published": 0,
+        "authored": 80,
+        "machine_translated": 0,
+        "draft": 0,
+        "stale": 0,
+        "missing": 0
+      },
+      "lesson": {
+        "total": 80,
+        "published": 0,
+        "authored": 0,
+        "machine_translated": 80,
+        "draft": 0,
+        "stale": 0,
+        "missing": 0
+      },
+      "module_description": {
+        "total": 80,
+        "published": 0,
+        "authored": 80,
+        "machine_translated": 0,
+        "draft": 0,
+        "stale": 0,
+        "missing": 0
+      },
+      "module": {
+        "total": 80,
+        "published": 0,
+        "authored": 80,
+        "machine_translated": 0,
+        "draft": 0,
+        "stale": 0,
+        "missing": 0
+      },
+      "quiz_title": {
+        "total": 80,
+        "published": 0,
+        "authored": 80,
+        "machine_translated": 0,
+        "draft": 0,
+        "stale": 0,
+        "missing": 0
+      },
+      "quiz": {
+        "total": 80,
+        "published": 0,
+        "authored": 0,
+        "machine_translated": 80,
+        "draft": 0,
+        "stale": 0,
+        "missing": 0
+      },
+      "resource": {
+        "total": 81,
+        "published": 0,
+        "authored": 81,
+        "machine_translated": 0,
+        "draft": 0,
+        "stale": 0,
+        "missing": 0
+      }
+    },
+    "it": {
+      "achievement": {
+        "total": 7,
+        "published": 0,
+        "authored": 7,
+        "machine_translated": 0,
+        "draft": 0,
+        "stale": 0,
+        "missing": 0
+      },
+      "category": {
+        "total": 20,
+        "published": 0,
+        "authored": 20,
+        "machine_translated": 0,
+        "draft": 0,
+        "stale": 0,
+        "missing": 0
+      },
+      "explanation": {
+        "total": 781,
+        "published": 0,
+        "authored": 0,
+        "machine_translated": 781,
+        "draft": 0,
+        "stale": 0,
+        "missing": 0
+      },
+      "knowledge": {
+        "total": 80,
+        "published": 0,
+        "authored": 80,
+        "machine_translated": 0,
+        "draft": 0,
+        "stale": 0,
+        "missing": 0
+      },
+      "lesson_title": {
+        "total": 80,
+        "published": 0,
+        "authored": 80,
+        "machine_translated": 0,
+        "draft": 0,
+        "stale": 0,
+        "missing": 0
+      },
+      "lesson": {
+        "total": 80,
+        "published": 0,
+        "authored": 0,
+        "machine_translated": 80,
+        "draft": 0,
+        "stale": 0,
+        "missing": 0
+      },
+      "module_description": {
+        "total": 80,
+        "published": 0,
+        "authored": 80,
+        "machine_translated": 0,
+        "draft": 0,
+        "stale": 0,
+        "missing": 0
+      },
+      "module": {
+        "total": 80,
+        "published": 0,
+        "authored": 80,
+        "machine_translated": 0,
+        "draft": 0,
+        "stale": 0,
+        "missing": 0
+      },
+      "quiz_title": {
+        "total": 80,
+        "published": 0,
+        "authored": 80,
+        "machine_translated": 0,
+        "draft": 0,
+        "stale": 0,
+        "missing": 0
+      },
+      "quiz": {
+        "total": 80,
+        "published": 0,
+        "authored": 0,
+        "machine_translated": 80,
+        "draft": 0,
+        "stale": 0,
+        "missing": 0
+      },
+      "resource": {
+        "total": 81,
+        "published": 0,
+        "authored": 81,
+        "machine_translated": 0,
+        "draft": 0,
+        "stale": 0,
+        "missing": 0
+      }
+    }
+  }
+}

@@ -41,7 +41,7 @@ export function LoginScreen() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [submitting, setSubmitting] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<ReturnType<typeof describeError> | null>(null);
   const [needsVerification, setNeedsVerification] = useState(false);
 
   const loginUrl = `${API_BASE}/auth/login?redirect_to=${encodeURIComponent(redirectTo)}`;
@@ -61,7 +61,7 @@ export function LoginScreen() {
       if (err instanceof ApiError && err.code === "EMAIL_NOT_VERIFIED") {
         setNeedsVerification(true);
       } else {
-        setError(describeError(err).title);
+        setError(describeError(err));
       }
     } finally {
       setSubmitting(false);
@@ -143,7 +143,7 @@ export function LoginScreen() {
                 >{uiText("authentication:resend_the_verification_email_b45640")}</Link>
               </Alert>
             ) : null}
-            {error ? <Alert tone="danger" title={error} /> : null}
+            {error ? <Alert tone="danger" title={error.title} /> : null}
 
             <Button type="submit" loading={submitting} className="w-full">{uiText("authentication:sign_in_ada2e9")}</Button>
           </form>

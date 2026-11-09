@@ -2,6 +2,7 @@
  * Modules API (typed against the backend OpenAPI response schemas).
  */
 import { request } from "@/lib/api/client";
+import { getLocale } from "@/i18n";
 import type { ModuleDetailResponse, ModuleListResponse } from "@/lib/api/types";
 
 export function fetchModule(moduleId: string): Promise<ModuleDetailResponse> {
@@ -16,6 +17,7 @@ export function fetchModule(moduleId: string): Promise<ModuleDetailResponse> {
  * far larger library than the fixed 9-module content set.
  */
 export async function fetchAllModules(): Promise<ModuleListResponse> {
+  const locale = getLocale();
   const MAX_PAGES = 10;
   const modules: ModuleListResponse["modules"] = [];
   let cursor: string | null = null;
@@ -24,7 +26,7 @@ export async function fetchAllModules(): Promise<ModuleListResponse> {
     const query: string = cursor
       ? `/modules?limit=100&cursor=${encodeURIComponent(cursor)}`
       : "/modules?limit=100";
-    const page: ModuleListResponse = await request<ModuleListResponse>(query);
+    const page: ModuleListResponse = await request<ModuleListResponse>(query, { locale });
     modules.push(...page.modules);
     cursor = page.pagination.next_cursor;
     if (!cursor) break;

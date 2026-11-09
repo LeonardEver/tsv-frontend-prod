@@ -181,7 +181,7 @@ export default function LessonPage() {
     [contentSections],
   );
 
-  if (moduleQuery.isPending || (moduleQuery.data && lessonQuery.isPending)) {
+  if (moduleQuery.isPending || moduleQuery.isPlaceholderData || lessonQuery.isPlaceholderData || (moduleQuery.data && lessonQuery.isPending)) {
     return (
       <div role="status" aria-label={uiText("learning:loading_lesson_d81134")} className="space-y-6">
         <div className="panel h-64 animate-pulse" aria-hidden="true" />
